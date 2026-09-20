@@ -663,11 +663,9 @@
       <!-- 3 ключевых гарантийных блока -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
-              ✓
-            </div>
+            <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 01 / Сертификация</div>
             <h3 class="text-base font-bold text-slate-900 mb-2">100% Заводская гарантия и EAC</h3>
             <p class="text-xs text-slate-600 leading-relaxed">
               Каждая отгрузка сопровождается паспортом изделия, декларацией соответствия ЕАС и сертификатом заводской лаборатории производителя.
@@ -678,11 +676,9 @@
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
-              ⚡
-            </div>
+            <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 02 / Рекламации</div>
             <h3 class="text-base font-bold text-slate-900 mb-2">Замена брака за 48 часов</h3>
             <p class="text-xs text-slate-600 leading-relaxed">
               При обнаружении рекламационного случая заменяем партию из резервного складского фонда в Москве за 48 часов либо производим моментальный возврат средств.
@@ -693,12 +689,10 @@
           </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
-            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
-              ⚖
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">Входной контроль ОТК</h3>
+            <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 03 / Контроль ОТК</div>
+            <h3 class="text-base font-bold text-slate-900 mb-2">Входной инструментальный контроль</h3>
             <p class="text-xs text-slate-600 leading-relaxed">
               Перед упаковкой партия проходит инструментальный контроль: проверка геометрических размеров выводов, целостности заводских лент, влагозащиты и маркировки партий.
             </p>
@@ -711,17 +705,17 @@
       </div>
 
       <!-- Скачивание типового договора и шаблонов документов -->
-      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <h4 class="text-sm font-bold text-slate-900">Юридический пакет документов для согласования</h4>
           <p class="text-xs text-slate-500 mt-0.5">Ознакомьтесь с типовым договором поставки и образцом спецификации для вашей юридической службы.</p>
         </div>
         <div class="flex flex-wrap items-center gap-3">
-          <button onclick="openLeadModal('Скачивание типового договора поставки')" class="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
+          <button onclick="openLeadModal('Скачивание типового договора поставки')" class="px-4 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
             <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Договор поставки (DOCX)</span>
           </button>
-          <button onclick="openLeadModal('Скачивание образца спецификации')" class="px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
+          <button onclick="openLeadModal('Скачивание образца спецификации')" class="px-4 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
             <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Спецификация (XLSX)</span>
           </button>
@@ -746,50 +740,50 @@
 
       <div class="space-y-3">
         
-        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-5">
+        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
             <span>Работаете ли вы с НДС 20% и через какие системы ЭДО?</span>
-            <span class="transition-transform group-open:rotate-180 text-blue-600 font-bold ml-2">↓</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Да, мы работаем исключительно на общей системе налогообложения (ОСНО) с выделением НДС 20%. Первичные учетные документы (УПД со статусом 1, счета, счета-фактуры) отправляем день в день через операторов «Диадок» (СКБ Контур) и «СБИС» (Тензор). Также доступен классический бумажный документооборот с курьерской доставкой.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-5">
+        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
             <span>Можно ли получить образцы продукции перед крупной серией?</span>
-            <span class="transition-transform group-open:rotate-180 text-blue-600 font-bold ml-2">↓</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Да, для тестирования на производственных линиях и входного контроля мы предоставляем образцы компонентов и кабельной продукции. Образцы передаются по акту приема-передачи с отправкой экспресс-курьером в течение 24 часов со склада в Москве.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-5">
+        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
             <span>Как фиксируется стоимость при колебаниях валютных курсов?</span>
-            <span class="transition-transform group-open:rotate-180 text-blue-600 font-bold ml-2">↓</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             В момент согласования и подписания спецификации цена в рублях окончательно фиксируется в договоре на весь срок поставки. Любые валютные и таможенные колебания NOVA TRADE берет на себя. Пересмотр цены задним числом исключен.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-5">
+        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
             <span>Предоставляется ли отсрочка платежа (коммерческий кредит)?</span>
-            <span class="transition-transform group-open:rotate-180 text-blue-600 font-bold ml-2">↓</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Для постоянных клиентов действует программа факторинга и отсрочки платежа до 45 календарных дней после отгрузки с лимитом до 15 000 000 ₽. При первом контракте возможна схема 50% предоплата и 50% по факту готовности к отгрузке на терминале в Москве.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-5">
+        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
             <span>В какие регионы доставляете и какими транспортными компаниями?</span>
-            <span class="transition-transform group-open:rotate-180 text-blue-600 font-bold ml-2">↓</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Доставляем во все субъекты РФ, а также в Беларусь и Казахстан. До московских терминалов «Деловые Линии», «ПЭК», «СДЭК» и «Байкал-Сервис» доставка бесплатна ежедневно. Также возможен прямой самовывоз с нашего распределительного центра в индустриальном парке «Коледино» (Подольск).
@@ -913,7 +907,9 @@
 
           <!-- Блок успешной отправки прямо внутри формы -->
           <div id="lead-form-success" class="hidden text-center py-12">
-            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-xl font-bold">✓</div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
             <h4 class="text-lg font-bold text-slate-900 mb-1.5">Заявка успешно принята</h4>
             <p class="text-xs text-slate-600 max-w-md mx-auto leading-relaxed mb-5">
               Менеджер оптового отдела получил вашу спецификацию и подготовит коммерческое предложение с фабричными ценами и сроками поставки в течение 30 минут.
@@ -977,7 +973,9 @@
 
       <!-- Успешная отправка -->
       <div id="modal-success" class="hidden text-center py-4">
-        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">✓</div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
         <h4 class="text-base font-bold text-slate-900 mb-1">Заявка принята</h4>
         <p class="text-xs text-slate-600 leading-relaxed">
           Менеджер оптового отдела свяжется с вами и предоставит спецификацию с фабричными ценами.
