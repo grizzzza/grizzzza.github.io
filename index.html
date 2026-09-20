@@ -398,12 +398,6 @@
                   </svg>
                 </div>
 
-                <!-- Статус внизу карточки -->
-                <div class="w-full px-4 py-2.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs sm:text-sm font-mono">
-                  <span class="text-white/60">Статус:</span>
-                  <span class="text-emerald-400 font-bold">● Свободен для проектов</span>
-                </div>
-
               </div>
             </div>
           </div>
@@ -477,15 +471,11 @@
         <!-- Заголовок витрины кейсов и фильтры -->
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
           <div>
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-3">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-              <span>Витрина работ • 100% чистый код</span>
-            </div>
             <h2 class="font-syne text-4xl sm:text-6xl font-extrabold text-white">
               Реализованные сайты
             </h2>
             <p class="text-white/60 max-w-2xl text-sm sm:text-base mt-3 leading-relaxed">
-              Все проекты открываются вживую. Нажмите «Открыть демо ↗», чтобы протестировать интерактивный калькулятор, каталог и формы, или выберите нужный формат для вашего бизнеса.
+              Все проекты открываются вживую. Нажмите «Смотреть демо ↗», чтобы протестировать сайт, или выберите нужный формат для вашего бизнеса.
             </p>
           </div>
           
@@ -515,287 +505,148 @@
         <!-- ВИТРИНА КЕЙСОВ: СЕТКА КАРТОЧЕК (SHOWCASE GRID) -->
         <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-24">
           
-          <!-- Карточка 1: Nova B2B (Живое демо) -->
-          <div class="project-card rounded-3xl border border-cyan-500/40 bg-gradient-to-b from-cyan-950/20 via-black/60 to-black/80 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="b2b">
+          <!-- Карточка 1: Nova B2B -->
+          <div class="project-card rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="b2b">
             <div>
-              <!-- Рамка браузера -->
-              <div class="h-56 w-full rounded-2xl bg-black/80 mb-5 border border-white/15 overflow-hidden flex flex-col relative shadow-inner">
-                <div class="px-4 py-2.5 bg-black/75 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-10">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/60">
-                    novab2b.tech
-                  </div>
-                  <span class="text-[10px] font-mono text-cyan-300 font-bold bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/40 flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Демо доступно
-                  </span>
-                </div>
-                <!-- Фотография -->
-                <div class="relative w-full flex-1 overflow-hidden">
-                  <img src="assets/cases/case-1.jpg" alt="Nova B2B Платформа" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" draggable="false">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 font-semibold drop-shadow">
-                    Платформа оптовых поставок и калькулятор
-                  </div>
-                </div>
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/40">
+                <img src="assets/cases/case-1.jpg" alt="Nova B2B" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Nova B2B</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-cyan-500/30 text-cyan-300 bg-cyan-500/10 font-mono">B2B / Опт</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Nova B2B</h3>
+                <span class="text-xs font-mono text-cyan-400 font-semibold">Оптовый портал</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Платформа контрактных поставок: живой калькулятор скидок от объема, каталог продукции и форма заявок.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Платформа оптовых поставок с калькулятором скидок от объема, каталогом продукции и онлайн-заявкой.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">HTML5</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Tailwind</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Калькулятор</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Модалки</span>
-              </div>
             </div>
 
-            <!-- Кнопки перехода на демо и заказ -->
-            <div class="pt-3.5 border-t border-white/10 flex items-center justify-between gap-2.5">
-              <a href="demos/b2b/index.html" target="_blank" class="flex-1 text-center px-4 py-2.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/50 hover:border-cyan-300 text-cyan-300 hover:text-cyan-200 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all">
-                <span>Открыть демо</span>
+            <div class="pt-4 border-t border-white/10">
+              <a href="demos/b2b/index.html" target="_blank" class="w-full text-center py-3 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-400/20">
+                <span>Смотреть демо</span>
                 <span>↗</span>
-              </a>
-              <a href="#contact" class="flex-1 text-center px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all shadow-md shadow-cyan-400/25">
-                <span>Заказать</span>
-                <span>→</span>
               </a>
             </div>
           </div>
 
           <!-- Карточка 2: Nordic Concept -->
-          <div class="project-card rounded-3xl border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="store">
+          <div class="project-card rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="store">
             <div>
-              <div class="h-56 w-full rounded-2xl bg-black/80 mb-5 border border-white/15 overflow-hidden flex flex-col relative shadow-inner">
-                <div class="px-4 py-2.5 bg-black/75 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-10">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/60">
-                    nordic-concept.store
-                  </div>
-                  <span class="text-[10px] font-mono text-amber-300 font-bold bg-amber-950/70 px-2 py-0.5 rounded border border-amber-500/30">
-                    UX 100%
-                  </span>
-                </div>
-                <div class="relative w-full flex-1 overflow-hidden">
-                  <img src="assets/cases/case-2.jpg" alt="Nordic Concept Интерьеры" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" draggable="false">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 font-semibold drop-shadow">
-                    Каталог дизайнерских интерьеров
-                  </div>
-                </div>
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/40">
+                <img src="assets/cases/case-2.jpg" alt="Nordic Concept" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Nordic Concept</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-cyan-500/30 text-cyan-300 bg-cyan-500/10 font-mono">E-Commerce</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Nordic Concept</h3>
+                <span class="text-xs font-mono text-amber-400 font-semibold">Интернет-магазин</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Интернет-магазин интерьеров: каталог продукции, фильтрация по комнатам, корзина и идеальный мобильный адаптив.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Минималистичный магазин дизайнерских интерьеров с фильтрацией по комнатам и быстрой корзиной.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">Каталог</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Корзина</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Фильтры</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Fast Load</span>
-              </div>
             </div>
 
-            <div class="pt-3.5 border-t border-white/10 flex items-center">
-              <a href="#contact" class="w-full text-center px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all shadow-md shadow-cyan-400/25">
-                <span>Заказать подобный магазин</span>
-                <span>→</span>
+            <div class="pt-4 border-t border-white/10">
+              <a href="demos/store/index.html" target="_blank" class="w-full text-center py-3 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-400/20">
+                <span>Смотреть демо</span>
+                <span>↗</span>
               </a>
             </div>
           </div>
 
           <!-- Карточка 3: Cyber Pulse -->
-          <div class="project-card rounded-3xl border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="promo">
+          <div class="project-card rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="promo">
             <div>
-              <div class="h-56 w-full rounded-2xl bg-black/80 mb-5 border border-white/15 overflow-hidden flex flex-col relative shadow-inner">
-                <div class="px-4 py-2.5 bg-black/75 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-10">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/60">
-                    cyberpulse.io
-                  </div>
-                  <span class="text-[10px] font-mono text-purple-300 font-bold bg-purple-950/70 px-2 py-0.5 rounded border border-purple-500/30">
-                    60 FPS
-                  </span>
-                </div>
-                <div class="relative w-full flex-1 overflow-hidden">
-                  <img src="assets/cases/case-3.jpg" alt="Cyber Pulse Промо" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" draggable="false">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 font-semibold drop-shadow">
-                    Генеративный 3D промо-сайт
-                  </div>
-                </div>
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/40">
+                <img src="assets/cases/case-3.jpg" alt="Cyber Pulse" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Cyber Pulse</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-cyan-500/30 text-cyan-300 bg-cyan-500/10 font-mono">Промо / 3D</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Cyber Pulse</h3>
+                <span class="text-xs font-mono text-purple-400 font-semibold">Промо-сайт</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Имиджевый промо-лендинг: плавная анимация, генеративная графика, тарифный свитчер и максимальный WOW-эффект.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Имиджевый лендинг технологичного продукта с плавной анимацией и акцентом на предзаказ.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">Canvas 2D</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Tailwind</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">WOW-эффект</span>
-              </div>
             </div>
 
-            <div class="pt-3.5 border-t border-white/10 flex items-center">
-              <a href="#contact" class="w-full text-center px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all shadow-md shadow-cyan-400/25">
-                <span>Заказать WOW-лендинг</span>
-                <span>→</span>
+            <div class="pt-4 border-t border-white/10">
+              <a href="demos/cyber/index.html" target="_blank" class="w-full text-center py-3 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-400/20">
+                <span>Смотреть демо</span>
+                <span>↗</span>
               </a>
             </div>
           </div>
 
           <!-- Карточка 4: Apex Realty -->
-          <div class="project-card rounded-3xl border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="realty">
+          <div class="project-card rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="realty">
             <div>
-              <div class="h-56 w-full rounded-2xl bg-black/80 mb-5 border border-white/15 overflow-hidden flex flex-col relative shadow-inner">
-                <div class="px-4 py-2.5 bg-black/75 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-10">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/60">
-                    apex-realty.estate
-                  </div>
-                  <span class="text-[10px] font-mono text-emerald-300 font-bold bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/30">
-                    Лиды +85%
-                  </span>
-                </div>
-                <div class="relative w-full flex-1 overflow-hidden">
-                  <img src="assets/cases/case-4.jpg" alt="Apex Realty Недвижимость" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" draggable="false">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 font-semibold drop-shadow">
-                    Элитная загородная архитектура
-                  </div>
-                </div>
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/40">
+                <img src="assets/cases/case-4.jpg" alt="Apex Realty" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Apex Realty</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-cyan-500/30 text-cyan-300 bg-cyan-500/10 font-mono">Недвижимость</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Apex Realty</h3>
+                <span class="text-xs font-mono text-emerald-400 font-semibold">Недвижимость</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Портал недвижимости: подбор по бюджету и локациям, интеграция с CRM застройщика и форма записи на просмотр.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Каталог загородных резиденций с интерактивным подбором вилл и записью на просмотр.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">CRM Webhook</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Фильтры</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Каталог вилл</span>
-              </div>
             </div>
 
-            <div class="pt-3.5 border-t border-white/10 flex items-center">
-              <a href="#contact" class="w-full text-center px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all shadow-md shadow-cyan-400/25">
-                <span>Заказать сайт недвижимости</span>
-                <span>→</span>
+            <div class="pt-4 border-t border-white/10">
+              <a href="demos/realty/index.html" target="_blank" class="w-full text-center py-3 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-400/20">
+                <span>Смотреть демо</span>
+                <span>↗</span>
               </a>
             </div>
           </div>
 
           <!-- Карточка 5: Zenit Club -->
-          <div class="project-card rounded-3xl border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="services">
+          <div class="project-card rounded-2xl border border-white/15 bg-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="services">
             <div>
-              <div class="h-56 w-full rounded-2xl bg-black/80 mb-5 border border-white/15 overflow-hidden flex flex-col relative shadow-inner">
-                <div class="px-4 py-2.5 bg-black/75 backdrop-blur-md border-b border-white/10 flex items-center justify-between z-10">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-white/60">
-                    zenit-club.fitness
-                  </div>
-                  <span class="text-[10px] font-mono text-cyan-300 font-bold bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
-                    Online Booking
-                  </span>
-                </div>
-                <div class="relative w-full flex-1 overflow-hidden">
-                  <img src="assets/cases/case-5.jpg" alt="Zenit Club Фитнес" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" loading="lazy" draggable="false">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-2.5 left-3 text-[11px] font-mono text-white/90 font-semibold drop-shadow">
-                    Премиальное фитнес-пространство
-                  </div>
-                </div>
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/40">
+                <img src="assets/cases/case-5.jpg" alt="Zenit Club" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Zenit Club</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-cyan-500/30 text-cyan-300 bg-cyan-500/10 font-mono">Спорт / Услуги</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Zenit Club</h3>
+                <span class="text-xs font-mono text-cyan-400 font-semibold">Спорт / Услуги</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Лендинг фитнес-клуба: интерактивное расписание занятий, сетка тренеров, абонементы и онлайн-запись.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Сайт фитнес-клуба с онлайн-расписанием тренировок, выбором абонементов и формой записи.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">Онлайн-запись</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Telegram-бот</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Календарь</span>
-              </div>
             </div>
 
-            <div class="pt-3.5 border-t border-white/10 flex items-center">
-              <a href="#contact" class="w-full text-center px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all shadow-md shadow-cyan-400/25">
-                <span>Заказать сервис записи</span>
-                <span>→</span>
+            <div class="pt-4 border-t border-white/10">
+              <a href="demos/fitness/index.html" target="_blank" class="w-full text-center py-3 px-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-400/20">
+                <span>Смотреть демо</span>
+                <span>↗</span>
               </a>
             </div>
           </div>
 
           <!-- Карточка 6: Индивидуальный проект -->
-          <div class="project-card rounded-3xl border border-dashed border-cyan-500/30 bg-gradient-to-b from-cyan-950/10 to-black/60 p-6 backdrop-blur-md transition-all duration-500 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 shadow-xl flex flex-col justify-between group" data-category="custom">
+          <div class="project-card rounded-2xl border border-dashed border-cyan-500/40 bg-gradient-to-b from-cyan-950/10 to-black/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-cyan-400 hover:-translate-y-1.5 flex flex-col justify-between group" data-category="custom">
             <div>
-              <div class="h-56 w-full rounded-2xl bg-black/60 mb-5 border border-white/10 overflow-hidden flex flex-col justify-center items-center relative text-center p-6 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]">
-                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 flex items-center justify-center text-xl font-mono mb-3 group-hover:scale-110 transition-transform">
-                  ✦
+              <div class="h-52 w-full rounded-xl overflow-hidden mb-4 relative bg-black/60 border border-white/10 flex flex-col items-center justify-center text-center p-6">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 flex items-center justify-center text-2xl font-mono mb-2 group-hover:scale-110 transition-transform">
+                  +
                 </div>
-                <div class="font-syne text-lg font-bold text-white mb-1">
-                  Ваш уникальный проект
-                </div>
-                <div class="text-xs text-white/60 font-mono max-w-xs">
-                  Разработаем любую нестандартную задачу с нуля
-                </div>
+                <div class="font-syne text-base font-bold text-white">Индивидуальный проект</div>
+                <div class="text-xs text-white/50 font-mono mt-1">Под ваши цели и бюджет</div>
               </div>
 
-              <div class="flex justify-between items-center mb-2">
-                <h3 class="font-syne text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Под ключ</h3>
-                <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-lg border border-emerald-500/30 text-emerald-300 bg-emerald-500/10 font-mono">Любое ТЗ</span>
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-syne text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Свой проект</h3>
+                <span class="text-xs font-mono text-emerald-400 font-semibold">Любая сложность</span>
               </div>
-              <p class="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
-                Сложные калькуляторы, личные кабинеты, интеграции с Telegram WebApp, 1С, эквайрингом и CRM-системами.
+              <p class="text-white/70 text-sm leading-relaxed mb-4">
+                Разработаем сайт под ключ с нестандартным функционалом, интеграциями и чистым кодом.
               </p>
-              <div class="flex flex-wrap items-center gap-1.5 text-xs text-white/50 font-mono mb-5">
-                <span class="px-2 py-0.5 rounded bg-white/5">Архитектура</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">API</span>
-                <span class="px-2 py-0.5 rounded bg-white/5">Индивидуальный UI</span>
-              </div>
             </div>
 
-            <div class="pt-3.5 border-t border-white/10 flex items-center">
-              <a href="#contact" class="w-full text-center px-5 py-2.5 rounded-xl border border-cyan-400/60 hover:bg-cyan-400 hover:text-slate-950 text-cyan-300 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1.5 transition-all">
+            <div class="pt-4 border-t border-white/10">
+              <a href="#contact" class="w-full text-center py-3 px-4 rounded-xl border border-cyan-400/60 hover:bg-cyan-400 hover:text-slate-950 text-cyan-300 font-syne font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all">
                 <span>Обсудить задачу</span>
                 <span>→</span>
               </a>

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOVA B2B — Прямые оптовые поставки и контрактное производство</title>
+  <title>NOVA TRADE — Оптовые поставки промышленного оборудования и компонентов</title>
   
-  <meta name="description" content="NOVA B2B — прямые оптовые поставки оборудования и контрактное производство. Экономия до 38%, таможенная очистка под ключ, доставка от 4 дней.">
+  <meta name="description" content="Прямые оптовые поставки промышленной электроники, кабельной продукции и компонентов для производств РФ. Официальный договор, НДС 20%, склад в Москве.">
   
-  <!-- Шрифты: Plus Jakarta Sans + Space Grotesk для цифр -->
+  <!-- Шрифт Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,16 +19,17 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'monospace'],
           },
           colors: {
-            brand: {
-              cyan: '#06b6d4',
-              emerald: '#10b981',
-              dark: '#070b14',
-              card: '#0d1527',
-              border: '#1e293b',
+            corporate: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              800: '#1e3a8a',
+              900: '#0f172a',
             }
           }
         }
@@ -37,7 +38,7 @@
   </script>
 
   <style>
-    /* Кастомный ползунок */
+    /* Аккуратный стандартный ползунок */
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
@@ -50,85 +51,98 @@
       width: 100%;
       height: 6px;
       cursor: pointer;
-      background: #1e293b;
-      border-radius: 9999px;
+      background: #cbd5e1;
+      border-radius: 4px;
     }
     input[type=range]::-webkit-slider-thumb {
-      height: 22px;
-      width: 22px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
-      background: #06b6d4;
+      background: #1d4ed8;
       cursor: pointer;
       -webkit-appearance: none;
-      margin-top: -8px;
-      box-shadow: 0 0 12px rgba(6, 182, 212, 0.7);
-      transition: transform 0.15s ease, background-color 0.15s ease;
+      margin-top: -7px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: background-color 0.15s ease;
     }
     input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-      background: #22d3ee;
+      background: #1e40af;
     }
   </style>
 </head>
-<body class="bg-[#070b14] text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-slate-950 overflow-x-hidden">
+<body class="bg-white text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
   <!-- ======================================================= -->
-  <!-- ВЕРХНЯЯ ЗАКРЕПЛЕННАЯ ПЛАШКА ДЕМО-ПРОЕКТА СТУДИИ CASH'U  -->
+  <!-- ВЕРХНЯЯ ЗАКРЕПЛЕННАЯ ПЛАШКА ПОРТФОЛИО CASH'U            -->
   <!-- ======================================================= -->
-  <div class="bg-gradient-to-r from-cyan-950 via-slate-900 to-cyan-950 border-b border-cyan-500/30 py-2.5 px-4 text-xs font-mono sticky top-0 z-50 backdrop-blur-md">
+  <div class="bg-slate-900 text-white py-2.5 px-4 text-xs font-mono sticky top-0 z-50 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <div class="flex items-center gap-2 text-cyan-300">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping inline-block"></span>
-        <span>✦ Демонстрационный проект от веб-студии <strong>cash'u</strong></span>
+      <div class="flex items-center gap-2 text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-blue-400 inline-block"></span>
+        <span>Демо-сайт оптовой B2B компании • Пример разработки от студии <strong>cash'u</strong></span>
       </div>
       <div class="flex items-center gap-3">
-        <a href="../../#cases" class="text-white/70 hover:text-white underline transition-colors">
+        <a href="../../#cases" class="text-slate-300 hover:text-white underline transition-colors">
           ← Вернуться в портфолио
         </a>
-        <a href="https://t.me/grizzzza" target="_blank" class="px-3 py-1 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold transition-all shadow-sm">
-          Заказать такой сайт →
+        <a href="https://t.me/grizzzza" target="_blank" class="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors">
+          Заказать разработку сайта →
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ШАПКА NOVA B2B -->
-  <header class="border-b border-slate-800/80 bg-[#070b14]/90 backdrop-blur-md sticky top-[41px] z-40">
+  <!-- ШАПКА B2B КОМПАНИИ: ОФИЦИАЛЬНЫЙ СТИЛЬ -->
+  <header class="border-b border-slate-200 bg-white sticky top-[41px] z-40">
+    <!-- Верхняя информационная линия -->
+    <div class="border-b border-slate-100 bg-slate-50 py-1.5 px-4 text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div class="flex items-center gap-4">
+          <span>Склад в Москве: Подольск, Индустриальный парк «Коледино»</span>
+          <span class="hidden md:inline text-slate-300">|</span>
+          <span class="hidden md:inline">Работаем по 44-ФЗ и 223-ФЗ</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span>Пн–Пт: 09:00 – 18:00 (МСК)</span>
+          <a href="mailto:zakaz@nova-trade.ru" class="text-blue-600 hover:underline">zakaz@nova-trade.ru</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Основная навигация -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Логотип -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-black text-xl font-mono shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-          N
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded bg-slate-900 flex items-center justify-center text-white font-bold text-lg font-mono">
+          NT
         </div>
         <div>
-          <span class="font-extrabold text-xl tracking-tight text-white font-mono block leading-none">NOVA<span class="text-cyan-400">.B2B</span></span>
-          <span class="text-[10px] text-slate-400 uppercase tracking-widest font-mono">Прямой импорт и опт</span>
+          <span class="font-extrabold text-xl tracking-tight text-slate-900 block leading-none">NOVA<span class="text-blue-600">TRADE</span></span>
+          <span class="text-[11px] text-slate-500 uppercase tracking-wider block mt-0.5">Оптовые поставки компонентов</span>
         </div>
       </a>
 
       <!-- Меню -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#calculator" class="hover:text-cyan-400 transition-colors">Калькулятор опта</a>
-        <a href="#catalog" class="hover:text-cyan-400 transition-colors">Каталог поставок</a>
-        <a href="#advantages" class="hover:text-cyan-400 transition-colors">Преимущества</a>
-        <a href="#workflow" class="hover:text-cyan-400 transition-colors">Схема работы</a>
-        <a href="#contacts" class="hover:text-cyan-400 transition-colors">Контакты</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+        <a href="#calculator" class="hover:text-blue-600 transition-colors">Калькулятор опта</a>
+        <a href="#catalog" class="hover:text-blue-600 transition-colors">Каталог</a>
+        <a href="#process" class="hover:text-blue-600 transition-colors">Условия и логистика</a>
+        <a href="#documents" class="hover:text-blue-600 transition-colors">Документы и гарантии</a>
+        <a href="#contacts" class="hover:text-blue-600 transition-colors">Контакты</a>
       </nav>
 
-      <!-- Телефон и кнопка -->
-      <div class="flex items-center gap-4">
+      <!-- Телефоны и кнопка запроса КП -->
+      <div class="flex items-center gap-5">
         <div class="hidden lg:flex flex-col text-right">
-          <a href="tel:+78005553535" class="text-sm font-mono font-bold text-white hover:text-cyan-300 transition-colors">
-            8 (800) 555-35-35
+          <a href="tel:+74951284480" class="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors font-mono">
+            +7 (495) 128-44-80
           </a>
-          <span class="text-[11px] text-emerald-400 flex items-center justify-end gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
-            Линия свободна
-          </span>
+          <span class="text-[11px] text-slate-500">Отдел оптовых продаж</span>
         </div>
-        <button onclick="openLeadModal('Заказ звонка из шапки')" class="px-4 sm:px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 hover:text-cyan-200 text-xs sm:text-sm font-bold transition-all">
-          Запросить КП
+        <button onclick="openLeadModal('Запрос КП из шапки')" class="px-4 py-2.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition-colors shadow-sm">
+          Запросить прайс-лист
         </button>
       </div>
 
@@ -136,60 +150,72 @@
   </header>
 
   <!-- ============================================== -->
-  <!-- 1. HERO SECTION: СИЛЬНОЕ B2B ПРЕДЛОЖЕНИЕ       -->
+  <!-- 1. HERO SECTION: РЕАЛЬНОЕ ФОТО И ЧЕТКОЕ ПРЕДЛОЖЕНИЕ -->
   <!-- ============================================== -->
-  <section class="relative pt-16 pb-20 overflow-hidden">
-    <!-- Фоновое неоновое свечение -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-500/10 blur-[130px] pointer-events-none rounded-full"></div>
-    <div class="absolute top-1/3 right-10 w-[400px] h-[250px] bg-blue-600/10 blur-[120px] pointer-events-none rounded-full"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <section class="py-12 sm:py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-3xl">
-        <!-- Бейдж доверия -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs font-mono text-cyan-300 mb-6 backdrop-blur-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>Прямые контракты с 48 фабриками Азии и СНГ</span>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Левая часть: Предложение -->
+        <div class="lg:col-span-7">
+          <div class="inline-block px-3 py-1 rounded bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-700 mb-4">
+            Прямой импортер • Склады в РФ и Китае
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
+            Оптовые поставки промышленной электроники и комплектующих
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+            Обеспечиваем бесперебойные поставки компонентов для приборостроения, автоматики и светотехники. Официальный договор поставки в рублях, фиксированная цена, НДС 20%, таможенное оформление и сертификаты ЕАС.
+          </p>
+
+          <!-- Ключевые преимущества в строчку -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm text-slate-700">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Экономия до 30% за счет прямых контрактов</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Отгрузка со склада в Москве за 24 часа</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Входной контроль качества партии перед отправкой</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span>Отсрочка платежа для постоянных клиентов до 45 дней</span>
+            </div>
+          </div>
+
+          <!-- Кнопки действий -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <a href="#calculator" class="px-6 py-3.5 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold text-center text-sm transition-colors shadow-sm">
+              Рассчитать стоимость партии
+            </a>
+            <button onclick="openLeadModal('Скачивание прайс-листа Excel')" class="px-6 py-3.5 rounded bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-center text-sm transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Скачать прайс-лист (XLSX, 2.4 МБ)</span>
+            </button>
+          </div>
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-          Прямые оптовые поставки <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">с экономией до 38%</span> без посредников
-        </h1>
-
-        <p class="text-slate-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed mb-8">
-          Комплектующие, промышленная электроника и коммерческое оборудование под ключ. Берём на себя валютный контроль, таможенную очистку, логистику и проверку брака на фабрике.
-        </p>
-
-        <!-- CTA кнопки -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
-          <a href="#calculator" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-bold text-center tracking-wide transition-all shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2">
-            <span>Рассчитать партию в калькуляторе</span>
-            <span>↓</span>
-          </a>
-          <button onclick="openLeadModal('Скачивание каталога PDF')" class="px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-semibold text-center transition-all flex items-center justify-center gap-2.5">
-            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            <span>Скачать оптовый каталог (PDF, 4.8 МБ)</span>
-          </button>
-        </div>
-
-        <!-- Ключевые цифры B2B -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-800">
-          <div>
-            <div class="text-2xl sm:text-3xl font-mono font-bold text-white">1 420+</div>
-            <div class="text-xs text-slate-400 mt-1 font-mono">поставок за 2025 год</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-mono font-bold text-cyan-400">от 4 дней</div>
-            <div class="text-xs text-slate-400 mt-1 font-mono">экспресс-авиадоставка</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-mono font-bold text-emerald-400">до 38%</div>
-            <div class="text-xs text-slate-400 mt-1 font-mono">экономия к рынку РФ</div>
-          </div>
-          <div>
-            <div class="text-2xl sm:text-3xl font-mono font-bold text-white">100%</div>
-            <div class="text-xs text-slate-400 mt-1 font-mono">страховка груза</div>
+        <!-- Правая часть: Настоящая фотография склада и логистики -->
+        <div class="lg:col-span-5">
+          <div class="rounded-lg overflow-hidden border border-slate-200 shadow-sm bg-white">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Складской комплекс NOVA TRADE" class="w-full h-72 sm:h-80 object-cover object-center" loading="lazy">
+            <div class="p-4 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <div>
+                <strong class="text-slate-800 font-semibold block">Складской терминал «Подольск»</strong>
+                <span>Площадь 4 500 м² • Стеллажное хранение класса «А»</span>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-mono text-[11px] font-semibold">
+                В наличии 2 400+ SKU
+              </span>
+            </div>
           </div>
         </div>
 
@@ -199,147 +225,133 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 2. ИНТЕРАКТИВНЫЙ B2B КАЛЬКУЛЯТОР ОПТА          -->
+  <!-- 2. ИНТЕРАКТИВНЫЙ B2B КАЛЬКУЛЯТОР СТОИМОСТИ     -->
   <!-- ============================================== -->
-  <section id="calculator" class="py-20 bg-slate-900/40 border-y border-slate-800/80 relative">
+  <section id="calculator" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30">
-          Интерактивный расчет
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">
-          Калькулятор оптовой партии и выгоды
-        </h2>
-        <p class="text-slate-400 text-sm mt-2">
-          Двигайте ползунок объема и выберите категорию, чтобы мгновенно увидеть оптовую скидку и чистую экономию.
+      <div class="mb-10">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Онлайн-расчет</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Калькулятор оптовой стоимости и скидки</h2>
+        <p class="text-sm text-slate-500 mt-1">
+          Выберите категорию продукции, плановый объем закупки и способ доставки для расчета скидки.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Левая часть: Ползунки и параметры -->
-        <div class="lg:col-span-7 bg-[#0d1527] p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl flex flex-col justify-between">
-          <div class="space-y-8">
-            
-            <!-- Категория продукции -->
-            <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
-                1. Выберите категорию продукции:
-              </label>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="category-picker">
-                <button type="button" data-cat="electronics" class="cat-btn active p-3 rounded-xl border border-cyan-500 bg-cyan-950/40 text-cyan-300 text-xs font-semibold text-left transition-all">
-                  ⚡ Электроника и чипы
-                </button>
-                <button type="button" data-cat="lighting" class="cat-btn p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 text-xs font-semibold text-left transition-all">
-                  💡 Светодиодные панели
-                </button>
-                <button type="button" data-cat="cables" class="cat-btn p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 text-xs font-semibold text-left transition-all">
-                  🔌 Кабель и автоматика
-                </button>
-                <button type="button" data-cat="batteries" class="cat-btn p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 text-xs font-semibold text-left transition-all">
-                  🔋 Литий-ионные АКБ
-                </button>
-                <button type="button" data-cat="sensors" class="cat-btn p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 text-xs font-semibold text-left transition-all">
-                  📡 Датчики и сенсоры
-                </button>
-                <button type="button" data-cat="custom" class="cat-btn p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 text-xs font-semibold text-left transition-all">
-                  ⚙️ Контрактное ТЗ
-                </button>
-              </div>
+        <!-- Параметры закупки -->
+        <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-7 rounded-lg border border-slate-200">
+          
+          <!-- Категория продукции -->
+          <div class="mb-6">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2.5">
+              1. Направление продукции:
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="category-picker">
+              <button type="button" data-cat="electronics" class="cat-btn active p-3 rounded border border-blue-600 bg-white text-blue-700 text-xs font-medium text-left transition-colors shadow-sm">
+                Микроконтроллеры и платы
+              </button>
+              <button type="button" data-cat="lighting" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+                Промышленная светотехника
+              </button>
+              <button type="button" data-cat="cables" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+                Кабельная продукция
+              </button>
+              <button type="button" data-cat="power" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+                Блоки питания и драйверы
+              </button>
+              <button type="button" data-cat="sensors" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+                Датчики и автоматика
+              </button>
+              <button type="button" data-cat="oem" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+                Контрактное производство (OEM)
+              </button>
             </div>
-
-            <!-- Ползунок объема партии -->
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <label class="text-xs font-mono uppercase tracking-wider text-slate-400">
-                  2. Объем закупки партии:
-                </label>
-                <span id="slider-val-display" class="font-mono text-xl font-bold text-cyan-400">
-                  450 000 ₽
-                </span>
-              </div>
-              <input id="budget-slider" type="range" min="80000" max="4000000" step="20000" value="450000">
-              <div class="flex justify-between text-[11px] font-mono text-slate-500 mt-2">
-                <span>от 80 000 ₽</span>
-                <span>1 000 000 ₽</span>
-                <span>2 500 000 ₽</span>
-                <span>до 4 000 000 ₽</span>
-              </div>
-            </div>
-
-            <!-- Тип доставки -->
-            <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
-                3. Способ логистики:
-              </label>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <label class="relative flex items-center gap-3 p-3.5 rounded-xl border border-cyan-500/50 bg-cyan-950/20 cursor-pointer transition-all">
-                  <input type="radio" name="delivery" value="rail" checked class="accent-cyan-400">
-                  <div>
-                    <div class="text-xs font-bold text-white">Ж/Д Сборный контейнер</div>
-                    <div class="text-[11px] text-slate-400">14–18 дней • Минимальная ставка</div>
-                  </div>
-                </label>
-                <label class="relative flex items-center gap-3 p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-slate-700 cursor-pointer transition-all">
-                  <input type="radio" name="delivery" value="air" class="accent-cyan-400">
-                  <div>
-                    <div class="text-xs font-bold text-white">Экспресс Авиа-карго</div>
-                    <div class="text-[11px] text-slate-400">4–6 дней • Прямой рейс</div>
-                  </div>
-                </label>
-              </div>
-            </div>
-
           </div>
 
-          <div class="text-xs text-slate-500 pt-6 mt-6 border-t border-slate-800/80 font-mono">
-            * Окончательный расчет фиксируется в договоре поставки в рублях без валютных рисков.
+          <!-- Ползунок бюджета -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                2. Плановый объем партии:
+              </label>
+              <span id="slider-val-display" class="font-mono text-lg font-bold text-slate-900">
+                500 000 ₽
+              </span>
+            </div>
+            <input id="budget-slider" type="range" min="100000" max="5000000" step="50000" value="500000">
+            <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-1">
+              <span>от 100 000 ₽</span>
+              <span>1 500 000 ₽</span>
+              <span>3 000 000 ₽</span>
+              <span>до 5 000 000 ₽</span>
+            </div>
           </div>
+
+          <!-- Способ доставки -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
+              3. Логистический канал:
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label class="flex items-center gap-3 p-3 rounded border border-slate-300 bg-white cursor-pointer hover:border-blue-500 transition-colors">
+                <input type="radio" name="delivery" value="rail" checked class="text-blue-600 focus:ring-blue-500">
+                <div>
+                  <div class="text-xs font-semibold text-slate-800">Ж/Д Сборный контейнер</div>
+                  <div class="text-[11px] text-slate-500">18–22 дня • Оптимальная стоимость</div>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded border border-slate-300 bg-white cursor-pointer hover:border-blue-500 transition-colors">
+                <input type="radio" name="delivery" value="air" class="text-blue-600 focus:ring-blue-500">
+                <div>
+                  <div class="text-xs font-semibold text-slate-800">Экспресс Авиа</div>
+                  <div class="text-[11px] text-slate-500">4–7 дней • Срочные поставки</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Правая часть: Результаты расчета в реальном времени -->
-        <div class="lg:col-span-5 bg-gradient-to-b from-[#0f1b33] to-[#0a1222] p-6 sm:p-8 rounded-2xl border border-cyan-500/30 shadow-2xl flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute -right-12 -top-12 w-44 h-44 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+        <!-- Правая часть: Коммерческий расчет -->
+        <div class="lg:col-span-5 bg-slate-900 text-white p-6 sm:p-7 rounded-lg border border-slate-800 shadow-sm flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-5 border-b border-slate-700/60">
-              <span class="text-xs font-mono uppercase tracking-wider text-slate-300">Ваша оптовая скидка:</span>
-              <span id="discount-badge" class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono text-sm font-bold">
-                -22% от рынка
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Оптовая скидка:</span>
+              <span id="discount-badge" class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold">
+                -22% от розницы
               </span>
             </div>
 
-            <!-- Цифры -->
-            <div class="space-y-4 py-6">
+            <div class="py-5 space-y-4">
               <div>
-                <div class="text-xs text-slate-400 font-mono">Средняя рыночная цена в РФ:</div>
-                <div id="market-price" class="text-lg font-mono text-slate-400 line-through">576 900 ₽</div>
+                <div class="text-xs text-slate-400">Розничная стоимость партии в РФ:</div>
+                <div id="market-price" class="text-base font-mono text-slate-400 line-through">641 000 ₽</div>
               </div>
 
               <div>
-                <div class="text-xs text-cyan-300 font-mono font-semibold">Итоговая стоимость партии через NOVA:</div>
-                <div id="nova-price" class="text-3xl sm:text-4xl font-mono font-extrabold text-white">450 000 ₽</div>
+                <div class="text-xs text-blue-300 font-semibold">Итого по прямому оптовому контракту:</div>
+                <div id="nova-price" class="text-3xl font-mono font-bold text-white">500 000 ₽</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Включая НДС 20% (83 333 ₽ к вычету)</div>
               </div>
 
-              <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
-                <div class="text-xs text-emerald-400 font-mono font-semibold">Ваша чистая выгода:</div>
-                <div id="savings-price" class="text-2xl font-mono font-bold text-emerald-300">+126 900 ₽</div>
+              <div class="p-3.5 rounded bg-slate-800/80 border border-slate-700">
+                <div class="text-xs text-emerald-400 font-semibold">Экономия бюджета предприятия:</div>
+                <div id="savings-price" class="text-xl font-mono font-bold text-emerald-300">+141 000 ₽</div>
               </div>
             </div>
 
-            <!-- Что входит -->
-            <div class="space-y-2 text-xs font-mono text-slate-300 pb-6 border-b border-slate-700/60">
-              <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Двойная проверка брака на складе отгрузки</div>
-              <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Таможенные сборы и НДС уже включены</div>
-              <div class="flex items-center gap-2"><span class="text-cyan-400">✓</span> Полный пакет закрывающих документов (УПД, ГТД)</div>
+            <div class="space-y-1.5 text-xs text-slate-300 pb-5 border-b border-slate-800">
+              <div class="flex items-center gap-2"><span>•</span> Фиксация цены в рублях на весь срок поставки</div>
+              <div class="flex items-center gap-2"><span>•</span> Таможенное декларирование и УПД включены</div>
+              <div class="flex items-center gap-2"><span>•</span> Бесплатная доставка до терминала ТК в Москве</div>
             </div>
           </div>
 
-          <!-- Кнопка фиксации расчета -->
-          <div class="pt-6">
-            <button onclick="submitCalculator()" class="w-full py-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold font-mono text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-400/20">
-              Зафиксировать расчет и получить КП →
+          <div class="pt-5">
+            <button onclick="submitCalculator()" class="w-full py-3.5 px-4 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-colors">
+              Сформировать коммерческое предложение
             </button>
           </div>
 
@@ -351,74 +363,101 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 3. КАТАЛОГ ПОСТАВЛЯЕМЫХ КАТЕГОРИЙ             -->
+  <!-- 3. КАТАЛОГ ПРОДУКЦИИ (РЕАЛЬНЫЕ ФОТО)          -->
   <!-- ============================================== -->
-  <section id="catalog" class="py-20">
+  <section id="catalog" class="py-16 bg-slate-50 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Каталог 2026</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Популярные оптовые категории</h2>
+          <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Ассортимент</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Каталог серийных поставок</h2>
         </div>
-        <p class="text-slate-400 text-xs sm:text-sm max-w-md">
-          Поставляем готовые серийные партии или брендируем продукцию под вашу торговую марку (OEM/ODM).
+        <p class="text-sm text-slate-500 max-w-md">
+          Поставляем продукцию напрямую с сертифицированных заводов. Предоставляем паспорта изделий и сертификаты соответствия.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- Карточка 1 -->
-        <div class="bg-[#0d1527] rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-cyan-500/50 transition-all group">
+        <!-- Товар 1: Микроэлектроника -->
+        <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
           <div>
-            <div class="h-44 rounded-xl bg-slate-800/80 mb-5 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt="Микроэлектроника" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/70 text-cyan-300 font-mono text-[11px] font-bold">от 50 шт</span>
+            <div class="h-48 overflow-hidden bg-slate-100 relative">
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80" alt="Контроллеры и микросхемы" class="w-full h-full object-cover" loading="lazy">
+              <span class="absolute top-3 right-3 px-2 py-1 rounded bg-slate-900/80 text-white font-mono text-xs">
+                Минимальная партия: 50 шт
+              </span>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Электронные модули и контроллеры</h3>
-            <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-              Печатные платы, микроконтроллеры STM32, ESP32, силовые реле, коннекторы и обвязка.
-            </p>
+            <div class="p-5">
+              <div class="text-xs font-mono text-slate-400 mb-1">Артикул: MC-STM32-PRO</div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Микроконтроллеры и сигнальные процессоры</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Процессоры Cortex-M4/M7, контроллеры ESP32, микросхемы памяти, драйверы интерфейсов RS-485 и CAN.
+              </p>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>ГОСТ Р 54844 / ЕАС</div>
+                <div>Рабочая температура: -40°C ... +85°C</div>
+              </div>
+            </div>
           </div>
-          <div class="pt-5 mt-5 border-t border-slate-800 flex items-center justify-between">
-            <span class="font-mono text-cyan-400 font-bold text-sm">от 420 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос КП: Микроэлектроника')" class="text-xs font-mono text-white/80 hover:text-white underline">Запросить прайс →</button>
+          <div class="p-5 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
+            <span class="font-mono text-slate-900 font-bold text-sm">от 480 ₽/шт (с НДС)</span>
+            <button onclick="openLeadModal('Запрос цены: Микроконтроллеры')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
           </div>
         </div>
 
-        <!-- Карточка 2 -->
-        <div class="bg-[#0d1527] rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-cyan-500/50 transition-all group">
+        <!-- Товар 2: Светотехника -->
+        <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
           <div>
-            <div class="h-44 rounded-xl bg-slate-800/80 mb-5 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=700&q=80" alt="Промышленный свет" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/70 text-cyan-300 font-mono text-[11px] font-bold">от 20 шт</span>
+            <div class="h-48 overflow-hidden bg-slate-100 relative">
+              <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=700&q=80" alt="Промышленное освещение" class="w-full h-full object-cover" loading="lazy">
+              <span class="absolute top-3 right-3 px-2 py-1 rounded bg-slate-900/80 text-white font-mono text-xs">
+                Минимальная партия: 20 шт
+              </span>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Светодиодное освещение</h3>
-            <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-              Промышленные складские купола, трековые светильники, уличные консоли IP65, драйверы MeanWell.
-            </p>
+            <div class="p-5">
+              <div class="text-xs font-mono text-slate-400 mb-1">Артикул: IND-LED-150W</div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Складские светильники и прожекторы IP65</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Купольные промышленные светильники HighBay 100-250W, светодиодные модули SMD 2835, оптика 60°/90°/120°.
+              </p>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>Светоотдача: 150 Лм/Вт</div>
+                <div>Гарантия производителя: 3 года</div>
+              </div>
+            </div>
           </div>
-          <div class="pt-5 mt-5 border-t border-slate-800 flex items-center justify-between">
-            <span class="font-mono text-cyan-400 font-bold text-sm">от 1 150 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос КП: Освещение')" class="text-xs font-mono text-white/80 hover:text-white underline">Запросить прайс →</button>
+          <div class="p-5 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
+            <span class="font-mono text-slate-900 font-bold text-sm">от 1 350 ₽/шт (с НДС)</span>
+            <button onclick="openLeadModal('Запрос цены: Светильники')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
           </div>
         </div>
 
-        <!-- Карточка 3 -->
-        <div class="bg-[#0d1527] rounded-2xl border border-slate-800 p-6 flex flex-col justify-between hover:border-cyan-500/50 transition-all group">
+        <!-- Товар 3: Кабель и коммутация -->
+        <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
           <div>
-            <div class="h-44 rounded-xl bg-slate-800/80 mb-5 overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=700&q=80" alt="Кабель и коммутация" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/70 text-cyan-300 font-mono text-[11px] font-bold">от 1 000 м</span>
+            <div class="h-48 overflow-hidden bg-slate-100 relative">
+              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=700&q=80" alt="Кабельная продукция" class="w-full h-full object-cover" loading="lazy">
+              <span class="absolute top-3 right-3 px-2 py-1 rounded bg-slate-900/80 text-white font-mono text-xs">
+                Минимальная партия: 1 000 м
+              </span>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Кабельная продукция и лотки</h3>
-            <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-              Витая пара Cat 5e/6, силовые кабели ВВГ-Пнг, оптическое волокно и защитные металлические лотки.
-            </p>
+            <div class="p-5">
+              <div class="text-xs font-mono text-slate-400 mb-1">Артикул: CAB-UTP-CAT6</div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Кабельная продукция и монтажные элементы</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                Медная витая пара Cat 5e/Cat 6, экранированный кабель FTP, сигнальные провода КСПВ, кабельные лотки.
+              </p>
+              <div class="text-xs text-slate-500 space-y-1">
+                <div>Сертификат пожарной безопасности</div>
+                <div>100% чистая электротехническая медь</div>
+              </div>
+            </div>
           </div>
-          <div class="pt-5 mt-5 border-t border-slate-800 flex items-center justify-between">
-            <span class="font-mono text-cyan-400 font-bold text-sm">от 14 ₽/метр</span>
-            <button onclick="openLeadModal('Запрос КП: Кабели')" class="text-xs font-mono text-white/80 hover:text-white underline">Запросить прайс →</button>
+          <div class="p-5 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
+            <span class="font-mono text-slate-900 font-bold text-sm">от 16 ₽/метр (с НДС)</span>
+            <button onclick="openLeadModal('Запрос цены: Кабель')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
           </div>
         </div>
 
@@ -428,130 +467,203 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 4. СХЕМА РАБОТЫ (4 ШАГА)                       -->
+  <!-- 4. УСЛОВИЯ, ЛОГИСТИКА И ДОКУМЕНТЫ              -->
   <!-- ============================================== -->
-  <section id="workflow" class="py-20 bg-slate-900/40 border-t border-slate-800">
+  <section id="process" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">Прозрачный процесс</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Как проходит поставка</h2>
+      <div class="mb-10">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Схема сотрудничества</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Порядок работы с юридическими лицами</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="p-6 rounded-2xl bg-[#0d1527] border border-slate-800">
-          <div class="text-2xl font-mono font-bold text-cyan-400 mb-3">01 //</div>
-          <h4 class="font-bold text-white text-base mb-1">Заявка и аудит ТЗ</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">Сверяем артикулы, допуски и требуемый объем. Подбираем 2–3 проверенных завода.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-[#0d1527] border border-slate-800">
-          <div class="text-2xl font-mono font-bold text-cyan-400 mb-3">02 //</div>
-          <h4 class="font-bold text-white text-base mb-1">Договор и фиксация цены</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">Заключаем официальный договор поставки в рублях. Цена фиксируется на дату подписания.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-[#0d1527] border border-slate-800">
-          <div class="text-2xl font-mono font-bold text-cyan-400 mb-3">03 //</div>
-          <h4 class="font-bold text-white text-base mb-1">Проверка и отгрузка</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">Наш инспектор проверяет образцы на заводе. Видеоотчет партии перед упаковкой.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-[#0d1527] border border-slate-800">
-          <div class="text-2xl font-mono font-bold text-cyan-400 mb-3">04 //</div>
-          <h4 class="font-bold text-white text-base mb-1">Доставка до склада</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">Таможенная очистка под наш контракт. Доставка прямо до дверей вашего склада с УПД.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 5. ФОРМА ЗАЯВКИ                               -->
-  <!-- ============================================== -->
-  <section id="contacts" class="py-20 relative">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="bg-gradient-to-br from-[#0d1527] to-[#070d1a] border border-cyan-500/30 rounded-3xl p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">
-          Получите индивидуальный оптовый расчет за 20 минут
-        </h2>
-        <p class="text-slate-400 text-sm max-w-xl mx-auto mb-8">
-          Оставьте контакты. Наш ведущий менеджер направления свяжется с вами и предоставит спецификацию с фабричными ценами.
-        </p>
+        <div class="p-5 rounded-lg border border-slate-200 bg-slate-50">
+          <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 01</div>
+          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Согласование спецификации</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Сверяем артикулы, технические характеристики, требуемые допуски и сроки поставки.
+          </p>
+        </div>
 
-        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-          <div>
-            <label class="text-[11px] font-mono text-slate-400 block mb-1">Ваше имя:</label>
-            <input type="text" required placeholder="Алексей" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none">
-          </div>
-          <div>
-            <label class="text-[11px] font-mono text-slate-400 block mb-1">Телефон / WhatsApp:</label>
-            <input type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="text-[11px] font-mono text-slate-400 block mb-1">Компания / ИНН (для выставления счета):</label>
-            <input type="text" placeholder="ООО ПромТех / ИНН 7701..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none">
-          </div>
-          <div class="sm:col-span-2 pt-2">
-            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-bold font-mono text-sm uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25">
-              Отправить заявку на оптовый расчет →
-            </button>
-          </div>
-        </form>
+        <div class="p-5 rounded-lg border border-slate-200 bg-slate-50">
+          <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 02</div>
+          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Договор поставки</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Заключаем типовой договор в рублях с фиксацией цены. Предоставляем карточку предприятия и образцы.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-lg border border-slate-200 bg-slate-50">
+          <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 03</div>
+          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Контроль качества</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Проверка партии перед отгрузкой. Фото- и видеоотчет упаковки, маркировка по ГОСТ.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-lg border border-slate-200 bg-slate-50">
+          <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 04</div>
+          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Отгрузка и закрывающие документы</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Доставка до вашего склада или самовывоз с терминала в Москве. Полный комплект УПД через ЭДО.
+          </p>
+        </div>
 
       </div>
 
     </div>
   </section>
 
-  <!-- ФУТЕР NOVA B2B -->
-  <footer class="border-t border-slate-800/80 bg-[#050810] py-8 text-xs text-slate-500 font-mono">
+  <!-- ============================================== -->
+  <!-- 5. КОНТАКТЫ И РЕКВИЗИТЫ: РЕАЛЬНЫЙ B2B БЛОК      -->
+  <!-- ============================================== -->
+  <section id="contacts" class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Контактные данные и реквизиты компании -->
+        <div class="lg:col-span-6 space-y-6">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">Официальные контакты</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">ООО «Нова Трейд»</h2>
+            <p class="text-sm text-slate-500 mt-1">
+              Оптовый поставщик электронных компонентов и промышленного оборудования.
+            </p>
+          </div>
+
+          <div class="space-y-4 text-sm text-slate-700">
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Центральный офис в Москве:</div>
+              <div class="font-medium text-slate-900">115280, г. Москва, ул. Ленинская Слобода, д. 26, корп. 4 (БЦ «Омега-2»)</div>
+            </div>
+
+            <div>
+              <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Распределительный склад:</div>
+              <div class="font-medium text-slate-900">Московская обл., г. Подольск, Индустриальный парк «Коледино», корпус 3</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div>
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Отдел продаж:</div>
+                <a href="tel:+74951284480" class="font-mono font-bold text-slate-900 hover:text-blue-600 block">+7 (495) 128-44-80</a>
+                <a href="tel:88003337291" class="font-mono text-xs text-slate-500 hover:text-blue-600 block mt-0.5">8 (800) 333-72-91 (РФ)</a>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Электронная почта:</div>
+                <a href="mailto:zakaz@nova-trade.ru" class="font-mono text-blue-600 hover:underline block">zakaz@nova-trade.ru</a>
+                <a href="mailto:docs@nova-trade.ru" class="font-mono text-xs text-slate-500 hover:underline block mt-0.5">docs@nova-trade.ru (бухгалтерия)</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Реквизиты юридического лица -->
+          <div class="p-4 rounded border border-slate-200 bg-white text-xs text-slate-600 font-mono space-y-1">
+            <div class="font-bold text-slate-800 pb-1 mb-1 border-b border-slate-100">Реквизиты организации:</div>
+            <div>ОГРН: 1197746529180</div>
+            <div>ИНН: 7724918230 / КПП: 772401001</div>
+            <div>Банк: АО «АЛЬФА-БАНК» г. Москва</div>
+            <div>Р/с: 40702810401400058291 | БИК: 044525593</div>
+            <div>Система налогообложения: ОСНО (НДС 20%), работаем через Диадок и СБИС</div>
+          </div>
+        </div>
+
+        <!-- Форма запроса спецификации и счета -->
+        <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-lg border border-slate-200 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-1">Запросить расчет партии или счет</h3>
+          <p class="text-xs text-slate-500 mb-5">
+            Прикрепите реквизиты компании или укажите требуемые артикулы. Ответственный менеджер подготовит КП в течение 30 минут.
+          </p>
+
+          <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-slate-700 block mb-1">Ваше имя и должность:</label>
+                <input type="text" required placeholder="Константин, инженер снабжения" class="w-full px-3.5 py-2.5 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-700 block mb-1">Рабочий телефон:</label>
+                <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-3.5 py-2.5 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">Рабочий Email для спецификации:</label>
+              <input type="email" required placeholder="supply@your-company.ru" class="w-full px-3.5 py-2.5 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">Название компании или ИНН:</label>
+              <input type="text" placeholder="ООО «ПромПрибор» / ИНН 77..." class="w-full px-3.5 py-2.5 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">Список позиций или комментарий к заявке:</label>
+              <textarea rows="3" placeholder="Укажите артикулы, требуемое количество или ссылку на спецификацию..." class="w-full px-3.5 py-2 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3 px-4 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors shadow-sm">
+              Отправить заявку на оптовый расчет
+            </button>
+
+            <div class="text-[11px] text-slate-400 text-center">
+              Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с 152-ФЗ.
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ФУТЕР B2B КОМПАНИИ -->
+  <footer class="border-t border-slate-200 bg-white py-6 text-xs text-slate-500 font-sans">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        © 2026 NOVA B2B Supply Chain. Все права защищены.
+        © 2026 ООО «Нова Трейд». Оптовые поставки промышленного оборудования. Все права защищены.
       </div>
       <div class="text-slate-400">
-        Разработка сайта — студия <a href="../../#contact" class="text-cyan-400 hover:underline">cash'u</a>
+        Дизайн и разработка сайта — студия <a href="../../#cases" class="text-blue-600 hover:underline">cash'u</a>
       </div>
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО ЗАЯВКИ / СКАЧИВАНИЯ -->
-  <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-[#0d1527] border border-cyan-500/40 rounded-2xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl">
-      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+  <!-- МОДАЛЬНОЕ ОКНО ЗАПРОСА КП -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-lg border border-slate-200 max-w-md w-full p-6 relative shadow-xl">
+      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">✕</button>
       
       <div id="modal-content">
-        <h3 id="modal-title" class="text-xl font-bold text-white mb-2">Запрос коммерческого предложения</h3>
-        <p class="text-xs text-slate-400 mb-6">Введите номер телефона или Telegram для получения детального расчета и прайс-листа в течение 15 минут.</p>
+        <h3 id="modal-title" class="text-lg font-bold text-slate-900 mb-1">Запрос коммерческого предложения</h3>
+        <p class="text-xs text-slate-500 mb-5">Укажите контактный телефон или Email. Менеджер вышлет официальный расчет в течение 30 минут.</p>
 
-        <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+        <form onsubmit="handleModalSubmit(event)" class="space-y-3.5">
           <input type="hidden" id="modal-source" value="Кнопка">
           <div>
-            <label class="text-[11px] font-mono text-slate-400 block mb-1">Имя:</label>
-            <input type="text" required placeholder="Константин" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none">
+            <label class="text-xs font-semibold text-slate-700 block mb-1">Контактное лицо:</label>
+            <input type="text" required placeholder="Андрей" class="w-full px-3 py-2 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
           </div>
           <div>
-            <label class="text-[11px] font-mono text-slate-400 block mb-1">Номер телефона / Telegram:</label>
-            <input type="text" required placeholder="+7 (999) 123-45-67 или @username" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none">
+            <label class="text-xs font-semibold text-slate-700 block mb-1">Телефон или Email:</label>
+            <input type="text" required placeholder="+7 (___) ___-__-__ или email" class="w-full px-3 py-2 rounded border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
           </div>
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold font-mono text-xs uppercase tracking-wider transition-all">
-            Получить спецификацию →
+          <button type="submit" class="w-full py-2.5 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs uppercase tracking-wider transition-colors">
+            Получить спецификацию с ценами
           </button>
         </form>
       </div>
 
       <!-- Успешная отправка -->
-      <div id="modal-success" class="hidden text-center py-6">
-        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
-        <h4 class="text-xl font-bold text-white mb-2">Заявка принята!</h4>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          Менеджер NOVA B2B уже формирует расчет по вашим параметрам. Скоро свяжемся с вами.
+      <div id="modal-success" class="hidden text-center py-4">
+        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-lg font-bold">✓</div>
+        <h4 class="text-base font-bold text-slate-900 mb-1">Заявка принята</h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Менеджер оптового отдела свяжется с вами и предоставит спецификацию с фабричными ценами.
         </p>
-        <button onclick="closeLeadModal()" class="mt-6 px-6 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-mono">
+        <button onclick="closeLeadModal()" class="mt-4 px-5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-medium">
           Закрыть
         </button>
       </div>
@@ -559,19 +671,19 @@
     </div>
   </div>
 
-  <!-- Скрипт калькулятора и интерактива -->
+  <!-- Скрипт калькулятора и модалки -->
   <script>
-    // Коэффициенты по категориям
-    const catMultipliers = {
+    // Скидки от категорий
+    const catDiscounts = {
       electronics: 0.28,
       lighting: 0.22,
       cables: 0.18,
-      batteries: 0.25,
-      sensors: 0.32,
-      custom: 0.38
+      power: 0.24,
+      sensors: 0.26,
+      oem: 0.32
     };
 
-    let selectedCat = 'electronics';
+    let currentCat = 'electronics';
     const slider = document.getElementById('budget-slider');
     const valDisplay = document.getElementById('slider-val-display');
     const marketDisplay = document.getElementById('market-price');
@@ -579,47 +691,45 @@
     const savingsDisplay = document.getElementById('savings-price');
     const discountBadge = document.getElementById('discount-badge');
 
-    function formatNumber(num) {
-      return num.toLocaleString('ru-RU') + ' ₽';
+    function formatCurrency(val) {
+      return val.toLocaleString('ru-RU') + ' ₽';
     }
 
-    function updateCalculation() {
+    function recalculate() {
       const budget = parseInt(slider.value, 10);
-      valDisplay.textContent = formatNumber(budget);
+      valDisplay.textContent = formatCurrency(budget);
 
-      const discountRate = catMultipliers[selectedCat] || 0.22;
-      const percentInt = Math.round(discountRate * 100);
-      discountBadge.textContent = `-${percentInt}% от рынка`;
+      const discount = catDiscounts[currentCat] || 0.22;
+      const percent = Math.round(discount * 100);
+      discountBadge.textContent = `-${percent}% от розницы`;
 
-      const marketPrice = Math.round(budget / (1 - discountRate));
+      const marketPrice = Math.round(budget / (1 - discount));
       const savings = marketPrice - budget;
 
-      marketDisplay.textContent = formatNumber(marketPrice);
-      novaDisplay.textContent = formatNumber(budget);
-      savingsDisplay.textContent = '+' + formatNumber(savings);
+      marketDisplay.textContent = formatCurrency(marketPrice);
+      novaDisplay.textContent = formatCurrency(budget);
+      savingsDisplay.textContent = '+' + formatCurrency(savings);
     }
 
-    // Обработчик ползунка
-    slider.addEventListener('input', updateCalculation);
+    slider.addEventListener('input', recalculate);
 
-    // Выбор категории
     document.querySelectorAll('.cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.cat-btn').forEach(b => {
-          b.classList.remove('border-cyan-500', 'bg-cyan-950/40', 'text-cyan-300');
-          b.classList.add('border-slate-800', 'bg-slate-900/60', 'text-slate-300');
+          b.classList.remove('border-blue-600', 'text-blue-700', 'shadow-sm');
+          b.classList.add('border-slate-300', 'text-slate-700');
         });
-        btn.classList.remove('border-slate-800', 'bg-slate-900/60', 'text-slate-300');
-        btn.classList.add('border-cyan-500', 'bg-cyan-950/40', 'text-cyan-300');
+        btn.classList.remove('border-slate-300', 'text-slate-700');
+        btn.classList.add('border-blue-600', 'text-blue-700', 'shadow-sm');
 
-        selectedCat = btn.getAttribute('data-cat');
-        updateCalculation();
+        currentCat = btn.getAttribute('data-cat');
+        recalculate();
       });
     });
 
-    updateCalculation();
+    recalculate();
 
-    // Модалка
+    // Модальное окно
     const modal = document.getElementById('modal-backdrop');
     const modalContent = document.getElementById('modal-content');
     const modalSuccess = document.getElementById('modal-success');
@@ -646,12 +756,12 @@
 
     function submitCalculator() {
       const budget = parseInt(slider.value, 10);
-      openLeadModal(`Расчет партии на ${formatNumber(budget)}`);
+      openLeadModal(`КП: партия на ${formatCurrency(budget)}`);
     }
 
     function handleFormSubmit(e) {
       e.preventDefault();
-      openLeadModal('Заявка с главной формы');
+      openLeadModal('Заявка с сайта');
       modalContent.classList.add('hidden');
       modalSuccess.classList.remove('hidden');
     }
