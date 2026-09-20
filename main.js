@@ -523,182 +523,41 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------
-  // 4. ПОЛУАВТОМАТИЧЕСКИЙ СЛАЙДЕР КЕЙСОВ
+  // 4. ИНТЕРАКТИВНАЯ ФИЛЬТРАЦИЯ ВИТРИНЫ ПРОЕКТОВ (SHOWCASE GRID)
   // -------------------------------------------------------------
-  const casesSlider = document.getElementById('cases-slider');
-  const prevBtn = document.getElementById('slider-prev');
-  const nextBtn = document.getElementById('slider-next');
-  const counterEl = document.getElementById('slider-counter');
-  const autoBar = document.getElementById('slider-auto-bar');
-  const autoStatus = document.getElementById('slider-auto-status');
+  const filterBtns = document.querySelectorAll('.case-filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
 
-  if (casesSlider) {
-    const totalSlides = 5;
-    let currentSlide = 0;
+  if (filterBtns.length && projectCards.length) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
 
-    // Считываем сохраненный слайд из кэша
-    try {
-      const savedSlide = localStorage.getItem('cashu_slider_index');
-      if (savedSlide !== null) {
-        const idx = parseInt(savedSlide, 10);
-        if (!isNaN(idx) && idx >= 0 && idx < totalSlides) {
-          currentSlide = idx;
-        }
-      }
-    } catch (e) {}
-
-    let isPaused = false;
-    let autoProgress = 0;
-    const slideDuration = 2800; // 2.8 секунды на слайд (быстрее и динамичнее)
-    const progressInterval = 50;
-
-    const getCardStep = () => {
-      const firstItem = casesSlider.querySelector('.cases-slider-item');
-      return firstItem ? firstItem.offsetWidth + 28 : 460;
-    };
-
-    function updateCounter(idx) {
-      if (counterEl) {
-        counterEl.textContent = `0${idx + 1} / 0${totalSlides}`;
-      }
-    }
-
-    function goToSlide(index, smooth = true) {
-      currentSlide = (index + totalSlides) % totalSlides;
-      const step = getCardStep();
-      casesSlider.scrollTo({
-        left: currentSlide * step,
-        behavior: smooth ? 'smooth' : 'instant'
-      });
-      updateCounter(currentSlide);
-      autoProgress = 0;
-      if (autoBar) autoBar.style.width = '0%';
-      try {
-        localStorage.setItem('cashu_slider_index', currentSlide);
-      } catch (e) {}
-    }
-
-    // Восстанавливаем позицию слайдера при загрузке страницы
-    if (currentSlide > 0) {
-      updateCounter(currentSlide);
-      setTimeout(() => {
-        const step = getCardStep();
-        casesSlider.scrollTo({
-          left: currentSlide * step,
-          behavior: 'instant'
+        // Обновляем визуальный активный стиль кнопок
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-400/50', 'font-bold');
+          b.classList.add('bg-white/5', 'text-white/70', 'border-white/10');
         });
-      }, 80);
-      setTimeout(() => {
-        const step = getCardStep();
-        casesSlider.scrollTo({
-          left: currentSlide * step,
-          behavior: 'instant'
+        btn.classList.remove('bg-white/5', 'text-white/70', 'border-white/10');
+        btn.classList.add('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-400/50', 'font-bold');
+
+        // Плавная фильтрация карточек
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter || category === 'custom') {
+            card.style.display = 'flex';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(12px)';
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.style.display = 'none';
+          }
         });
-      }, 250);
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        goToSlide(currentSlide - 1);
       });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        goToSlide(currentSlide + 1);
-      });
-    }
-
-    // Автопрокрутка с прогресс-баром
-    setInterval(() => {
-      if (isPaused) return;
-
-      autoProgress += (progressInterval / slideDuration) * 100;
-      if (autoBar) {
-        autoBar.style.width = Math.min(100, autoProgress) + '%';
-      }
-
-      if (autoProgress >= 100) {
-        autoProgress = 0;
-        goToSlide(currentSlide + 1);
-      }
-    }, progressInterval);
-
-    // Пауза при наведении мыши или касании
-    casesSlider.addEventListener('mouseenter', () => {
-      isPaused = true;
-      if (autoStatus) autoStatus.textContent = '❚❚ Пауза';
-    });
-
-    casesSlider.addEventListener('mouseleave', () => {
-      isPaused = false;
-      if (autoStatus) autoStatus.textContent = '▶ Автолистание';
-    });
-
-    casesSlider.addEventListener('touchstart', () => {
-      isPaused = true;
-      if (autoStatus) autoStatus.textContent = '❚❚ Пауза';
-    }, { passive: true });
-
-    casesSlider.addEventListener('touchend', () => {
-      setTimeout(() => {
-        isPaused = false;
-        if (autoStatus) autoStatus.textContent = '▶ Автолистание';
-      }, 1500);
-    }, { passive: true });
-
-    // Возможность переключать автолистание кликом по бейджу как в плеере
-    if (autoStatus) {
-      autoStatus.style.cursor = 'pointer';
-      autoStatus.title = 'Нажмите для паузы / продолжения';
-      autoStatus.addEventListener('click', (e) => {
-        e.stopPropagation();
-        isPaused = !isPaused;
-        autoStatus.textContent = isPaused ? '❚❚ Пауза' : '▶ Автолистание';
-      });
-    }
-
-    // Синхронизация при ручном скролле
-    let scrollTimeout;
-    casesSlider.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const step = getCardStep();
-        const detectedIndex = Math.min(totalSlides - 1, Math.max(0, Math.round(casesSlider.scrollLeft / step)));
-        currentSlide = detectedIndex;
-        updateCounter(currentSlide);
-        try {
-          localStorage.setItem('cashu_slider_index', currentSlide);
-        } catch (e) {}
-      }, 60);
-    }, { passive: true });
-
-    // Drag-to-scroll для мыши
-    let isDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
-    casesSlider.addEventListener('mousedown', (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) return;
-      isDown = true;
-      isPaused = true;
-      startX = e.pageX - casesSlider.offsetLeft;
-      scrollLeft = casesSlider.scrollLeft;
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isDown) {
-        isDown = false;
-        setTimeout(() => { isPaused = false; }, 1000);
-      }
-    });
-
-    casesSlider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - casesSlider.offsetLeft;
-      const walk = (x - startX) * 1.4;
-      casesSlider.scrollLeft = scrollLeft - walk;
     });
   }
 });
