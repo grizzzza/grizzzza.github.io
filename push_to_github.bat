@@ -1,15 +1,17 @@
 @echo off
 chcp 65001 >nul
 echo ==============================================
-echo  Отправка обновлений cash'u на GitHub Pages
+echo  Git Push - cash'u GitHub Pages
 echo ==============================================
 echo.
 git push origin main
+if errorlevel 1 goto err
 echo.
-if %ERRORLEVEL% equ 0 (
-    echo [OK] Успешно отправлено на GitHub Pages!
-) else (
-    echo [ОШИБКА] Не удалось отправить. Проверьте авторизацию в GitHub.
-)
+echo [OK] Uspeshno otpravleno na GitHub Pages!
+goto end
+:err
+echo.
+echo [ERROR] Oshibka otpravki. Proverte dostup k GitHub.
+:end
 echo.
 pause
