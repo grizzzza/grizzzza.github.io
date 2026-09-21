@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -298,15 +298,27 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
           </select>
         </div>
         <div class="calc-field">
-          <label>Вид услуги</label>
-          <select id="calcService" onchange="calcPrice()">
-            <option value="35000">PPF — защитная плёнка</option>
-            <option value="25000">Керамическое покрытие</option>
-            <option value="12000">Полировка кузова</option>
-            <option value="8000">Химчистка салона</option>
-            <option value="4500">Обработка стёкол</option>
-            <option value="18000">Шумоизоляция</option>
-          </select>
+          <label style="margin-bottom:0.8rem">Добавьте услуги</label>
+          <div style="display:flex;flex-direction:column;gap:0.6rem">
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="35000" onchange="calcPrice()" checked> PPF — защитная плёнка
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="25000" onchange="calcPrice()"> Керамическое покрытие
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="12000" onchange="calcPrice()"> Полировка кузова
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="8000" onchange="calcPrice()"> Химчистка салона
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="4500" onchange="calcPrice()"> Обработка стёкол
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;color:#fff;font-size:0.9rem;text-transform:none;letter-spacing:normal;font-weight:400;cursor:pointer">
+              <input type="checkbox" class="calc-chk" value="18000" onchange="calcPrice()"> Шумоизоляция
+            </label>
+          </div>
         </div>
       </div>
       <div class="calc-result">
@@ -494,8 +506,12 @@ timer = setInterval(nextSlide, 5000);
 // ---- CALCULATOR ----
 function calcPrice() {
   var cls = parseFloat(document.getElementById('calcClass').value);
-  var svc = parseInt(document.getElementById('calcService').value);
-  var total = Math.round(svc * cls / 1000) * 1000;
+  var checkboxes = document.querySelectorAll('.calc-chk');
+  var svcTotal = 0;
+  checkboxes.forEach(function(chk) {
+    if(chk.checked) svcTotal += parseInt(chk.value);
+  });
+  var total = Math.round(svcTotal * cls / 1000) * 1000;
   document.getElementById('resultPrice').innerHTML = total.toLocaleString('ru-RU') + ' <span style="font-size:.875rem;font-weight:400;color:#94a3b8">&#8381;</span>';
 }
 </script>
