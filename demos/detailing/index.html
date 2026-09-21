@@ -12,7 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Локальный автономный файл стилей (работает всегда без интернета и внешних CDN) -->
+  <link rel="stylesheet" href="detailing.css">
+  
+  <!-- Tailwind CSS CDN (для расширений при наличии сети) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -146,7 +149,7 @@
         </div>
         <div class="flex items-center gap-4">
           <a href="https://t.me/grizzzza" target="_blank" class="text-sky-400 hover:text-sky-300 transition-colors flex items-center gap-1.5 font-medium">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <svg width="14" height="14" style="width:14px;height:14px;max-width:14px;max-height:14px;display:inline-block;" class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
             <span>Консультация в Telegram</span>
           </a>
         </div>
@@ -205,7 +208,7 @@
         </button>
         <!-- Мобильная кнопка меню -->
         <button id="mobile-toggle" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-urban-card border border-urban-border text-slate-300 hover:text-white focus:outline-none" aria-label="Открыть меню">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg width="24" height="24" style="width:24px;height:24px;max-width:24px;max-height:24px;" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
 
@@ -266,7 +269,7 @@
             Быстрая консультация
           </button>
           <a href="https://t.me/grizzzza" target="_blank" class="px-6 py-3.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-sky-500/40 text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider text-center transition-colors inline-flex items-center justify-center gap-2">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <svg width="16" height="16" style="width:16px;height:16px;max-width:16px;max-height:16px;display:inline-block;" class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
             <span>Написать в Telegram</span>
           </a>
         </div>
@@ -944,7 +947,7 @@
         <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
             <span>Сохраняется ли заводская гарантия дилера после оклейки или полировки?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg width="16" height="16" style="width:16px;height:16px;max-width:16px;max-height:16px;" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
             Да, 100% сохраняется. Детейлинг-процедуры не вносят конструктивных изменений в автомобиль. Более того, официальные дилеры рекомендуют оклейку полиуретаном в зонах риска прямо перед выездом из автосалона, так как это защищает заводское ЛКП от гарантийных споров по сколам.
@@ -954,7 +957,7 @@
         <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
             <span>Чем полиуретановая пленка (PPF) отличается от виниловой?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg width="16" height="16" style="width:16px;height:16px;max-width:16px;max-height:16px;" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
             Винил — это тонкая декоративная пленка (80–100 мкм), которая не защищает от летящих камней и на морозе дубеет. Полиуретан (PPF) — эластичный материал толщиной 200 мкм с самозатягивающимся верхним слоем Top Coat (царапины затягиваются на солнце или от горячей воды) и реальной защитой от гравия.
@@ -964,7 +967,7 @@
         <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
             <span>Как правильно мыть автомобиль после нанесения нанокерамики?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg width="16" height="16" style="width:16px;height:16px;max-width:16px;max-height:16px;" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
             Первые 7–10 дней после нанесения керамика полимеризуется, поэтому кузов не рекомендуется мыть щелочной химией. В дальнейшем рекомендуется двухфазная или трехфазная детейлинг-мойка с нейтральным pH шампунем без использования сухих грязных тряпок.
@@ -974,7 +977,7 @@
         <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
           <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
             <span>Сколько слоев заводского лака снимается при полировке?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg width="16" height="16" style="width:16px;height:16px;max-width:16px;max-height:16px;" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
             Толщина заводского лака современных авто составляет 35–50 микрон. При нашей восстановительной полировке с помощью эксцентриковых машинок Rupes снимается всего 1.5–3 микрона, что позволяет безопасно полировать автомобиль до 4–5 раз за срок службы.
@@ -1089,7 +1092,7 @@
           <!-- Блок успешной отправки формы -->
           <div id="booking-success" class="hidden text-center py-12">
             <div class="w-12 h-12 rounded-lg bg-blue-950 border border-blue-600/60 text-blue-400 flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <svg width="24" height="24" style="width:24px;height:24px;max-width:24px;max-height:24px;" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             </div>
             <h4 class="text-xl font-bold text-white mb-2">Заявка успешно принята</h4>
             <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed mb-6">
@@ -1155,7 +1158,7 @@
       <!-- Успех в модалке -->
       <div id="modal-success" class="hidden text-center py-4">
         <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-600/60 text-blue-400 flex items-center justify-center mx-auto mb-3">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <svg width="20" height="20" style="width:20px;height:20px;max-width:20px;max-height:20px;" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
         </div>
         <h4 class="text-base font-bold text-white mb-1">Время забронировано</h4>
         <p class="text-xs text-slate-300 leading-relaxed">
