@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URBAN — Детейлинг студия премиум-класса в Казани | Оклейка, полировка, керамика</title>
+  
+  <meta name="description" content="Премиум детейлинг-центр URBAN в Казани. Оклейка антигравийной пленкой (PPF), восстановительная полировка, керамические покрытия 9H и химчистка салона. Опыт 8+ лет, гарантия до 5 лет.">
+  
+  <!-- Шрифты Inter и Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'monospace'],
+          },
+          colors: {
+            urban: {
+              black: '#0a0b0e',
+              dark: '#111318',
+              card: '#161922',
+              cardHover: '#1c202c',
+              border: '#242836',
+              borderLight: '#32374a',
+              accent: '#2563eb',
+              accentHover: '#1d4ed8',
+              cyan: '#38bdf8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Кастомный скроллбар в темном стиле */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0b0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #242836;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+
+    /* Before/After ползунок */
+    .ba-slider-container {
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .ba-slider-after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .ba-slider-after img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+    }
+    .ba-slider-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #ffffff;
+      cursor: ew-resize;
+      box-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .ba-slider-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px;
+      height: 38px;
+      background: #0f172a;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 11px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body class="bg-urban-black text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
+
+  <!-- ======================================================= -->
+  <!-- ВЕРХНЯЯ ЗАКРЕПЛЕННАЯ ПЛАШКА ПОРТФОЛИО CASH'U            -->
+  <!-- ======================================================= -->
+  <div class="bg-black/90 text-white py-2.5 px-4 text-xs font-mono sticky top-0 z-50 border-b border-white/10 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2 text-slate-300">
+        <span>Демо-сайт премиальной детейлинг-студии • Разработка от студии <strong>cash'u</strong></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="../../#cases" class="text-slate-300 hover:text-white underline transition-colors">
+          ← Вернуться в портфолио
+        </a>
+        <a href="https://t.me/grizzzza" target="_blank" class="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors">
+          Заказать разработку сайта →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- ШАПКА ДЕТЕЙЛИНГ-СТУДИИ URBAN (В СТИЛЕ URBAN-DETAILING)  -->
+  <!-- ======================================================= -->
+  <header class="border-b border-urban-border bg-urban-black/95 backdrop-blur-md sticky top-[41px] z-40">
+    
+    <!-- Верхняя информационная полоса -->
+    <div class="border-b border-urban-border/60 bg-urban-dark/70 py-2 px-4 text-xs text-slate-400">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+        <div class="flex items-center gap-3">
+          <span class="text-slate-300 font-medium">г. Казань, ул. Островского, д. 98</span>
+          <span class="text-slate-600">•</span>
+          <span>Ежедневно с 09:00 до 21:00</span>
+          <span class="text-slate-600 hidden sm:inline">•</span>
+          <span class="hidden sm:inline text-slate-300">Охраняемый закрытый паркинг 24/7</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://t.me/grizzzza" target="_blank" class="text-sky-400 hover:text-sky-300 transition-colors flex items-center gap-1.5 font-medium">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <span>Консультация в Telegram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Основная планка шапки -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+      
+      <!-- Логотип URBAN -->
+      <a href="#" class="flex items-center gap-3 flex-shrink-0 group">
+        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-urban-border group-hover:border-blue-500 flex items-center justify-center text-white font-extrabold text-xl font-mono tracking-wider transition-colors">
+          U
+        </div>
+        <div>
+          <span class="font-extrabold text-xl tracking-wider text-white block leading-none">URBAN</span>
+          <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase block mt-1">Детейлинг студия</span>
+        </div>
+      </a>
+
+      <!-- Меню навигации -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-medium uppercase tracking-wider text-slate-300">
+        <a href="#services" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          Услуги
+        </a>
+        <a href="#before-after" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          До / После
+        </a>
+        <a href="#calculator" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          Калькулятор
+        </a>
+        <a href="#projects" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          Проекты
+        </a>
+        <a href="#studio" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          О студии
+        </a>
+        <a href="#faq" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          Вопросы
+        </a>
+        <a href="#contacts" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-urban-card transition-colors">
+          Контакты
+        </a>
+      </nav>
+
+      <!-- Контакты и кнопка записи -->
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <div class="hidden sm:flex flex-col text-right">
+          <a href="tel:+78432119114" class="text-sm font-bold text-white hover:text-blue-400 transition-colors font-mono tracking-wide">
+            +7 (843) 211-91-14
+          </a>
+          <span class="text-[11px] text-slate-400">Мастер-приемщик</span>
+        </div>
+        <button onclick="openBookingModal('Кнопка в шапке')" class="hidden sm:inline-flex px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm">
+          Записаться
+        </button>
+        <!-- Мобильная кнопка меню -->
+        <button id="mobile-toggle" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-urban-card border border-urban-border text-slate-300 hover:text-white focus:outline-none" aria-label="Открыть меню">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Мобильное меню -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-urban-border bg-urban-black/98 px-4 py-4 space-y-1">
+      <a href="#services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Услуги студии</a>
+      <a href="#before-after" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Сравнение До / После</a>
+      <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Калькулятор детейлинга</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Наши проекты</a>
+      <a href="#studio" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">О студии и стандартах</a>
+      <a href="#faq" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Частые вопросы</a>
+      <a href="#contacts" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-urban-card">Контакты и адрес</a>
+      <div class="pt-3 border-t border-urban-border/70 space-y-2">
+        <a href="tel:+78432119114" class="block font-mono text-sm font-bold text-white py-1">+7 (843) 211-91-14</a>
+        <button onclick="toggleMobileMenu(); openBookingModal('Мобильное меню')" class="w-full py-2.5 rounded-lg bg-blue-600 text-white font-semibold text-xs uppercase tracking-wider">
+          Выбрать удобное время
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================= -->
+  <!-- 1. ГЛАВНЫЙ ЭКРАН (HERO) В СТИЛЕ URBAN-DETAILING         -->
+  <!-- ======================================================= -->
+  <section class="relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden border-b border-urban-border bg-urban-black">
+    <!-- Фоновое изображение со спортивным автомобилем и затемнением -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/hero-car.jpg" alt="Детейлинг студия URBAN" class="w-full h-full object-cover object-center brightness-[0.45] contrast-110">
+      <div class="absolute inset-0 bg-gradient-to-t from-urban-black via-urban-black/50 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-urban-black/80 via-transparent to-urban-black/80"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div class="max-w-3xl">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 border border-white/15 text-xs font-mono text-slate-300 uppercase tracking-widest mb-6">
+          <span>Студия детейлинга в Казани</span>
+          <span>•</span>
+          <span class="text-blue-400">Премиум-сегмент</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+          Детейлинг студия URBAN
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-300 font-light leading-relaxed mb-8 max-w-2xl">
+          Наш опыт и репутация — это самое главное. Комплексный уход, защита полиуретановыми пленками и керамическими составами для автомобилей представительского класса.
+        </p>
+
+        <!-- Кнопки действий -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-12">
+          <a href="#calculator" class="px-7 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider text-center transition-colors shadow-lg shadow-blue-600/20">
+            Рассчитать стоимость
+          </a>
+          <button onclick="openBookingModal('Быстрая консультация')" class="px-7 py-3.5 rounded-lg bg-urban-card/90 hover:bg-urban-card border border-urban-border text-white font-semibold text-xs sm:text-sm uppercase tracking-wider text-center transition-colors">
+            Быстрая консультация
+          </button>
+          <a href="https://t.me/grizzzza" target="_blank" class="px-6 py-3.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 border border-sky-500/40 text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider text-center transition-colors inline-flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <span>Написать в Telegram</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Линейка фактов студии (без смайликов и цветных шариков) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-8 border-t border-white/10 text-slate-300">
+        <div class="p-4 rounded-lg bg-urban-dark/70 border border-urban-border/60">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-white mb-1">8+ лет</div>
+          <div class="text-xs text-slate-400">Профессиональной работы в сфере премиального детейлинга</div>
+        </div>
+        <div class="p-4 rounded-lg bg-urban-dark/70 border border-urban-border/60">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-white mb-1">3 500+</div>
+          <div class="text-xs text-slate-400">Автомобилей защищено и передано владельцам без единой рекламации</div>
+        </div>
+        <div class="p-4 rounded-lg bg-urban-dark/70 border border-urban-border/60">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-white mb-1">до 5 лет</div>
+          <div class="text-xs text-slate-400">Официальная гарантия на антигравийные пленки и нанокерамику</div>
+        </div>
+        <div class="p-4 rounded-lg bg-urban-dark/70 border border-urban-border/60">
+          <div class="font-mono text-2xl sm:text-3xl font-bold text-white mb-1">2 бокса</div>
+          <div class="text-xs text-slate-400">Изолированных стерильных бокса с инспекционным светом CRI 98+</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 2. КАТАЛОГ УСЛУГ (РЕАЛЬНЫЕ АВТОМОБИЛЬНЫЕ ФОТО)          -->
+  <!-- ======================================================= -->
+  <section id="services" class="py-16 sm:py-20 bg-urban-dark border-b border-urban-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Направления работы</div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Услуги детейлинг центра</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-md">
+          Используем сертифицированные материалы Stek, SunTek, Ceramic Pro и итальянское полировальное оборудование Rupes.
+        </p>
+      </div>
+
+      <!-- Сетка 6 основных услуг -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Услуга 1: Оклейка PPF -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-ppf.jpg" alt="Оклейка антигравийной пленкой" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                Stek / SunTek
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Защита от сколов</div>
+              <h3 class="text-lg font-bold text-white mb-2">Оклейка антигравийной пленкой</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Премиальный самозатягивающийся полиуретан толщиной 200 мкм. Полная защита зон риска или кузова от гравия, веток, пескоструя и реагентов.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• Зоны риска: от 45 000 ₽</div>
+                <div>• Полный кузов: от 195 000 ₽</div>
+                <div>• Срок службы: до 7 лет</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 45 000 ₽</span>
+            <button onclick="openBookingModal('Оклейка пленкой')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 2: Полировка -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-polish.jpg" alt="Детейлинг полировка кузова" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                Rupes Bigfoot
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Восстановление ЛКП</div>
+              <h3 class="text-lg font-bold text-white mb-2">Восстановительная полировка</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Удаление до 95% царапин, паутины и голограмм после некачественных моек. Минимальное снятие заводского лака (до 2-3 микрон) и глубокий зеркальный глянец.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• Мягкая финишная: от 14 000 ₽</div>
+                <div>• Глубокая абразивная: от 22 000 ₽</div>
+                <div>• Время работы: 1-2 дня</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 14 000 ₽</span>
+            <button onclick="openBookingModal('Полировка кузова')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 3: Керамика -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-ceramic.jpg" alt="Керамическое покрытие Ceramic Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                Ceramic Pro 9H
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Нанозащита</div>
+              <h3 class="text-lg font-bold text-white mb-2">Керамические покрытия 9H</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Сверхпрочный кварцевый щит. Усиливает сочность цвета, создает гидрофобный эффект (угол смачивания 115°) и защищает от дорожной химии, соли и выгорания на солнце.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• 1 слой Ceramic: от 18 000 ₽</div>
+                <div>• 2 слоя 9H + Top Coat: от 28 000 ₽</div>
+                <div>• Гарантия: до 24 месяцев</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 18 000 ₽</span>
+            <button onclick="openBookingModal('Керамика')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 4: Химчистка -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-interior.jpg" alt="Химчистка салона с озонацией" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                Koch Chemie
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Интерьер</div>
+              <h3 class="text-lg font-bold text-white mb-2">Детейлинг-химчистка салона</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Бережная очистка кожи, алькантары и ковров с частичным разбором. Антибактериальная озонация климатической системы и консервация кожи премиальными кремами.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• Комплексная химчистка: от 14 000 ₽</div>
+                <div>• Защитный крем для кожи: в подарок</div>
+                <div>• Озонация и дезинфекция: включено</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 14 000 ₽</span>
+            <button onclick="openBookingModal('Химчистка')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 5: Шумоизоляция -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-soundproof.jpg" alt="Шумоизоляция премиум авто" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                Comfortmat Expert
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Акустический комфорт</div>
+              <h3 class="text-lg font-bold text-white mb-2">Шумоизоляция салона</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Многослойная вибро- и шумоизоляция материалами Comfortmat премиум-линейки. Снижение акустического шума в салоне до 70% и улучшение звучания аудиосистемы.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• 4 двери (акустический пакет): от 24 000 ₽</div>
+                <div>• Колесные арки снаружи: от 18 000 ₽</div>
+                <div>• Полный салон: от 65 000 ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 18 000 ₽</span>
+            <button onclick="openBookingModal('Шумоизоляция')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+        <!-- Услуга 6: Бронирование стекол и антидождь -->
+        <div class="bg-urban-card rounded-xl border border-urban-border overflow-hidden flex flex-col justify-between hover:border-blue-500/60 transition-colors group">
+          <div>
+            <div class="h-52 overflow-hidden relative">
+              <img src="assets/service-glass.jpg" alt="Бронирование лобового стекла" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-slate-200">
+                ClearPlex / Aquapel
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1.5">Остекление</div>
+              <h3 class="text-lg font-bold text-white mb-2">Бронирование стекол и антидождь</h3>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Защита лобового стекла от сколов и трещин пленкой ClearPlex. Нанесение оригинального состава Aquapel для безупречной видимости в дождь на скорости от 50 км/ч.
+              </p>
+              <div class="space-y-1 text-xs text-slate-300 font-mono">
+                <div>• Антидождь передняя полусфера: от 4 500 ₽</div>
+                <div>• Все стекла в круг: от 7 500 ₽</div>
+                <div>• Бронь лобового стекла: от 18 000 ₽</div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex items-center justify-between border-t border-urban-border/50 mt-4">
+            <span class="font-mono text-white font-bold text-sm">от 4 500 ₽</span>
+            <button onclick="openBookingModal('Остекление и антидождь')" class="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+              Записаться →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 3. ИНТЕРАКТИВНОЕ СРАВНЕНИЕ ДО / ПОСЛЕ                   -->
+  <!-- ======================================================= -->
+  <section id="before-after" class="py-16 sm:py-20 bg-urban-black border-b border-urban-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Результат в деталях</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Сравнение До и После детейлинга</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">
+          Перемещайте интерактивный ползунок влево и вправо для оценки разницы между затертым лаком и зеркальным глянцем после полировки с керамикой.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div id="ba-slider" class="ba-slider-container rounded-xl border border-urban-border bg-urban-card aspect-[16/9] shadow-2xl">
+          
+          <!-- Изображение «После» (подложка: зеркальный блеск) -->
+          <img src="assets/project-bmw.jpg" alt="После детейлинга" class="w-full h-full object-cover">
+          <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded bg-black/80 border border-white/20 text-xs font-mono text-white pointer-events-none">
+            ПОСЛЕ: Керамика 9H + полировка
+          </div>
+
+          <!-- Изображение «До» (поверх со срезом: затертость) -->
+          <div id="ba-after" class="ba-slider-after" style="width: 50%;">
+            <img src="assets/wheel-clean.jpg" alt="До детейлинга" class="brightness-75 contrast-90">
+            <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded bg-black/80 border border-white/20 text-xs font-mono text-slate-300 pointer-events-none">
+              ДО: Паутинка и матовость
+            </div>
+          </div>
+
+          <!-- Разделитель и кнопка управления -->
+          <div id="ba-handle" class="ba-slider-handle" style="left: 50%;">
+            <div class="ba-slider-button">
+              <span>◀ ▶</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-4 flex items-center justify-between text-xs font-mono text-slate-400 px-1">
+          <div>← Сдвиньте для просмотра состояния ДО</div>
+          <div>Сдвиньте для оценки зеркального глянца ПОСЛЕ →</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 4. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ДЕТЕЙЛИНГА ПО КЛАССАМ АВТО -->
+  <!-- ======================================================= -->
+  <section id="calculator" class="py-16 sm:py-20 bg-urban-dark border-b border-urban-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-2xl mb-10">
+        <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Онлайн расчет стоимости</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Калькулятор комплекса детейлинга</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">
+          Выберите класс вашего автомобиля и требуемый набор услуг для моментального расчета сметы и сроков выполнения работ.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Левая колонка: Опции и выбор класса -->
+        <div class="lg:col-span-7 bg-urban-card p-6 sm:p-7 rounded-xl border border-urban-border space-y-6">
+          
+          <!-- Выбор класса автомобиля -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              1. Класс автомобиля:
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="car-class-picker">
+              <button type="button" data-class="1" class="class-btn active p-3 rounded-lg border border-blue-500 bg-urban-dark text-left transition-colors">
+                <div class="text-xs font-bold text-white mb-0.5">I Класс (Седаны)</div>
+                <div class="text-[11px] text-slate-400">BMW 3, Audi A4, Porsche 911</div>
+              </button>
+              <button type="button" data-class="2" class="class-btn p-3 rounded-lg border border-urban-border bg-urban-dark/60 text-left hover:border-slate-500 transition-colors">
+                <div class="text-xs font-bold text-white mb-0.5">II Класс (Бизнес/SUV)</div>
+                <div class="text-[11px] text-slate-400">BMW 5/X3, Macan, Mercedes E</div>
+              </button>
+              <button type="button" data-class="3" class="class-btn p-3 rounded-lg border border-urban-border bg-urban-dark/60 text-left hover:border-slate-500 transition-colors">
+                <div class="text-xs font-bold text-white mb-0.5">III Класс (Внедорожники)</div>
+                <div class="text-[11px] text-slate-400">BMW X5/X7, G-Class, Cayenne</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Выбор услуг чекбоксами -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+              2. Выберите необходимые услуги:
+            </label>
+            
+            <div class="space-y-2.5" id="services-checklist">
+              
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="ppf-risk" checked class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Оклейка зон риска (PPF полиуретан Stek)</div>
+                    <div class="text-[11px] text-slate-400">Капот целиком, бампер, фары, зеркала, под ручками</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="45000">45 000 ₽</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="ppf-full" class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Полная оклейка кузова бронепленкой</div>
+                    <div class="text-[11px] text-slate-400">100% кузова с подворотом краев деталей</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="195000">195 000 ₽</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="polish" checked class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Восстановительная детейлинг-полировка</div>
+                    <div class="text-[11px] text-slate-400">Устранение 95% микрорисок и придание зеркального блеска</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="18000">18 000 ₽</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="ceramic" checked class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Керамика Ceramic Pro 9H (2 слоя + Top)</div>
+                    <div class="text-[11px] text-slate-400">Гидрофобный эффект и защита от реагентов на 24 мес.</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="28000">28 000 ₽</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="interior" class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Глубокая химчистка салона + озонация</div>
+                    <div class="text-[11px] text-slate-400">Очистка пор кожи, кондиционер и дезинфекция воздуховодов</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="16000">16 000 ₽</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-lg border border-urban-border bg-urban-dark/60 cursor-pointer hover:border-slate-500 transition-colors">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="calc-opt" value="glass" class="w-4 h-4 rounded text-blue-600 focus:ring-0 bg-slate-900 border-slate-700">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">Покрытие «Антидождь» Aquapel на все стекла</div>
+                    <div class="text-[11px] text-slate-400">Чистые стекла в дождь и легкое удаление наледи зимой</div>
+                  </div>
+                </div>
+                <span class="font-mono text-xs font-bold text-blue-400 whitespace-nowrap ml-2 opt-price" data-base="7500">7 500 ₽</span>
+              </label>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Правая колонка: Итоговая смета -->
+        <div class="lg:col-span-5 bg-urban-card p-6 sm:p-7 rounded-xl border border-urban-border space-y-6">
+          <div class="border-b border-urban-border pb-4">
+            <span class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1">Итоговый расчет:</span>
+            <div class="flex items-baseline gap-2">
+              <span id="calc-total-price" class="text-3xl sm:text-4xl font-extrabold text-white font-mono">91 000 ₽</span>
+              <span id="calc-old-price" class="text-sm font-mono text-slate-500 line-through">101 000 ₽</span>
+            </div>
+            <div class="text-[11px] text-emerald-400 font-mono mt-1">
+              ✓ Включена клубная скидка 10% на первый визит
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="flex justify-between py-1 border-b border-urban-border/50 text-slate-400">
+              <span>Выбранный класс:</span>
+              <span id="summary-class" class="font-semibold text-white font-mono">Класс I (Седан)</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-urban-border/50 text-slate-400">
+              <span>Ориентировочный срок работ:</span>
+              <span id="summary-time" class="font-semibold text-white font-mono">2–3 рабочих дня</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-urban-border/50 text-slate-400">
+              <span>Гарантийный талон:</span>
+              <span class="font-semibold text-white font-mono">Официальный до 5 лет</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-urban-border/50 text-slate-400">
+              <span>Такси бизнес-класса:</span>
+              <span class="font-semibold text-emerald-400 font-mono">Бесплатно при сдаче авто</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="bookCalculatedPackage()" class="w-full py-3.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider transition-colors shadow-lg shadow-blue-600/20">
+              Записаться по этой смете
+            </button>
+            <div class="text-[11px] text-slate-400 text-center mt-3">
+              Бронь времени без предоплаты. Точный осмотр ЛКП при приемке.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 5. ГАЛЕРЕЯ НАШИХ ПРОЕКТОВ                               -->
+  <!-- ======================================================= -->
+  <section id="projects" class="py-16 sm:py-20 bg-urban-black border-b border-urban-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Портфолио студии</div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Выполненные проекты</h2>
+        </div>
+        
+        <!-- Кнопки фильтров проектов -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono">
+          <button type="button" class="project-filter active px-3 py-1.5 rounded bg-blue-600 text-white font-bold" data-brand="all">Все авто (5)</button>
+          <button type="button" class="project-filter px-3 py-1.5 rounded bg-urban-card border border-urban-border text-slate-300 hover:text-white" data-brand="porsche">Porsche</button>
+          <button type="button" class="project-filter px-3 py-1.5 rounded bg-urban-card border border-urban-border text-slate-300 hover:text-white" data-brand="bmw">BMW</button>
+          <button type="button" class="project-filter px-3 py-1.5 rounded bg-urban-card border border-urban-border text-slate-300 hover:text-white" data-brand="mercedes">Mercedes</button>
+          <button type="button" class="project-filter px-3 py-1.5 rounded bg-urban-card border border-urban-border text-slate-300 hover:text-white" data-brand="audi">Audi</button>
+        </div>
+      </div>
+
+      <!-- Сетка карточек выполненных работ -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        
+        <!-- Проект 1: Porsche 911 GT3 -->
+        <div class="project-item bg-urban-card rounded-xl border border-urban-border overflow-hidden group" data-brand="porsche">
+          <div class="h-60 overflow-hidden relative">
+            <img src="assets/project-porsche.jpg" alt="Porsche 911 GT3 оклейка матовым полиуретаном" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-white">
+              Stek Matte PPF
+            </span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1.5">Porsche 911 GT3</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              Полная оклейка кузова матовым самозатягивающимся полиуретаном + керамика на диски и суппорта.
+            </p>
+            <div class="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-urban-border/60">
+              <span>Срок: 4 дня</span>
+              <span class="text-blue-400 font-bold">210 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Проект 2: BMW M5 -->
+        <div class="project-item bg-urban-card rounded-xl border border-urban-border overflow-hidden group" data-brand="bmw">
+          <div class="h-60 overflow-hidden relative">
+            <img src="assets/project-bmw.jpg" alt="BMW M5 полировка и керамика" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-white">
+              Ceramic Pro 9H
+            </span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1.5">BMW M5 Competition</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              Глубокая восстановительная полировка кузова с удалением паутины и 3 слоя Ceramic Pro 9H.
+            </p>
+            <div class="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-urban-border/60">
+              <span>Срок: 2 дня</span>
+              <span class="text-blue-400 font-bold">48 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Проект 3: Mercedes G-Class -->
+        <div class="project-item bg-urban-card rounded-xl border border-urban-border overflow-hidden group" data-brand="mercedes">
+          <div class="h-60 overflow-hidden relative">
+            <img src="assets/project-gwagon.jpg" alt="Mercedes-AMG G63 комплексная защита" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-white">
+              Комплекс AMG
+            </span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1.5">Mercedes-AMG G63</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              Оклейка морды и крыши бронепленкой, антихром решетки и молдингов, шумоизоляция дверей.
+            </p>
+            <div class="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-urban-border/60">
+              <span>Срок: 3 дня</span>
+              <span class="text-blue-400 font-bold">145 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Проект 4: Audi RS6 -->
+        <div class="project-item bg-urban-card rounded-xl border border-urban-border overflow-hidden group" data-brand="audi">
+          <div class="h-60 overflow-hidden relative">
+            <img src="assets/project-audi.jpg" alt="Audi RS6 детейлинг салона" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-white">
+              Интерьер + ЛКП
+            </span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1.5">Audi RS6 Avant</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              Глубокая химчистка салона, консервация кожи кремом Gyeon Leather Shield, антидождь в круг.
+            </p>
+            <div class="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-urban-border/60">
+              <span>Срок: 1.5 дня</span>
+              <span class="text-blue-400 font-bold">36 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Проект 5: Mercedes S-Class -->
+        <div class="project-item bg-urban-card rounded-xl border border-urban-border overflow-hidden group" data-brand="mercedes">
+          <div class="h-60 overflow-hidden relative">
+            <img src="assets/project-mercedes.jpg" alt="Mercedes S-Class представительский детейлинг" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-urban-card via-transparent to-transparent"></div>
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-black/80 border border-white/10 font-mono text-[11px] text-white">
+              VIP Care
+            </span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-base font-bold text-white mb-1.5">Mercedes-Benz S-Class W223</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              Сезонный комплекс: мягкая полировка, кварцевый гидрофобный состав, бронирование лобового стекла.
+            </p>
+            <div class="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-urban-border/60">
+              <span>Срок: 2 дня</span>
+              <span class="text-blue-400 font-bold">55 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 6. О СТУДИИ, ОБОРУДОВАНИЕ И СТАНДАРТЫ КАЧЕСТВА          -->
+  <!-- ======================================================= -->
+  <section id="studio" class="py-16 sm:py-20 bg-urban-dark border-b border-urban-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Левая колонка: Текст и стандарты -->
+        <div class="lg:col-span-6 space-y-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Инфраструктура</div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              Студия, созданная для бескомпромиссного качества
+            </h2>
+          </div>
+
+          <p class="text-sm text-slate-300 leading-relaxed">
+            В детейлинге нет мелочей. Мы оборудовали студию по европейским стандартам: герметичные боксы с многоуровневой фильтрацией воздуха от пыли, инспекционное освещение с регулировкой цветовой температуры для выявления малейших дефектов лака и закрытая охраняемая территория.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border flex items-start gap-3.5">
+              <div class="font-mono font-bold text-blue-400 text-xs mt-0.5">01</div>
+              <div>
+                <strong class="text-sm text-white font-semibold block">Оборудование Rupes и химия Koch Chemie</strong>
+                <span class="text-xs text-slate-400">Только сертифицированные составы из Германии, США и Италии. Никаких дешевых безымянных паст.</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border flex items-start gap-3.5">
+              <div class="font-mono font-bold text-blue-400 text-xs mt-0.5">02</div>
+              <div>
+                <strong class="text-sm text-white font-semibold block">Фотоотчет в Telegram на каждом этапе</strong>
+                <span class="text-xs text-slate-400">Вы всегда знаете, что происходит с вашим авто. Присылаем фото процесса деконтаминации, полировки и нанесения состава.</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border flex items-start gap-3.5">
+              <div class="font-mono font-bold text-blue-400 text-xs mt-0.5">03</div>
+              <div>
+                <strong class="text-sm text-white font-semibold block">Бесплатное такси бизнес-класса</strong>
+                <span class="text-xs text-slate-400">Оплачиваем поездку на такси класса «Бизнес» до дома или офиса при сдаче автомобиля в работу.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая колонка: Реальное фото бокса -->
+        <div class="lg:col-span-6">
+          <div class="rounded-xl overflow-hidden border border-urban-border bg-urban-card shadow-2xl">
+            <img src="assets/studio-bay.jpg" alt="Инспекционный бокс студии URBAN" class="w-full h-80 sm:h-96 object-cover object-center" loading="lazy">
+            <div class="p-4 bg-urban-black border-t border-urban-border flex items-center justify-between text-xs text-slate-400 font-mono">
+              <div>
+                <span class="text-white font-bold block">Бокс инспекционного света №1</span>
+                <span>Стерильная беспылевая зона</span>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-blue-950/80 text-blue-300 border border-blue-800/60 font-semibold">
+                CRI 98+
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 7. ЧАСТЫЕ ВОПРОСЫ ВЛАДЕЛЬЦЕВ (FAQ)                      -->
+  <!-- ======================================================= -->
+  <section id="faq" class="py-16 sm:py-20 bg-urban-black border-b border-urban-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-10">
+        <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Консультация</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Частые вопросы</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">
+          Ответы мастера-приемщика на самые популярные вопросы об уходе за кузовом и пленках.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        
+        <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
+          <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
+            <span>Сохраняется ли заводская гарантия дилера после оклейки или полировки?</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
+            Да, 100% сохраняется. Детейлинг-процедуры не вносят конструктивных изменений в автомобиль. Более того, официальные дилеры рекомендуют оклейку полиуретаном в зонах риска прямо перед выездом из автосалона, так как это защищает заводское ЛКП от гарантийных споров по сколам.
+          </div>
+        </details>
+
+        <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
+          <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
+            <span>Чем полиуретановая пленка (PPF) отличается от виниловой?</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
+            Винил — это тонкая декоративная пленка (80–100 мкм), которая не защищает от летящих камней и на морозе дубеет. Полиуретан (PPF) — эластичный материал толщиной 200 мкм с самозатягивающимся верхним слоем Top Coat (царапины затягиваются на солнце или от горячей воды) и реальной защитой от гравия.
+          </div>
+        </details>
+
+        <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
+          <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
+            <span>Как правильно мыть автомобиль после нанесения нанокерамики?</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
+            Первые 7–10 дней после нанесения керамика полимеризуется, поэтому кузов не рекомендуется мыть щелочной химией. В дальнейшем рекомендуется двухфазная или трехфазная детейлинг-мойка с нейтральным pH шампунем без использования сухих грязных тряпок.
+          </div>
+        </details>
+
+        <details class="group border border-urban-border rounded-xl bg-urban-card open:border-blue-500/50 transition-colors p-5">
+          <summary class="flex justify-between items-center font-semibold text-white text-sm cursor-pointer list-none">
+            <span>Сколько слоев заводского лака снимается при полировке?</span>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-3 text-xs text-slate-300 leading-relaxed border-t border-urban-border/60 pt-3">
+            Толщина заводского лака современных авто составляет 35–50 микрон. При нашей восстановительной полировке с помощью эксцентриковых машинок Rupes снимается всего 1.5–3 микрона, что позволяет безопасно полировать автомобиль до 4–5 раз за срок службы.
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 8. ФОРМА ЗАПИСИ И КОНТАКТЫ                              -->
+  <!-- ======================================================= -->
+  <section id="contacts" class="py-16 sm:py-20 bg-urban-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Контактная информация студии URBAN -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-blue-400 mb-2">Локация студии</div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Контакты</h2>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2">
+              Приезжайте на чашку кофе и бесплатный осмотр состояния ЛКП толщиномером и микроскопом.
+            </p>
+          </div>
+
+          <div class="space-y-4 text-sm text-slate-300 font-mono">
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border">
+              <span class="text-xs text-slate-400 block mb-1">Адрес студии:</span>
+              <strong class="text-white text-sm font-sans block">г. Казань, ул. Островского, д. 98</strong>
+              <span class="text-xs text-slate-400 font-sans mt-0.5 block">Центр города • Удобный заезд с улицы Островского</span>
+            </div>
+
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border">
+              <span class="text-xs text-slate-400 block mb-1">Телефон приемки:</span>
+              <a href="tel:+78432119114" class="text-lg text-white font-bold hover:text-blue-400 transition-colors block">
+                +7 (843) 211-91-14
+              </a>
+              <span class="text-xs text-slate-400 font-sans">Пн–Вс: 09:00 – 21:00</span>
+            </div>
+
+            <div class="p-4 rounded-lg bg-urban-card border border-urban-border flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block mb-1">Мессенджер:</span>
+                <span class="text-sm font-sans text-white">Telegram-канал студии</span>
+              </div>
+              <a href="https://t.me/grizzzza" target="_blank" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider transition-colors">
+                Написать
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Форма онлайн-записи -->
+        <div class="lg:col-span-7 bg-urban-card p-6 sm:p-8 rounded-xl border border-urban-border shadow-2xl">
+          
+          <div id="booking-form-wrap">
+            <h3 class="text-xl font-bold text-white mb-2">Запись на детейлинг или консультацию</h3>
+            <p class="text-xs text-slate-400 mb-6">
+              Укажите марку автомобиля и удобное время. Мастер свяжется с вами в течение 15 минут для подтверждения брони бокса.
+            </p>
+
+            <form onsubmit="handleDirectBooking(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Ваше имя:</label>
+                  <input type="text" required placeholder="Константин" class="w-full px-3.5 py-2.5 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Телефон для связи:</label>
+                  <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-3.5 py-2.5 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Марка и модель авто:</label>
+                  <input type="text" id="booking-car-input" required placeholder="Например: Porsche Macan 2023" class="w-full px-3.5 py-2.5 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Желаемая дата визита:</label>
+                  <input type="date" class="w-full px-3.5 py-2.5 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">Интересующая услуга:</label>
+                <select id="booking-service-select" class="w-full px-3.5 py-2.5 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+                  <option value="Комплексный расчет из калькулятора">Комплексный расчет из калькулятора</option>
+                  <option value="Оклейка антигравийной пленкой (PPF)">Оклейка антигравийной пленкой (PPF)</option>
+                  <option value="Восстановительная полировка">Восстановительная полировка кузова</option>
+                  <option value="Керамическое покрытие 9H">Керамическое покрытие 9H</option>
+                  <option value="Химчистка салона + озонация">Детейлинг-химчистка салона</option>
+                  <option value="Шумоизоляция салона">Премиальная шумоизоляция</option>
+                  <option value="Бесплатный осмотр ЛКП и консультация">Бесплатный осмотр ЛКП и консультация</option>
+                </select>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider transition-colors shadow-lg shadow-blue-600/20">
+                Забронировать визит в студию
+              </button>
+
+              <div class="text-[11px] text-slate-500 text-center">
+                Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с 152-ФЗ.
+              </div>
+            </form>
+          </div>
+
+          <!-- Блок успешной отправки формы -->
+          <div id="booking-success" class="hidden text-center py-12">
+            <div class="w-12 h-12 rounded-lg bg-blue-950 border border-blue-600/60 text-blue-400 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">Заявка успешно принята</h4>
+            <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed mb-6">
+              Мастер-приемщик свяжется с вами в течение 15 минут для подтверждения времени и бронирования чистого бокса.
+            </p>
+            <button onclick="resetBookingForm()" class="px-5 py-2.5 rounded-lg bg-urban-dark hover:bg-slate-800 border border-urban-border text-white text-xs font-semibold uppercase tracking-wider transition-colors">
+              Отправить еще одну заявку
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- ФУТЕР ДЕТЕЙЛИНГ-СТУДИИ                                  -->
+  <!-- ======================================================= -->
+  <footer class="border-t border-urban-border bg-urban-black py-8 text-xs text-slate-500 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 Студия детейлинга «URBAN». г. Казань, ул. Островского, 98. Все права защищены.
+      </div>
+      <div class="text-slate-400">
+        Дизайн и разработка сайта — студия <a href="../../#cases" class="text-blue-400 hover:underline">cash'u</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================= -->
+  <!-- МОДАЛЬНОЕ ОКНО ОНЛАЙН-ЗАПИСИ                            -->
+  <!-- ======================================================= -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-urban-card rounded-xl border border-urban-border max-w-md w-full p-6 relative shadow-2xl">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+      
+      <div id="modal-content">
+        <h3 id="modal-title" class="text-lg font-bold text-white mb-1">Запись на детейлинг</h3>
+        <p class="text-xs text-slate-400 mb-5">Укажите контактный номер. Мастер перезвонит для бронирования бокса.</p>
+
+        <form onsubmit="handleModalBookingSubmit(event)" class="space-y-3.5">
+          <input type="hidden" id="modal-service-name" value="Запись">
+          <div>
+            <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1">Ваше имя:</label>
+            <input type="text" required placeholder="Константин" class="w-full px-3 py-2 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1">Телефон:</label>
+            <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-3 py-2 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1">Марка автомобиля:</label>
+            <input type="text" placeholder="Например: BMW X5" class="w-full px-3 py-2 rounded-lg bg-urban-dark border border-urban-border text-white text-sm focus:border-blue-500 focus:outline-none">
+          </div>
+          <button type="submit" class="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors">
+            Подтвердить запись
+          </button>
+        </form>
+      </div>
+
+      <!-- Успех в модалке -->
+      <div id="modal-success" class="hidden text-center py-4">
+        <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-600/60 text-blue-400 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h4 class="text-base font-bold text-white mb-1">Время забронировано</h4>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Мастер-приемщик свяжется с вами для уточнения деталей.
+        </p>
+        <button onclick="closeBookingModal()" class="mt-4 px-5 py-1.5 rounded-lg bg-urban-dark hover:bg-slate-800 text-white text-xs font-medium border border-urban-border">
+          Закрыть
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- ИНТЕРАКТИВНЫЕ СКРИПТЫ: КАЛЬКУЛЯТОР, BEFORE/AFTER, МОДАЛКА-->
+  <!-- ======================================================= -->
+  <script>
+    // 1. Мобильное меню
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // 2. Интерактивный Before / After Slider
+    const baContainer = document.getElementById('ba-slider');
+    const baAfter = document.getElementById('ba-after');
+    const baHandle = document.getElementById('ba-handle');
+    let isDragging = false;
+
+    function setSliderPosition(x) {
+      const rect = baContainer.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      if (pos < 0) pos = 0;
+      if (pos > 1) pos = 1;
+      const percentage = pos * 100;
+      baAfter.style.width = percentage + '%';
+      baHandle.style.left = percentage + '%';
+    }
+
+    if (baContainer && baHandle && baAfter) {
+      baContainer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        setSliderPosition(e.clientX);
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        setSliderPosition(e.clientX);
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Поддержка сенсорных экранов (Touch)
+      baContainer.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        setSliderPosition(e.touches[0].clientX);
+      });
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        setSliderPosition(e.touches[0].clientX);
+      });
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    }
+
+    // 3. Интерактивный калькулятор детейлинга по классам авто
+    const classCoefficients = {
+      '1': { mult: 1.0, label: 'Класс I (Седан / купе)', time: '2–3 рабочих дня' },
+      '2': { mult: 1.15, label: 'Класс II (Бизнес / SUV)', time: '3–4 рабочих дня' },
+      '3': { mult: 1.30, label: 'Класс III (Внедорожник)', time: '4–5 рабочих дней' }
+    };
+
+    let currentClass = '1';
+
+    // Кнопки классов
+    const classBtns = document.querySelectorAll('.class-btn');
+    classBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        classBtns.forEach(b => {
+          b.classList.remove('active', 'border-blue-500', 'bg-urban-dark');
+          b.classList.add('border-urban-border', 'bg-urban-dark/60');
+        });
+        btn.classList.add('active', 'border-blue-500', 'bg-urban-dark');
+        btn.classList.remove('border-urban-border', 'bg-urban-dark/60');
+        currentClass = btn.getAttribute('data-class');
+        recalcDetCalculator();
+      });
+    });
+
+    // Чекбоксы услуг
+    const serviceCheckboxes = document.querySelectorAll('input[name="calc-opt"]');
+    serviceCheckboxes.forEach(cb => {
+      cb.addEventListener('change', recalcDetCalculator);
+    });
+
+    function recalcDetCalculator() {
+      const classInfo = classCoefficients[currentClass] || classCoefficients['1'];
+      let baseTotal = 0;
+
+      // Обновляем цены в списке чекбоксов с учетом коэффициента класса
+      const optLabels = document.querySelectorAll('.opt-price');
+      optLabels.forEach(label => {
+        const base = parseInt(label.getAttribute('data-base'), 10);
+        const adjusted = Math.round((base * classInfo.mult) / 500) * 500;
+        label.textContent = adjusted.toLocaleString('ru-RU') + ' ₽';
+      });
+
+      // Считаем выбранные
+      serviceCheckboxes.forEach(cb => {
+        if (cb.checked) {
+          const parent = cb.closest('label');
+          const priceLabel = parent.querySelector('.opt-price');
+          const base = parseInt(priceLabel.getAttribute('data-base'), 10);
+          const adjusted = Math.round((base * classInfo.mult) / 500) * 500;
+          baseTotal += adjusted;
+        }
+      });
+
+      // 10% скидка на первый визит
+      const discountedTotal = Math.round((baseTotal * 0.9) / 500) * 500;
+
+      const totalDisplay = document.getElementById('calc-total-price');
+      const oldDisplay = document.getElementById('calc-old-price');
+      const summaryClass = document.getElementById('summary-class');
+      const summaryTime = document.getElementById('summary-time');
+
+      if (totalDisplay) totalDisplay.textContent = discountedTotal.toLocaleString('ru-RU') + ' ₽';
+      if (oldDisplay) oldDisplay.textContent = baseTotal.toLocaleString('ru-RU') + ' ₽';
+      if (summaryClass) summaryClass.textContent = classInfo.label;
+      if (summaryTime) summaryTime.textContent = classInfo.time;
+    }
+
+    function bookCalculatedPackage() {
+      const summaryClass = document.getElementById('summary-class').textContent;
+      const total = document.getElementById('calc-total-price').textContent;
+      const select = document.getElementById('booking-service-select');
+      if (select) {
+        select.value = 'Комплексный расчет из калькулятора';
+      }
+      const carInput = document.getElementById('booking-car-input');
+      if (carInput && !carInput.value) {
+        carInput.value = summaryClass;
+      }
+      document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 4. Фильтр проектов по маркам
+    const projectFilters = document.querySelectorAll('.project-filter');
+    const projectItems = document.querySelectorAll('.project-item');
+
+    projectFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        projectFilters.forEach(b => {
+          b.classList.remove('active', 'bg-blue-600', 'text-white');
+          b.classList.add('bg-urban-card', 'text-slate-300');
+        });
+        btn.classList.add('active', 'bg-blue-600', 'text-white');
+        btn.classList.remove('bg-urban-card', 'text-slate-300');
+
+        const brand = btn.getAttribute('data-brand');
+        projectItems.forEach(item => {
+          if (brand === 'all' || item.getAttribute('data-brand') === brand) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 5. Обработка форм записи
+    function handleDirectBooking(e) {
+      e.preventDefault();
+      document.getElementById('booking-form-wrap').classList.add('hidden');
+      document.getElementById('booking-success').classList.remove('hidden');
+    }
+
+    function resetBookingForm() {
+      document.getElementById('booking-form-wrap').classList.remove('hidden');
+      document.getElementById('booking-success').classList.add('hidden');
+    }
+
+    // 6. Модальное окно
+    function openBookingModal(sourceTitle) {
+      const backdrop = document.getElementById('modal-backdrop');
+      const title = document.getElementById('modal-title');
+      const serviceInput = document.getElementById('modal-service-name');
+      if (title && sourceTitle) {
+        title.textContent = 'Запись: ' + sourceTitle;
+      }
+      if (serviceInput && sourceTitle) {
+        serviceInput.value = sourceTitle;
+      }
+      backdrop.classList.remove('hidden');
+      backdrop.classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      const backdrop = document.getElementById('modal-backdrop');
+      backdrop.classList.add('hidden');
+      backdrop.classList.remove('flex');
+      setTimeout(() => {
+        document.getElementById('modal-content').classList.remove('hidden');
+        document.getElementById('modal-success').classList.add('hidden');
+      }, 300);
+    }
+
+    function handleModalBookingSubmit(e) {
+      e.preventDefault();
+      document.getElementById('modal-content').classList.add('hidden');
+      document.getElementById('modal-success').classList.remove('hidden');
+    }
+
+    // Инициализация калькулятора при старте
+    recalcDetCalculator();
+  </script>
+
+</body>
+</html>
