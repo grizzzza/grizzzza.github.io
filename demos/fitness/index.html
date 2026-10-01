@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СК «АВАНГАРД» | Спортивный комплекс: Бассейн, фитнес, тренажерный зал</title>
+
+  <!-- Google Fonts: Montserrat + IBM Plex Sans (Exact fonts from sport.innopolis.ru) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            inno: {
+              green: '#81be3c',     /* Innopolis Lime Green */
+              greenHover: '#71a932',
+              purple: '#501e5c',    /* Innopolis Accent Purple */
+              purpleHover: '#3d1647',
+              dark: '#1e293b',
+              grayBg: '#f8f9fa',
+              cardBorder: '#e2e8f0',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f8f9fa; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #81be3c; }
+
+    /* Elegant Solid Framed Cards */
+    .inno-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .inno-card:hover {
+      border-color: #81be3c;
+      transform: translateY(-2px);
+    }
+    .inno-card-purple {
+      background: #ffffff;
+      border: 2px solid #501e5c;
+    }
+    .inno-card-green {
+      background: #ffffff;
+      border: 2px solid #81be3c;
+    }
+
+    #about, #zones, #gallery, #simulator, #schedule, #trainers, #freeze-section, #passes, #contacts {
+      scroll-margin-top: 40px;
+    }
+  </style>
+</head>
+<body class="bg-inno-grayBg text-slate-800 font-sans antialiased selection:bg-inno-green selection:text-white">
+
+  <!-- CASHU DEMO BAR (Top Sticky) -->
+  <div style="background:#0f172a; color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #1e293b; display: flex; align-items: center; justify-content: center;">
+    <div style="max-width: 1400px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+      <div>Демо-сайт спортивного комплекса &middot; Левый хедер &middot; Четкие рамки &middot; Скачиваемые правила (PDF) &middot; Студия <strong style="color:#fff">cash'u</strong></div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="../../#cases" style="color:#cbd5e1; text-decoration: underline; text-underline-offset: 2px;">&larr; В портфолио</a>
+        <a href="https://t.me/grizzzza" target="_blank" style="background:#81be3c; color:#fff; padding: 4px 12px; border-radius: 4px; text-decoration: none; font-weight: 600;">Заказать разработку &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex flex-col lg:flex-row relative">
+
+    <!-- UNIQUE LEFT SIDEBAR HEADER WITH SOLID BORDERS -->
+    <header id="leftSidebar" class="fixed top-[37px] left-0 h-[calc(100vh-37px)] w-72 bg-white border-r-2 border-slate-200 shadow-lg z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col justify-between p-6 overflow-y-auto">
+      
+      <div>
+        <!-- Close Mobile Button -->
+        <button onclick="toggleLeftSidebar()" class="lg:hidden absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 mb-8 group">
+          <div class="w-11 h-11 rounded-xl bg-inno-purple text-white font-display font-black text-2xl flex items-center justify-center border-2 border-inno-purple shrink-0">
+            А
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-black text-xl tracking-tight text-inno-purple leading-none">СК «АВАНГАРД»</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">Спортивный комплекс</span>
+          </div>
+        </a>
+
+        <!-- Working hours badge (NO GREEN DOT AS REQUESTED) -->
+        <div class="mb-6 p-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-xs font-semibold flex items-center">
+          <div class="flex flex-col">
+            <span class="text-inno-purple font-bold">ОТКРЫТО 07:00 – 23:00</span>
+            <span class="text-[11px] text-slate-500 font-normal">Пн–Вс без выходных</span>
+          </div>
+        </div>
+
+        <!-- NAVIGATION LINKS WITH SOLID HOVER BORDERS -->
+        <nav class="space-y-1 font-display font-bold text-xs text-slate-700 uppercase tracking-wide">
+          <a href="#about" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>О комплексе</span>
+          </a>
+          <a href="#zones" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            <span>Фитнес-зоны (8)</span>
+          </a>
+          <a href="#simulator" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>Расчет нагрузки</span>
+          </a>
+          <a href="#schedule" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>Расписание</span>
+          </a>
+          <a href="#trainers" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <span>Инструкторы</span>
+          </a>
+          <a href="#freeze-section" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-inno-green/10 text-inno-purple font-black border-2 border-inno-green">
+            <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m0-12.728l12.728 12.728"/></svg>
+            <span>Заморозка карты</span>
+          </a>
+          <button onclick="closeSidebarMobile(); openRulesModal();" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors text-left">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Правила СК</span>
+          </button>
+          <a href="#passes" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Купить карту</span>
+          </a>
+          <a href="#contacts" onclick="closeSidebarMobile()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl border-2 border-transparent hover:border-slate-200 hover:bg-slate-50 hover:text-inno-purple transition-colors">
+            <svg class="w-4 h-4 text-inno-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>Контакты</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- FOOTER INFO IN SIDEBAR -->
+      <div class="pt-5 border-t-2 border-slate-200 mt-6 font-sans text-xs">
+        <a href="tel:79372968685" class="flex items-center gap-2 font-display font-bold text-sm text-inno-purple hover:text-inno-green transition-colors mb-1">
+          <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>+7 (937) 296-86-85</span>
+        </a>
+        <p class="text-slate-500 font-medium text-[11px] mb-4">Казань, ул. Спартаковская, 6</p>
+        
+        <button onclick="openBookingModal()" class="w-full py-3 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+          Купить карту
+        </button>
+      </div>
+
+    </header>
+
+    <!-- MOBILE TOP BAR -->
+    <div class="lg:hidden sticky top-[37px] z-40 bg-white border-b-2 border-slate-200 px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-inno-purple text-white font-display font-black flex items-center justify-center">А</div>
+        <span class="font-display font-bold text-base text-inno-purple">СК «АВАНГАРД»</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <button onclick="openBookingModal()" class="px-3 py-1.5 bg-inno-green text-white font-display font-bold text-xs rounded-lg border border-inno-green">Карта</button>
+        <button onclick="toggleLeftSidebar()" class="p-2 bg-slate-100 rounded-lg border border-slate-200 text-slate-700 flex items-center gap-1 font-bold text-xs">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span>Меню</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 lg:pl-72 w-full overflow-hidden">
+      
+      <!-- HERO TRACK SLIDER -->
+      <section class="p-4 sm:p-6 lg:p-8">
+        <div class="relative overflow-hidden w-full h-[480px] sm:h-[520px] rounded-3xl border-2 border-slate-300 bg-slate-900">
+          
+          <!-- SLIDER TRACK CONTAINER -->
+          <div id="heroTrack" class="flex w-full h-full transition-transform duration-500 ease-in-out" style="transform: translateX(0%);">
+            
+            <!-- SLIDE 0 -->
+            <div class="w-full h-full flex-shrink-0 relative">
+              <img src="assets/hero-bg.jpg" alt="Бассейн и фитнес" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-slate-950/75 p-6 sm:p-12 flex flex-col justify-center text-white">
+                <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green text-white font-display font-bold text-xs uppercase mb-4 border border-inno-green w-fit">АКЦИЯ И НОВОСТИ</span>
+                <h1 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight leading-tight mb-4 max-w-2xl">
+                  Клубная карта «Аква + Фитнес» <br>на 13 месяцев
+                </h1>
+                <p class="text-slate-200 text-xs sm:text-base max-w-lg mb-8 leading-relaxed font-normal">
+                  Безлимитное посещение бассейна 25м, тренажерного зала 1500м², СПА-комплекса и всех групповых занятий.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                  <button onclick="openBookingModal('Карта Аква+Фитнес 13 месяцев')" class="px-7 py-3.5 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+                    Узнать стоимость →
+                  </button>
+                  <a href="#passes" class="px-7 py-3.5 bg-slate-800 hover:bg-slate-700 text-white border-2 border-slate-600 font-display font-bold text-xs uppercase rounded-xl transition-colors">
+                    Все тарифы
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 1 -->
+            <div class="w-full h-full flex-shrink-0 relative">
+              <img src="assets/hero-slide-2.jpg" alt="Тренировочные сборы" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-slate-950/75 p-6 sm:p-12 flex flex-col justify-center text-white">
+                <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple text-white font-display font-bold text-xs uppercase mb-4 border border-inno-purple w-fit">ТРЕНИРОВОЧНЫЕ СБОРЫ</span>
+                <h1 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight leading-tight mb-4 max-w-2xl">
+                  Спортивные сборы для взрослых и детей
+                </h1>
+                <p class="text-slate-200 text-xs sm:text-base max-w-lg mb-8 leading-relaxed font-normal">
+                  Приглашаем пловцов и спортивные команды для проведения тренировок, сборов и командных соревнований.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                  <button onclick="openBookingModal('Заявка на спортивные сборы')" class="px-7 py-3.5 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+                    Подать заявку →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="w-full h-full flex-shrink-0 relative">
+              <img src="assets/hero-slide-3.jpg" alt="Персональные тренировки" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-slate-950/75 p-6 sm:p-12 flex flex-col justify-center text-white">
+                <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green text-white font-display font-bold text-xs uppercase mb-4 border border-inno-green w-fit">ПЕРСОНАЛЬНЫЙ ТРЕНИНГ</span>
+                <h1 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight leading-tight mb-4 max-w-2xl">
+                  Персональные занятия с мастерами спорта
+                </h1>
+                <p class="text-slate-200 text-xs sm:text-base max-w-lg mb-8 leading-relaxed font-normal">
+                  Индивидуальные программы тренинга, коррекция техники плавания, тяжелоатлетических упражнений и питания.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                  <button onclick="openBookingModal('Запись на вводную тренировку')" class="px-7 py-3.5 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+                    Записаться на вводную →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CONTROLS & SLIDE DOTS -->
+          <div class="absolute bottom-6 right-6 z-20 flex items-center gap-3">
+            <button onclick="prevSlide()" class="w-10 h-10 rounded-xl bg-slate-900 border-2 border-slate-700 hover:border-inno-green text-white flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-900 border-2 border-slate-700">
+              <span onclick="goToSlide(0)" class="hero-dot w-2.5 h-2.5 rounded-full bg-inno-green cursor-pointer transition-all"></span>
+              <span onclick="goToSlide(1)" class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-white cursor-pointer transition-all"></span>
+              <span onclick="goToSlide(2)" class="hero-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-white cursor-pointer transition-all"></span>
+            </div>
+            <button onclick="nextSlide()" class="w-10 h-10 rounded-xl bg-slate-900 border-2 border-slate-700 hover:border-inno-green text-white flex items-center justify-center transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- QUICK ACTION SERVICE CARDS -->
+      <section class="p-4 sm:p-6 lg:p-8 pt-0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div onclick="location.href='#freeze-section'" class="inno-card p-6 rounded-2xl cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-inno-green/10 text-inno-green border-2 border-inno-green/30 flex items-center justify-center mb-4 group-hover:bg-inno-green group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m0-12.728l12.728 12.728"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1">Заморозка карты</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Быстрое продление или заморозка карты онлайн без визита в отдел продаж.</p>
+          </div>
+
+          <div onclick="openRulesModal()" class="inno-card p-6 rounded-2xl cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-inno-purple/10 text-inno-purple border-2 border-inno-purple/30 flex items-center justify-center mb-4 group-hover:bg-inno-purple group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1">Правила посещения</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Форма одежды, правила озонированного бассейна и требования к детским секциям.</p>
+          </div>
+
+          <div onclick="location.href='#schedule'" class="inno-card p-6 rounded-2xl cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-inno-green/10 text-inno-green border-2 border-inno-green/30 flex items-center justify-center mb-4 group-hover:bg-inno-green group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1">Расписание занятий</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Расписание тренеров, секций плавания, гиревого спорта и кроссфита.</p>
+          </div>
+
+          <div onclick="location.href='#passes'" class="inno-card p-6 rounded-2xl cursor-pointer group">
+            <div class="w-12 h-12 rounded-xl bg-inno-purple/10 text-inno-purple border-2 border-inno-purple/30 flex items-center justify-center mb-4 group-hover:bg-inno-purple group-hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1">Виды абонементов</h3>
+            <p class="text-slate-600 text-xs leading-relaxed">Выбор тарифных планов: «Base Sport», «Аква + Фитнес» и VIP-привилегии.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="p-4 sm:p-6 lg:p-8">
+        <div class="inno-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-4">
+                СВЕРХСОВРЕМЕННЫЙ СТАНДАРТ
+              </span>
+              <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight mb-6 leading-tight">
+                Инновационный спортивный центр Иннополиса
+              </h2>
+              <div class="space-y-4 text-slate-600 text-sm leading-relaxed font-normal">
+                <p>
+                  Спортивный комплекс «АВАНГАРД» объединяет ключевые спортивные направления на территории в 8 500 м². Архитектурное решение спроектировано для параллельного комфортного проведения тренировок любителей и соревнований высокого ранга.
+                </p>
+                <p>
+                  В распоряжении гостей 25-метровый олимпийский бассейн с трехступенчатой очисткой воды, залы тяжелоатлетической подготовки с силовыми помостами Eleiko, гиревой ареал, зона единоборств и СПА-комплекс.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 mt-8">
+                <div class="p-4 rounded-xl bg-inno-grayBg border-2 border-slate-200">
+                  <div class="font-display font-bold text-xl text-inno-purple">8 500 м²</div>
+                  <div class="text-xs text-slate-500 mt-1">Общая площадь комплекса</div>
+                </div>
+                <div class="p-4 rounded-xl bg-inno-grayBg border-2 border-slate-200">
+                  <div class="font-display font-bold text-xl text-inno-green">25 метров</div>
+                  <div class="text-xs text-slate-500 mt-1">Озонированный бассейн</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative rounded-2xl overflow-hidden border-2 border-slate-200 group">
+              <img src="assets/pool-zone.jpg" alt="Бассейн СК АВАНГАРД" class="w-full h-[400px] object-cover">
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white border-2 border-slate-200">
+                <p class="font-display font-bold text-inno-purple text-sm">Бассейн 25м &middot; 4 озоновые дорожки</p>
+                <p class="text-xs text-slate-500 mt-0.5">Температура +27°C &middot; Без резкого запаха хлора</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 FITNESS ZONES -->
+      <section id="zones" class="p-4 sm:p-6 lg:p-8">
+        <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/40 font-display font-bold text-xs uppercase mb-3">
+              8 СПОРТИВНЫХ ПРОСТРАНСТВ
+            </span>
+            <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight">
+              Фитнес-зоны комплекса
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="filterZones('all')" class="zone-filter-btn active px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors">Все зоны (8)</button>
+            <button onclick="filterZones('water')" class="zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">Вода & СПА</button>
+            <button onclick="filterZones('power')" class="zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">Силовые</button>
+          </div>
+        </div>
+
+        <div id="zonesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- ZONE 1 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('pool')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/pool-zone.jpg" alt="Бассейн 25м" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">АКВА-ЗОНА</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Бассейн 25 метров</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">4 плавательные дорожки с озоновой системой очистки воды и гидромассажем.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 2 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('gym')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/cardio-zone.jpg" alt="Тренажерный зал" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ТРЕНАЖЕРНЫЙ ЗАЛ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Тренажерный & Кардио зал</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Просторный зал 1500 м² с премиальной линейкой тренажеров Technogym.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 3 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('barbell')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/barbell-zone.jpg" alt="Силовые помосты" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">СИЛОВЫЕ ПОМОСТЫ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Силовые помосты & Штанги</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">14 силовых рам, грифов Eleiko и резиновым амортизирующим покрытием.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 4 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('kettlebell')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/kettlebell-zone.jpg" alt="Гиревой ареал" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ГИРИ & КРОССФИТ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Гиревой ареал & Кроссфит</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Более 120 соревновательных чугунных гирь от 8 до 48 кг и функциональная рама.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 5 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('combat')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/combat-zone.jpg" alt="Единоборства" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ЕДИНОБОРСТВА</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Зал единоборств & Бокс</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Боксерский ринг, снарядные мешки и татами для занятий боксом и борьбой.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 6 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('games')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/sports-hall.jpg" alt="Игровой зал" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ИГРОВОЙ ЗАЛ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Игровой зал (Футбол/Баскет)</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Амортизирующий паркет для мини-футбола, волейбола и настольного тенниса.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 7 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('spa')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/spa-zone.jpg" alt="СПА & Сауны" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">СПА & САУНЫ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Банный комплекс & СПА</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Финская сауна, турецкий хаммам, джакузи и массажный кабинет.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+          <!-- ZONE 8 -->
+          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('kids')">
+            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/kids-zone.jpg" alt="Детский фитнес" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ДЕТСКИЙ СПОРТ</span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Детский фитнес & Плавание</h3>
+              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Обучение плаванию с 4 лет, детская гимнастика и развивающие секции.</p>
+              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EXERCISE LOAD SIMULATOR -->
+      <section id="simulator" class="p-4 sm:p-6 lg:p-8">
+        <div class="inno-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+          
+          <div class="max-w-xl mb-8">
+            <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/40 font-display font-bold text-xs uppercase mb-3">
+              ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР
+            </span>
+            <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight mb-2">
+              Расчет нагрузок и расхода калорий
+            </h2>
+            <p class="text-slate-600 text-xs sm:text-sm">
+              Выберите упражнение и рабочий вес для расчета энергозатрат и задействованных групп мышц.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- CONTROLS -->
+            <div class="lg:col-span-7 space-y-6">
+              
+              <!-- Exercise Selector Buttons -->
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-500 mb-3">Выберите движение:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <button onclick="setExercise('squat')" id="exBtn-squat" class="ex-btn active p-3 rounded-xl bg-inno-green text-white border-2 border-inno-green font-display font-bold text-xs text-center transition-colors">Присед со штангой</button>
+                  <button onclick="setExercise('deadlift')" id="exBtn-deadlift" class="ex-btn p-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-700 font-display font-bold text-xs text-center hover:border-inno-purple transition-colors">Становая тяга</button>
+                  <button onclick="setExercise('bench')" id="exBtn-bench" class="ex-btn p-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-700 font-display font-bold text-xs text-center hover:border-inno-purple transition-colors">Жим лежа</button>
+                  <button onclick="setExercise('kettlebell')" id="exBtn-kettlebell" class="ex-btn p-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-700 font-display font-bold text-xs text-center hover:border-inno-purple transition-colors">Махи гирей</button>
+                </div>
+              </div>
+
+              <!-- Weight Slider -->
+              <div class="p-6 rounded-2xl bg-inno-grayBg border-2 border-slate-200">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-bold uppercase text-slate-600">Рабочий вес / отягощение:</span>
+                  <span id="weightValue" class="text-2xl font-display font-black text-inno-purple">60 кг</span>
+                </div>
+                <input type="range" id="weightSlider" min="16" max="220" step="2" value="60" oninput="updateSimulator()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-inno-green">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-2 font-medium">
+                  <span>16 кг (Новичок)</span>
+                  <span>100 кг (Атлет)</span>
+                  <span>220 кг (Pro)</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RESULT OUTPUT CARD -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-inno-grayBg border-2 border-slate-200 flex flex-col justify-between">
+              <div>
+                <span id="simBadge" class="inline-block px-3 py-1 rounded-lg bg-inno-purple/10 border border-inno-purple/30 text-inno-purple font-display font-bold text-[10px] uppercase mb-4">
+                  ПРИСЕДАНИЯ СО ШТАНГОЙ
+                </span>
+                <h3 id="simTitle" class="font-display font-black text-xl text-inno-purple mb-2">Приседания со штангой</h3>
+                <p id="simDesc" class="text-xs text-slate-600 leading-relaxed mb-6">Базовое движение для развития силы ног, ягодиц и укрепления мышц спины.</p>
+
+                <div class="space-y-4 mb-6">
+                  <div class="flex items-center justify-between border-b-2 border-slate-200 pb-2">
+                    <span class="text-xs text-slate-500">Расход калорий (45 мин):</span>
+                    <span id="simCalories" class="font-display font-bold text-lg text-inno-green">320 ккал</span>
+                  </div>
+                  <div class="flex items-center justify-between border-b-2 border-slate-200 pb-2">
+                    <span class="text-xs text-slate-500">Суммарный тоннаж (5х10):</span>
+                    <span id="simTonnage" class="font-display font-bold text-lg text-inno-purple">3000 кг</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-slate-400 block mb-2">Задействованные мышцы:</span>
+                  <div id="simTags" class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-md bg-white border-2 border-slate-200 text-xs text-slate-700">Квадрицепсы</span>
+                    <span class="px-2.5 py-1 rounded-md bg-white border-2 border-slate-200 text-xs text-slate-700">Ягодичные</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TIMETABLE SCHEDULE SECTION -->
+      <section id="schedule" class="p-4 sm:p-6 lg:p-8">
+        <div class="inno-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
+                РАСПИСАНИЕ 7 ДНЕЙ
+              </span>
+              <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight">
+                Групповые тренировки & Секции
+              </h2>
+            </div>
+
+            <!-- Day Selector -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0">
+              <button onclick="setDay('Пн')" class="day-btn active px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors">ПН</button>
+              <button onclick="setDay('Вт')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">ВТ</button>
+              <button onclick="setDay('Ср')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">СР</button>
+              <button onclick="setDay('Чт')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">ЧТ</button>
+              <button onclick="setDay('Пт')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">ПТ</button>
+              <button onclick="setDay('Сб')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">СБ</button>
+              <button onclick="setDay('Вс')" class="day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">ВС</button>
+            </div>
+          </div>
+
+          <!-- SCHEDULE LIST -->
+          <div id="scheduleList" class="space-y-4">
+            <!-- Populated via app.js -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TRAINERS SECTION -->
+      
+    <!-- Masterclasses Section -->
+    <section id="masterclasses" class="py-16 border-t-2 border-slate-200 scroll-mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 text-center">
+                <span class="inline-block px-3 py-1 bg-slate-200 text-slate-800 text-xs font-semibold uppercase tracking-wider rounded mb-2 border border-slate-300">Обучение и Техника</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 uppercase tracking-tight">Интенсивы и Мастер-классы</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Специальные авторские курсы от главных тренеров СК «АВАНГАРД» для глубокой проработки техники и постановки спортивных результатов.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Masterclass Card 1 -->
+                <div class="bg-white rounded-xl border-2 border-slate-200 p-6 flex flex-col justify-between hover:border-inno-purple transition-all shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-inno-purple text-white text-xs font-bold rounded">Бассейн 25m</span>
+                            <span class="text-xs font-semibold text-slate-500">4 недели</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Техника кроля за 8 занятий</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">Постановка захвата, фазы высокого локтя, ротации корпуса и правильного дыхания без одышки.</p>
+                        <div class="border-t border-slate-100 pt-3 mb-4">
+                            <div class="text-xs text-slate-500">Тренер: <span class="font-bold text-slate-800">Дмитрий Громов (МС)</span></div>
+                            <div class="text-xs text-slate-500 mt-1">Формат: <span class="font-medium text-slate-700">Группа до 6 человек</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Мастер-класс: Техника кроля')" class="w-full py-2.5 px-4 bg-inno-purple hover:bg-purple-900 text-white font-bold text-xs rounded-lg uppercase tracking-wider transition-colors text-center">Записаться на курс</button>
+                </div>
+
+                <!-- Masterclass Card 2 -->
+                <div class="bg-white rounded-xl border-2 border-slate-200 p-6 flex flex-col justify-between hover:border-inno-purple transition-all shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-slate-800 text-white text-xs font-bold rounded">Зона Eleiko</span>
+                            <span class="text-xs font-semibold text-slate-500">2 воркшопа</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Олимпийский присед и жим</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">Разбор биомеханики, мобилизация тазобедренных суставов, подбор индивидуальной угловой позиции ног.</p>
+                        <div class="border-t border-slate-100 pt-3 mb-4">
+                            <div class="text-xs text-slate-500">Тренер: <span class="font-bold text-slate-800">Виктор Соколов (МСМК)</span></div>
+                            <div class="text-xs text-slate-500 mt-1">Формат: <span class="font-medium text-slate-700">Практический разбор</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Мастер-класс: Олимпийский присед')" class="w-full py-2.5 px-4 bg-inno-purple hover:bg-purple-900 text-white font-bold text-xs rounded-lg uppercase tracking-wider transition-colors text-center">Записаться на курс</button>
+                </div>
+
+                <!-- Masterclass Card 3 -->
+                <div class="bg-white rounded-xl border-2 border-slate-200 p-6 flex flex-col justify-between hover:border-inno-purple transition-all shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-inno-green text-slate-900 text-xs font-bold rounded">Кроссфит</span>
+                            <span class="text-xs font-semibold text-slate-500">3 недели</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Гиревой марафон (12-32 кг)</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">Экономизация дыхания в рывке, махи, сброс напряжения в фазе фиксации над головой.</p>
+                        <div class="border-t border-slate-100 pt-3 mb-4">
+                            <div class="text-xs text-slate-500">Тренер: <span class="font-bold text-slate-800">Елена Кравец (КМС)</span></div>
+                            <div class="text-xs text-slate-500 mt-1">Формат: <span class="font-medium text-slate-700">6 силовых тренингов</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Мастер-класс: Гиревой марафон')" class="w-full py-2.5 px-4 bg-inno-purple hover:bg-purple-900 text-white font-bold text-xs rounded-lg uppercase tracking-wider transition-colors text-center">Записаться на курс</button>
+                </div>
+
+                <!-- Masterclass Card 4 -->
+                <div class="bg-white rounded-xl border-2 border-slate-200 p-6 flex flex-col justify-between hover:border-inno-purple transition-all shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-slate-900 text-white text-xs font-bold rounded">Боксерский ринг</span>
+                            <span class="text-xs font-semibold text-slate-500">1 месяц</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Боксерская выносливость</h3>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">Постановка челнока, работы ног, комбинационная работа на снарядных мешках Fairtex.</p>
+                        <div class="border-t border-slate-100 pt-3 mb-4">
+                            <div class="text-xs text-slate-500">Тренер: <span class="font-bold text-slate-800">Алексей Захаров (МС)</span></div>
+                            <div class="text-xs text-slate-500 mt-1">Формат: <span class="font-medium text-slate-700">8 тренировок в ринге</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Мастер-класс: Боксерская выносливость')" class="w-full py-2.5 px-4 bg-inno-purple hover:bg-purple-900 text-white font-bold text-xs rounded-lg uppercase tracking-wider transition-colors text-center">Записаться на курс</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resident Reviews & Transformation Stories -->
+    <section id="reviews" class="py-16 border-t-2 border-slate-200 bg-white scroll-mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 text-center">
+                <span class="inline-block px-3 py-1 bg-slate-200 text-slate-800 text-xs font-semibold uppercase tracking-wider rounded mb-2 border border-slate-300">Достижения</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 uppercase tracking-tight">Истории резидентов</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Реальные спортивные результаты и прогресс членов спортивного комплекса «АВАНГАРД».</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Review Card 1 -->
+                <div class="bg-slate-50 rounded-xl border-2 border-slate-200 p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-inno-purple text-white font-black text-lg flex items-center justify-center border-2 border-slate-300">АВ</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Артем В.</h4>
+                            <p class="text-xs text-slate-500">Инженер-программист | Член СК 1.5 года</p>
+                        </div>
+                        <span class="ml-auto px-3 py-1 bg-inno-green text-slate-900 font-bold text-xs rounded border border-slate-300">-14 кг жира</span>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-3">«Занимался в зоне пауэрлифтинга под руководством Виктора Соколова. Прошел путь от постоянных болей в пояснице до уверенного приседа 140 кг с идеальной биомеханикой. Главное — в зале профессиональное оборудование Eleiko, а не хлипкий пластик».</p>
+                    <div class="text-xs text-slate-400 font-medium">Основная зона: Зал свободных весов Eleiko</div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-slate-50 rounded-xl border-2 border-slate-200 p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-inno-green text-slate-900 font-black text-lg flex items-center justify-center border-2 border-slate-300">ЕМ</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Елена М.</h4>
+                            <p class="text-xs text-slate-500">Lead QA | Член СК 8 месяцев</p>
+                        </div>
+                        <span class="ml-auto px-3 py-1 bg-inno-purple text-white font-bold text-xs rounded">Swimstar 1.9 км</span>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-3">«Освоила плавание кролем с нуля за курс Дмитрия Громова в Академии плавания. До этого боялась опускать лицо в воду. В прошлом месяце успешно преодолела открытую воду 1.9 км. Озонированная вода в бассейн абсолютно не сушит кожу!»</p>
+                    <div class="text-xs text-slate-400 font-medium">Основная зона: Бассейн 25m & Озоновая очистка</div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-slate-50 rounded-xl border-2 border-slate-200 p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 text-white font-black text-lg flex items-center justify-center border-2 border-slate-300">ИК</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Игорь К.</h4>
+                            <p class="text-xs text-slate-500">Студент Университета | Член СК 6 месяцев</p>
+                        </div>
+                        <span class="ml-auto px-3 py-1 bg-slate-200 text-slate-800 font-bold text-xs rounded border border-slate-300">Выносливость +40%</span>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-3">«Пришел в секцию бокса к Алексею Захарову для прокачки выносливости. Отличные ринги, снарядные мешки Fairtex и грамотная нагрузка. За полгода кардинально поднял функционалку и подготовился к открытым спаррингам».</p>
+                    <div class="text-xs text-slate-400 font-medium">Основная зона: Бойцовский клуб Fairtex</div>
+                </div>
+
+                <!-- Review Card 4 -->
+                <div class="bg-slate-50 rounded-xl border-2 border-slate-200 p-6">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-inno-purple text-white font-black text-lg flex items-center justify-center border-2 border-slate-300">АС</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Анна С.</h4>
+                            <p class="text-xs text-slate-500">Проектный менеджер | Член СК 2 года</p>
+                        </div>
+                        <span class="ml-auto px-3 py-1 bg-inno-green text-slate-900 font-bold text-xs rounded border border-slate-300">Баланс и восстановление</span>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-3">«Регулярное сочетание функциональных тренировок, турецкого хаммама и финской сауны полностью сняло стресс и проблемы со сном. Очень удобно, что можно заморозить абонемент прямо через сайт в 2 клика».</p>
+                    <div class="text-xs text-slate-400 font-medium">Основная зона: SPA-комплекс & Фитнес</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers" class="p-4 sm:p-6 lg:p-8">
+        <div class="mb-8">
+          <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/40 font-display font-bold text-xs uppercase mb-3">
+            ЭКСПЕРТЫ И ЧЕМПИОНЫ
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight">
+            Тренерский состав комплекса
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="inno-card rounded-2xl overflow-hidden group">
+            <div class="relative h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/trainer-1.jpg" alt="Петрова Анастасия" class="w-full h-full object-cover">
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2.5 py-1 rounded-md bg-inno-purple text-white font-display font-bold text-[10px] uppercase border border-inno-purple">МС по пауэрлифтингу</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple mb-1">Петрова Анастасия</h3>
+              <p class="text-xs text-inno-green font-bold mb-3">Старший тренер тренажерного зала</p>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Специализация: силовой тренинг, коррекция осанки, подготовка к соревнованиям.</p>
+              <button onclick="openBookingModal('Персональная тренировка с Петровой Анастасией')" class="w-full py-2.5 bg-inno-purple hover:bg-inno-purpleHover text-white text-xs font-display font-bold rounded-xl border-2 border-inno-purple transition-colors">
+                Записаться →
+              </button>
+            </div>
+          </div>
+
+          <div class="inno-card rounded-2xl overflow-hidden group">
+            <div class="relative h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/trainer-2.jpg" alt="Венера Асадова" class="w-full h-full object-cover">
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2.5 py-1 rounded-md bg-inno-green text-white font-display font-bold text-[10px] uppercase border border-inno-green">МС по плаванию</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple mb-1">Венера Асадова</h3>
+              <p class="text-xs text-inno-green font-bold mb-3">Главный тренер аква-зоны</p>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Специализация: постановка техники кроля и баттерфляя, аква-аэробика.</p>
+              <button onclick="openBookingModal('Персональная тренировка с Венерой Асадовой')" class="w-full py-2.5 bg-inno-purple hover:bg-inno-purpleHover text-white text-xs font-display font-bold rounded-xl border-2 border-inno-purple transition-colors">
+                Записаться →
+              </button>
+            </div>
+          </div>
+
+          <div class="inno-card rounded-2xl overflow-hidden group">
+            <div class="relative h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/trainer-3.jpg" alt="Дмитрий Иванов" class="w-full h-full object-cover">
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2.5 py-1 rounded-md bg-inno-purple text-white font-display font-bold text-[10px] uppercase border border-inno-purple">КМС по гиревому спорту</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple mb-1">Дмитрий Иванов</h3>
+              <p class="text-xs text-inno-green font-bold mb-3">Инструктор гиревого спорта & WOD</p>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Специализация: развитие взрывной силы, махи гирей, функциональный кроссфит.</p>
+              <button onclick="openBookingModal('Персональная тренировка с Дмитрием Ивановым')" class="w-full py-2.5 bg-inno-purple hover:bg-inno-purpleHover text-white text-xs font-display font-bold rounded-xl border-2 border-inno-purple transition-colors">
+                Записаться →
+              </button>
+            </div>
+          </div>
+
+          <div class="inno-card rounded-2xl overflow-hidden group">
+            <div class="relative h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/trainer-4.jpg" alt="Завьялков Артур" class="w-full h-full object-cover">
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="px-2.5 py-1 rounded-md bg-inno-green text-white font-display font-bold text-[10px] uppercase border border-inno-green">Тренер категории Pro</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-lg text-inno-purple mb-1">Завьялков Артур</h3>
+              <p class="text-xs text-inno-green font-bold mb-3">Тренер по бодибилдингу & ОФП</p>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Специализация: набор мышечной массы, работа со свободными весами.</p>
+              <button onclick="openBookingModal('Персональная тренировка с Завьялковым Артуром')" class="w-full py-2.5 bg-inno-purple hover:bg-inno-purpleHover text-white text-xs font-display font-bold rounded-xl border-2 border-inno-purple transition-colors">
+                Записаться →
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FREEZE ONLINE SECTION -->
+      <section id="freeze-section" class="p-4 sm:p-6 lg:p-8">
+        <div class="inno-card-green rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+          <div class="max-w-2xl">
+            <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/40 font-display font-bold text-xs uppercase mb-4">
+              ОНЛАЙН СЕРВИС
+            </span>
+            <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight mb-4">
+              Заморозка клубной карты онлайн
+            </h2>
+            <p class="text-slate-600 text-sm leading-relaxed mb-8">
+              Укажите номер клубной карты и выберите желаемые даты начала и окончания приостановки. Система автоматически рассчитает доступный остаток дней.
+            </p>
+
+            <form onsubmit="handleFreezeSubmit(event)" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Номер карты / телефон:</label>
+                  <input type="text" required placeholder="AVG-8849-2026" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Причина заморозки:</label>
+                  <select class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+                    <option>Отпуск / Командировка</option>
+                    <option>Состояние здоровья</option>
+                    <option>Личные обстоятельства</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Дата начала:</label>
+                  <input type="date" id="freezeStartDate" onchange="calcFreezeDays()" required class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Дата окончания:</label>
+                  <input type="date" id="freezeEndDate" onchange="calcFreezeDays()" required class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-inno-grayBg border-2 border-slate-200 flex items-center justify-between">
+                <span class="text-xs text-slate-600">Расчетный срок заморозки:</span>
+                <span id="freezeDaysOutput" class="font-display font-bold text-lg text-inno-purple">0 дней</span>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl border-2 border-inno-green transition-colors">
+                Отправить заявку на заморозку →
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBERSHIP PASSES PRICING -->
+      <section id="passes" class="p-4 sm:p-6 lg:p-8">
+        <div class="mb-8">
+          <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
+            КЛУБНЫЕ КАРТЫ И ТАРИФЫ
+          </span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight">
+            Выберите ваш вариант абонемента
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- PASS 1 -->
+          <div class="inno-card rounded-2xl p-8 flex flex-col justify-between group">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-400 block mb-2">BASE SPORT</span>
+              <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Тренажерный зал</h3>
+              <div class="font-display font-black text-3xl text-slate-800 mb-6">24 900 ₽ <span class="text-xs text-slate-400 font-normal">/ 12 мес</span></div>
+              
+              <ul class="space-y-3 text-xs text-slate-600 mb-8">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Доступ в зал 1500м² (07:00 – 23:00)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Силовые помосты Eleiko & Штанги</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Вводный инструктаж тренера</span>
+                </li>
+                <li class="flex items-center gap-2 text-slate-400 line-through">
+                  <span>Посещение озонового бассейна 25м</span>
+                </li>
+              </ul>
+            </div>
+            
+            <button onclick="openBookingModal('Карта BASE SPORT')" class="w-full py-3.5 bg-inno-grayBg border-2 border-slate-200 hover:bg-inno-purple hover:text-white hover:border-inno-purple text-inno-purple font-display font-bold text-xs uppercase rounded-xl transition-colors">
+              Оформить карту
+            </button>
+          </div>
+
+          <!-- PASS 2 -->
+          <div class="inno-card-green rounded-2xl p-8 flex flex-col justify-between relative group">
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-lg bg-inno-green text-white border border-inno-green font-display font-bold text-[10px] uppercase tracking-wider">
+              ХИТ ПРОДАЖ
+            </span>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-inno-green block mb-2">АКВА + ФИТНЕС</span>
+              <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Безлимит Все Включено</h3>
+              <div class="font-display font-black text-3xl text-inno-purple mb-6">39 900 ₽ <span class="text-xs text-slate-400 font-normal">/ 13 мес</span></div>
+              
+              <ul class="space-y-3 text-xs text-slate-600 mb-8">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Бассейн 25м (4 дорожки с озоном)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Тренажерный зал + Гиревой ареал</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Финская сауна & Турецкий хаммам</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>30 дней заморозки в подарок</span>
+                </li>
+              </ul>
+            </div>
+            
+            <button onclick="openBookingModal('Карта АКВА + ФИТНЕС 13 месяцев')" class="w-full py-4 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+              Купить онлайн →
+            </button>
+          </div>
+
+          <!-- PASS 3 -->
+          <div class="inno-card-purple rounded-2xl p-8 flex flex-col justify-between group">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-inno-purple block mb-2">ULTIMATE VIP</span>
+              <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Персональный VIP</h3>
+              <div class="font-display font-black text-3xl text-slate-800 mb-6">69 900 ₽ <span class="text-xs text-slate-400 font-normal">/ 12 мес</span></div>
+              
+              <ul class="space-y-3 text-xs text-slate-600 mb-8">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Полный безлимит во все зоны</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>10 персональных тренировок с МС</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Персональный шкафчик и халат</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-inno-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>60 дней заморозки онлайн</span>
+                </li>
+              </ul>
+            </div>
+            
+            <button onclick="openBookingModal('Карта ULTIMATE VIP')" class="w-full py-3.5 bg-inno-purple hover:bg-inno-purpleHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-purple transition-colors">
+              Оформить VIP
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONTACTS SECTION -->
+      <section id="contacts" class="p-4 sm:p-6 lg:p-8">
+        <div class="inno-card rounded-3xl p-8 sm:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-4">
+                КОНТАКТЫ & ЛОКАЦИЯ
+              </span>
+              <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight mb-6">
+                Как нас найти
+              </h2>
+
+              <div class="space-y-6 text-slate-600 text-sm mb-8">
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-inno-purple flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold uppercase text-slate-400 block">Адрес комплекса:</span>
+                    <span class="font-bold text-slate-800 text-base">г. Казань, ул. Спартаковская, д. 6</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-inno-purple flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold uppercase text-slate-400 block">Отдел продаж и рецепция:</span>
+                    <a href="tel:79372968685" class="font-bold text-inno-purple text-base hover:text-inno-green transition-colors">+7 (937) 296-86-85</a>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-inno-green flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold uppercase text-slate-400 block">Часы работы:</span>
+                    <span class="font-bold text-inno-green">Понедельник — Воскресенье: 07:00 – 23:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MAP STUB -->
+            <div class="rounded-2xl overflow-hidden border-2 border-slate-200 relative min-h-[300px] bg-slate-100 flex items-center justify-center p-6 text-center">
+              <div class="space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-white border-2 border-slate-200 text-inno-purple flex items-center justify-center mx-auto">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <h4 class="font-display font-bold text-inno-purple">Интерактивная карта комплекса</h4>
+                <p class="text-xs text-slate-500 max-w-xs">Казань, Спартаковская 6 &middot; Есть бесплатная охраняемая парковка для резидентов.</p>
+                <button onclick="openBookingModal('Заказать обратный звонок')" class="px-6 py-2.5 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs rounded-xl border-2 border-inno-green transition-colors">
+                  Заказать обратный звонок
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="p-8 text-center text-xs text-slate-500 border-t-2 border-slate-200 bg-white">
+        <p>© 2026 Спортивный комплекс «АВАНГАРД». Все права защищены.</p>
+        <p class="mt-1">Стиль и концепция адаптации под <span class="text-inno-purple font-bold">sport.innopolis.ru</span></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full border-2 border-slate-200 shadow-xl relative">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/30 font-display font-bold text-xs uppercase mb-3">
+        ОНЛАЙН БРОНИРОВАНИЕ
+      </span>
+      <h3 id="bookingModalTitle" class="font-display font-black text-xl text-inno-purple mb-4">Оформить клубную карту</h3>
+
+      <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Ваше имя:</label>
+          <input type="text" required placeholder="Александр" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Номер телефона:</label>
+          <input type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-sm focus:border-inno-purple focus:outline-none">
+        </div>
+        <button type="submit" class="w-full py-4 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl border-2 border-inno-green transition-colors">
+          Подтвердить запись →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ZONE DETAIL MODAL -->
+  <div id="zoneModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-xl w-full border-2 border-slate-200 shadow-xl relative overflow-hidden">
+      <button onclick="closeZoneModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 z-10">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <span id="zoneBadge" class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
+        АКВА-ЗОНА
+      </span>
+      <h3 id="zoneModalTitle" class="font-display font-black text-2xl text-inno-purple mb-4">Бассейн 25 метров</h3>
+      
+      <div class="relative h-56 rounded-xl overflow-hidden mb-4 border-2 border-slate-200">
+        <img id="zoneModalImg" src="assets/pool-zone.jpg" class="w-full h-full object-cover">
+      </div>
+
+      <p id="zoneModalDesc" class="text-slate-600 text-sm leading-relaxed mb-6 font-normal">Описание зоны...</p>
+
+      <div class="flex justify-end">
+        <button onclick="closeZoneModal(); openBookingModal();" class="px-6 py-3 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors">
+          Записаться в эту зону →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULES MODAL WITH DOWNLOADABLE PDF & TXT FILES -->
+  <div id="rulesModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-2xl w-full border-2 border-slate-200 shadow-xl relative max-h-[88vh] flex flex-col justify-between">
+      <button onclick="closeRulesModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div>
+        <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
+          ОФИЦИАЛЬНЫЙ РЕГЛАМЕНТ
+        </span>
+        <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Правила посещения СК «АВАНГАРД»</h3>
+
+        <div id="rulesContent" class="space-y-4 text-slate-600 text-xs leading-relaxed overflow-y-auto max-h-[50vh] pr-2">
+          <!-- Populated via app.js -->
+        </div>
+      </div>
+
+      <!-- DOWNLOADABLE FILE BUTTONS -->
+      <div class="mt-6 pt-4 border-t-2 border-slate-200 flex flex-wrap gap-3 items-center justify-between">
+        <span class="text-xs font-bold text-slate-500">Скачать регламент файлом:</span>
+        <div class="flex items-center gap-2">
+          <a href="assets/rules_avangard.pdf" download="Правила_СК_АВАНГАРД.pdf" class="px-4 py-2.5 bg-inno-purple hover:bg-inno-purpleHover text-white font-display font-bold text-xs rounded-xl border-2 border-inno-purple transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Скачать PDF</span>
+          </a>
+          <a href="assets/rules_avangard.txt" download="Правила_СК_АВАНГАРД.txt" class="px-4 py-2.5 bg-inno-grayBg hover:bg-slate-100 text-slate-700 font-display font-bold text-xs rounded-xl border-2 border-slate-200 transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Скачать TXT</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APP JS -->
+  <script src="app.js"></script>
+</body>
+</html>

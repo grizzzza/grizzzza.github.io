@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Олимпиады школьников — Твой путь к бюджету без стресса ЕГЭ</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Floating Navbar Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="floating-nav-pill">
+                <a href="#" class="brand">
+                    <span class="brand-icon"><i class="fa-solid fa-compass"></i></span>
+                    <span class="brand-text">Olymp<span>Way</span></span>
+                </a>
+                <nav class="main-nav">
+                    <a href="#advantages">Преимущества</a>
+                    <a href="#catalog">Каталог</a>
+                    <a href="#calculator">Выгода</a>
+                    <a href="#roadmap">Дорожная карта</a>
+                    <a href="#stories">Истории</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+                <div class="nav-cta">
+                    <a href="#materials" class="btn-pill-cta">Начать подготовку</a>
+                </div>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Открыть меню">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div class="mobile-drawer" id="mobile-drawer">
+            <div class="mobile-drawer-links">
+                <a href="#advantages" class="mobile-link">Преимущества</a>
+                <a href="#catalog" class="mobile-link">Каталог олимпиад</a>
+                <a href="#calculator" class="mobile-link">Калькулятор выгоды</a>
+                <a href="#roadmap" class="mobile-link">Дорожная карта</a>
+                <a href="#stories" class="mobile-link">Истории побед</a>
+                <a href="#faq" class="mobile-link">Вопросы и ответы</a>
+                <a href="#materials" class="btn btn-primary btn-wide mobile-link">Начать подготовку</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Visual Warmth & Editorial Structure -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <!-- Season Editorial Tag -->
+                    <div class="hero-season-tag" data-aos="fade-down">
+                        <span class="season-label">КАЛЕНДАРЬ 2026/2027</span>
+                        <span class="status-sep">•</span>
+                        <span class="status-msg">Регистрация на отборочные туры РСОШ</span>
+                    </div>
+
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Поступление на бюджет в <span class="text-accent">топовые вузы</span> без лотереи ЕГЭ
+                    </h1>
+                    
+                    <p class="hero-desc" data-aos="fade-up" data-aos-delay="200">
+                        Олимпиады дают право поступления БВИ (без вступительных испытаний) во ВШЭ, МФТИ, МГУ и ИТМО. Начните подготовку заранее и гарантируйте себе студенческий билет.
+                    </p>
+
+                    <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#materials" class="btn btn-primary">
+                            <span>Получить комплект олимпиадника</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#calculator" class="btn btn-secondary">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Рассчитать экономию</span>
+                        </a>
+                    </div>
+
+                    <!-- Authentic Key Facts Row -->
+                    <div class="hero-facts-row" data-aos="fade-up" data-aos-delay="400">
+                        <div class="fact-item">
+                            <span class="fact-val">100% БВИ</span>
+                            <span class="fact-desc">ВШЭ, МФТИ, МГУ, ИТМО</span>
+                        </div>
+                        <div class="fact-divider"></div>
+                        <div class="fact-item">
+                            <span class="fact-val">10+ попыток</span>
+                            <span class="fact-desc">Разные олимпиады за год</span>
+                        </div>
+                        <div class="fact-divider"></div>
+                        <div class="fact-item">
+                            <span class="fact-val">4 года</span>
+                            <span class="fact-desc">Срок действия диплома</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="hero-image-card">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Студенты университета">
+                        <div class="image-caption-bar">
+                            <span>52 000+ абитуриентов ежегодно зачисляются по олимпиадам РСОШ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section" id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-num" id="stat-participants">6.8M+</div>
+                        <div class="stat-caption">Участников олимпиадных этапов ежегодно</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="stat-num" id="stat-winners">52 000+</div>
+                        <div class="stat-caption">Абитуриентов зачисляются по БВИ и квотам</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                        <div class="stat-num" id="stat-olympiads">80+</div>
+                        <div class="stat-caption">Олимпиад в утвержденном Перечне РСОШ</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div class="stat-num" id="stat-countries">4 года</div>
+                        <div class="stat-caption">Срок действия диплома для поступления</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Section / 6 Visual Cards -->
+        <section class="section" id="advantages">
+            <div class="container">
+                <div class="section-head" data-aos="fade-up">
+                    <div class="section-kicker">Преимущества олимпиад</div>
+                    <h2>Почему олимпиады надежнее общего конкурса ЕГЭ</h2>
+                    <p>Единый госэкзамен зависит от случайного варианта и самочувствия в один конкретный день. Олимпиады дают право на ошибку и открывают уникальные возможности.</p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Card 1 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="Поступление в вуз">
+                            <span class="card-badge">Главный бонус</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h3>Поступление без вступительных испытаний (БВИ)</h3>
+                            <p>Диплом победителя или призера олимпиады I или II уровня гарантирует зачисление на бюджет выбранного факультета до начала основного конкурса.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80" alt="Стипендии и льготы">
+                            <span class="card-badge">Выплаты и общежитие</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-coins"></i></div>
+                            <h3>Повышенные стипендии и общежитие</h3>
+                            <p>Университеты предоставляют олимпиадникам приоритетное право на комфортное общежитие и повышенные академические стипендии на первом курсе.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Комьюнити">
+                            <span class="card-badge">Сильное окружение</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <h3>Сообщество единомышленников</h3>
+                            <p>Знакомства на заключительных турах перерастают в совместные стартапы, научные публикации и сильный круг контактов на всю жизнь.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Глубокие знания">
+                            <span class="card-badge">Мышление</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                            <h3>Умение решать нестандартные задачи</h3>
+                            <p>Олимпиадная математика, физика или программирование учат мыслить исследовательски. В вузе олимпиадники сдают сессии намного легче.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Карьера">
+                            <span class="card-badge">Быстрый старт</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-briefcase"></i></div>
+                            <h3>Приоритет у работодателей</h3>
+                            <p>Ведущие IT-компании, банки и лаборатории отслеживают победителей олимпиад со студенческой скамьи и приглашают на оплачиваемые стажировки.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-img-wrap">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="Сириус и лагеря">
+                            <span class="card-badge">Олимпиадный опыт</span>
+                        </div>
+                        <div class="feature-body">
+                            <div class="feature-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                            <h3>Выездные школы и «Сириус»</h3>
+                            <p>Бесплатные профильные смены в Образовательном центре «Сириус» в Сочи, очные поездки в другие города на финалы за счет организаторов.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Olympiads Catalog / Live Subject Switcher -->
+        <section class="section bg-warm" id="catalog">
+            <div class="container">
+                <div class="section-head" data-aos="fade-up">
+                    <div class="section-kicker">Олимпиадный навигатор</div>
+                    <h2>Ключевые олимпиады Перечня РСОШ</h2>
+                    <p>Выберите интересующий профиль, чтобы посмотреть ведущие соревнования, уровень льгот и организующие университеты.</p>
+                </div>
+
+                <!-- Subject Tabs -->
+                <div class="subject-tabs-nav" data-aos="fade-up">
+                    <button class="tab-btn active" data-subject="cs"><i class="fa-solid fa-code"></i> Информатика</button>
+                    <button class="tab-btn" data-subject="math"><i class="fa-solid fa-square-root-variable"></i> Математика</button>
+                    <button class="tab-btn" data-subject="physics"><i class="fa-solid fa-atom"></i> Физика</button>
+                    <button class="tab-btn" data-subject="econ"><i class="fa-solid fa-chart-line"></i> Экономика</button>
+                </div>
+
+                <!-- Dynamic Content Container -->
+                <div class="subject-content-box" id="subject-cards" data-aos="fade-up">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Calculator Section -->
+        <section class="section" id="calculator">
+            <div class="container">
+                <div class="calc-card" data-aos="fade-up">
+                    <div class="calc-left">
+                        <div class="section-kicker">Инвестиция в будущее</div>
+                        <h2>Калькулятор ценности бюджетного места</h2>
+                        <p>Коммерческое обучение в ведущих вузах Москвы и Санкт-Петербурга стоит от 350 000 до 850 000 рублей в год. Посчитайте, сколько экономит победа в олимпиаде.</p>
+                        <div class="calc-bullet-list">
+                            <div class="bullet-item">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Все олимпиады РСОШ и Всерос бесплатны для школьников</span>
+                            </div>
+                            <div class="bullet-item">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Диплом 11 класса действует 4 года при поступлении</span>
+                            </div>
+                            <div class="bullet-item">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Гарантированное место в общежитии и повышенная академическая стипендия</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calc-right">
+                        <div class="input-block">
+                            <label for="calc-program">Университет и направление:</label>
+                            <select id="calc-program" class="styled-select">
+                                <option value="760000" selected>ФКН ВШЭ / ПМИ МФТИ (~760 000 ₽ / год)</option>
+                                <option value="560000">МГУ / Бауманка / МГИМО (~560 000 ₽ / год)</option>
+                                <option value="390000">ИТМО / СПбГУ / Иннополис (~390 000 ₽ / год)</option>
+                                <option value="250000">Опорный региональный университет (~250 000 ₽ / год)</option>
+                            </select>
+                        </div>
+
+                        <div class="calc-result-box">
+                            <span class="result-caption">Суммарная финансовая выгода за 4 года:</span>
+                            <div class="result-sum" id="calc-total-sum">3 040 000 ₽</div>
+                            <p class="result-breakdown" id="calc-breakdown-text">
+                                Прямая экономия на стоимости платного обучения бакалавриата.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap / Timeline Section -->
+        <section class="section bg-warm" id="roadmap">
+            <div class="container">
+                <div class="section-head" data-aos="fade-up">
+                    <div class="section-kicker">Траектория сезона</div>
+                    <h2>Пошаговый план олимпиадного сезона</h2>
+                    <p>От выбора первых предметов в начале учебного года до заветного приказа о зачислении БВИ.</p>
+                </div>
+
+                <div class="roadmap-grid">
+                    <div class="roadmap-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-marker">
+                            <span class="marker-idx">01</span>
+                            <span class="marker-name">Этап</span>
+                        </div>
+                        <span class="step-dates">Сентябрь — Октябрь</span>
+                        <h3>Выбор профилей и отбор</h3>
+                        <p>Определите 2–3 профильных предмета. Зарегистрируйтесь на школьный этап Всероса и онлайн-отборочные РСОШ.</p>
+                    </div>
+
+                    <div class="roadmap-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-marker">
+                            <span class="marker-idx">02</span>
+                            <span class="marker-name">Этап</span>
+                        </div>
+                        <span class="step-dates">Ноябрь — Декабрь</span>
+                        <h3>Отборочные этапы онлайн</h3>
+                        <p>Написание дистанционных туров («Высшая проба», «Физтех», «Ломоносов»). Участвуйте сразу в 5–8 олимпиадах.</p>
+                    </div>
+
+                    <div class="roadmap-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-marker">
+                            <span class="marker-idx">03</span>
+                            <span class="marker-name">Этап</span>
+                        </div>
+                        <span class="step-dates">Январь — Февраль</span>
+                        <h3>Региональный Всерос</h3>
+                        <p>Интенсивное решение архивов задач прошлых лет, выездные зимние интенсивы и участие в региональном этапе ВсОШ.</p>
+                    </div>
+
+                    <div class="roadmap-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="step-marker">
+                            <span class="marker-idx">04</span>
+                            <span class="marker-name">Этап</span>
+                        </div>
+                        <span class="step-dates">Февраль — Апрель</span>
+                        <h3>Заключительные этапы</h3>
+                        <p>Очные финалы олимпиад. Именно здесь определяются победители и призеры, получающие долгожданные дипломы.</p>
+                    </div>
+
+                    <div class="roadmap-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="step-marker">
+                            <span class="marker-idx">05</span>
+                            <span class="marker-name">Финал</span>
+                        </div>
+                        <span class="step-dates">Июнь — Июль</span>
+                        <h3>Подтверждение и БВИ</h3>
+                        <p>Сдайте профильный ЕГЭ на 75+ баллов для подтверждения олимпиады РСОШ и подайте документы в вуз в первый день приема.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Student Stories Section -->
+        <section class="section" id="stories">
+            <div class="container">
+                <div class="section-head" data-aos="fade-up">
+                    <div class="section-kicker">Истории успеха</div>
+                    <h2>Они поступили по олимпиадам</h2>
+                    <p>Реальный опыт ребят, которые предпочли олимпиады изнурительной зубрежке тестов.</p>
+                </div>
+
+                <div class="stories-grid">
+                    <div class="story-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="quote-mark"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="story-author">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Анна">
+                            <div>
+                                <h4>Анна Мельникова</h4>
+                                <span>Студентка ФКН ВШЭ (ПМИ)</span>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            «В 10 классе я сильно переживала из-за ЕГЭ. Решила сфокусироваться на олимпиадной информатике. Взяла диплом "Высшей пробы" — в апреле я уже точно знала, что поступила на бюджет мечты, пока одноклассники в стрессе повторяли варианты.»
+                        </p>
+                        <div class="story-footer-meta">
+                            <span class="meta-tag">Высшая Проба</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">БВИ</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">ВШЭ</span>
+                        </div>
+                    </div>
+
+                    <div class="story-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="quote-mark"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="story-author">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="Максим">
+                            <div>
+                                <h4>Максим Савельев</h4>
+                                <span>Студент МФТИ (ФПМИ)</span>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            «Призерство во Всеросе принесло премию от региона и Президентский грант. С первого курса я полностью финансово самостоятелен, живу в общежитии кампуса и занимаюсь исследовательской работой в лаборатории.»
+                        </p>
+                        <div class="story-footer-meta">
+                            <span class="meta-tag">ВсОШ</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">МФТИ</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">Грант Президента</span>
+                        </div>
+                    </div>
+
+                    <div class="story-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="quote-mark"><i class="fa-solid fa-quote-left"></i></div>
+                        <div class="story-author">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Дарья">
+                            <div>
+                                <h4>Дарья Котова</h4>
+                                <span>Студентка СПбГУ</span>
+                            </div>
+                        </div>
+                        <p class="story-text">
+                            «Олимпиады подарили мне круг лучших друзей со всей страны. Мы познакомились на смене в "Сириусе", вместе готовились и вместе поступили в Санкт-Петербург. Навык решать глубокие задачи помогает на каждой сессии.»
+                        </p>
+                        <div class="story-footer-meta">
+                            <span class="meta-tag">СПбГУ</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">Сириус</span>
+                            <span class="meta-dot">·</span>
+                            <span class="meta-tag">Математика</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section bg-warm" id="faq">
+            <div class="container">
+                <div class="section-head" data-aos="fade-up">
+                    <div class="section-kicker">Вопросы и ответы</div>
+                    <h2>Часто задаваемые вопросы</h2>
+                    <p>Разбираем частые сомнения школьников и родителей</p>
+                </div>
+
+                <div class="faq-accordion" data-aos="fade-up">
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button">
+                            <span>Олимпиады доступны только одаренным вундеркиндам?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p>Это распространенное заблуждение. По регламенту РСОШ до 25% участников финала получают дипломы победителей или призеров. В олимпиадах побеждают не столько гении, сколько те, кто планомерно разобрал типовые конструкции и задачи прошлых 5 лет.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button">
+                            <span>В чем разница между ВсОШ (Всеросом) и олимпиадами РСОШ?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p><strong>Всерос</strong> организуется государством: диплом заключительного этапа дает БВИ в любой профильный вуз страны без подтверждения баллами ЕГЭ.<br>
+                            <strong>Олимпиады Перечня РСОШ</strong> проводятся ведущими университетами: диплом I или II уровня также дает БВИ или 100 баллов, но требует подтверждения результатом от 75 баллов по соответствующему предмету ЕГЭ.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button">
+                            <span>Не поздно ли начинать подготовку в 10 или 11 классе?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p>В 10 классе времени более чем достаточно для выхода на финал. Даже в 11 классе многие успешно берут перечневые олимпиады 2–3 уровня, сконцентрировавшись на 3–4 понятных олимпиадах с высоким процентом призеров.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button">
+                            <span>Что будет, если не удастся стать призером олимпиады?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p>Вы ничего не теряете. Глубокая подготовка к олимпиадам автоматически охватывает самые сложные задачи второй части ЕГЭ (профильная математика, физика, информатика), позволяя без труда написать экзамен на 85–95+ баллов.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Generation Form Section -->
+        <section class="section" id="materials">
+            <div class="container">
+                <div class="cta-wrapper" data-aos="zoom-in">
+                    <div class="cta-header">
+                        <div class="section-kicker" style="justify-content: center;">Бесплатный комплект</div>
+                        <h2>Получить подборку олимпиад и календарь этапов</h2>
+                        <p>Отправим структурированную таблицу по предметам: уровни олимпиад, график туров, архивы задач с разборами и правила приема вузов.</p>
+                    </div>
+
+                    <form id="lead-form" class="cta-form">
+                        <div class="form-inputs-row">
+                            <div class="input-field">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="lead-name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="input-field">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="text" id="lead-email" placeholder="Email или контакт в Telegram" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit" id="lead-btn">
+                            <span>Получить материалы бесплатно</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                        <div id="lead-status" class="lead-status"></div>
+                    </form>
+                    <p class="cta-disclaimer">
+                        <i class="fa-solid fa-shield-halved"></i> Конфиденциально. Никакого спама — только актуальные материалы и календарь.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand">
+                        <span class="brand-icon"><i class="fa-solid fa-compass"></i></span>
+                        <span class="brand-text">Olymp<span>Way</span></span>
+                    </div>
+                    <p>Информационный навигатор по олимпиадам школьников, поступлению по БВИ и академическим возможностям.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <a href="#advantages">Преимущества олимпиад</a>
+                    <a href="#catalog">Каталог олимпиад</a>
+                    <a href="#calculator">Калькулятор экономии</a>
+                    <a href="#roadmap">Дорожная карта сезона</a>
+                    <a href="#stories">Истории поступления</a>
+                    <a href="#faq">Частые вопросы</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Официальные ресурсы</h4>
+                    <a href="https://rsr-olymp.ru" target="_blank" rel="noopener">Перечень РСОШ</a>
+                    <a href="https://olimpiada.ru" target="_blank" rel="noopener">Портал Олимпиада.ру</a>
+                    <a href="https://sochisirius.ru" target="_blank" rel="noopener">ОЦ «Сириус»</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 OlympWay. Все материалы носят ознакомительный характер.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS and Main Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -118,14 +118,19 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
 .footer-logo{font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#374151}
 .footer-copy{font-size:.8rem;color:#374151}
 @media(max-width:900px){.about-grid,.contact-grid{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.nav{display:none}.hero-stats{gap:1.5rem}}
+@media(max-width:640px){
+  .hero-stats{gap:1.5rem; flex-wrap:wrap; justify-content:center}
+  .site-header { height: auto; padding: 1rem; }
+  .header-inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .nav { width: 100%; overflow-x: auto; padding-bottom: 0.5rem; white-space: nowrap; gap: 1.5rem; justify-content: flex-start; }
+}
 </style>
 </head>
 <body>
 
 <!-- CASHU BAR -->
 <div style="background:#0f172a; color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: center;">
-  <div style="max-width: 1280px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+  <div style="max-width: 1280px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 24px; row-gap: 8px; text-align: center;">
     <div>Демо-сайт детейлинг-студии &middot; Пример разработки от студии <strong style="color:#fff; font-weight:700">cash'u</strong></div>
     <div style="display: flex; align-items: center; gap: 16px;">
       <a href="../../#cases" style="color:#cbd5e1; text-decoration: underline; text-underline-offset: 2px;">&larr; Вернуться в портфолио</a>
@@ -187,7 +192,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
     <p class="section-desc">Полный спектр профессиональной защиты и восстановления кузова и салона автомобиля.</p>
     <div class="services-grid">
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-ppf.jpg" alt="PPF"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-ppf.jpg" alt="PPF"></div>
         <div class="svc-body">
           <div class="svc-num">01</div>
           <div class="svc-name">PPF — защитная плёнка</div>
@@ -196,7 +201,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
         </div>
       </div>
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-ceramic.jpg" alt="Ceramic"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-ceramic.jpg" alt="Ceramic"></div>
         <div class="svc-body">
           <div class="svc-num">02</div>
           <div class="svc-name">Керамическое покрытие</div>
@@ -205,7 +210,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
         </div>
       </div>
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-polish.jpg" alt="Polish"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-polish.jpg" alt="Polish"></div>
         <div class="svc-body">
           <div class="svc-num">03</div>
           <div class="svc-name">Полировка кузова</div>
@@ -214,7 +219,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
         </div>
       </div>
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-interior.jpg" alt="Interior"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-interior.jpg" alt="Interior"></div>
         <div class="svc-body">
           <div class="svc-num">04</div>
           <div class="svc-name">Химчистка салона</div>
@@ -223,7 +228,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
         </div>
       </div>
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-glass.jpg" alt="Glass"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-glass.jpg" alt="Glass"></div>
         <div class="svc-body">
           <div class="svc-num">05</div>
           <div class="svc-name">Обработка стёкол</div>
@@ -232,7 +237,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
         </div>
       </div>
       <div class="svc-card">
-        <div class="svc-img"><img src="assets/service-soundproof.jpg" alt="Soundproof"></div>
+        <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-soundproof.jpg" alt="Soundproof"></div>
         <div class="svc-body">
           <div class="svc-num">06</div>
           <div class="svc-name">Шумоизоляция</div>
@@ -381,7 +386,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
     <p class="section-eyebrow">Кто мы</p>
     <h2 class="section-title">О студии APEX</h2>
     <div class="about-grid">
-      <div class="about-img"><img src="assets/studio-bay.jpg" alt="Бокс студии APEX"></div>
+      <div class="about-img"><img loading="lazy" decoding="async" src="assets/studio-bay.jpg" alt="Бокс студии APEX"></div>
       <div>
         <p style="color:#94a3b8;line-height:1.8;font-size:1rem;margin-bottom:1.5rem">APEX Detailing — студия профессионального ухода за автомобилями. Мы работаем с 2016 года и за это время обработали более 3 500 автомобилей — от городских хэтчбеков до суперкаров.</p>
         <p style="color:#94a3b8;line-height:1.8;font-size:1rem;margin-bottom:2rem">Применяем только сертифицированные материалы: XPEL, Gyeon, Nanolex, 3M. Каждый проект — тщательная подготовка поверхности, профессиональное нанесение и финальный контроль качества в нашем специализированном боксе.</p>
