@@ -1,410 +1,1455 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth bg-slate-950 text-slate-100">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Realty — Галерея частных резиденций</title>
-  <meta name="description" content="Интерактивная 3D-галерея элитных загородных вилл и резиденций на Новой Риге и Рублево-Успенском шоссе.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            syne: ['Syne', 'sans-serif'],
-          },
-          colors: {
-            apex: {
-              gold: '#c5a880',
-              goldLight: '#e4d3ba',
-              dark: '#080c14',
-              surface: '#0f1624',
-              card: '#131b2c',
-              border: '#1f2a40',
-              borderGold: 'rgba(197, 168, 128, 0.35)'
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* 3D Perspective & Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #080c14; }
-    ::-webkit-scrollbar-thumb { background: #1f2a40; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #c5a880; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX REALTY — Частные загородные резиденции</title>
 
-    .perspective-stage {
-      perspective: 1200px;
-    }
-    
-    .card-3d {
-      transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-      will-change: transform;
-    }
-    
-    .card-3d:hover {
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(197, 168, 128, 0.15);
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 
-    .card-glare {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      mix-blend-mode: overlay;
-    }
+<style>
+/* ================================================================
+   RESET & GLOBALS
+================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .card-3d:hover .card-glare {
-      opacity: 1;
-    }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #080c11;
+  color: #e8dcc8;
+  font-family: 'Montserrat', sans-serif;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
 
-    .bg-gradient-radial {
-      background: radial-gradient(circle at 50% 20%, rgba(31, 42, 64, 0.4) 0%, rgba(8, 12, 20, 0.95) 80%);
-    }
+/* ================================================================
+   CUSTOM CURSOR
+================================================================ */
+#cursor {
+  position: fixed; z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
 
-    /* Ambient background layer */
-    #ambientBg {
-      transition: background-image 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease-out;
-      will-change: transform, background-image;
-    }
-  </style>
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: #e8dcc8;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(232,220,200,0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1),
+              height 0.4s cubic-bezier(0.16,1,0.3,1),
+              opacity 0.3s ease,
+              transform 0.1s linear;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body.cursor-expanded .cursor-dot { opacity: 0; }
+body.cursor-expanded .cursor-ring {
+  width: 100px; height: 100px;
+  background: rgba(197, 168, 128, 0.12);
+  border-color: rgba(197,168,128,0.8);
+}
+
+.cursor-label {
+  position: fixed;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c5a880;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+body.cursor-expanded .cursor-label { opacity: 1; }
+
+/* ================================================================
+   CASHU DEMO BAR
+================================================================ */
+#cashu-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 8000;
+  height: 38px;
+  background: rgba(5,8,14,0.94);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-family: 'Montserrat', monospace;
+  font-size: 11px;
+  color: #94a3b8;
+}
+#cashu-bar a { color: #cbd5e1; text-decoration: underline; text-underline-offset: 2px; }
+#cashu-bar .cta-btn {
+  background: #c5a880; color: #080c11;
+  padding: 3px 12px; border-radius: 3px;
+  text-decoration: none; font-weight: 700; font-size: 11px;
+}
+
+/* ================================================================
+   NOISE TEXTURE OVERLAY (adds film-grain depth)
+================================================================ */
+#noise-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ================================================================
+   FULL SCREEN SLIDER CONTAINER
+================================================================ */
+#slider-container {
+  position: fixed;
+  top: 38px; left: 0; right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+/* The track that holds all slides side-by-side */
+#slides-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.0s;
+}
+
+/* ================================================================
+   INDIVIDUAL SLIDE
+================================================================ */
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* BACKGROUND IMAGE with Ken Burns per slide */
+.slide-bg {
+  position: absolute;
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.slide.active .slide-bg {
+  animation: kenBurns 12s ease-in-out forwards;
+}
+
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0px, 0px); }
+  50%  { transform: scale(1.07) translate(-1%, 0.5%); }
+  100% { transform: scale(1.12) translate(1%, -0.5%); }
+}
+
+/* Color Overlay — unique per slide tint */
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 10, 15, 0.75) 0%,
+    rgba(6, 10, 15, 0.35) 50%,
+    rgba(6, 10, 15, 0.65) 100%
+  );
+}
+
+/* ================================================================
+   SLIDE CONTENT
+================================================================ */
+.slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8vw;
+  padding-bottom: 120px;
+}
+
+/* Status Pill */
+.slide-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c5a880;
+  border: 1px solid rgba(197,168,128,0.4);
+  border-radius: 2px;
+  padding: 6px 14px;
+  backdrop-filter: blur(8px);
+  background: rgba(197,168,128,0.06);
+  width: fit-content;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s;
+}
+
+.slide.active .slide-status {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Main Title — huge typographic statement */
+.slide-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(3.2rem, 8vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #f5f0e8;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.slide-title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.slide-title-inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+
+.slide.active .slide-title-inner {
+  transform: translateY(0);
+}
+
+.slide-title-inner:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+/* Location */
+.slide-location {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(232,220,200,0.55);
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease 0.55s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.55s;
+}
+
+.slide.active .slide-location {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Price Tag */
+.slide-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  color: #c5a880;
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease 0.65s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.65s;
+}
+.slide.active .slide-price { opacity: 1; transform: translateY(0); }
+
+/* CTA Button row */
+.slide-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease 0.78s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.78s;
+}
+.slide.active .slide-cta-row { opacity: 1; transform: translateY(0); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: #c5a880;
+  color: #080c11;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover { background: #e4d3ba; transform: translateX(2px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: transparent;
+  color: rgba(232,220,200,0.7);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(232,220,200,0.25);
+  cursor: none;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.btn-ghost:hover { border-color: rgba(197,168,128,0.6); color: #c5a880; }
+
+/* ================================================================
+   BOTTOM METRICS STRIP
+================================================================ */
+#metrics-strip {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 8vw 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.metrics-cards-row {
+  display: flex;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.metric-card {
+  padding: 14px 20px;
+  background: rgba(8,12,17,0.6);
+  border: 1px solid rgba(197,168,128,0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(197,168,128,0.04), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-card:hover {
+  border-color: rgba(197,168,128,0.5);
+  transform: translateY(-2px);
+}
+.metric-card:hover::before { opacity: 1; }
+
+.metric-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #e8dcc8;
+  line-height: 1;
+  display: block;
+}
+
+.metric-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.7);
+  display: block;
+  margin-top: 4px;
+}
+
+/* Slide number / progress on right side */
+.slide-progress-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.slide-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: rgba(232,220,200,0.5);
+}
+
+.slide-counter strong {
+  font-size: 16px;
+  font-weight: 300;
+  color: #e8dcc8;
+}
+
+/* Vertical dots navigation */
+.dots-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.dot {
+  width: 24px; height: 1px;
+  background: rgba(232,220,200,0.2);
+  cursor: none;
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.3s ease;
+  position: relative;
+}
+.dot.active {
+  width: 40px;
+  background: #c5a880;
+}
+.dot:hover { background: rgba(197,168,128,0.5); }
+
+/* ================================================================
+   FLOATING ELEMENTS (glassmorphism overlay)
+================================================================ */
+
+/* Logo top-left */
+#floating-logo {
+  position: fixed;
+  top: 52px; left: 36px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  mix-blend-mode: normal;
+}
+
+.logo-mark {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(197,168,128,0.5);
+  display: flex; align-items: center; justify-content: center;
+  color: #c5a880;
+}
+
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #e8dcc8;
+}
+.logo-sub {
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: rgba(197,168,128,0.6);
+  display: block;
+  margin-top: 1px;
+}
+
+/* Burger Menu Button */
+#menu-btn {
+  position: fixed;
+  top: 52px; right: 36px;
+  z-index: 600;
+  width: 48px; height: 48px;
+  background: rgba(8,12,17,0.6);
+  border: 1px solid rgba(197,168,128,0.25);
+  backdrop-filter: blur(12px);
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: border-color 0.3s ease;
+}
+#menu-btn:hover { border-color: rgba(197,168,128,0.6); }
+
+.burger-line {
+  width: 20px; height: 1px;
+  background: #e8dcc8;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+#menu-btn.open .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#menu-btn.open .burger-line:nth-child(2) { opacity: 0; width: 0; }
+#menu-btn.open .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ================================================================
+   FULL-SCREEN SIDEBAR MENU (appears on burger click)
+================================================================ */
+#sidebar-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 550;
+  background: rgba(5,8,12,0.96);
+  backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+#sidebar-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.menu-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(232,220,200,0.3);
+  text-decoration: none;
+  cursor: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(20px);
+  opacity: 0;
+  display: block;
+  padding: 4px 0;
+}
+#sidebar-menu.open .menu-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+#sidebar-menu.open .menu-link:nth-child(1) { transition: color 0.3s, transform 0.5s 0.05s cubic-bezier(0.16,1,0.3,1), opacity 0.5s 0.05s; }
+#sidebar-menu.open .menu-link:nth-child(2) { transition: color 0.3s, transform 0.5s 0.1s cubic-bezier(0.16,1,0.3,1), opacity 0.5s 0.1s; }
+#sidebar-menu.open .menu-link:nth-child(3) { transition: color 0.3s, transform 0.5s 0.15s cubic-bezier(0.16,1,0.3,1), opacity 0.5s 0.15s; }
+#sidebar-menu.open .menu-link:nth-child(4) { transition: color 0.3s, transform 0.5s 0.2s cubic-bezier(0.16,1,0.3,1), opacity 0.5s 0.2s; }
+#sidebar-menu.open .menu-link:nth-child(5) { transition: color 0.3s, transform 0.5s 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.5s 0.25s; }
+.menu-link:hover { color: #c5a880; transform: translateX(6px) !important; }
+
+.menu-contact {
+  margin-top: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.6);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s 0.35s ease;
+}
+#sidebar-menu.open .menu-contact { opacity: 1; }
+
+/* ================================================================
+   SLIDE TRANSITION CURTAIN (full screen wipe)
+================================================================ */
+#curtain {
+  position: fixed;
+  inset: 38px 0 0 0;
+  z-index: 400;
+  pointer-events: none;
+  background: #080c11;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* ================================================================
+   VERTICAL SCROLL HINT (visible on first slide)
+================================================================ */
+#scroll-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
+}
+#scroll-hint.hidden { opacity: 0; pointer-events: none; }
+
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, rgba(197,168,128,0.8), transparent);
+  animation: scrollLineAnim 1.8s ease-in-out infinite;
+}
+@keyframes scrollLineAnim {
+  0%, 100% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40%  { transform: scaleY(1); opacity: 1; }
+  80%  { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+}
+
+.scroll-hint-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.7);
+}
+
+/* ================================================================
+   PHOTO LIGHTBOX
+================================================================ */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  background: rgba(4,6,10,0.97);
+  backdrop-filter: blur(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+#lightbox.open { opacity: 1; pointer-events: auto; }
+
+#lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.7);
+  cursor: none;
+  border: 1px solid rgba(197,168,128,0.25);
+  padding: 8px 18px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+#lightbox-close:hover { border-color: rgba(197,168,128,0.7); color: #c5a880; }
+
+#lightbox-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 60px 20px;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+#lightbox-thumbs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 60px 32px;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.lb-thumb {
+  width: 80px; height: 52px;
+  border: 1px solid rgba(197,168,128,0.15);
+  object-fit: cover;
+  cursor: none;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+.lb-thumb.active { border-color: #c5a880; opacity: 1; }
+.lb-thumb:hover { opacity: 0.85; }
+
+#lightbox-title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.6);
+  padding: 0 60px 8px;
+}
+
+/* ================================================================
+   BOOKING MODAL
+================================================================ */
+#booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  background: rgba(4,6,10,0.85);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+#booking-modal.open { opacity: 1; pointer-events: auto; }
+
+.modal-box {
+  width: 100%;
+  max-width: 480px;
+  background: #0e1521;
+  border: 1px solid rgba(197,168,128,0.25);
+  padding: 48px;
+}
+
+.modal-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c5a880;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #f0e8d8;
+  margin-bottom: 36px;
+  line-height: 1.1;
+}
+
+.modal-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(197,168,128,0.2);
+  padding: 14px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #e8dcc8;
+  margin-bottom: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.modal-input:focus { border-color: rgba(197,168,128,0.6); }
+.modal-input::placeholder { color: rgba(232,220,200,0.3); }
+
+.modal-submit {
+  width: 100%;
+  background: #c5a880;
+  color: #080c11;
+  border: none;
+  padding: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: none;
+  margin-top: 8px;
+  transition: background 0.3s ease;
+}
+.modal-submit:hover { background: #e4d3ba; }
+
+.modal-close-btn {
+  position: absolute;
+  top: 24px; right: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.5);
+  cursor: none;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+/* ================================================================
+   TOAST
+================================================================ */
+#toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  z-index: 900;
+  background: rgba(8,12,17,0.95);
+  border: 1px solid rgba(197,168,128,0.4);
+  backdrop-filter: blur(12px);
+  padding: 14px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: #c5a880;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+  opacity: 0;
+  white-space: nowrap;
+}
+#toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ================================================================
+   RIGHT-SIDE VERTICAL TEXT (photo count label)
+================================================================ */
+.slide-photo-count {
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(197,168,128,0.45);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
+  cursor: none;
+}
+.slide.active .slide-photo-count { opacity: 1; }
+
+/* ================================================================
+   SLIDE LEFT SIDE - thin vertical accent line
+================================================================ */
+.slide-accent-line {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, transparent, rgba(197,168,128,0.4), transparent);
+  transition: height 1.2s cubic-bezier(0.16,1,0.3,1) 0.4s;
+  transform: translateY(-50%);
+}
+.slide.active .slide-accent-line { height: 220px; }
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+@media (max-width: 640px) {
+  .slide-content { padding: 0 5vw; padding-bottom: 140px; }
+  .metrics-cards-row { gap: 8px; }
+  .metric-card { padding: 10px 14px; }
+  .metric-number { font-size: 1.4rem; }
+  #floating-logo { left: 20px; top: 50px; }
+  #menu-btn { right: 20px; top: 50px; }
+  .slide-accent-line { left: 24px; }
+  .slide-photo-count { right: 16px; }
+  .modal-box { padding: 32px 24px; }
+}
+</style>
 </head>
-<body class="bg-apex-dark text-slate-100 font-sans antialiased selection:bg-apex-gold selection:text-slate-950 overflow-x-hidden">
+<body>
 
-  <!-- TOP STICKY CASH'U BAR (Seamless Same Tab Navigation) -->
-  <div style="background:#05080f; color:#94a3b8; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1a2233; display: flex; align-items: center; justify-content: center;">
-    <div style="max-width: 1400px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span style="color:#c5a880; font-weight:700;">APEX REALTY</span>
-        <span>&middot;</span>
-        <span>3D-Галерея архитектуры</span>
-        <span>&middot;</span>
-        <span>Студия <strong style="color:#fff">cash'u</strong></span>
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-label" id="cursorLabel">Explore</div>
+
+<!-- Noise film-grain overlay -->
+<div id="noise-overlay"></div>
+
+<!-- Cash'u Demo Bar -->
+<div id="cashu-bar">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="color:#c5a880;font-weight:700;">APEX REALTY</span>
+    <span>&middot;</span>
+    <span>Демо-сайт &middot; Студия <strong style="color:#fff">cash'u</strong></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="../../#cases">&larr; В портфолио</a>
+    <a href="https://t.me/grizzzza" target="_blank" class="cta-btn">Заказать &rarr;</a>
+  </div>
+</div>
+
+<!-- Floating Logo -->
+<div id="floating-logo">
+  <div class="logo-mark">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 21L12 3L21 21H3Z"/>
+      <path d="M9 14H15"/>
+    </svg>
+  </div>
+  <div>
+    <span class="logo-text">APEX REALTY</span>
+    <span class="logo-sub">Private Residences</span>
+  </div>
+</div>
+
+<!-- Burger Menu Button -->
+<button id="menu-btn" onclick="toggleMenu()">
+  <div class="burger-line"></div>
+  <div class="burger-line"></div>
+  <div class="burger-line"></div>
+</button>
+
+<!-- Full-screen Overlay Menu -->
+<div id="sidebar-menu">
+  <div>
+    <div class="menu-links">
+      <a href="#" class="menu-link" onclick="goToSlide(0);toggleMenu()">Pinewood Manor</a>
+      <a href="#" class="menu-link" onclick="goToSlide(1);toggleMenu()">Horizon Glass</a>
+      <a href="#" class="menu-link" onclick="goToSlide(2);toggleMenu()">Nordic Cliff</a>
+      <a href="#" class="menu-link" onclick="goToSlide(3);toggleMenu()">Forest Peak</a>
+      <a href="#" class="menu-link" onclick="goToSlide(4);toggleMenu()">Stone & Wood</a>
+      <a href="#" class="menu-link" onclick="goToSlide(5);toggleMenu()">Aqua Vista</a>
+    </div>
+    <div class="menu-contact">+7 (495) 890-40-20 &nbsp;&middot;&nbsp; VIP Консьерж 24/7</div>
+  </div>
+</div>
+
+<!-- Transition Curtain -->
+<div id="curtain"></div>
+
+<!-- MAIN SLIDER CONTAINER -->
+<div id="slider-container" 
+     onmouseenter="document.body.classList.add('cursor-expanded')" 
+     onmouseleave="document.body.classList.remove('cursor-expanded')">
+
+  <div id="slides-track">
+
+    <!-- ====== SLIDE 1: PINEWOOD MANOR ====== -->
+    <div class="slide active" data-index="0">
+      <div class="slide-bg" style="background-image:url('assets/hero-villa.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Готова к заселению &middot; Закрытая продажа 2026</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Резиденция</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Pinewood Manor»</span></span>
+        </h2>
+        <div class="slide-location">Новая Рига &nbsp;&middot;&nbsp; Сосновый бор &nbsp;&middot;&nbsp; 24 км от МКАД</div>
+        <div class="slide-price">245 000 000 ₽ &nbsp;&middot;&nbsp; 740 м² &nbsp;&middot;&nbsp; 32 сотки &nbsp;&middot;&nbsp; 5 спален</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Pinewood Manor — 245 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(0)">Смотреть фотогалерею</button>
+        </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 16px;">
-        <a href="../../#cases" style="color:#cbd5e1; text-decoration: underline; text-underline-offset: 2px;">&larr; В портфолио</a>
-        <a href="https://t.me/grizzzza" target="_blank" style="background:#c5a880; color:#080c14; padding: 4px 12px; border-radius: 4px; text-decoration: none; font-weight: 700;">Заказать разработку &rarr;</a>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+    <!-- ====== SLIDE 2: HORIZON GLASS ====== -->
+    <div class="slide" data-index="1">
+      <div class="slide-bg" style="background-image:url('assets/villa-2.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Дизайнерская отделка &middot; Эксклюзив</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Вилла</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Horizon Glass»</span></span>
+        </h2>
+        <div class="slide-location">Рублево-Успенское &nbsp;&middot;&nbsp; 18 км от МКАД</div>
+        <div class="slide-price">390 000 000 ₽ &nbsp;&middot;&nbsp; 920 м² &nbsp;&middot;&nbsp; 45 соток &nbsp;&middot;&nbsp; 6 спален</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Horizon Glass — 390 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(1)">Смотреть фотогалерею</button>
+        </div>
       </div>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+    <!-- ====== SLIDE 3: NORDIC CLIFF ====== -->
+    <div class="slide" data-index="2">
+      <div class="slide-bg" style="background-image:url('assets/villa-3.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Первая береговая линия &middot; Собственный причал</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Chalet</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Nordic Cliff»</span></span>
+        </h2>
+        <div class="slide-location">Завидово &nbsp;&middot;&nbsp; Р. Волга &nbsp;&middot;&nbsp; Причал для яхт</div>
+        <div class="slide-price">185 000 000 ₽ &nbsp;&middot;&nbsp; 580 м² &nbsp;&middot;&nbsp; 28 соток &nbsp;&middot;&nbsp; 4 спальни</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Nordic Cliff — 185 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(2)">Смотреть фотогалерею</button>
+        </div>
+      </div>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+    <!-- ====== SLIDE 4: FOREST PEAK ====== -->
+    <div class="slide" data-index="3">
+      <div class="slide-bg" style="background-image:url('assets/villa-4.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Новый объект &middot; Инфинити-бассейн</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Резиденция</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Forest Peak»</span></span>
+        </h2>
+        <div class="slide-location">Миллениум Парк &nbsp;&middot;&nbsp; Новая Рига &nbsp;&middot;&nbsp; 21 км</div>
+        <div class="slide-price">290 000 000 ₽ &nbsp;&middot;&nbsp; 810 м² &nbsp;&middot;&nbsp; 36 соток &nbsp;&middot;&nbsp; 5 спален</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Forest Peak — 290 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(3)">Смотреть фотогалерею</button>
+        </div>
+      </div>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+    <!-- ====== SLIDE 5: STONE & WOOD ====== -->
+    <div class="slide" data-index="4">
+      <div class="slide-bg" style="background-image:url('assets/villa-5.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Зрелый парк &middot; Камень и лиственница</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Вилла</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Stone & Wood»</span></span>
+        </h2>
+        <div class="slide-location">Николино &nbsp;&middot;&nbsp; Рублевка &nbsp;&middot;&nbsp; 23 км</div>
+        <div class="slide-price">220 000 000 ₽ &nbsp;&middot;&nbsp; 650 м² &nbsp;&middot;&nbsp; 30 соток &nbsp;&middot;&nbsp; 4 спальни</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Stone & Wood — 220 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(4)">Смотреть фотогалерею</button>
+        </div>
+      </div>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+    <!-- ====== SLIDE 6: AQUA VISTA ====== -->
+    <div class="slide" data-index="5">
+      <div class="slide-bg" style="background-image:url('assets/villa-6.jpg')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-accent-line"></div>
+      <div class="slide-content">
+        <div class="slide-status">Закрытая продажа &middot; Первая линия воды</div>
+        <h2 class="slide-title">
+          <span class="slide-title-line"><span class="slide-title-inner">Резиденция</span></span>
+          <span class="slide-title-line"><span class="slide-title-inner">«Aqua Vista»</span></span>
+        </h2>
+        <div class="slide-location">Пестовское вдхр. &nbsp;&middot;&nbsp; Прямой выход к воде</div>
+        <div class="slide-price">340 000 000 ₽ &nbsp;&middot;&nbsp; 880 м² &nbsp;&middot;&nbsp; 50 соток &nbsp;&middot;&nbsp; 6 спален</div>
+        <div class="slide-cta-row">
+          <button class="btn-primary" onclick="openBooking('Aqua Vista — 340 млн ₽')">Записаться на просмотр</button>
+          <button class="btn-ghost" onclick="openLightbox(5)">Смотреть фотогалерею</button>
+        </div>
+      </div>
+      <div class="slide-photo-count">05 ФОТО &nbsp;·&nbsp; ГАЛЕРЕЯ</div>
+    </div>
+
+  </div><!-- /slides-track -->
+
+</div><!-- /slider-container -->
+
+<!-- Metrics Strip -->
+<div id="metrics-strip">
+  <div class="metrics-cards-row">
+    <div class="metric-card">
+      <span class="metric-number" data-target="6" data-suffix="">0</span>
+      <span class="metric-label">Клубных вилл</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-number" data-target="50" data-suffix=" сот">0 сот</span>
+      <span class="metric-label">Макс. участок</span>
+    </div>
+    <div class="metric-card" style="display:none" id="metric-third">
+      <span class="metric-number" data-target="4" data-suffix=".4 м">0 м</span>
+      <span class="metric-label">Высота потолков</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-number">100%</span>
+      <span class="metric-label">Юридическая чистота</span>
     </div>
   </div>
 
-  <!-- DYNAMIC AMBIENT 3D BACKGROUND (Smooth parallax on cursor movement) -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div id="ambientBg" class="absolute -inset-10 bg-cover bg-center opacity-20 blur-2xl transform scale-105" style="background-image: url('assets/hero-villa.jpg');"></div>
-    <div class="absolute inset-0 bg-gradient-radial"></div>
+  <div class="slide-progress-indicator">
+    <div class="slide-counter"><strong id="current-num">01</strong> / 06</div>
+    <div class="dots-nav" id="dots-nav"></div>
   </div>
+</div>
 
-  <main class="relative z-10">
+<!-- Scroll Hint -->
+<div id="scroll-hint">
+  <div class="scroll-line"></div>
+  <div class="scroll-hint-text">Scroll</div>
+</div>
 
-    <!-- HERO 3D FEATURED SHOWCASE STAGE -->
-    <section class="min-h-[92vh] flex flex-col justify-between px-4 sm:px-6 lg:px-12 py-10 perspective-stage">
-      
-      <!-- Minimalist Brand Header (Not a regular site menu, just gallery mark & stats) -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-apex-border/60 pb-6">
-        <div>
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded bg-apex-surface border border-apex-borderGold flex items-center justify-center p-1.5 text-apex-gold shadow-sm">
-              <svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 21L12 3L21 21H3Z"/>
-                <path d="M8 14H16"/>
-              </svg>
-            </div>
-            <h1 class="font-syne font-black text-xl tracking-tight text-white uppercase">
-              APEX <span class="text-apex-gold">REALTY</span>
-            </h1>
-          </div>
-          <p class="text-[11px] text-slate-400 font-medium uppercase tracking-widest mt-1">
-            Коллекция загородных резиденций &middot; 2026
-          </p>
-        </div>
-
-        <!-- Quick Gallery Stats & Viewing Button -->
-        <div class="flex items-center gap-4">
-          <div class="hidden md:flex items-center gap-6 text-xs text-slate-400 pr-4 border-r border-apex-border">
-            <div><strong class="text-white font-syne text-sm">6</strong> резиденций</div>
-            <div><strong class="text-apex-gold font-syne text-sm">30–50</strong> соток в соснах</div>
-            <div><strong class="text-white font-syne text-sm">Schüco</strong> остекление</div>
-          </div>
-          <button onclick="openBookingModal('Закрытый просмотр резиденций')" class="px-5 py-2.5 rounded-lg bg-apex-gold hover:bg-apex-goldLight text-slate-950 font-syne font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-apex-gold/10">
-            Записаться на показ
-          </button>
-        </div>
-      </div>
-
-      <!-- Main Featured 3D Stage Box -->
-      <div class="my-auto py-8">
-        <div id="featuredCard" class="card-3d max-w-6xl mx-auto rounded-3xl bg-apex-surface/90 border border-apex-borderGold backdrop-blur-xl overflow-hidden shadow-2xl relative transition-all duration-500">
-          <div class="card-glare"></div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-            
-            <!-- 3D Main Image Frame (7 cols) -->
-            <div class="lg:col-span-7 relative h-80 sm:h-[480px] overflow-hidden group cursor-pointer" onclick="openGalleryForCurrentVilla()">
-              <img id="featuredImg" src="assets/hero-villa.jpg" alt="Резиденция" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              
-              <!-- Floating Depth Badge -->
-              <div class="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                <span id="featuredBadge" class="px-3 py-1 rounded bg-apex-dark/90 text-apex-gold text-[10px] font-bold uppercase tracking-wider border border-apex-borderGold backdrop-blur-md">
-                  Новая Рига &middot; 24 км
-                </span>
-                <span id="featuredStatus" class="px-3 py-1 rounded bg-slate-950/80 text-white text-[10px] font-semibold uppercase tracking-wider border border-apex-border backdrop-blur-md">
-                  Готова к заселению
-                </span>
-              </div>
-
-              <!-- Interactive 3D Click Hint -->
-              <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs bg-slate-950/80 backdrop-blur-md border border-apex-border px-4 py-2 rounded-xl">
-                <span class="text-slate-300 font-medium">Нажмите для просмотра фотосессии (5 фото)</span>
-                <span class="text-apex-gold font-bold flex items-center gap-1">Галерея &rarr;</span>
-              </div>
-            </div>
-
-            <!-- Specs & Quick Action Info (5 cols) -->
-            <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-apex-border bg-gradient-to-b from-apex-card to-apex-surface">
-              
-              <div>
-                <div id="featuredLocation" class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                  Новая Рига &middot; Сосновый массив
-                </div>
-                
-                <h2 id="featuredTitle" class="font-syne font-black text-2xl sm:text-3xl text-white mb-3">
-                  Резиденция «Pinewood Manor»
-                </h2>
-
-                <div class="font-syne font-black text-2xl sm:text-3xl text-apex-gold mb-6" id="featuredPrice">
-                  245 000 000 ₽
-                </div>
-
-                <!-- Minimalist Architectural Specs Grid (No long paragraphs) -->
-                <div class="grid grid-cols-2 gap-3 mb-6">
-                  <div class="p-3 rounded-xl bg-apex-dark/80 border border-apex-border">
-                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Площадь виллы</span>
-                    <span id="featuredArea" class="font-syne font-black text-base text-white">740 м²</span>
-                  </div>
-                  <div class="p-3 rounded-xl bg-apex-dark/80 border border-apex-border">
-                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Лесной участок</span>
-                    <span id="featuredPlot" class="font-syne font-black text-base text-apex-gold">32 сотки</span>
-                  </div>
-                  <div class="p-3 rounded-xl bg-apex-dark/80 border border-apex-border">
-                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Спальни</span>
-                    <span id="featuredBedrooms" class="font-syne font-black text-base text-white">5 ensuite</span>
-                  </div>
-                  <div class="p-3 rounded-xl bg-apex-dark/80 border border-apex-border">
-                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Бассейн</span>
-                    <span id="featuredPool" class="font-syne font-black text-base text-white">15м с подогревом</span>
-                  </div>
-                </div>
-
-                <!-- Architectural Bullets -->
-                <div id="featuredBullets" class="space-y-1.5 text-xs text-slate-300 mb-6">
-                  <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-apex-gold"></span>
-                    <span>Панорамное остекление Schüco в пол</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-apex-gold"></span>
-                    <span>Второй свет 6.5м &middot; Камин Focus</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-apex-gold"></span>
-                    <span>СПА-блок с турецким хаммамом</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Action Buttons -->
-              <div class="space-y-2 pt-4 border-t border-apex-border">
-                <button id="bookCurrentBtn" onclick="bookCurrentVilla()" class="w-full py-3.5 rounded-xl bg-apex-gold hover:bg-apex-goldLight text-slate-950 font-syne font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-apex-gold/15 text-center">
-                  Записаться на индивидуальный просмотр &rarr;
-                </button>
-                <button onclick="openGalleryForCurrentVilla()" class="w-full py-2.5 rounded-xl bg-apex-dark border border-apex-border hover:border-apex-gold text-slate-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-colors text-center">
-                  Открыть все фотографии резиденции
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Interactive 3D Thumbnails Navigation -->
-      <div class="max-w-6xl mx-auto w-full pt-4">
-        <div class="flex items-center justify-between text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wider">
-          <span>Выберите объект для быстрого переключения</span>
-          <span id="carouselCounter">1 из 6</span>
-        </div>
-
-        <div id="thumbsBar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          <!-- Injected via JavaScript -->
-        </div>
-      </div>
-
-    </section>
-
-    <!-- FULL 3D ARCHITECTURAL GRID GALLERY -->
-    <section class="py-20 px-4 sm:px-6 lg:px-12 border-t border-apex-border/80 bg-apex-dark/95 perspective-stage">
-      <div class="max-w-7xl mx-auto">
-        
-        <!-- Header & Category Switcher -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-apex-gold block mb-1">Экспозиция</span>
-            <h2 class="font-syne font-black text-3xl sm:text-4xl text-white uppercase tracking-tight">
-              Все резиденции коллекции
-            </h2>
-          </div>
-
-          <!-- Category Buttons -->
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="filterGrid('all', this)" class="grid-filter-btn active px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-apex-gold text-slate-950 border border-apex-gold transition-colors">Все (6)</button>
-            <button onclick="filterGrid('novariga', this)" class="grid-filter-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-apex-surface text-slate-300 border border-apex-border hover:border-apex-gold transition-colors">Новая Рига</button>
-            <button onclick="filterGrid('rublevka', this)" class="grid-filter-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-apex-surface text-slate-300 border border-apex-border hover:border-apex-gold transition-colors">Рублевка</button>
-            <button onclick="filterGrid('water', this)" class="grid-filter-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-apex-surface text-slate-300 border border-apex-border hover:border-apex-gold transition-colors">У воды</button>
-          </div>
-        </div>
-
-        <!-- 3D Gallery Grid -->
-        <div id="villasGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Rendered by app.js with 3D tilt effects -->
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- MINIMAL FOOTER -->
-  <footer class="py-12 bg-slate-950 border-t border-apex-border text-slate-400 text-xs text-center">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2 font-syne font-bold text-white tracking-wider">
-        <span>APEX REALTY</span>
-        <span>&middot;</span>
-        <span class="text-slate-400 font-sans font-normal text-xs">Москва, Башня Федерация Восток, 48 этаж</span>
-      </div>
-      <div class="text-[11px] text-slate-500">
-        Конфиденциальность гарантирована соглашением NDA
-      </div>
-      <div>
-        <a href="../../#cases" class="text-apex-gold hover:underline">&larr; Вернуться в портфолио cash'u</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- FULLSCREEN 3D PHOTO LIGHTBOX MODAL -->
-  <div id="galleryModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden items-center justify-center p-4">
-    <div class="bg-apex-surface border border-apex-borderGold w-full max-w-5xl rounded-3xl p-6 sm:p-8 relative shadow-2xl flex flex-col max-h-[95vh] overflow-hidden">
-      
-      <!-- Close Button -->
-      <button onclick="closeGalleryModal()" class="absolute top-5 right-5 z-20 text-slate-400 hover:text-white p-2 rounded-full bg-apex-dark/80 border border-apex-border">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <!-- Modal Header -->
-      <div class="mb-4 pr-12">
-        <div class="flex items-center gap-2 mb-1">
-          <span id="modalBadge" class="text-[10px] font-bold uppercase tracking-wider text-apex-gold"></span>
-          <span class="text-slate-500">&middot;</span>
-          <span id="modalLocation" class="text-xs text-slate-400 font-medium"></span>
-        </div>
-        <h3 id="modalTitle" class="font-syne font-black text-2xl text-white"></h3>
-      </div>
-
-      <!-- Large Image Display Area with 3D Tilt -->
-      <div class="relative h-64 sm:h-[460px] rounded-2xl overflow-hidden border border-apex-border mb-4 bg-black">
-        <img id="modalMainImg" src="" alt="Резиденция" class="w-full h-full object-cover transition-opacity duration-300">
-        <span id="modalPhotoCaption" class="absolute bottom-3 left-3 px-3 py-1 rounded bg-black/80 backdrop-blur-md text-white text-xs font-semibold border border-apex-border">
-          Фасад &middot; Дневной свет
-        </span>
-      </div>
-
-      <!-- Thumbnail Strip -->
-      <div id="modalThumbStrip" class="grid grid-cols-5 gap-2 mb-6">
-        <!-- Rendered via JS -->
-      </div>
-
-      <!-- Quick Specs & Booking Strip -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-apex-border mt-auto">
-        <div class="flex items-baseline gap-4">
-          <span id="modalPrice" class="font-syne font-black text-2xl text-apex-gold"></span>
-          <span id="modalSpecsSummary" class="text-xs text-slate-400 font-semibold"></span>
-        </div>
-        <button id="modalBookBtn" onclick="bookFromModal()" class="w-full sm:w-auto px-7 py-3 rounded-xl bg-apex-gold hover:bg-apex-goldLight text-slate-950 font-syne font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-apex-gold/20">
-          Записаться на просмотр этой виллы &rarr;
-        </button>
-      </div>
-
-    </div>
+<!-- PHOTO LIGHTBOX -->
+<div id="lightbox">
+  <div id="lightbox-close" onclick="closeLightbox()">Закрыть</div>
+  <div id="lightbox-title"></div>
+  <div id="lightbox-main">
+    <img id="lightbox-img" src="" alt="">
   </div>
+  <div id="lightbox-thumbs"></div>
+</div>
 
-  <!-- BOOKING PRIVATE VIEWING MODAL -->
-  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-apex-surface border border-apex-borderGold w-full max-w-lg rounded-2xl p-6 sm:p-8 relative shadow-2xl">
-      <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <div class="mb-6">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-apex-gold block mb-1">Приватный тур</span>
-        <h3 class="font-syne font-black text-2xl text-white">Запись на закрытый просмотр</h3>
-        <p class="text-xs text-slate-400 mt-1">Организуем индивидуальный выезд с персональным архитектором-брокером.</p>
-      </div>
-
-      <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
-        <div>
-          <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Объект просмотра</label>
-          <input type="text" id="bookingTarget" value="" class="w-full bg-apex-dark border border-apex-border rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-apex-gold font-semibold" required>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Ваше имя</label>
-            <input type="text" id="bookingName" placeholder="Александр" class="w-full bg-apex-dark border border-apex-border rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-apex-gold" required>
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Телефон</label>
-            <input type="tel" id="bookingPhone" placeholder="+7 (999) 000-00-00" class="w-full bg-apex-dark border border-apex-border rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-apex-gold" required>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Желаемая дата</label>
-            <input type="date" id="bookingDate" class="w-full bg-apex-dark border border-apex-border rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-apex-gold">
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Освещение</label>
-            <select id="bookingTime" class="w-full bg-apex-dark border border-apex-border rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-apex-gold">
-              <option value="11:00">11:00 (Утренний свет)</option>
-              <option value="15:00">15:00 (Дневной свет)</option>
-              <option value="18:00" selected>18:00 (Закатное освещение)</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-apex-gold hover:bg-apex-goldLight text-slate-950 font-syne font-black text-xs uppercase tracking-wider transition-colors shadow-lg shadow-apex-gold/20 text-center mt-2">
-          Подтвердить приватный показ &rarr;
-        </button>
-      </form>
-    </div>
+<!-- BOOKING MODAL -->
+<div id="booking-modal">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close-btn" onclick="closeBooking()">ESC / Закрыть</button>
+    <span class="modal-label">Приватный просмотр</span>
+    <h3 class="modal-title" id="modal-villa-title">Запись на показ</h3>
+    <form id="booking-form" onsubmit="submitBooking(event)">
+      <input id="modal-name" class="modal-input" type="text" placeholder="Ваше имя" required>
+      <input id="modal-phone" class="modal-input" type="tel" placeholder="+7 (999) 000-00-00" required>
+      <input id="modal-date" class="modal-input" type="date">
+      <button type="submit" class="modal-submit">Подтвердить запись на просмотр</button>
+    </form>
   </div>
+</div>
 
-  <!-- TOAST NOTIFICATION -->
-  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-apex-card border border-apex-borderGold px-5 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2">
-    <span class="w-2 h-2 rounded-full bg-apex-gold"></span>
-    <span id="toastMsg">Успешно!</span>
-  </div>
+<!-- Toast -->
+<div id="toast"></div>
 
-  <script src="app.js"></script>
+<script>
+// ================================================================
+// VILLA DATA — Photos per slide
+// ================================================================
+const VILLA_PHOTOS = [
+  { name: 'Pinewood Manor', photos: ['assets/hero-villa.jpg','assets/interior-1.jpg','assets/interior-2.jpg','assets/pool-1.jpg','assets/night-1.jpg'] },
+  { name: 'Horizon Glass',  photos: ['assets/villa-2.jpg','assets/interior-3.jpg','assets/interior-4.jpg','assets/villa-7.jpg','assets/pool-1.jpg'] },
+  { name: 'Nordic Cliff',   photos: ['assets/villa-3.jpg','assets/interior-1.jpg','assets/villa-8.jpg','assets/interior-2.jpg','assets/night-1.jpg'] },
+  { name: 'Forest Peak',    photos: ['assets/villa-4.jpg','assets/interior-3.jpg','assets/pool-1.jpg','assets/interior-4.jpg','assets/night-1.jpg'] },
+  { name: 'Stone & Wood',   photos: ['assets/villa-5.jpg','assets/interior-2.jpg','assets/interior-1.jpg','assets/villa-7.jpg','assets/night-1.jpg'] },
+  { name: 'Aqua Vista',     photos: ['assets/villa-6.jpg','assets/pool-1.jpg','assets/interior-3.jpg','assets/interior-4.jpg','assets/night-1.jpg'] }
+];
+
+// ================================================================
+// CUSTOM CURSOR
+// ================================================================
+const cursorDot  = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+const cursorLabel = document.getElementById('cursorLabel');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursorDot.style.left = mouseX + 'px';
+  cursorDot.style.top  = mouseY + 'px';
+  cursorLabel.style.left = mouseX + 'px';
+  cursorLabel.style.top  = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// ================================================================
+// SLIDER STATE
+// ================================================================
+const track  = document.getElementById('slides-track');
+const slides = document.querySelectorAll('.slide');
+const TOTAL  = slides.length;
+let current  = 0;
+let isAnimating = false;
+let countUpDone = false;
+
+// ================================================================
+// BUILD DOTS NAV
+// ================================================================
+const dotsNav = document.getElementById('dots-nav');
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => goToSlide(i));
+  dotsNav.appendChild(d);
+});
+
+// ================================================================
+// NAVIGATE TO SLIDE
+// ================================================================
+function goToSlide(idx, skipAnim = false) {
+  if (idx === current || isAnimating) return;
+  if (idx < 0) idx = TOTAL - 1;
+  if (idx >= TOTAL) idx = 0;
+
+  isAnimating = true;
+
+  // Curtain wipe
+  const curtain = document.getElementById('curtain');
+  if (!skipAnim) {
+    curtain.style.transition = 'transform 0.35s cubic-bezier(0.77,0,0.18,1)';
+    curtain.style.transform = 'scaleY(1)';
+  }
+
+  setTimeout(() => {
+    // Deactivate old slide
+    slides[current].classList.remove('active');
+    slides[current].querySelector('.slide-bg').style.animation = 'none';
+
+    // Activate new slide
+    slides[idx].classList.add('active');
+
+    // Move track instantly (under curtain)
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${idx * 100}%)`;
+
+    // Restart Ken Burns by forcing reflow
+    const bg = slides[idx].querySelector('.slide-bg');
+    bg.style.animation = 'none';
+    void bg.offsetWidth;
+    bg.style.animation = '';
+
+    current = idx;
+    updateUI();
+
+    if (!skipAnim) {
+      setTimeout(() => {
+        curtain.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+        curtain.style.transform = 'scaleY(0) ';
+        curtain.style.transformOrigin = 'bottom';
+        setTimeout(() => {
+          curtain.style.transformOrigin = 'top';
+          isAnimating = false;
+        }, 520);
+      }, 80);
+    } else {
+      isAnimating = false;
+    }
+  }, skipAnim ? 0 : 360);
+}
+
+function updateUI() {
+  // Dots
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+  // Counter
+  const n = String(current + 1).padStart(2, '0');
+  document.getElementById('current-num').textContent = n;
+
+  // Scroll hint
+  document.getElementById('scroll-hint').classList.toggle('hidden', current > 0);
+
+  // Run count-up once
+  if (!countUpDone) {
+    countUpDone = true;
+    setTimeout(runCountUp, 600);
+  }
+}
+
+// ================================================================
+// COUNT-UP ANIMATION
+// ================================================================
+function runCountUp() {
+  document.querySelectorAll('.metric-number[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(ease * target);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// ================================================================
+// MOUSE PARALLAX ON SLIDE BACKGROUND
+// ================================================================
+let rAF = null;
+document.getElementById('slider-container').addEventListener('mousemove', (e) => {
+  if (rAF) cancelAnimationFrame(rAF);
+  rAF = requestAnimationFrame(() => {
+    const xRatio = (e.clientX / window.innerWidth  - 0.5) * 2;
+    const yRatio = (e.clientY / window.innerHeight - 0.5) * 2;
+    const activeBg = slides[current].querySelector('.slide-bg');
+    // Subtle parallax offset (bg is oversized with -6% inset so we have room)
+    activeBg.style.transform = `translate(${xRatio * 8}px, ${yRatio * 5}px) scale(${1 + Math.abs(xRatio) * 0.01})`;
+  });
+});
+
+// ================================================================
+// INPUT: WHEEL SCROLL
+// ================================================================
+let wheelCooldown = false;
+document.addEventListener('wheel', (e) => {
+  if (document.getElementById('lightbox').classList.contains('open')) return;
+  if (document.getElementById('booking-modal').classList.contains('open')) return;
+  if (wheelCooldown || isAnimating) return;
+  wheelCooldown = true;
+
+  if (e.deltaY > 0) goToSlide(current + 1);
+  else goToSlide(current - 1);
+
+  setTimeout(() => { wheelCooldown = false; }, 900);
+}, { passive: true });
+
+// ================================================================
+// INPUT: KEYBOARD ARROWS
+// ================================================================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goToSlide(current + 1);
+  if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goToSlide(current - 1);
+  if (e.key === 'Escape') { closeBooking(); closeLightbox(); closeMenu(); }
+});
+
+// ================================================================
+// INPUT: TOUCH SWIPE
+// ================================================================
+let touchStartY = 0;
+document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const diff = touchStartY - e.changedTouches[0].clientY;
+  if (Math.abs(diff) > 40) {
+    if (diff > 0) goToSlide(current + 1);
+    else goToSlide(current - 1);
+  }
+}, { passive: true });
+
+// ================================================================
+// OVERLAY MENU
+// ================================================================
+function toggleMenu() {
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('sidebar-menu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('menu-btn').classList.remove('open');
+  document.getElementById('sidebar-menu').classList.remove('open');
+}
+
+// ================================================================
+// PHOTO LIGHTBOX
+// ================================================================
+let lbVilla = 0;
+let lbPhoto = 0;
+
+function openLightbox(villaIdx) {
+  lbVilla = villaIdx;
+  lbPhoto = 0;
+  const villa = VILLA_PHOTOS[villaIdx];
+
+  document.getElementById('lightbox-title').textContent = villa.name.toUpperCase();
+
+  const thumbsEl = document.getElementById('lightbox-thumbs');
+  thumbsEl.innerHTML = villa.photos.map((p, i) => 
+    `<img class="lb-thumb${i===0?' active':''}" src="${p}" alt="" onclick="setLbPhoto(${i})">`
+  ).join('');
+
+  setLbPhotoImg(0);
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function setLbPhoto(idx) {
+  lbPhoto = idx;
+  const villa = VILLA_PHOTOS[lbVilla];
+  document.querySelectorAll('.lb-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+  setLbPhotoImg(idx);
+}
+
+function setLbPhotoImg(idx) {
+  const img = document.getElementById('lightbox-img');
+  img.style.opacity = '0.3';
+  setTimeout(() => {
+    img.src = VILLA_PHOTOS[lbVilla].photos[idx];
+    img.style.opacity = '1';
+  }, 150);
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+// Keyboard navigation inside lightbox
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') setLbPhoto((lbPhoto + 1) % VILLA_PHOTOS[lbVilla].photos.length);
+  if (e.key === 'ArrowLeft') setLbPhoto((lbPhoto - 1 + VILLA_PHOTOS[lbVilla].photos.length) % VILLA_PHOTOS[lbVilla].photos.length);
+});
+
+// ================================================================
+// BOOKING MODAL
+// ================================================================
+let bookingVilla = '';
+
+function openBooking(villa) {
+  bookingVilla = villa;
+  document.getElementById('modal-villa-title').textContent = villa;
+  const d = new Date(); d.setDate(d.getDate() + 1);
+  document.getElementById('modal-date').value = d.toISOString().split('T')[0];
+  document.getElementById('booking-modal').classList.add('open');
+}
+
+function closeBooking() {
+  document.getElementById('booking-modal').classList.remove('open');
+}
+
+function submitBooking(e) {
+  e.preventDefault();
+  const name = document.getElementById('modal-name').value;
+  closeBooking();
+  showToast(`${name} — заявка принята. Брокер свяжется в течение 15 мин.`);
+  document.getElementById('booking-form').reset();
+}
+
+// ================================================================
+// TOAST
+// ================================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 4000);
+}
+
+// ================================================================
+// INIT
+// ================================================================
+updateUI();
+</script>
 </body>
 </html>
