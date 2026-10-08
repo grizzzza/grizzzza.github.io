@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>СК «АВАНГАРД» | Спортивный комплекс: Бассейн, фитнес, тренажерный зал</title>
+  <title>СК «АРСЕНАЛ» | Спортивный комплекс: Бассейн, фитнес, тренажерный зал</title>
 
   <!-- Google Fonts: Montserrat + IBM Plex Sans (Exact fonts from sport.innopolis.ru) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,7 +72,7 @@
   <!-- CASHU DEMO BAR (Top Sticky) -->
   <div style="background:#0f172a; color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #1e293b; display: flex; align-items: center; justify-content: center;">
     <div style="max-width: 1400px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
-      <div>Демо-сайт спортивного комплекса &middot; Левый хедер &middot; Четкие рамки &middot; Скачиваемые правила (PDF) &middot; Студия <strong style="color:#fff">cash'u</strong></div>
+      <div>Демо-сайт спортивного комплекса &middot; Студия <strong style="color:#fff">cash'u</strong></div>
       <div style="display: flex; align-items: center; gap: 16px;">
         <a href="../../#cases" style="color:#cbd5e1; text-decoration: underline; text-underline-offset: 2px;">&larr; В портфолио</a>
         <a href="https://t.me/grizzzza" target="_blank" style="background:#81be3c; color:#fff; padding: 4px 12px; border-radius: 4px; text-decoration: none; font-weight: 600;">Заказать разработку &rarr;</a>
@@ -93,11 +93,15 @@
 
         <!-- Brand Logo -->
         <a href="#" class="flex items-center gap-3 mb-8 group">
-          <div class="w-11 h-11 rounded-xl bg-inno-purple text-white font-display font-black text-2xl flex items-center justify-center border-2 border-inno-purple shrink-0">
-            А
+          <div class="w-11 h-11 rounded-xl bg-inno-purple text-white flex items-center justify-center border-2 border-slate-300 shrink-0 shadow-sm group-hover:border-inno-green transition-colors p-1.5">
+            <svg class="w-full h-full text-inno-green" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Geometric Shield & Dynamic Apex Arsenal Crest -->
+              <path d="M20 3L6 9V19C6 28 12 34 20 37C28 34 34 28 34 19V9L20 3Z" fill="#501e5c" stroke="#81be3c" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M20 8L13 20H18L15 29L27 16H21L24 8H20Z" fill="#81be3c"/>
+            </svg>
           </div>
           <div class="flex flex-col">
-            <span class="font-display font-black text-xl tracking-tight text-inno-purple leading-none">СК «АВАНГАРД»</span>
+            <span class="font-display font-black text-xl tracking-tight text-inno-purple leading-none group-hover:text-inno-green transition-colors">СК «АРСЕНАЛ»</span>
             <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mt-1">Спортивный комплекс</span>
           </div>
         </a>
@@ -170,7 +174,7 @@
     <div class="lg:hidden sticky top-[37px] z-40 bg-white border-b-2 border-slate-200 px-4 py-3 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-lg bg-inno-purple text-white font-display font-black flex items-center justify-center">А</div>
-        <span class="font-display font-bold text-base text-inno-purple">СК «АВАНГАРД»</span>
+        <span class="font-display font-bold text-base text-inno-purple">СК «АРСЕНАЛ»</span>
       </a>
       <div class="flex items-center gap-2">
         <button onclick="openBookingModal()" class="px-3 py-1.5 bg-inno-green text-white font-display font-bold text-xs rounded-lg border border-inno-green">Карта</button>
@@ -357,125 +361,151 @@
 
       <!-- 8 FITNESS ZONES -->
       <section id="zones" class="p-4 sm:p-6 lg:p-8">
+        <!-- Section Header -->
         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-green/10 text-inno-purple border border-inno-green/40 font-display font-bold text-xs uppercase mb-3">
-              8 СПОРТИВНЫХ ПРОСТРАНСТВ
+            <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
+              АРХИТЕКТУРА И СПОРТИВНЫЕ ПРОСТРАНСТВА
             </span>
             <h2 class="font-display font-black text-3xl sm:text-4xl text-inno-purple uppercase tracking-tight">
-              Фитнес-зоны комплекса
+              Инфраструктура СК «АРСЕНАЛ»
             </h2>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="filterZones('all')" class="zone-filter-btn active px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors">Все зоны (8)</button>
+            <button onclick="filterZones('all')" class="zone-filter-btn active px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors">Все секции (8)</button>
             <button onclick="filterZones('water')" class="zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">Вода & СПА</button>
-            <button onclick="filterZones('power')" class="zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">Силовые</button>
+            <button onclick="filterZones('power')" class="zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors">Силовые & Ринг</button>
           </div>
         </div>
 
-        <div id="zonesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Bento Grid Layout -->
+        <div id="zonesGrid" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          <!-- ZONE 1 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('pool')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/pool-zone.jpg" alt="Бассейн 25м" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">АКВА-ЗОНА</span>
+          <!-- FEATURED ZONE 1: AQUA COMPLEX (7 cols) -->
+          <div class="zone-card lg:col-span-7 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all flex flex-col justify-between" data-category="water" onclick="openZoneModal('pool')">
+            <div class="relative h-64 sm:h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/pool-zone.jpg" alt="Бассейн 25м" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              
+              <!-- Integrated Tech Specs Overlay Banner -->
+              <div class="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2">
+                <span class="px-3 py-1 bg-inno-purple text-white font-display font-bold text-xs uppercase rounded-lg border border-purple-900 shadow-sm">АКВА-ЗОНА &middot; ФЛАГМАН</span>
+                <div class="flex items-center gap-1.5 bg-slate-900/90 text-white text-[11px] font-bold px-3 py-1 rounded-lg border border-slate-700">
+                  <span>25 МЕТРОВ</span>
+                  <span class="text-inno-green">&bull;</span>
+                  <span>4 ДОРОЖКИ</span>
+                  <span class="text-inno-green">&bull;</span>
+                  <span>t = +27°C</span>
+                </div>
+              </div>
             </div>
-            <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Бассейн 25 метров</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">4 плавательные дорожки с озоновой системой очистки воды и гидромассажем.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+
+            <div class="p-6 bg-white flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-display font-bold text-xl text-inno-purple group-hover:text-inno-green transition-colors mb-2">Олимпийский бассейн & Озоновая очистка</h3>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">4 полноразмерные плавательные дорожки. Трехступенчатая система фильтрации на основе озона и UV-стерилизации исключает запах хлора и раздражение глаз. Подходит для профессиональных заплывов и секционной работы.</p>
+              </div>
+              
+              <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap gap-2 text-[11px] font-bold text-slate-500">
+                  <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200">Озонирование</span>
+                  <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200">Гидромассаж</span>
+                  <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200">Академия плавания</span>
+                </div>
+                <span class="text-xs font-display font-bold text-inno-purple group-hover:text-inno-green transition-colors flex items-center gap-1">Детали аква-зоны &rarr;</span>
+              </div>
             </div>
           </div>
 
-          <!-- ZONE 2 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('gym')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/cardio-zone.jpg" alt="Тренажерный зал" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ТРЕНАЖЕРНЫЙ ЗАЛ</span>
+          <!-- FEATURED ZONE 2: GYM & POWER ELEIKO (5 cols) -->
+          <div class="zone-card lg:col-span-5 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all flex flex-col justify-between" data-category="power" onclick="openZoneModal('gym')">
+            <div class="relative h-64 sm:h-72 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/cardio-zone.jpg" alt="Тренажерный зал" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              
+              <div class="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2">
+                <span class="px-3 py-1 bg-inno-green text-slate-900 font-display font-bold text-xs uppercase rounded-lg border border-inno-green shadow-sm">ТРЕНАЖЕРНЫЙ ЗАЛ</span>
+                <span class="bg-slate-900/90 text-inno-green text-[11px] font-bold px-3 py-1 rounded-lg border border-slate-700">1 500 М²</span>
+              </div>
             </div>
-            <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Тренажерный & Кардио зал</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Просторный зал 1500 м² с премиальной линейкой тренажеров Technogym.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+
+            <div class="p-6 bg-white flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-display font-bold text-xl text-inno-purple group-hover:text-inno-green transition-colors mb-2">Тренажерный зал & Линейка Technogym</h3>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Просторный зал с климат-контролем и прецизионной вентиляцией. Итальянские биомеханические тренажеры Technogym Artis и обширная кардио-зона с сенсорными экранами.</p>
+              </div>
+              
+              <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap gap-2 text-[11px] font-bold text-slate-500">
+                  <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200">Technogym Artis</span>
+                  <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-200">Климат-контроль</span>
+                </div>
+                <span class="text-xs font-display font-bold text-inno-purple group-hover:text-inno-green transition-colors flex items-center gap-1">Подробнее &rarr;</span>
+              </div>
             </div>
           </div>
 
-          <!-- ZONE 3 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('barbell')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/barbell-zone.jpg" alt="Силовые помосты" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">СИЛОВЫЕ ПОМОСТЫ</span>
+          <!-- SECONDARY ZONES: 4 EQUAL ARCHITECTURAL SLOTS (3 cols each) -->
+          
+          <!-- ZONE 3: POWERLIFTING & ELEIKO RACKS -->
+          <div class="zone-card lg:col-span-3 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all" data-category="power" onclick="openZoneModal('barbell')">
+            <div class="relative h-44 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/barbell-zone.jpg" alt="Силовые помосты" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-slate-900 text-white font-display font-bold text-[10px] uppercase rounded">ELEIKO POWER</span>
             </div>
             <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Силовые помосты & Штанги</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">14 силовых рам, грифов Eleiko и резиновым амортизирующим покрытием.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+              <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1.5">Силовые помосты Eleiko</h3>
+              <p class="text-slate-600 text-xs leading-relaxed mb-3">14 силовых рам Eleiko Prestera, соревновательные грифы 20кг/15кг и калиброванные диски с амортизирующим покрытием.</p>
+              <div class="flex items-center justify-between text-[11px] font-bold text-slate-500 pt-2 border-t border-slate-100">
+                <span>14 силовых рам</span>
+                <span class="text-inno-green">Детали &rarr;</span>
+              </div>
             </div>
           </div>
 
-          <!-- ZONE 4 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('kettlebell')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/kettlebell-zone.jpg" alt="Гиревой ареал" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ГИРИ & КРОССФИТ</span>
+          <!-- ZONE 4: COMBAT & BOXING RING -->
+          <div class="zone-card lg:col-span-3 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all" data-category="power" onclick="openZoneModal('combat')">
+            <div class="relative h-44 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/combat-zone.jpg" alt="Зал единоборств" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-slate-900 text-white font-display font-bold text-[10px] uppercase rounded">БОКС & РИНГ</span>
             </div>
             <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Гиревой ареал & Кроссфит</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Более 120 соревновательных чугунных гирь от 8 до 48 кг и функциональная рама.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+              <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1.5">Бойцовский ринг Fairtex</h3>
+              <p class="text-slate-600 text-xs leading-relaxed mb-3">Профессиональный боксерский ринг, снарядные мешки Fairtex, татами для грепплинга и индивидуальные тренировки с МС по боксу.</p>
+              <div class="flex items-center justify-between text-[11px] font-bold text-slate-500 pt-2 border-t border-slate-100">
+                <span>Снаряды Fairtex</span>
+                <span class="text-inno-green">Детали &rarr;</span>
+              </div>
             </div>
           </div>
 
-          <!-- ZONE 5 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('combat')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/combat-zone.jpg" alt="Единоборства" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ЕДИНОБОРСТВА</span>
+          <!-- ZONE 5: SPA & SAUNA COMPLEX -->
+          <div class="zone-card lg:col-span-3 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all" data-category="water" onclick="openZoneModal('spa')">
+            <div class="relative h-44 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/spa-zone.jpg" alt="Банный комплекс" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-inno-purple text-white font-display font-bold text-[10px] uppercase rounded">SPA & ХАММАМ</span>
             </div>
             <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Зал единоборств & Бокс</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Боксерский ринг, снарядные мешки и татами для занятий боксом и борьбой.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+              <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1.5">Термальный банный комплекс</h3>
+              <p class="text-slate-600 text-xs leading-relaxed mb-3">Финская сухая сауна соляного типа, турецкий мраморный хаммам, контрастная купель и зона полного мышечного восстановления.</p>
+              <div class="flex items-center justify-between text-[11px] font-bold text-slate-500 pt-2 border-t border-slate-100">
+                <span>Сауна + Хаммам</span>
+                <span class="text-inno-green">Детали &rarr;</span>
+              </div>
             </div>
           </div>
 
-          <!-- ZONE 6 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="power" onclick="openZoneModal('games')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/sports-hall.jpg" alt="Игровой зал" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ИГРОВОЙ ЗАЛ</span>
+          <!-- ZONE 6: MULTI-SPORT HALL & KETTLEBELLS -->
+          <div class="zone-card lg:col-span-3 inno-card rounded-2xl overflow-hidden group cursor-pointer border-2 border-slate-200 hover:border-inno-purple transition-all" data-category="power" onclick="openZoneModal('games')">
+            <div class="relative h-44 overflow-hidden border-b-2 border-slate-200">
+              <img src="assets/sports-hall.jpg" alt="Игровой зал" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-inno-green text-slate-900 font-display font-bold text-[10px] uppercase rounded">ИГРОВОЙ ПАРКЕТ</span>
             </div>
             <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Игровой зал (Футбол/Баскет)</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Амортизирующий паркет для мини-футбола, волейбола и настольного тенниса.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
-            </div>
-          </div>
-
-          <!-- ZONE 7 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('spa')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/spa-zone.jpg" alt="СПА & Сауны" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">СПА & САУНЫ</span>
-            </div>
-            <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Банный комплекс & СПА</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Финская сауна, турецкий хаммам, джакузи и массажный кабинет.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
-            </div>
-          </div>
-
-          <!-- ZONE 8 -->
-          <div class="zone-card inno-card rounded-2xl overflow-hidden group cursor-pointer" data-category="water" onclick="openZoneModal('kids')">
-            <div class="relative h-48 overflow-hidden border-b-2 border-slate-200">
-              <img src="assets/kids-zone.jpg" alt="Детский фитнес" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 px-3 py-1 bg-white border-2 border-slate-200 text-inno-purple font-display font-bold text-[10px] uppercase rounded-lg">ДЕТСКИЙ СПОРТ</span>
-            </div>
-            <div class="p-5">
-              <h3 class="font-display font-bold text-lg text-inno-purple group-hover:text-inno-green transition-colors mb-2">Детский фитнес & Плавание</h3>
-              <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">Обучение плаванию с 4 лет, детская гимнастика и развивающие секции.</p>
-              <span class="text-xs font-display font-bold text-inno-green flex items-center gap-1">Подробнее &rarr;</span>
+              <h3 class="font-display font-bold text-base text-inno-purple group-hover:text-inno-green transition-colors mb-1.5">Игровой зал & Гиревой ареал</h3>
+              <p class="text-slate-600 text-xs leading-relaxed mb-3">Амортизирующий дубовый паркет для мини-футбола и баскетбола, соревновательные гири 8-48 кг и функциональные плио-тумбы.</p>
+              <div class="flex items-center justify-between text-[11px] font-bold text-slate-500 pt-2 border-t border-slate-100">
+                <span>Паркет + Гири</span>
+                <span class="text-inno-green">Детали &rarr;</span>
+              </div>
             </div>
           </div>
 
@@ -607,7 +637,7 @@
             <div class="mb-10 text-center">
                 <span class="inline-block px-3 py-1 bg-slate-200 text-slate-800 text-xs font-semibold uppercase tracking-wider rounded mb-2 border border-slate-300">Обучение и Техника</span>
                 <h2 class="text-3xl font-extrabold text-slate-900 uppercase tracking-tight">Интенсивы и Мастер-классы</h2>
-                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Специальные авторские курсы от главных тренеров СК «АВАНГАРД» для глубокой проработки техники и постановки спортивных результатов.</p>
+                <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Специальные авторские курсы от главных тренеров СК «АРСЕНАЛ» для глубокой проработки техники и постановки спортивных результатов.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1139,7 +1169,7 @@
         <span class="inline-block px-3.5 py-1 rounded-lg bg-inno-purple/10 text-inno-purple border border-inno-purple/30 font-display font-bold text-xs uppercase mb-3">
           ОФИЦИАЛЬНЫЙ РЕГЛАМЕНТ
         </span>
-        <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Правила посещения СК «АВАНГАРД»</h3>
+        <h3 class="font-display font-black text-2xl text-inno-purple mb-4">Правила посещения СК «АРСЕНАЛ»</h3>
 
         <div id="rulesContent" class="space-y-4 text-slate-600 text-xs leading-relaxed overflow-y-auto max-h-[50vh] pr-2">
           <!-- Populated via app.js -->
