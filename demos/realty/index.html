@@ -12,6 +12,10 @@
 /* ================================================================
    RESET & GLOBALS (STANDARD NATURAL CURSOR)
 ================================================================ */
+:root {
+  --guide-left: clamp(36px, 6vw, 90px);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
@@ -113,7 +117,7 @@ a, button, input, select {
   100% { transform: scale(1.10) translate(0.8%, -0.5%); }
 }
 
-/* HIGH CONTRAST DARK OVERLAY - ensures 100% text readability everywhere */
+/* HIGH CONTRAST DARK OVERLAY */
 .slide-overlay {
   position: absolute;
   inset: 0;
@@ -124,17 +128,22 @@ a, button, input, select {
 }
 
 /* ================================================================
-   SLIDE CONTENT - Plenty of bottom room so it never touches taskbars
+   SLIDE CONTENT - Perfectly aligned with --guide-left and clear of logo
 ================================================================ */
 .slide-content {
   position: absolute;
-  inset: 0;
+  top: 38px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 8vw;
-  padding-bottom: 190px; /* Safe distance above bottom metrics and OS taskbars */
-  max-width: 920px;
+  padding-top: clamp(140px, 18vh, 190px); /* Clear 80px+ space below floating logo */
+  padding-bottom: clamp(105px, 14vh, 135px); /* Clear space above bottom metrics */
+  padding-left: var(--guide-left);
+  padding-right: clamp(40px, 8vw, 120px);
+  max-width: 960px;
   z-index: 10;
 }
 
@@ -146,16 +155,16 @@ a, button, input, select {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #dfcaa7;
   border: 1px solid rgba(197,168,128,0.45);
   border-radius: 2px;
-  padding: 7px 16px;
-  background: rgba(7, 11, 16, 0.85);
+  padding: 6px 14px;
+  background: rgba(7, 11, 16, 0.88);
   backdrop-filter: blur(12px);
   width: fit-content;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s;
@@ -172,11 +181,11 @@ a, button, input, select {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   font-style: italic;
-  font-size: clamp(3.2rem, 7.5vw, 7.2rem);
-  line-height: 0.98;
+  font-size: clamp(2.4rem, 5.2vw, 5.5rem);
+  line-height: 1.02;
   letter-spacing: -0.02em;
   color: #ffffff;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   overflow: hidden;
   text-shadow: 0 4px 30px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.85);
 }
@@ -203,12 +212,12 @@ a, button, input, select {
 /* Location */
 .slide-location {
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #dfcaa7;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.6s ease 0.45s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.45s;
@@ -223,11 +232,11 @@ a, button, input, select {
 /* Price & Specs */
 .slide-price {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
   font-weight: 400;
   letter-spacing: 0.04em;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s ease 0.6s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.6s;
@@ -302,7 +311,7 @@ a, button, input, select {
   bottom: 38px; /* Elevated high enough so Windows taskbar never obscures it */
   left: 0; right: 0;
   z-index: 200;
-  padding: 0 8vw;
+  padding: 0 var(--guide-left);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -355,54 +364,11 @@ a, button, input, select {
 }
 
 /* ================================================================
-   NAVIGATION CONTROLS HINT (Clear & visible help badge)
-================================================================ */
-#controls-hint {
-  position: fixed;
-  bottom: 40px;
-  right: 90px;
-  z-index: 210;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  background: rgba(7, 11, 16, 0.85);
-  border: 1px solid rgba(197, 168, 128, 0.35);
-  backdrop-filter: blur(14px);
-  border-radius: 2px;
-  pointer-events: auto;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.hint-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 8px;
-  background: rgba(197, 168, 128, 0.15);
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: 700;
-  color: #dfcaa7;
-  letter-spacing: 0.1em;
-}
-
-.hint-text {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #c5a880;
-}
-
-/* ================================================================
    RIGHT-SIDE VERTICAL PROGRESS BAR (Full Height Slider Tracker)
 ================================================================ */
 #right-progress-bar {
   position: fixed;
-  right: 28px;
+  right: clamp(18px, 3vw, 36px);
   top: 50%;
   transform: translateY(-50%);
   z-index: 300;
@@ -509,20 +475,26 @@ a, button, input, select {
 ================================================================ */
 #floating-logo {
   position: fixed;
-  top: 54px; left: 36px;
+  top: 48px;
+  left: var(--guide-left);
   z-index: 500;
   display: flex;
   align-items: center;
   gap: 12px;
+  background: rgba(7, 11, 16, 0.7);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  backdrop-filter: blur(14px);
+  padding: 6px 14px 6px 8px;
+  border-radius: 4px;
 }
 
 .logo-mark {
-  width: 38px; height: 38px;
+  width: 34px; height: 34px;
   border: 1px solid rgba(197,168,128,0.6);
   display: flex; align-items: center; justify-content: center;
   color: #c5a880;
-  background: rgba(7, 11, 16, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(7, 11, 16, 0.85);
+  border-radius: 2px;
 }
 
 .logo-text {
@@ -545,7 +517,8 @@ a, button, input, select {
 
 #menu-btn {
   position: fixed;
-  top: 54px; right: 36px;
+  top: 48px;
+  right: var(--guide-left);
   z-index: 600;
   width: 48px; height: 48px;
   background: rgba(7, 11, 16, 0.85);
@@ -654,10 +627,13 @@ a, button, input, select {
 ================================================================ */
 #lightbox {
   position: fixed;
-  inset: 0;
-  z-index: 1000;
+  top: 38px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9500;
   background: rgba(4,6,10,0.98);
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(28px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -670,51 +646,62 @@ a, button, input, select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 36px;
-  border-bottom: 1px solid rgba(197,168,128,0.2);
+  padding: 20px clamp(24px, 5vw, 60px);
+  background: rgba(7, 11, 16, 0.98);
+  border-bottom: 1px solid rgba(197,168,128,0.25);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.7);
 }
 
 #lightbox-title-wrap {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 #lightbox-villa-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 400;
   font-style: italic;
   color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
 #lightbox-photo-counter {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #c5a880;
-  margin-top: 3px;
 }
 
 #lightbox-close {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #dfcaa7;
-  border: 1px solid rgba(197,168,128,0.4);
-  padding: 9px 22px;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-#lightbox-close:hover {
-  border-color: #c5a880;
   color: #080c11;
   background: #c5a880;
+  border: 1px solid #c5a880;
+  padding: 11px 26px;
+  border-radius: 3px;
+  box-shadow: 0 4px 18px rgba(197, 168, 128, 0.35);
+  transition: all 0.25s ease;
+}
+#lightbox-close:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #080c11;
+  transform: scale(1.04);
+  box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3);
 }
 
 #lightbox-main {
@@ -911,12 +898,11 @@ a, button, input, select {
    RESPONSIVE DESIGN
 ================================================================ */
 @media (max-width: 900px) {
-  #controls-hint { display: none; }
   #right-progress-bar { right: 14px; padding: 12px 6px; }
   .vpb-step { width: 24px; height: 24px; font-size: 9px; }
   .vpb-step .step-tooltip { display: none; }
-  .slide-content { padding: 0 6vw; padding-bottom: 220px; }
-  #metrics-strip { bottom: 25px; padding: 0 6vw; }
+  .slide-content { padding-left: 24px; padding-right: 24px; padding-bottom: 200px; }
+  #metrics-strip { bottom: 22px; padding: 0 24px; }
   .metric-card { padding: 10px 16px; }
   .metric-number { font-size: 1.6rem; }
 }
@@ -1118,14 +1104,6 @@ a, button, input, select {
       <span class="metric-label">Юридическая чистота</span>
     </div>
   </div>
-</div>
-
-<!-- CONTROLS HINT (Clean helper badge) -->
-<div id="controls-hint">
-  <span class="hint-badge">↑ / ↓</span>
-  <span class="hint-badge">Колесико</span>
-  <span class="hint-badge">Свайп</span>
-  <span class="hint-text">Переключение вилл</span>
 </div>
 
 <!-- RIGHT-SIDE VERTICAL PROGRESS BAR -->
