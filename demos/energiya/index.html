@@ -3,31 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ООО НПП «Энергия» — Завод охладителей молока «NEREHTA» и пищевого оборудования</title>
-<meta name="description" content="Официальный сайт завода ООО НПП «Энергия» (г. Ковров). Производство охладителей молока NEREHTA, станций выпойки телят MILKNANNY, пастеризаторов ВДП и емкостей от 100 до 30 000 литров. Гарантия 60 месяцев.">
+<title>НПП «ЭНЕРГИЯ» — Охладители молока NEREHTA и пищевое емкостное оборудование</title>
+<meta name="description" content="ООО НПП «Энергия» (г. Ковров). Производство охладителей молока NEREHTA, станций выпойки MILKNANNY, пастеризаторов ВДП и нержавеющих емкостей до 30 000 литров. Гарантия 60 месяцев.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #0F4C81;
-  --primary-dark: #0A3258;
-  --primary-light: #1E6CB5;
-  --accent: #E65100;
-  --accent-hover: #D84315;
-  --accent-soft: #FFF3E0;
-  --ice-bg: #F3F7FA;
-  --ice-border: #D2E1EC;
-  --text-main: #141D2B;
-  --text-muted: #4F5E74;
-  --text-light: #7E8D9F;
-  --white: #FFFFFF;
+  --bg: #F7F9FC;
   --surface: #FFFFFF;
-  --dark-bg: #0E1624;
-  --radius: 10px;
-  --radius-lg: 16px;
-  --shadow: 0 4px 20px rgba(15, 76, 129, 0.08);
-  --shadow-hover: 0 12px 36px rgba(15, 76, 129, 0.14);
+  --surface-subtle: #F0F4F8;
+  --border: #E1E8F0;
+  --border-focus: #0052CC;
+  
+  --text-main: #0A111F;
+  --text-muted: #526077;
+  --text-light: #8896AB;
+  
+  --blue: #0052CC;
+  --blue-hover: #0747A6;
+  --blue-soft: #EBF3FF;
+  
+  --accent: #FF5A1F;
+  --accent-soft: #FFF1EB;
+  
+  --steel: #64748B;
+  --dark: #0B132B;
+  
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 24px;
+  
+  --shadow-sm: 0 2px 8px rgba(10, 17, 31, 0.04);
+  --shadow: 0 10px 30px rgba(10, 17, 31, 0.06);
+  --shadow-lg: 0 20px 50px rgba(10, 17, 31, 0.1);
+  
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 *, *::before, *::after {
@@ -39,222 +51,103 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: var(--bg);
+  color: var(--text-main);
 }
 
 body {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-main);
+  background: var(--bg);
   color: var(--text-main);
-  background-color: var(--ice-bg);
   line-height: 1.6;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, .brand-font {
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: -0.01em;
-}
-
-/* Utilities */
 .container {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 32px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+  margin-bottom: 24px;
+}
+
+.header-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(225, 232, 240, 0.8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 24px;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 0.93rem;
-  padding: 13px 26px;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  line-height: 1.2;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--white);
-  box-shadow: 0 4px 14px rgba(230, 81, 0, 0.28);
-}
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(230, 81, 0, 0.35);
-}
-
-.btn-secondary {
-  background: var(--primary);
-  color: var(--white);
-}
-.btn-secondary:hover {
-  background: var(--primary-dark);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
-.btn-outline:hover {
-  background: var(--primary);
-  color: var(--white);
-}
-
-.section-padding {
-  padding: 80px 0;
-}
-
-.section-head {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 50px;
-}
-
-.section-badge {
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--primary);
-  background: rgba(15, 76, 129, 0.08);
-  padding: 6px 16px;
-  border-radius: 30px;
-  margin-bottom: 14px;
-}
-
-.section-title {
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.section-desc {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   TOPBAR & HEADER
-========================================================= */
-.topbar {
-  background: var(--primary-dark);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.84rem;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.topbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.topbar-info {
+.brand-wrap {
   display: flex;
   align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.topbar-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.topbar-item a {
-  color: #FFF;
-  text-decoration: none;
-  font-weight: 500;
-}
-.topbar-item a:hover {
-  text-decoration: underline;
-}
-
-.site-header {
-  background: var(--white);
-  border-bottom: 1px solid var(--ice-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  gap: 20px;
-}
-
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 14px;
   text-decoration: none;
 }
 
-.logo-wrap img {
-  height: 52px;
+.brand-wrap img {
+  height: 42px;
   width: auto;
   display: block;
 }
 
-.logo-text-block {
+.brand-titles {
   display: flex;
   flex-direction: column;
 }
 
-.logo-company-name {
-  font-family: 'Montserrat', sans-serif;
+.brand-name {
+  font-size: 1.05rem;
   font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--primary-dark);
-  line-height: 1.1;
   letter-spacing: -0.01em;
+  color: var(--text-main);
+  line-height: 1.15;
 }
 
-.logo-subtext {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 500;
+.brand-tag {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  font-family: var(--font-mono);
 }
 
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 8px;
 }
 
-.nav-link {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+.nav-pill {
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.2s;
-  padding: 8px 4px;
-  position: relative;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
 }
 
-.nav-link:hover {
-  color: var(--primary);
+.nav-pill:hover {
+  color: var(--blue);
+  background: var(--blue-soft);
 }
 
 .header-actions {
@@ -263,1699 +156,937 @@ h1, h2, h3, h4, h5, .brand-font {
   gap: 16px;
 }
 
-.header-phone-box {
+.header-phone {
   display: flex;
   flex-direction: column;
   text-align: right;
+  text-decoration: none;
   white-space: nowrap;
 }
 
-.header-phone-box a {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+.phone-num {
+  font-family: var(--font-mono);
   font-size: 0.95rem;
-  color: var(--primary-dark);
-  text-decoration: none;
+  font-weight: 700;
+  color: var(--text-main);
   line-height: 1.2;
   white-space: nowrap;
 }
 
-.header-phone-box span {
-  font-size: 0.75rem;
+.phone-sub {
+  font-size: 0.72rem;
   color: var(--text-light);
 }
 
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  cursor: pointer;
-  color: var(--text-main);
-}
-
-/* =========================================================
-   HERO SLIDER
-========================================================= */
-.hero-slider-section {
-  position: relative;
-  background: #0E1624;
-  overflow: hidden;
-  color: var(--white);
-}
-
-.slider-container {
-  position: relative;
-  min-height: 560px;
-  overflow: hidden;
-  display: flex;
+.btn {
+  display: inline-flex;
   align-items: center;
-}
-
-.slide-item {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-}
-
-.slide-item.active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.slide-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(10, 30, 55, 0.92) 0%, rgba(10, 30, 55, 0.75) 50%, rgba(10, 30, 55, 0.4) 100%);
-  z-index: 2;
-}
-
-.slide-content {
-  position: relative;
-  z-index: 3;
-  max-width: 680px;
-  padding: 60px 0;
-}
-
-.slide-tag {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-family: 'Montserrat', sans-serif;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
   font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.35);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(255, 90, 31, 0.25);
+}
+
+.btn-accent:hover {
+  background: #E04810;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-main);
+  background: var(--surface-subtle);
+}
+
+/* Hero Section */
+.hero {
+  padding: 40px 0 80px;
+}
+
+.hero-top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 30px;
   font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 18px;
-  color: #8FD5FF;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
 }
 
-.slide-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+.hero-top-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 16px;
-  color: #FFFFFF;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  max-width: 900px;
+  margin-bottom: 20px;
 }
 
-.slide-desc {
-  font-size: 1.1rem;
+.hero-title span {
+  background: linear-gradient(135deg, #0052CC 0%, #00B4D8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 1.18rem;
+  color: var(--text-muted);
+  max-width: 640px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.88);
-  margin-bottom: 28px;
-}
-
-.slide-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
   margin-bottom: 32px;
 }
 
-.slide-badge-pill {
+.hero-stats-row {
   display: flex;
+  gap: 36px;
   align-items: center;
-  gap: 8px;
-  background: rgba(14, 22, 36, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 0.88rem;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
 }
 
-.slide-badge-pill strong {
-  color: #FFB74D;
-}
-
-.slider-controls {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  z-index: 10;
+.stat-chip {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
 }
 
-.slider-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #FFF;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: all 0.2s;
+.stat-chip-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
 }
 
-.slider-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.slider-dots {
-  display: flex;
-  gap: 8px;
-}
-
-.slider-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.slider-dot.active {
-  background: var(--accent);
-  width: 28px;
-  border-radius: 8px;
+.stat-chip-lbl {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 4px;
 }
 
 /* =========================================================
-   KEY STATS STRIP
+   INNOVATIVE INTERACTIVE BLUEPRINT INSPECTOR
 ========================================================= */
-.stats-strip {
-  background: var(--white);
-  border-bottom: 1px solid var(--ice-border);
-  padding: 24px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+.blueprint-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
 }
 
-.stats-grid {
+.blueprint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.blueprint-header h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.blueprint-hint {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blueprint-stage {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tank-interactive-area {
+  position: relative;
+  height: 420px;
+  background: radial-gradient(circle at center, #F8FAFD 0%, #EDF2F7 100%);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.tank-interactive-area img {
+  max-width: 90%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.12));
+}
+
+/* Hotspot markers */
+.hotspot {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.hotspot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  opacity: 0.6;
+  animation: pulseRadar 2.2s infinite;
+}
+
+.hotspot:hover, .hotspot.active {
+  transform: scale(1.15);
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(255, 90, 31, 0.3);
+}
+
+@keyframes pulseRadar {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Coordinates on tank image */
+.spot-1 { top: 78%; left: 45%; } /* Испаритель сэндвич днище */
+.spot-2 { top: 22%; left: 48%; } /* Люк и автомойка CIP */
+.spot-3 { top: 38%; left: 24%; } /* Сенсорный пульт Kinco 7" */
+.spot-4 { top: 62%; left: 82%; } /* Компрессор Invotech R404A */
+
+.inspector-panel {
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 360px;
+  justify-content: center;
+}
+
+.inspect-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+}
+
+.inspect-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.inspect-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.inspect-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.86rem;
+}
+
+.inspect-spec-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inspect-spec-row span {
+  color: var(--text-light);
+}
+
+.inspect-spec-row strong {
+  color: var(--text-main);
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   DYNAMIC CAPACITY SLIDER (ИННОВАЦИОННЫЙ РАСЧЕТ)
+========================================================= */
+.section {
+  padding: 80px 0;
+}
+
+.calc-section-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 50px;
+  box-shadow: var(--shadow);
+}
+
+.calc-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--blue);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.section-h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.calc-slider-wrap {
+  max-width: 760px;
+  margin: 0 auto 40px;
+}
+
+.calc-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.range-slider {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--surface-subtle);
+  outline: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--border);
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--blue);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 82, 204, 0.4);
+  border: 3px solid #FFF;
+  transition: transform 0.1s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.calc-output-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 30px;
+}
+
+.calc-out-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.calc-out-label {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-family: var(--font-mono);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.calc-out-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.calc-out-val.price {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.calc-cta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* =========================================================
+   FOUR PRODUCTS CATALOG (MINIMAL & SHARP)
+========================================================= */
+.catalog-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-.stat-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  border-right: 1px solid var(--ice-border);
-  padding-right: 16px;
-}
-
-.stat-box:last-child {
-  border-right: none;
-}
-
-.stat-val {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 2.2rem;
-  color: var(--primary);
-  line-height: 1;
-}
-
-.stat-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-label {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--text-main);
-  line-height: 1.2;
-}
-
-.stat-sub {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   ABOUT FACTORY
-========================================================= */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-
-.about-img-wrap {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.about-img-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.about-badge-card {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 16px 20px;
+.cat-item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  border-left: 4px solid var(--accent);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-
-.about-badge-title {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--text-main);
-}
-
-.about-badge-text {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.about-text-content h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.25;
-  margin-bottom: 20px;
-}
-
-.about-text-content p {
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  font-size: 1rem;
-}
-
-.about-points {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 28px 0;
-}
-
-.about-point {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.point-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #E3F2FD;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.8rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.point-text {
-  font-size: 0.9rem;
-  color: var(--text-main);
-  font-weight: 600;
-}
-
-/* =========================================================
-   PRODUCTS / CATALOG SECTION
-========================================================= */
-.catalog-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.catalog-tab-btn {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 0.92rem;
-  padding: 12px 22px;
-  border-radius: 30px;
-  background: var(--white);
-  border: 1px solid var(--ice-border);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.catalog-tab-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.catalog-tab-btn.active {
-  background: var(--primary);
-  color: var(--white);
-  border-color: var(--primary);
-  box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2);
-}
-
-.catalog-pane {
-  display: none;
-}
-
-.catalog-pane.active {
-  display: block;
-}
-
-.products-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 26px;
-}
-
-.product-item-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--ice-border);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s, box-shadow 0.25s;
+  transition: all 0.25s ease;
 }
 
-.product-item-card:hover {
+.cat-item-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: #B5D2E8;
+  box-shadow: var(--shadow);
+  border-color: #CBD5E1;
 }
 
-.product-card-img-wrap {
-  position: relative;
+.cat-img-box {
   height: 220px;
-  background: #FFFFFF;
+  background: var(--surface-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 12px;
+  padding: 20px;
+  position: relative;
 }
 
-.product-card-img-wrap img {
+.cat-img-box img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-.product-item-card:hover .product-card-img-wrap img {
-  transform: scale(1.05);
+.cat-item-card:hover .cat-img-box img {
+  transform: scale(1.06);
 }
 
-.product-badge-flag {
+.cat-pill-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--primary-dark);
-  color: var(--white);
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.95);
   font-size: 0.72rem;
   font-weight: 700;
+  font-family: var(--font-mono);
   padding: 4px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
+  border-radius: 20px;
+  color: var(--text-main);
+  border: 1px solid var(--border);
 }
 
-.product-badge-flag.hot {
-  background: var(--accent);
-}
-
-.product-card-body {
-  padding: 22px;
+.cat-card-body {
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.product-category-label {
-  font-size: 0.76rem;
+.cat-model-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--blue);
   font-weight: 700;
-  text-transform: uppercase;
-  color: var(--primary);
   margin-bottom: 6px;
 }
 
-.product-title {
-  font-size: 1.12rem;
+.cat-card-title {
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-main);
-  line-height: 1.3;
   margin-bottom: 10px;
+  line-height: 1.3;
 }
 
-.product-desc {
+.cat-card-text {
   font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.55;
+  margin-bottom: 20px;
   flex-grow: 1;
 }
 
-.product-specs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 20px;
-  font-size: 0.82rem;
-  background: var(--ice-bg);
-  padding: 10px 12px;
-  border-radius: 8px;
-}
-
-.spec-line {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-muted);
-}
-.spec-line strong {
-  color: var(--text-main);
-  font-weight: 600;
-}
-
-.product-card-footer {
+.cat-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--ice-border);
+  border-top: 1px solid var(--border);
   padding-top: 16px;
-  margin-top: auto;
 }
 
-.product-price-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.product-price-val {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.25rem;
+.cat-price {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
   font-weight: 800;
-  color: var(--accent);
-  line-height: 1.1;
-}
-
-.product-price-sub {
-  font-size: 0.72rem;
-  color: var(--text-light);
-}
-
-/* =========================================================
-   CALCULATOR WIDGET (ТАМ ЖЕ ПОДБОР ОБОРУДОВАНИЯ)
-========================================================= */
-.calc-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--ice-border);
-  margin-top: 50px;
-}
-
-.calc-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-  margin-bottom: 8px;
-}
-
-.calc-subtitle {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 30px;
-}
-
-.calc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.2fr;
-  gap: 28px;
-  align-items: start;
-}
-
-.calc-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.calc-label {
-  font-size: 0.88rem;
-  font-weight: 700;
   color: var(--text-main);
 }
 
-.calc-select, .calc-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid var(--ice-border);
-  border-radius: var(--radius);
-  font-family: inherit;
-  font-size: 0.95rem;
-  color: var(--text-main);
-  background: var(--white);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.calc-select:focus, .calc-input:focus {
-  border-color: var(--primary);
-}
-
-.calc-result-box {
-  background: linear-gradient(135deg, #0A3258 0%, #154D80 100%);
-  color: var(--white);
-  border-radius: var(--radius);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.result-model-badge {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #8FD5FF;
-  font-weight: 700;
-}
-
-.result-model-name {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #FFF;
-  line-height: 1.2;
-}
-
-.result-price {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: #FFB74D;
-}
-
 /* =========================================================
-   ADVANTAGES SECTION (6 REAL FACTORY ADVANTAGES)
+   BENTO GRID (FACTS & FACTORY HERITAGE)
 ========================================================= */
-.adv-grid-6 {
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.3fr 1fr;
+  grid-template-rows: auto auto;
   gap: 24px;
 }
 
-.adv-card {
-  background: var(--white);
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--ice-border);
-  box-shadow: var(--shadow);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
 }
 
-.adv-img-box {
-  height: 180px;
-  position: relative;
-  background: #E8EEF5;
-  overflow: hidden;
+.bento-card.dark {
+  background: var(--dark);
+  color: #FFF;
+  border-color: #1E293B;
 }
 
-.adv-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.bento-card.dark .bento-title { color: #FFF; }
+.bento-card.dark .bento-desc { color: #94A3B8; }
+
+.bento-big-num {
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--blue);
+  margin-bottom: 12px;
 }
 
-.adv-card-content {
-  padding: 24px;
-  flex-grow: 1;
+.bento-card.dark .bento-big-num {
+  color: var(--accent);
 }
 
-.adv-title {
-  font-size: 1.2rem;
+.bento-title {
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  color: var(--text-main);
   margin-bottom: 10px;
-  line-height: 1.3;
 }
 
-.adv-desc {
-  font-size: 0.9rem;
+.bento-desc {
+  font-size: 0.95rem;
   color: var(--text-muted);
-  line-height: 1.55;
-}
-
-/* Regions list */
-.regions-block {
-  margin-top: 40px;
-  background: var(--white);
-  border: 1px solid var(--ice-border);
-  border-radius: var(--radius-lg);
-  padding: 28px 32px;
-}
-
-.regions-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-  margin-bottom: 14px;
-}
-
-.regions-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.region-pill {
-  background: var(--ice-bg);
-  border: 1px solid var(--ice-border);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  font-weight: 500;
+  line-height: 1.6;
 }
 
 /* =========================================================
-   CERTIFICATES & DIPLOMAS (SLIDER / GALLERY)
+   CERTIFICATES / LIGHTBOX
 ========================================================= */
-.certs-slider-wrap {
-  position: relative;
-  overflow: hidden;
-  padding: 10px 0;
-}
-
-.certs-track {
-  display: flex;
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 16px;
-  scrollbar-width: thin;
 }
 
-.cert-card {
-  flex: 0 0 220px;
-  background: var(--white);
-  border: 1px solid var(--ice-border);
+.cert-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
+  padding: 16px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s;
   text-align: center;
-  padding: 12px;
 }
 
-.cert-card:hover {
+.cert-box:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--primary);
+  border-color: var(--blue);
+  box-shadow: var(--shadow);
 }
 
-.cert-card img {
+.cert-box img {
   width: 100%;
-  height: 270px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
 }
 
-.cert-card-title {
-  font-size: 0.8rem;
+.cert-title {
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-main);
   line-height: 1.3;
 }
 
 /* =========================================================
-   DELIVERY & PAYMENT (ДОСТАВКА И ОПЛАТА)
+   FACTORY CONTACT & COMMERCIAL OFFER FORM
 ========================================================= */
-.delivery-grid {
+.contact-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-}
-
-.delivery-card {
-  background: var(--white);
-  border: 1px solid var(--ice-border);
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 36px;
+  padding: 50px;
   box-shadow: var(--shadow);
 }
 
-.delivery-card-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--primary-dark);
+.contact-info-col h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
   margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  letter-spacing: -0.02em;
 }
 
-.delivery-list {
-  list-style: none;
+.contact-info-col p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.contact-item-row {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
-.delivery-list li {
-  position: relative;
-  padding-left: 22px;
-}
-
-.delivery-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #2E7D32;
-  font-weight: bold;
-}
-
-/* =========================================================
-   CONTACTS & REQUISITES & FORM
-========================================================= */
-.contact-section-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1.3fr;
-  gap: 40px;
-}
-
-.contact-info-card {
-  background: var(--primary-dark);
-  color: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-}
-
-.contact-info-card h3 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
-.contact-detail-group {
-  margin-bottom: 24px;
-}
-
-.contact-detail-label {
-  font-size: 0.78rem;
+.contact-item-lbl {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-light);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #8FD5FF;
   margin-bottom: 4px;
-  font-weight: 600;
 }
 
-.contact-detail-val {
+.contact-item-val {
   font-size: 1.05rem;
-  color: #FFF;
-  line-height: 1.4;
-}
-
-.contact-detail-val a {
-  color: #FFF;
+  font-weight: 700;
+  color: var(--text-main);
   text-decoration: none;
-  font-weight: 600;
-}
-.contact-detail-val a:hover {
-  text-decoration: underline;
-  color: #FFB74D;
 }
 
-.requisites-box {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 24px;
+.contact-item-val a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+.contact-item-val a:hover {
+  color: var(--blue);
 }
 
-.requisites-box strong {
-  color: #FFF;
-}
-
-.form-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  border: 1px solid var(--ice-border);
-  box-shadow: var(--shadow);
-}
-
-.form-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.form-group {
+.form-field-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-bottom: 16px;
 }
 
-.form-group label {
-  font-size: 0.85rem;
+.form-field-group label {
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-main);
 }
 
-.form-control {
+.input-box {
   width: 100%;
   padding: 13px 16px;
-  border: 1.5px solid var(--ice-border);
-  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.95rem;
+  background: var(--bg);
+  color: var(--text-main);
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
-.form-control:focus {
-  border-color: var(--primary);
+.input-box:focus {
+  border-color: var(--blue);
+  background: #FFF;
 }
 
-textarea.form-control {
+textarea.input-box {
   resize: vertical;
-  min-height: 110px;
+  min-height: 90px;
 }
 
-.form-consent {
-  font-size: 0.78rem;
+/* Footer */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  margin-top: 80px;
+  font-size: 0.85rem;
   color: var(--text-light);
-  line-height: 1.4;
-  margin-bottom: 20px;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-.site-footer {
-  background: var(--dark-bg);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.88rem;
-  padding: 60px 0 30px;
-  border-top: 3px solid var(--accent);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.footer-col h4 {
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-links a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover {
-  color: #FFF;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 24px;
+.footer-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
-  font-size: 0.8rem;
+  gap: 20px;
 }
 
-/* =========================================================
-   LIGHTBOX MODAL
-========================================================= */
-.modal-overlay {
-  display: none;
+/* Lightbox Modal */
+.lightbox-modal {
   position: fixed;
   inset: 0;
-  background: rgba(10, 20, 35, 0.85);
-  backdrop-filter: blur(6px);
+  background: rgba(10, 17, 31, 0.85);
+  backdrop-filter: blur(8px);
   z-index: 1000;
+  display: none;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
+.lightbox-modal.active { display: flex; }
 
-.modal-overlay.active {
-  display: flex;
-}
-
-.modal-content-img {
+.lightbox-modal img {
   max-width: 90vw;
-  max-height: 85vh;
+  max-height: 90vh;
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-.modal-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #FFF;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-}
-
-/* Toast */
-.toast-msg {
+/* Toast Notification */
+.toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #2E7D32;
+  background: #10B981;
   color: #FFF;
+  font-weight: 700;
   padding: 14px 22px;
-  border-radius: 8px;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
   display: none;
   z-index: 2000;
 }
 
-/* =========================================================
-   RESPONSIVENESS
-========================================================= */
+/* Responsive */
 @media (max-width: 1080px) {
   .header-nav { display: none; }
-  .mobile-menu-btn { display: block; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .stat-box { border-right: none; }
-  .about-grid { grid-template-columns: 1fr; }
-  .adv-grid-6 { grid-template-columns: repeat(2, 1fr); }
-  .contact-section-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .calc-grid { grid-template-columns: 1fr; }
+  .blueprint-stage { grid-template-columns: 1fr; }
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid { grid-template-columns: 1fr; }
+  .calc-output-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-wrap { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .topbar { display: none; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .adv-grid-6 { grid-template-columns: 1fr; }
-  .delivery-grid { grid-template-columns: 1fr; }
-  .form-grid-2 { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .header-phone-box { display: none; }
-  .section-padding { padding: 50px 0; }
+  .catalog-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .calc-output-grid { grid-template-columns: 1fr; }
+  .blueprint-card { padding: 20px; }
+  .tank-interactive-area { height: 300px; }
+  .calc-section-box { padding: 24px; }
+  .contact-wrap { padding: 24px; }
+  .header-phone { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-info">
-      <div class="topbar-item">
-        <span>🏭 Завод в г. Ковров, Владимирская обл., ул. Волго-Донская, 1к1</span>
-      </div>
-      <div class="topbar-item">
-        <span>🕒 Пн-Пт: 8:00 - 17:00</span>
-      </div>
-    </div>
-    <div class="topbar-info">
-      <div class="topbar-item">
-        <span>✉</span>
-        <a href="mailto:energy-kovrov@mail.ru">energy-kovrov@mail.ru</a>
-      </div>
-      <div class="topbar-item">
-        <span>📞</span>
-        <a href="tel:+79101800129">+7 (910) 180-01-29</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SITE HEADER -->
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="#" class="logo-wrap">
-      <img src="assets/live/group-1918-981f.png" alt="ООО НПП Энергия Логотип" onerror="this.src='assets/live/mask-group-667b.png'">
-      <div class="logo-text-block">
-        <span class="logo-company-name">НПП «ЭНЕРГИЯ»</span>
-        <span class="logo-subtext">Научно-производственное предприятие · Ковров</span>
+<!-- FLOATING MINIMALIST HEADER -->
+<div class="container header">
+  <header class="header-glass">
+    <a href="#" class="brand-wrap">
+      <img src="assets/live/group-1918-981f.png" alt="НПП Энергия" onerror="this.src='assets/live/mask-group-667b.png'">
+      <div class="brand-titles">
+        <span class="brand-name">НПП «ЭНЕРГИЯ»</span>
+        <span class="brand-tag">Завод в Коврове · с 1995 г.</span>
       </div>
     </a>
 
     <nav class="header-nav">
-      <a href="#about" class="nav-link">О заводе</a>
-      <a href="#catalog" class="nav-link">Каталог</a>
-      <a href="#calculator" class="nav-link">Подбор</a>
-      <a href="#advantages" class="nav-link">Преимущества</a>
-      <a href="#certs" class="nav-link">Сертификаты</a>
-      <a href="#delivery" class="nav-link">Доставка и оплата</a>
-      <a href="#contacts" class="nav-link">Контакты</a>
+      <a href="#inspector" class="nav-pill">Инженерия</a>
+      <a href="#calculator" class="nav-pill">Калькулятор объёма</a>
+      <a href="#catalog" class="nav-pill">Оборудование</a>
+      <a href="#factory" class="nav-pill">О заводе</a>
+      <a href="#certs" class="nav-pill">Сертификаты</a>
+      <a href="#contact" class="nav-pill">Контакты</a>
     </nav>
 
     <div class="header-actions">
-      <div class="header-phone-box">
-        <a href="tel:+79101800129">+7 (910) 180-01-29</a>
-        <span>Отдел продаж завода</span>
-      </div>
-      <a href="#request-form" class="btn btn-primary">Запросить КП</a>
-      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">☰</button>
+      <a href="tel:+79101800129" class="header-phone">
+        <span class="phone-num">+7 (910) 180-01-29</span>
+        <span class="phone-sub">Отдел продаж завода</span>
+      </a>
+      <a href="#contact" class="btn btn-primary">Запросить КП</a>
     </div>
-  </div>
-</header>
-
-<!-- HERO SLIDER SECTION -->
-<section class="hero-slider-section">
-  <div class="slider-container" id="heroSlider">
-
-    <!-- Slide 1: Охладители Nerehta -->
-    <div class="slide-item active">
-      <img src="assets/live/frame-7-min-2-a4bf.webp" alt="Установки охлаждения молока Nerehta" class="slide-bg-img">
-      <div class="slide-overlay"></div>
-      <div class="container">
-        <div class="slide-content">
-          <span class="slide-tag">Торговая марка «NEREHTA»</span>
-          <h1 class="slide-title">Установки охлаждения молока Nerehta</h1>
-          <p class="slide-desc">
-            Открытого и закрытого типов, горизонтальные и вертикальные резервуары объёмом от 200 до 25 000 литров. Прямое охлаждение на базе спиральных компрессоров Invotech и ScrollTech.
-          </p>
-          <div class="slide-badges">
-            <div class="slide-badge-pill">
-              <strong>от 209 000 ₽</strong> с НДС
-            </div>
-            <div class="slide-badge-pill">
-              <strong>60 мес.</strong> гарантия
-            </div>
-            <div class="slide-badge-pill">
-              <strong>R404A</strong> хладагент
-            </div>
-          </div>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="#catalog" class="btn btn-primary">Смотреть модели</a>
-            <a href="#request-form" class="btn btn-outline" style="border-color: #FFF; color: #FFF;">Заказать расчёт</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 2: Молочное такси MILKNANNY -->
-    <div class="slide-item">
-      <img src="assets/live/slayd-3-min-2f84.webp" alt="Молочное такси MILKNANNY" class="slide-bg-img">
-      <div class="slide-overlay"></div>
-      <div class="container">
-        <div class="slide-content">
-          <span class="slide-tag">Выпойка молодняка</span>
-          <h2 class="slide-title">Молочное такси «MILKNANNY»</h2>
-          <p class="slide-desc">
-            Передвижные станции выпойки телят 100, 150, 200 и 250 литров. Подогрев, охлаждение, пастеризация, пистолетная раздача и электропривод колёс с цветным 7" сенсорным экраном.
-          </p>
-          <div class="slide-badges">
-            <div class="slide-badge-pill">
-              <strong>от 358 000 ₽</strong> с НДС
-            </div>
-            <div class="slide-badge-pill">
-              <strong>Электропривод</strong> колёс
-            </div>
-            <div class="slide-badge-pill">
-              <strong>7" дисплей</strong> Kinco
-            </div>
-          </div>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="#catalog" class="btn btn-primary" onclick="switchCatalogTab('milknanny')">Подробнее о станциях</a>
-            <a href="#request-form" class="btn btn-outline" style="border-color: #FFF; color: #FFF;">Оставить заявку</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 3: Ванны ВДП -->
-    <div class="slide-item">
-      <img src="assets/live/slayd-4-min-1266.webp" alt="Ванны длительной пастеризации ВДП" class="slide-bg-img">
-      <div class="slide-overlay"></div>
-      <div class="container">
-        <div class="slide-content">
-          <span class="slide-tag">Пастеризация & Сыроделие</span>
-          <h2 class="slide-title">Ванны длительной пастеризации (ВДП)</h2>
-          <p class="slide-desc">
-            ТЭН, пар, котёл. Встроенный сэндвич-теплообменник, независимые контуры нагрева и охлаждения проточной водой. Быстросъёмные лиры для сыроварения. Выход на режим за ~5 минут.
-          </p>
-          <div class="slide-badges">
-            <div class="slide-badge-pill">
-              <strong>234 000 ₽</strong> с НДС
-            </div>
-            <div class="slide-badge-pill">
-              <strong>&lt; 20 л</strong> глицерина
-            </div>
-            <div class="slide-badge-pill">
-              <strong>Нержавеющая</strong> сталь AISI
-            </div>
-          </div>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="#catalog" class="btn btn-primary" onclick="switchCatalogTab('vdp')">Характеристики ВДП</a>
-            <a href="#request-form" class="btn btn-outline" style="border-color: #FFF; color: #FFF;">Запросить КП</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 4: Нестандартные емкости -->
-    <div class="slide-item">
-      <img src="assets/live/slayd-5-1-ae21.webp" alt="Нестандартное емкостное оборудование" class="slide-bg-img">
-      <div class="slide-overlay"></div>
-      <div class="container">
-        <div class="slide-content">
-          <span class="slide-tag">Спецпроекты под ключ</span>
-          <h2 class="slide-title">Ёмкостное оборудование от 100 до 30 000 л</h2>
-          <p class="slide-desc">
-            Нестандартные резервуары и термосы из пищевой нержавеющей стали по чертежам заказчика. Для косметики, спирта, дрожжей, патоки, опары, крови, сиропов и пищевых жидкостей.
-          </p>
-          <div class="slide-badges">
-            <div class="slide-badge-pill">
-              <strong>от 100 000 ₽</strong> с НДС
-            </div>
-            <div class="slide-badge-pill">
-              <strong>До 30 тонн</strong> объём
-            </div>
-            <div class="slide-badge-pill">
-              <strong>Любые ТЗ</strong> заказчика
-            </div>
-          </div>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="#request-form" class="btn btn-primary">Рассчитать по ТЗ</a>
-            <a href="#catalog" class="btn btn-outline" style="border-color: #FFF; color: #FFF;" onclick="switchCatalogTab('custom')">Примеры ёмкостей</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Slider Controls -->
-  <div class="slider-controls">
-    <button class="slider-btn" onclick="prevSlide()" aria-label="Предыдущий слайд">‹</button>
-    <div class="slider-dots" id="sliderDots">
-      <span class="slider-dot active" onclick="goToSlide(0)"></span>
-      <span class="slider-dot" onclick="goToSlide(1)"></span>
-      <span class="slider-dot" onclick="goToSlide(2)"></span>
-      <span class="slider-dot" onclick="goToSlide(3)"></span>
-    </div>
-    <button class="slider-btn" onclick="nextSlide()" aria-label="Следующий слайд">›</button>
-  </div>
-</section>
-
-<!-- KEY STATS STRIP -->
-<div class="stats-strip">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-box">
-        <div class="stat-val">30</div>
-        <div class="stat-info">
-          <span class="stat-label">Лет опыта</span>
-          <span class="stat-sub">Опыт в холодильном машиностроении</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">60</div>
-        <div class="stat-info">
-          <span class="stat-label">Месяцев гарантии</span>
-          <span class="stat-sub">На емкостное оборудование охлаждения</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">30т</div>
-        <div class="stat-info">
-          <span class="stat-label">До 30 000 литров</span>
-          <span class="stat-sub">Объем резервуаров собственного завода</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">СНГ</div>
-        <div class="stat-info">
-          <span class="stat-label">Поставки по РФ и СНГ</span>
-          <span class="stat-sub">Беларусь, Казахстан, Киргизия, Молдова</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  </header>
 </div>
 
-<!-- ABOUT FACTORY SECTION -->
-<section class="section-padding" id="about">
+<!-- HERO SECTION -->
+<section class="hero">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-img-wrap">
-        <img src="assets/live/o-kompanii-9aa3.jpg" alt="Инженер на производстве НПП Энергия">
-        <div class="about-badge-card">
-          <div class="about-badge-title">ООО НПП «Энергия» — завод полного цикла в г. Ковров</div>
-          <div class="about-badge-text">Собственные производственные цеха, лазерный раскрой, аргонодуговая сварка нержавеющей стали, сборка холодильных агрегатов и автоматики.</div>
-        </div>
+    <div class="hero-top-badge">
+      <span class="dot"></span>
+      <span>Собственное производство в г. Ковров · Программа субсидирования № 1432 (-25%)</span>
+    </div>
+
+    <h1 class="hero-title">
+      Инженерные системы <span>охлаждения молока</span> от 200 до 30 000 литров.
+    </h1>
+
+    <p class="hero-desc">
+      Завод ООО НПП «Энергия» разрабатывает и серийно производит закрытые и открытые танки-охладители <strong>NEREHTA</strong>, станции выпойки телят <strong>MILKNANNY</strong> и пастеризаторы ВДП.
+    </p>
+
+    <div class="hero-stats-row">
+      <div class="stat-chip">
+        <span class="stat-chip-num">30 лет</span>
+        <span class="stat-chip-lbl">Непрерывного опыта в машиностроении</span>
       </div>
-
-      <div class="about-text-content">
-        <span class="section-badge">О предприятии</span>
-        <h3>Научно-производственное предприятие «Энергия»</h3>
-        <p>
-          ООО НПП «ЭНЕРГИЯ» — динамично развивающееся предприятие машиностроения, выпускающее современное холодильное и емкостное оборудование для молочной, пищевой и перерабатывающей промышленности.
-        </p>
-        <p>
-          Флагманская продукция завода — установки охлаждения молока <strong>«NEREHTA»</strong> объёмом от 200 до 30 000 литров с непосредственным охлаждением на базе спиральных агрегатов INVOTECH, ScrollTech и Maneurop.
-        </p>
-        <p>
-          География поставок охватывает всю Россию: от Кабардино-Балкарии на юге до Нарьян-Мара на севере, и от Калининграда на западе до острова Сахалин на востоке. Оборудование сертифицировано по регламентам ЕАС и стандартам ISO 9001.
-        </p>
-
-        <div class="about-points">
-          <div class="about-point">
-            <span class="point-icon">✓</span>
-            <span class="point-text">Испарители типа «сэндвич» с лазерной геометрией</span>
-          </div>
-          <div class="about-point">
-            <span class="point-icon">✓</span>
-            <span class="point-text">Пищевая нержавеющая сталь AISI 304</span>
-          </div>
-          <div class="about-point">
-            <span class="point-icon">✓</span>
-            <span class="point-text">Автоматическая мойка с вращающимися форсунками</span>
-          </div>
-          <div class="about-point">
-            <span class="point-icon">✓</span>
-            <span class="point-text">Аккредитация в Росагролизинге и Россельхозбанке</span>
-          </div>
-        </div>
-
-        <a href="#contacts" class="btn btn-secondary">Реквизиты и контакты завода</a>
+      <div class="stat-chip">
+        <span class="stat-chip-num">60 мес.</span>
+        <span class="stat-chip-lbl">Расширенная гарантия завода на резервуары</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- CATALOG SECTION -->
-<section class="section-padding" id="catalog" style="background: #EBF3F9;">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-badge">Каталог оборудования</span>
-      <h2 class="section-title">Серийная продукция завода</h2>
-      <p class="section-desc">Оборудование напрямую от производителя без дилерских наценок. Цены указаны с учетом НДС.</p>
-    </div>
-
-    <!-- Tabs -->
-    <div class="catalog-tabs">
-      <button class="catalog-tab-btn active" onclick="switchCatalogTab('nerehta')">Охладители «Nerehta» (от 209 000 ₽)</button>
-      <button class="catalog-tab-btn" onclick="switchCatalogTab('vdp')">Пастеризаторы ВДП (от 234 000 ₽)</button>
-      <button class="catalog-tab-btn" onclick="switchCatalogTab('milknanny')">Молочное такси «MILKNANNY» (от 358 000 ₽)</button>
-      <button class="catalog-tab-btn" onclick="switchCatalogTab('custom')">Нестандартные емкости (от 100 000 ₽)</button>
-    </div>
-
-    <!-- TAB 1: NEREHTA -->
-    <div class="catalog-pane active" id="pane-nerehta">
-      <div class="products-grid-4">
-
-        <!-- Card 1: УОМ-В Открытый вертикальный -->
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">Хит продаж</span>
-            <img src="assets/real/uomv.png" alt="УОМ-В открытый вертикальный" onerror="this.src='assets/live/nerehta-7674.jpg'">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Открытый вертикальный</div>
-            <h4 class="product-title">УОМ 200-В – 3000-В «Nerehta»</h4>
-            <p class="product-desc">Компактная вертикальная установка для малых и средних ферм. Агрегат смонтирован на единой раме с емкостью.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объём:</span><strong>200 – 3 000 л</strong></div>
-              <div class="spec-line"><span>Охлаждение:</span><strong>+34°C → +4°C за 2.5 ч</strong></div>
-              <div class="spec-line"><span>Испаритель:</span><strong>Сэндвич (лазерный)</strong></div>
-              <div class="spec-line"><span>Компрессор:</span><strong>Invotech / ScrollTech</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 209 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Охладитель молока УОМ-В Nerehta')">Заказать</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: УОМ Открытый горизонтальный -->
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">С газовыми пружинами</span>
-            <img src="assets/real/photo_3.jpg" alt="УОМ открытый горизонтальный" onerror="this.src='assets/live/nerehta-7674.jpg'">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Открытый горизонтальный</div>
-            <h4 class="product-title">УОМ 1000 – 5000 «Nerehta»</h4>
-            <p class="product-desc">Горизонтальный ванновый охладитель. Крышка удерживается газовыми пружинами. Трёхфазный мотор-редуктор.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объём:</span><strong>1 000 – 5 000 л</strong></div>
-              <div class="spec-line"><span>Охлаждение:</span><strong>+34°C → +4°C</strong></div>
-              <div class="spec-line"><span>Хладагент:</span><strong>R404A</strong></div>
-              <div class="spec-line"><span>Сталь:</span><strong>AISI 304 (пищевая)</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 353 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Охладитель молока УОМ Горизонтальный Nerehta')">Заказать</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: УОМЗТ Закрытый горизонтальный -->
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag hot">Автомойка</span>
-            <img src="assets/real/uomzt.png" alt="УОМЗТ закрытый горизонтальный" onerror="this.src='assets/live/nerehta-7674.jpg'">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Закрытый горизонтальный</div>
-            <h4 class="product-title">УОМЗТ 1500 – 25000 «Nerehta»</h4>
-            <p class="product-desc">Цилиндрический термос с автоматической мойкой одной кнопкой (щелочь/кислота), электронным пультом и сенсорным ЖК-экраном.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объём:</span><strong>1 500 – 25 000 л</strong></div>
-              <div class="spec-line"><span>Мойка:</span><strong>Автоматическая (форсунки)</strong></div>
-              <div class="spec-line"><span>Индикация:</span><strong>Цифровая + ЖК-экран</strong></div>
-              <div class="spec-line"><span>Изоляция:</span><strong>ППУ высокой плотности</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 450 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Охладитель УОМЗТ закрытый Nerehta')">Заказать</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: УОМЗТ-В Закрытый вертикальный -->
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">Минимум площади</span>
-            <img src="assets/real/uomv.png" alt="УОМЗТ-В закрытый вертикальный" onerror="this.src='assets/live/nerehta-7674.jpg'">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Закрытый вертикальный</div>
-            <h4 class="product-title">УОМЗТ 1000-В – 3000-В</h4>
-            <p class="product-desc">Закрытый вертикальный резервуар с автоматической мойкой. Идеален для ферм с ограниченным пространством молочного блока.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объём:</span><strong>1 000 – 3 000 л</strong></div>
-              <div class="spec-line"><span>Размещение:</span><strong>Вертикальное</strong></div>
-              <div class="spec-line"><span>Управление:</span><strong>Электронный шкаф</strong></div>
-              <div class="spec-line"><span>Гарантия:</span><strong>60 месяцев</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 390 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Охладитель УОМЗТ-В закрытый вертикальный')">Заказать</button>
-            </div>
-          </div>
-        </div>
-
+      <div class="stat-chip">
+        <span class="stat-chip-num">15+ регионов</span>
+        <span class="stat-chip-lbl">Авторизованная дилерская сеть по РФ и СНГ</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-chip-num">ISO 9001</span>
+        <span class="stat-chip-lbl">Сертификация системы качества и ЕАС</span>
       </div>
     </div>
 
-    <!-- TAB 2: VDP (ПАСТЕРИЗАТОРЫ) -->
-    <div class="catalog-pane" id="pane-vdp">
-      <div class="products-grid-4">
-
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">ТЭН / Пар / Котел</span>
-            <img src="assets/live/vanny-dlitelnoy-pasterizacii-ff87.jpg" alt="Ванна длительной пастеризации ВДП">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Пастеризаторы & Сыроварни</div>
-            <h4 class="product-title">Ванна длительной пастеризации ВДП</h4>
-            <p class="product-desc">Для тепловой обработки молока и сливок. Замкнутый контур с глицерином (менее 20 л) — выход на режим 75°C всего за 5 минут без образования накипи.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объём ванны:</span><strong>100 – 1 000 л</strong></div>
-              <div class="spec-line"><span>Контуры:</span><strong>2 независимых (нагрев/охлажд)</strong></div>
-              <div class="spec-line"><span>Опция:</span><strong>Быстросъёмные лиры для сыра</strong></div>
-              <div class="spec-line"><span>Привод:</span><strong>Мотор-редуктор NMRV</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 234 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Ванна длительной пастеризации ВДП')">Заказать</button>
-            </div>
-          </div>
+    <!-- INTERACTIVE BLUEPRINT INSPECTOR -->
+    <div class="blueprint-card" id="inspector">
+      <div class="blueprint-header">
+        <div>
+          <h3>Интерактивная анатомия охладителя «NEREHTA УОМЗТ»</h3>
+          <p style="font-size: 0.88rem; color: var(--text-light);">Нажмите на интерактивные точки на резервуаре, чтобы изучить конструктивные решения</p>
         </div>
-
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">Сыроварня</span>
-            <img src="assets/live/vanny-10da.jpg" alt="ВДП сыроварня">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Спецкомплектация</div>
-            <h4 class="product-title">ВДП-Сыроварня с лирами</h4>
-            <p class="product-desc">Комплектуется ручными и механическими лирами для нарезки сырного сгустка, плавной регулировкой оборотов мешалки и краном выгрузки сырного зерна.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Рабочая т-ра:</span><strong>до 95°C</strong></div>
-              <div class="spec-line"><span>Охлаждение:</span><strong>Проточной водой</strong></div>
-              <div class="spec-line"><span>Мешалка:</span><strong>Частотный преобразователь</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 265 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('ВДП-Сыроварня')">Заказать</button>
-            </div>
-          </div>
-        </div>
-
+        <span class="blueprint-hint">● Инженерный осмотр</span>
       </div>
-    </div>
 
-    <!-- TAB 3: MILKNANNY (МОЛОЧНОЕ ТАКСИ) -->
-    <div class="catalog-pane" id="pane-milknanny">
-      <div class="products-grid-4">
-
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag hot">Электропривод</span>
-            <img src="assets/live/molochnoe-taksi-ef54.jpg" alt="Молочное такси MILKNANNY">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Выпойка молодняка</div>
-            <h4 class="product-title">Станция выпойки «MILKNANNY»</h4>
-            <p class="product-desc">Облегчает труд персонала: перемещает смесь по ферме на электроприводе колес, точно дозирует порции молока с помощью пистолета со счетчиком.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Ёмкость:</span><strong>100, 150, 200, 250 л</strong></div>
-              <div class="spec-line"><span>Управление:</span><strong>7" сенсорный ЖК-экран</strong></div>
-              <div class="spec-line"><span>Функции:</span><strong>Подогрев, пастеризация, мойка</strong></div>
-              <div class="spec-line"><span>Привод:</span><strong>Мотор-колёса с регулятором</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 358 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Молочное такси MILKNANNY')">Заказать</button>
-            </div>
-          </div>
+      <div class="blueprint-stage">
+        <!-- Interactive Tank Container -->
+        <div class="tank-interactive-area">
+          <img src="assets/real/uomzt.png" alt="УОМЗТ Nerehta">
+          
+          <!-- Hotspot 1: Сэндвич-испаритель -->
+          <div class="hotspot spot-1 active" onclick="inspectSpot(1)">1</div>
+          
+          <!-- Hotspot 2: Автомойка CIP -->
+          <div class="hotspot spot-2" onclick="inspectSpot(2)">2</div>
+          
+          <!-- Hotspot 3: Сенсорная панель 7" -->
+          <div class="hotspot spot-3" onclick="inspectSpot(3)">3</div>
+          
+          <!-- Hotspot 4: Спиральный компрессор -->
+          <div class="hotspot spot-4" onclick="inspectSpot(4)">4</div>
         </div>
 
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">Сенсорное Kinco</span>
-            <img src="assets/real/pult.jpg" alt="Сенсорный пульт управления 7 дюймов">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Интеллектуальная система</div>
-            <h4 class="product-title">Сенсорная панель управления 7"</h4>
-            <p class="product-desc">Наглядный графический интерфейс на русском языке. Запуск пастеризации, охлаждения, мойки и раздачи молока нажатием на экран.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Диагональ:</span><strong>7 дюймов (цветной)</strong></div>
-              <div class="spec-line"><span>Память:</span><strong>Рецепты и режимы пастеризации</strong></div>
-              <div class="spec-line"><span>Диагностика:</span><strong>Автооповещение об ошибках</strong></div>
+        <!-- Dynamic Inspector Panel -->
+        <div class="inspector-panel" id="inspectorPanel">
+          <span class="inspect-badge" id="inspBadge">Узел 01 // Теплообменная система</span>
+          <h4 class="inspect-title" id="inspTitle">Испаритель прямого охлаждения типа «сэндвич»</h4>
+          <p class="inspect-desc" id="inspDesc">
+            Фирменная конструкция лазерной сварки в нижней части цилиндра. Автоматически перераспределяет поток фреона R404A в зависимости от уровня залитого молока, предотвращая замерзание при минимальной загрузке.
+          </p>
+          <div class="inspect-specs-list" id="inspSpecs">
+            <div class="inspect-spec-row">
+              <span>Хладагент:</span>
+              <strong>Фреон R404A (экологичный)</strong>
             </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">В комплекте</span>
-                <span class="product-price-sub">в премиум-моделях</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Панель оператора 7 дюймов')">Узнать опции</button>
+            <div class="inspect-spec-row">
+              <span>Скорость охлаждения:</span>
+              <strong>+34°C → +4°C менее чем за 2.5 ч</strong>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- TAB 4: CUSTOM (НЕСТАНДАРТНОЕ ОБОРУДОВАНИЕ) -->
-    <div class="catalog-pane" id="pane-custom">
-      <div class="products-grid-4">
-
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">От 100 до 30 000 л</span>
-            <img src="assets/live/emkostnoe-nestandartnoe-oborudovanie-16d3.jpg" alt="Нестандартное емкостное оборудование">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Пищевая & Химпром</div>
-            <h4 class="product-title">Пищевые емкости, реакторы, термосы</h4>
-            <p class="product-desc">Изготовление любых резервуаров из пищевой нержавеющей стали AISI 304 / 316 по ТЗ заказчика: рубашки нагрева/охлаждения, перемешиватели, люки, датчики.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Диапазон:</span><strong>100 – 30 000 л</strong></div>
-              <div class="spec-line"><span>Назначение:</span><strong>Спирт, патока, сиропы, опара</strong></div>
-              <div class="spec-line"><span>Исполнение:</span><strong>Вертикальное / Горизонтальное</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">от 100 000 ₽</span>
-                <span class="product-price-sub">с НДС</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Нестандартная ёмкость по ТЗ')">Рассчитать ТЗ</button>
+            <div class="inspect-spec-row">
+              <span>Материал рубашки:</span>
+              <strong>Нержавеющая сталь AISI 304</strong>
             </div>
           </div>
-        </div>
-
-        <div class="product-item-card">
-          <div class="product-card-img-wrap">
-            <span class="product-badge-flag">Уличное исполнение</span>
-            <img src="assets/live/emkosti-a4f1.jpg" alt="Вертикальные резервуары уличного исполнения">
-          </div>
-          <div class="product-card-body">
-            <div class="product-category-label">Силосы и танки</div>
-            <h4 class="product-title">Вертикальные уличные танки-силосы</h4>
-            <p class="product-desc">Утепленные резервуары для хранения молока и жидкостей вне помещения с обогревом арматуры и автоматической CIP-мойкой.</p>
-            <div class="product-specs-list">
-              <div class="spec-line"><span>Объем:</span><strong>до 50 000 л</strong></div>
-              <div class="spec-line"><span>Монтаж:</span><strong>На открытых площадках</strong></div>
-              <div class="spec-line"><span>Экономия:</span><strong>Не требует капстроения</strong></div>
-            </div>
-            <div class="product-card-footer">
-              <div class="product-price-box">
-                <span class="product-price-val">По ТЗ</span>
-                <span class="product-price-sub">индивидуальный проект</span>
-              </div>
-              <button class="btn btn-primary" onclick="orderProduct('Уличный силос-резервуар')">Запросить проект</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Interactive Equipment Selection Calculator -->
-    <div class="calc-card" id="calculator">
-      <h3 class="calc-title">Подбор охладителя под суточный надой фермы</h3>
-      <p class="calc-subtitle">Выберите параметры вашего хозяйства, чтобы получить рекомендуемую модель установки «NEREHTA» и ориентировочную стоимость</p>
-
-      <div class="calc-grid">
-        <div class="calc-field">
-          <label class="calc-label" for="calcVolume">Суточный объём молока:</label>
-          <select id="calcVolume" class="calc-select" onchange="calculateModel()">
-            <option value="500">До 500 литров (малая ферма)</option>
-            <option value="1000" selected>1 000 литров (20-30 коров)</option>
-            <option value="2000">2 000 литров (50-70 коров)</option>
-            <option value="3000">3 000 литров (100 коров)</option>
-            <option value="5000">5 000 литров (150-200 коров)</option>
-            <option value="10000">10 000 литров (300-400 коров)</option>
-            <option value="20000">20 000 литров (крупный комплекс)</option>
-          </select>
-
-          <label class="calc-label" for="calcType" style="margin-top: 14px;">Тип резервуара:</label>
-          <select id="calcType" class="calc-select" onchange="calculateModel()">
-            <option value="open">Открытый тип (откидная крышка)</option>
-            <option value="closed" selected>Закрытый тип с автомойкой (термос)</option>
-          </select>
-        </div>
-
-        <div class="calc-field">
-          <label class="calc-label" for="calcForm">Ориентация корпуса:</label>
-          <select id="calcForm" class="calc-select" onchange="calculateModel()">
-            <option value="horiz" selected>Горизонтальный</option>
-            <option value="vert">Вертикальный (малая площадь)</option>
-          </select>
-
-          <label class="calc-label" for="calcPanel" style="margin-top: 14px;">Панель управления:</label>
-          <select id="calcPanel" class="calc-select" onchange="calculateModel()">
-            <option value="std">Стандартный электронный контроллер</option>
-            <option value="touch" selected>Цветной сенсорный 7" ЖК-дисплей Kinco</option>
-          </select>
-        </div>
-
-        <div class="calc-result-box">
-          <span class="result-model-badge">Рекомендуемая модель:</span>
-          <div class="result-model-name" id="calcResultModel">УОМЗТ 1000 «NEREHTA»</div>
-          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.4;" id="calcResultDesc">
-            Закрытый цилиндрический танк с автоматической промывкой, сэндвич-испарителем и сенсорным ЖК-экраном.
-          </div>
-          <div style="margin-top: 8px;">
-            <span style="font-size: 0.78rem; text-transform: uppercase; color: #8FD5FF; display: block;">Заводская цена:</span>
-            <div class="result-price" id="calcResultPrice">от 520 000 ₽</div>
-          </div>
-          <button class="btn btn-primary" style="margin-top: 6px; width: 100%;" onclick="orderCalculatedModel()">Заказать данную модель</button>
         </div>
       </div>
     </div>
@@ -1963,300 +1094,309 @@ textarea.form-control {
   </div>
 </section>
 
-<!-- ADVANTAGES SECTION -->
-<section class="section-padding" id="advantages">
+<!-- DYNAMIC CAPACITY CONFIGURATOR -->
+<section class="section" id="calculator">
   <div class="container">
-    <div class="section-head">
-      <span class="section-badge">Почему выбирают завод «Энергия»</span>
-      <h2 class="section-title">6 ключевых преимуществ производства</h2>
-      <p class="section-desc">Надёжность, подтверждённая 30-летней историей эксплуатации на молочных фермах России и СНГ.</p>
-    </div>
+    <div class="calc-section-box">
+      <div class="calc-head">
+        <span class="section-tag">Инженерный подбор</span>
+        <h2 class="section-h2">Конфигуратор типоразмера по объёму молока</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Перемещайте бегунок суточного надоя вашей фермы для моментального расчета габаритов, характеристик и заводской цены.
+        </p>
+      </div>
 
-    <div class="adv-grid-6">
-      <!-- 1 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/30-let-8575.jpg" alt="30 лет опыта работы">
+      <div class="calc-slider-wrap">
+        <div class="calc-slider-labels">
+          <span>200 л</span>
+          <span>1 000 л</span>
+          <span>2 500 л</span>
+          <span>5 000 л</span>
+          <span>10 000 л</span>
+          <span>25 000 л</span>
         </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">30 лет опыта машиностроения</h4>
-          <p class="adv-desc">Предприятие работает с 1990-х годов в машиностроительном центре г. Ковров. Проверенные временем технологии и опытные инженеры-конструкторы.</p>
+        <input type="range" min="0" max="5" value="2" class="range-slider" id="volRange" oninput="updateVolume(this.value)">
+      </div>
+
+      <div class="calc-output-grid">
+        <div class="calc-out-col">
+          <span class="calc-out-label">Рекомендуемая модель:</span>
+          <span class="calc-out-val" id="outModel">УОМЗТ 2500 «Nerehta»</span>
+        </div>
+        <div class="calc-out-col">
+          <span class="calc-out-label">Поголовье дойного стада:</span>
+          <span class="calc-out-val" id="outCows">70 – 100 коров</span>
+        </div>
+        <div class="calc-out-col">
+          <span class="calc-out-label">Время охлаждения надоя:</span>
+          <span class="calc-out-val" id="outTime">~2.2 часа</span>
+        </div>
+        <div class="calc-out-col">
+          <span class="calc-out-label">Заводская цена с НДС:</span>
+          <span class="calc-out-val price" id="outPrice">от 600 000 ₽</span>
         </div>
       </div>
 
-      <!-- 2 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/60-mesyacev-garantiya-9177.jpg" alt="60 месяцев гарантия">
+      <div class="calc-cta-row">
+        <div style="font-size: 0.88rem; color: var(--text-muted);">
+          ⚡ <strong>Субсидия 1432:</strong> государственная компенсация 25% стоимости (для этой модели скидка составит ~150 000 ₽).
         </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">Расширенная гарантия 60 месяцев</h4>
-          <p class="adv-desc">Предоставляем официальную гарантию 5 лет на все резервуары охлаждения молока благодаря высочайшему качеству пищевой нержавеющей стали и сварных швов.</p>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/emkosti-a4f1.jpg" alt="Объем до 30 000 литров">
-        </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">Объёмы от 100 до 30 000 л</h4>
-          <p class="adv-desc">Изготовление серийного и индивидуального емкостного оборудования любой сложности для фермерских КФХ и крупнейших агрохолдингов.</p>
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/shirokaya-set-91ec.jpg" alt="Широкая дилерская сеть">
-        </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">Развитая дилерская сеть</h4>
-          <p class="adv-desc">Представительства и сервисные центры работают более чем в 15 ключевых сельскохозяйственных регионах РФ, обеспечивая шеф-монтаж и запчасти.</p>
-        </div>
-      </div>
-
-      <!-- 5 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/rabotaem-v-rf-dc3c.jpg" alt="Работаем по РФ и СНГ">
-        </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">Поставки по всей России и СНГ</h4>
-          <p class="adv-desc">Отгружаем продукцию от Калининграда до Сахалина, а также в страны Таможенного союза: Беларусь, Казахстан, Киргизию, Молдову.</p>
-        </div>
-      </div>
-
-      <!-- 6 -->
-      <div class="adv-card">
-        <div class="adv-img-box">
-          <img src="assets/live/uchastniki-i-medalisty-vystavok-2187.jpg" alt="Участники и медалисты выставок">
-        </div>
-        <div class="adv-card-content">
-          <h4 class="adv-title">Медалисты всероссийских выставок</h4>
-          <p class="adv-desc">Неоднократные победители и дипломанты выставок «Золотая Осень», «АгроФарм», «Молочная и мясная индустрия» за качество оборудования.</p>
-        </div>
+        <button class="btn btn-primary" onclick="orderConfigured()">Заказать эту комплектацию</button>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Regions strip -->
-    <div class="regions-block">
-      <div class="regions-title">Регионы присутствия официальных дилеров и сервисных центров:</div>
-      <div class="regions-pills">
-        <span class="region-pill">Владимирская область</span>
-        <span class="region-pill">Алтайский край</span>
-        <span class="region-pill">Белгородская область</span>
-        <span class="region-pill">Вологодская область</span>
-        <span class="region-pill">Воронежская область</span>
-        <span class="region-pill">Краснодарский край</span>
-        <span class="region-pill">Кировская область</span>
-        <span class="region-pill">Ленинградская область</span>
-        <span class="region-pill">Нижегородская область</span>
-        <span class="region-pill">Новосибирская область</span>
-        <span class="region-pill">Омская область</span>
-        <span class="region-pill">Республика Татарстан</span>
-        <span class="region-pill">Ростовская область</span>
-        <span class="region-pill">Саратовская область</span>
-        <span class="region-pill">Самарская область</span>
+<!-- 4 PRODUCTION PILLARS (CATALOG) -->
+<section class="section" id="catalog">
+  <div class="container">
+    <div style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="section-tag">Каталог завода</span>
+        <h2 class="section-h2">4 базовых направления оборудования</h2>
       </div>
+      <p style="font-size: 0.9rem; color: var(--text-light); max-width: 380px;">
+        Каждое изделие проходит заводские гидравлические и вакуумные испытания перед отгрузкой.
+      </p>
     </div>
 
+    <div class="catalog-grid">
+
+      <!-- Card 1 -->
+      <div class="cat-item-card">
+        <div class="cat-img-box">
+          <span class="cat-pill-badge">NEREHTA</span>
+          <img src="assets/real/uomzt.png" alt="Охладители молока Nerehta">
+        </div>
+        <div class="cat-card-body">
+          <span class="cat-model-tag">УОМ / УОМЗТ</span>
+          <h3 class="cat-card-title">Установки охлаждения молока</h3>
+          <p class="cat-card-text">
+            Открытые ванны от 200 до 5 000 л и закрытые танки-термосы до 25 000 л. Автомойка щелочь/кислота, цифровой контроль температуры.
+          </p>
+          <div class="cat-card-footer">
+            <span class="cat-price">от 209 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="prefillProduct('Охладитель молока Nerehta')">Заказать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="cat-item-card">
+        <div class="cat-img-box">
+          <span class="cat-pill-badge">СЕРИЯ ВДП</span>
+          <img src="assets/live/vanny-dlitelnoy-pasterizacii-ff87.jpg" alt="Пастеризаторы ВДП">
+        </div>
+        <div class="cat-card-body">
+          <span class="cat-model-tag">Пастеризаторы & Сыроварни</span>
+          <h3 class="cat-card-title">Ванны длительной пастеризации</h3>
+          <p class="cat-card-text">
+            Нагрев электрокотлом через замкнутый контур с глицерином (до 75°C за 5 мин). Независимый контур проточного водяного охлаждения.
+          </p>
+          <div class="cat-card-footer">
+            <span class="cat-price">234 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="prefillProduct('Ванна длительной пастеризации ВДП')">Заказать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="cat-item-card">
+        <div class="cat-img-box">
+          <span class="cat-pill-badge">MILKNANNY</span>
+          <img src="assets/live/molochnoe-taksi-ef54.jpg" alt="Молочное такси MILKNANNY">
+        </div>
+        <div class="cat-card-body">
+          <span class="cat-model-tag">Выпойка телят</span>
+          <h3 class="cat-card-title">Молочное такси «MILKNANNY»</h3>
+          <p class="cat-card-text">
+            Передвижные станции 100–250 л на электроприводе колес. Подогрев, охлаждение, пастеризация, пистолетная раздача и сенсорный дисплей 7".
+          </p>
+          <div class="cat-card-footer">
+            <span class="cat-price">от 358 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="prefillProduct('Молочное такси MILKNANNY')">Заказать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="cat-item-card">
+        <div class="cat-img-box">
+          <span class="cat-pill-badge">ИНДИВИДУАЛЬНО</span>
+          <img src="assets/live/emkostnoe-nestandartnoe-oborudovanie-16d3.jpg" alt="Нестандартные емкости">
+        </div>
+        <div class="cat-card-body">
+          <span class="cat-model-tag">До 30 000 литров</span>
+          <h3 class="cat-card-title">Нестандартные пищевые емкости</h3>
+          <p class="cat-card-text">
+            Резервуары и термосы из нержавеющей стали AISI 304/316 для косметики, спирта, дрожжей, патоки, сиропов и пищевых жидкостей по вашему ТЗ.
+          </p>
+          <div class="cat-card-footer">
+            <span class="cat-price">от 100 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="prefillProduct('Нестандартная емкость по ТЗ')">Заказать</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BENTO GRID (ABOUT FACTORY) -->
+<section class="section" id="factory">
+  <div class="container">
+    <div style="margin-bottom: 40px;">
+      <span class="section-tag">О предприятии</span>
+      <h2 class="section-h2">ООО НПП «Энергия» — завод полного цикла</h2>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Bento 1 -->
+      <div class="bento-card">
+        <div class="bento-big-num">60 мес.</div>
+        <h3 class="bento-title">Расширенная гарантия производителя</h3>
+        <p class="bento-desc">
+          Гарантийный срок на все резервуары охлаждения молока составляет 5 лет. Высокая надежность достигается за счет автоматизированной сварки швов в среде аргона и использования сертифицированной нержавеющей стали европейского стандарта AISI 304.
+        </p>
+      </div>
+
+      <!-- Bento 2 -->
+      <div class="bento-card dark">
+        <div class="bento-big-num">1432</div>
+        <h3 class="bento-title">Субсидии Минсельхоза РФ</h3>
+        <p class="bento-desc">
+          Установки аккредитованы в программе государственного субсидирования № 1432. Сельхозпроизводители получают прямую скидку 25% от стоимости (для Сибири, ДФО и Крыма — 30%). Помощь в оформлении документов.
+        </p>
+      </div>
+
+      <!-- Bento 3 -->
+      <div class="bento-card dark" style="grid-column: span 1;">
+        <h3 class="bento-title">30 лет в г. Ковров</h3>
+        <p class="bento-desc">
+          Ковров — признанный центр точного машиностроения России. Собственные металлообрабатывающие цеха, станочный парк, служба контроля ОТК и склад готовой продукции.
+        </p>
+      </div>
+
+      <!-- Bento 4 -->
+      <div class="bento-card" style="grid-column: span 1;">
+        <h3 class="bento-title">Сервисная сеть в 15 регионах</h3>
+        <p class="bento-desc">
+          Поставки и обслуживание охватывают всю территорию от Калининграда до Сахалина, а также страны СНГ (Беларусь, Казахстан, Киргизия). Аккредитация в Росагролизинге и Россельхозбанке.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CERTIFICATES SECTION -->
-<section class="section-padding" id="certs" style="background: #EBF3F9;">
+<section class="section" id="certs">
   <div class="container">
-    <div class="section-head">
-      <span class="section-badge">Документы и гарантии</span>
-      <h2 class="section-title">Сертификаты, лицензии и награды</h2>
-      <p class="section-desc">Вся продукция ООО НПП «Энергия» соответствует требованиям Таможенного союза и системы качества ISO 9001. Кликните для увеличения.</p>
-    </div>
-
-    <div class="certs-slider-wrap">
-      <div class="certs-track" id="certsTrack">
-
-        <div class="cert-card" onclick="openLightbox('assets/live/sert1-e934.jpg')">
-          <img src="assets/live/sert1-e934.jpg" alt="Сертификат соответствия">
-          <div class="cert-card-title">Сертификат соответствия ГОСТ Р</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/sert2-62ce.jpg')">
-          <img src="assets/live/sert2-62ce.jpg" alt="Сертификат ISO 9001">
-          <div class="cert-card-title">Система менеджмента качества ISO 9001</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/sert3-7c77.jpg')">
-          <img src="assets/live/sert3-7c77.jpg" alt="Декларация ЕАС">
-          <div class="cert-card-title">Декларация о соответствии ЕАС</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/sert4-f964.jpg')">
-          <img src="assets/live/sert4-f964.jpg" alt="Сертификат на охладители молока">
-          <div class="cert-card-title">Сертификат на охладители молока</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/sert5-3f05.jpg')">
-          <img src="assets/live/sert5-3f05.jpg" alt="Санитарно-эпидемиологическое заключение">
-          <div class="cert-card-title">Заключение на пищевой контакт</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/eas-1bde.jpg')">
-          <img src="assets/live/eas-1bde.jpg" alt="Сертификат ЕАС ТС">
-          <div class="cert-card-title">Сертификат ТР ТС 010/2011</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/diplom1-d72b.jpg')">
-          <img src="assets/live/diplom1-d72b.jpg" alt="Диплом всероссийской выставки">
-          <div class="cert-card-title">Диплом лауреата агропромышленной выставки</div>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('assets/live/diplom2-a3df.jpg')">
-          <img src="assets/live/diplom2-a3df.jpg" alt="Диплом за качество">
-          <div class="cert-card-title">Медаль за высокие технические параметры</div>
-        </div>
-
+    <div style="margin-bottom: 36px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="section-tag">Качество и стандарты</span>
+        <h2 class="section-h2">Сертификаты и декларации</h2>
       </div>
+      <span style="font-size: 0.85rem; color: var(--text-light);">Нажмите на сертификат для просмотра в полном размере</span>
     </div>
 
-  </div>
-</section>
-
-<!-- DELIVERY & PAYMENT -->
-<section class="section-padding" id="delivery">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-badge">Логистика и расчеты</span>
-      <h2 class="section-title">Доставка и условия оплаты</h2>
-      <p class="section-desc">Обеспечиваем надежную доставку промышленного оборудования в любой населенный пункт РФ и стран СНГ.</p>
-    </div>
-
-    <div class="delivery-grid">
-      <div class="delivery-card">
-        <h3 class="delivery-card-title">🚚 Доставка оборудования</h3>
-        <ul class="delivery-list">
-          <li><strong>Самовывоз с завода:</strong> Владимирская область, г. Ковров, ул. Волго-Донская, д. 1 корп. 1 (удобный подъезд фур, кран-балка, погрузка силами завода).</li>
-          <li><strong>Доставка транспортными компаниями:</strong> «Деловые линии», «ПЭК», ТК «Энергия» по специальным партнерским тарифам.</li>
-          <li><strong>Прямой автотранспорт завода:</strong> доставка выделенным транспортом прямо до фермы с сопровождением экспедитора.</li>
-          <li><strong>Железнодорожный транспорт:</strong> контейнерная отправка на дальние расстояния (Сибирь, Дальний Восток, страны СНГ).</li>
-          <li>Обрешетка, жесткая упаковка и страхование груза на 100% стоимости.</li>
-        </ul>
+    <div class="certs-grid">
+      <div class="cert-box" onclick="openCertModal('assets/live/sert1-e934.jpg')">
+        <img src="assets/live/sert1-e934.jpg" alt="Сертификат соответствия ГОСТ Р">
+        <div class="cert-title">Сертификат соответствия ГОСТ Р</div>
       </div>
 
-      <div class="delivery-card">
-        <h3 class="delivery-card-title">💳 Оплата и государственные субсидии</h3>
-        <ul class="delivery-list">
-          <li><strong>Безналичный расчет с НДС:</strong> на расчетный счет ООО НПП «Энергия» в Сбербанке.</li>
-          <li><strong>Поэтапная оплата:</strong> аванс при запуске в производство и окончательный расчет перед отгрузкой.</li>
-          <li><strong>Программа 1432 (Госсубсидии):</strong> компенсация до 25% – 30% стоимости для зарегистрированных сельхозтоваропроизводителей.</li>
-          <li><strong>Лизинг:</strong> аккредитация в АО «Росагролизинг», Сбербанк Лизинг, АО «Россельхозбанк». Оформление с минимальным первоначальным взносом.</li>
-          <li>Предоставляем полный пакет бухгалтерских документов (УПД, счета-фактуры, паспорта изделий, сертификаты).</li>
-        </ul>
+      <div class="cert-box" onclick="openCertModal('assets/live/sert2-62ce.jpg')">
+        <img src="assets/live/sert2-62ce.jpg" alt="Сертификат менеджмента качества ISO 9001">
+        <div class="cert-title">Система качества ISO 9001</div>
+      </div>
+
+      <div class="cert-box" onclick="openCertModal('assets/live/eas-1bde.jpg')">
+        <img src="assets/live/eas-1bde.jpg" alt="Декларация ЕАС ТР ТС 010/2011">
+        <div class="cert-title">Декларация ЕАС ТР ТС 010/2011</div>
+      </div>
+
+      <div class="cert-box" onclick="openCertModal('assets/live/sert4-f964.jpg')">
+        <img src="assets/live/sert4-f964.jpg" alt="Протоколы испытаний охладителей молока">
+        <div class="cert-title">Протоколы испытаний танков</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACTS & REQUEST FORM -->
-<section class="section-padding" id="contacts" style="background: #EBF3F9;">
+<!-- DIRECT FACTORY CONTACT & QUOTE FORM -->
+<section class="section" id="contact" style="padding-bottom: 40px;">
   <div class="container">
-    <div class="contact-section-grid">
+    <div class="contact-wrap">
+      
+      <!-- Left info -->
+      <div class="contact-info-col">
+        <span class="section-tag">Отдел продаж завода</span>
+        <h3>Прямая связь с производством</h3>
+        <p>
+          Специалисты конструкторского отдела подберут емкость, рассчитают тепловую мощность компрессора и предложат оптимальный вариант доставки до вашей фермы.
+        </p>
 
-      <!-- Left Card: Contacts & Requisites -->
-      <div class="contact-info-card">
-        <h3>Контакты завода</h3>
-
-        <div class="contact-detail-group">
-          <div class="contact-detail-label">Адрес производства и офиса:</div>
-          <div class="contact-detail-val">601903, Россия, Владимирская область, г. Ковров, ул. Волго-Донская, д. 1 корп. 1</div>
-          <div style="font-size: 0.8rem; color: #8FD5FF; margin-top: 2px;">Почтовый адрес: 601903, Владимирская обл., г. Ковров, а/я 11</div>
+        <div class="contact-item-row">
+          <span class="contact-item-lbl">Телефон отдела продаж:</span>
+          <span class="contact-item-val"><a href="tel:+79101800129" style="color: var(--blue);">+7 (910) 180-01-29</a></span>
         </div>
 
-        <div class="contact-detail-group">
-          <div class="contact-detail-label">Отдел продаж и консультаций:</div>
-          <div class="contact-detail-val">
-            <a href="tel:+79101800129">+7 (910) 180-01-29</a> (моб. / WhatsApp / Telegram)
-          </div>
-          <div class="contact-detail-val" style="margin-top: 4px;">
-            <a href="tel:+74923232595">+7 (49232) 3-25-95</a> (городской многоканальный)
-          </div>
-          <div class="contact-detail-val" style="margin-top: 4px; font-size: 0.9rem;">
-            Факс: +7 (49232) 3-11-10
-          </div>
+        <div class="contact-item-row">
+          <span class="contact-item-lbl">Телефон завода (Ковров):</span>
+          <span class="contact-item-val"><a href="tel:+74923232595">+7 (49232) 3-25-95</a></span>
         </div>
 
-        <div class="contact-detail-group">
-          <div class="contact-detail-label">Электронная почта:</div>
-          <div class="contact-detail-val">
-            <a href="mailto:energy-kovrov@mail.ru">energy-kovrov@mail.ru</a>
-          </div>
+        <div class="contact-item-row">
+          <span class="contact-item-lbl">Электронная почта:</span>
+          <span class="contact-item-val"><a href="mailto:energy-kovrov@mail.ru">energy-kovrov@mail.ru</a></span>
         </div>
 
-        <div class="contact-detail-group">
-          <div class="contact-detail-label">Руководство:</div>
-          <div class="contact-detail-val">Генеральный директор: Скитев Василий Николаевич</div>
-          <div class="contact-detail-val" style="font-size: 0.88rem; color: rgba(255,255,255,0.8);">Главный бухгалтер: Курбатова Светлана Анатольевна</div>
+        <div class="contact-item-row">
+          <span class="contact-item-lbl">Адрес производства и склада:</span>
+          <span class="contact-item-val" style="font-weight: 500; font-size: 0.95rem;">601903, Владимирская обл., г. Ковров, ул. Волго-Донская, д. 1/1</span>
         </div>
 
-        <!-- Official Requisites -->
-        <div class="requisites-box">
-          <strong>Реквизиты предприятия:</strong><br>
-          ООО НПП «Энергия»<br>
-          ИНН: 3305005087 · КПП: 330501001<br>
-          ОГРН: 1033302205640 (дата присвоения: 01.02.2003)<br>
-          Р/сч: 40702810310000001090 в Ульяновском отд. №8588 ПАО Сбербанк<br>
-          БИК: 047308602 · Кор/сч: 30101810000000000602
+        <div class="contact-item-row">
+          <span class="contact-item-lbl">Реквизиты:</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">ООО НПП «Энергия» · ИНН 3305005087 · ОГРН 1033302205640</span>
         </div>
       </div>
 
-      <!-- Right Card: Form -->
-      <div class="form-card" id="request-form">
-        <h3 style="font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Запросить коммерческое предложение</h3>
-        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 24px;">Заполните форму, и главный инженер отдела продаж подготовит детальный расчет стоимости и сроков поставки с заводской скидкой.</p>
-
-        <form id="factoryForm" onsubmit="handleFormSubmit(event)">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label for="clientName">Ваше имя *</label>
-              <input type="text" id="clientName" class="form-control" placeholder="Иван Иванович" required>
-            </div>
-            <div class="form-group">
-              <label for="clientPhone">Телефон для связи *</label>
-              <input type="tel" id="clientPhone" class="form-control" placeholder="+7 (___) ___-__-__" required>
-            </div>
+      <!-- Right form -->
+      <div>
+        <form onsubmit="handleQuoteSubmit(event)">
+          <div class="form-field-group">
+            <label for="leadName">Ваше имя *</label>
+            <input type="text" id="leadName" class="input-box" placeholder="Иван Иванович" required>
           </div>
 
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label for="clientEmail">Email (для отправки КП)</label>
-              <input type="email" id="clientEmail" class="form-control" placeholder="ferma@mail.ru">
-            </div>
-            <div class="form-group">
-              <label for="clientProduct">Интересующая модель / ёмкость</label>
-              <select id="clientProduct" class="form-control">
-                <option value="УОМ 1000-5000 Nerehta открытый">Охладитель молока открытый УОМ Nerehta</option>
-                <option value="УОМЗТ 1500-25000 Nerehta закрытый" selected>Охладитель молока закрытый УОМЗТ Nerehta</option>
-                <option value="УОМ-В вертикальный открытый">Вертикальный охладитель УОМ-В</option>
-                <option value="УОМЗТ-В вертикальный закрытый">Вертикальный закрытый УОМЗТ-В</option>
-                <option value="Молочное такси MILKNANNY">Молочное такси «MILKNANNY»</option>
-                <option value="Ванна длительной пастеризации ВДП">Пастеризатор ВДП / сыроварня</option>
-                <option value="Нестандартная емкость по ТЗ">Нестандартный резервуар по ТЗ (до 30т)</option>
-              </select>
-            </div>
+          <div class="form-field-group">
+            <label for="leadPhone">Номер телефона *</label>
+            <input type="tel" id="leadPhone" class="input-box" placeholder="+7 (___) ___-__-__" required>
           </div>
 
-          <div class="form-group">
-            <label for="clientComment">Комментарий или технические требования</label>
-            <textarea id="clientComment" class="form-control" placeholder="Укажите регион доставки, поголовье, желаемый объём резервуара или особые опции..."></textarea>
+          <div class="form-field-group">
+            <label for="leadProduct">Интересующая модель / объём</label>
+            <select id="leadProduct" class="input-box">
+              <option value="УОМЗТ Закрытый термос">Охладитель молока закрытый УОМЗТ NEREHTA</option>
+              <option value="УОМ Открытая ванна">Охладитель молока открытый УОМ NEREHTA</option>
+              <option value="Молочное такси MILKNANNY">Молочное такси «MILKNANNY»</option>
+              <option value="Пастеризатор ВДП">Ванна длительной пастеризации ВДП</option>
+              <option value="Нестандартная ёмкость">Нестандартная емкость по чертежам (до 30т)</option>
+            </select>
           </div>
 
-          <p class="form-consent">
-            Нажимая «Отправить заявку», вы даете согласие на обработку персональных данных в соответствии с Политикой конфиденциальности ООО НПП «Энергия».
+          <div class="form-field-group">
+            <label for="leadComment">Пожелания по комплектации / Регион доставки</label>
+            <textarea id="leadComment" class="input-box" placeholder="Укажите объём емкости, регион фермы или требуемые сроки поставки..."></textarea>
+          </div>
+
+          <p style="font-size: 0.75rem; color: var(--text-light); margin-bottom: 20px;">
+            Нажимая «Получить КП», вы даете согласие на обработку персональных данных в соответствии с Федеральным законом № 152-ФЗ.
           </p>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.05rem; padding: 15px;">
-            Отправить заявку на завод
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1rem;">
+            Получить коммерческое предложение завода
           </button>
         </form>
       </div>
@@ -2266,267 +1406,165 @@ textarea.form-control {
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4 style="font-size: 1.2rem; color: #FFF;">ООО НПП «ЭНЕРГИЯ»</h4>
-        <p style="margin-bottom: 14px; font-size: 0.85rem; line-height: 1.6;">
-          Научно-производственное предприятие полного цикла в г. Ковров. 30 лет разрабатываем и производим охладители молока «NEREHTA», молочные такси «MILKNANNY», пастеризаторы ВДП и нержавеющие резервуары.
-        </p>
-        <p style="font-size: 0.8rem; color: #8FD5FF;">
-          ISO 9001 · Аккредитация в Росагролизинге и Россельхозбанке · Программа 1432
-        </p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Продукция</h4>
-        <ul class="footer-links">
-          <li><a href="#catalog" onclick="switchCatalogTab('nerehta')">Охладители «Nerehta»</a></li>
-          <li><a href="#catalog" onclick="switchCatalogTab('nerehta')">Открытые горизонтальные УОМ</a></li>
-          <li><a href="#catalog" onclick="switchCatalogTab('nerehta')">Закрытые емкости УОМЗТ</a></li>
-          <li><a href="#catalog" onclick="switchCatalogTab('vdp')">Пастеризаторы ВДП</a></li>
-          <li><a href="#catalog" onclick="switchCatalogTab('milknanny')">Молочное такси MILKNANNY</a></li>
-          <li><a href="#catalog" onclick="switchCatalogTab('custom')">Нестандартные емкости</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Предприятие</h4>
-        <ul class="footer-links">
-          <li><a href="#about">О заводе</a></li>
-          <li><a href="#advantages">Преимущества</a></li>
-          <li><a href="#certs">Сертификаты и дипломы</a></li>
-          <li><a href="#delivery">Доставка и оплата</a></li>
-          <li><a href="#contacts">Реквизиты</a></li>
-          <li><a href="#calculator">Калькулятор подбора</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Контакты завода</h4>
-        <ul class="footer-links">
-          <li style="color: #FFF; font-weight: 600;">+7 (910) 180-01-29</li>
-          <li style="color: #FFF;">+7 (49232) 3-25-95</li>
-          <li><a href="mailto:energy-kovrov@mail.ru">energy-kovrov@mail.ru</a></li>
-          <li>г. Ковров, ул. Волго-Донская, 1к1</li>
-          <li style="margin-top: 10px;">
-            <a href="#request-form" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Связаться с заводом</a>
-          </li>
-        </ul>
-      </div>
+<footer class="footer">
+  <div class="container footer-flex">
+    <div>
+      © 1995–2026 ООО НПП «Энергия». Разработка и производство промышленного емкостного оборудования.
     </div>
-
-    <div class="footer-bottom">
-      <div>© 1995–2026 ООО НПП «Энергия». Официальный сайт завода. Все права защищены.</div>
-      <div>Сделано с любовью к отечественному сельхозмашиностроению</div>
+    <div class="mono" style="font-size: 0.78rem;">
+      Ковров, Владимирская область · energy-kovrov@mail.ru
     </div>
   </div>
 </footer>
 
 <!-- LIGHTBOX MODAL -->
-<div class="modal-overlay" id="lightboxModal" onclick="closeLightbox()">
-  <button class="modal-close-btn" onclick="closeLightbox()">&times;</button>
-  <img src="" alt="Сертификат" class="modal-content-img" id="lightboxImg" onclick="event.stopPropagation()">
+<div class="lightbox-modal" id="certModal" onclick="closeCertModal()">
+  <img src="" alt="Сертификат" id="modalImg" onclick="event.stopPropagation()">
 </div>
 
 <!-- SUCCESS TOAST -->
-<div class="toast-msg" id="toastMsg">
-  ✓ Заявка успешно отправлена! Инженер завода свяжется с вами в течение 15 минут.
+<div class="toast" id="successToast">
+  ✓ Заявка успешно отправлена! Главный инженер свяжется с вами в течение 15 минут.
 </div>
 
-<!-- JAVASCRIPT LOGIC -->
 <script>
-// --- HERO SLIDER ---
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide-item');
-const dots = document.querySelectorAll('.slider-dot');
-let slideInterval = setInterval(nextSlide, 6500);
-
-function showSlide(index) {
-  slides.forEach((s, i) => {
-    s.classList.toggle('active', i === index);
-  });
-  dots.forEach((d, i) => {
-    d.classList.toggle('active', i === index);
-  });
-  currentSlide = index;
-}
-
-function nextSlide() {
-  let next = (currentSlide + 1) % slides.length;
-  showSlide(next);
-}
-
-function prevSlide() {
-  let prev = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(prev);
-}
-
-function goToSlide(index) {
-  clearInterval(slideInterval);
-  showSlide(index);
-  slideInterval = setInterval(nextSlide, 6500);
-}
-
-// --- CATALOG TABS ---
-function switchCatalogTab(tabId) {
-  const tabs = document.querySelectorAll('.catalog-tab-btn');
-  const panes = document.querySelectorAll('.catalog-pane');
-
-  panes.forEach(p => p.classList.remove('active'));
-  tabs.forEach(t => t.classList.remove('active'));
-
-  const activePane = document.getElementById('pane-' + tabId);
-  if (activePane) activePane.classList.add('active');
-
-  const tabIndex = ['nerehta', 'vdp', 'milknanny', 'custom'].indexOf(tabId);
-  if (tabIndex >= 0 && tabs[tabIndex]) {
-    tabs[tabIndex].classList.add('active');
-  }
-}
-
-// --- EQUIPMENT CALCULATOR ---
-const modelData = {
-  '500': {
-    name: 'УОМ 500-В «Nerehta»',
-    desc: 'Вертикальная открытая установка с компрессором на единой раме. Оптимально для небольшого КФХ.',
-    price: 'от 300 000 ₽'
+// --- INTERACTIVE BLUEPRINT DATA ---
+const hotspotData = {
+  1: {
+    badge: 'Узел 01 // Теплообменная система',
+    title: 'Испаритель прямого охлаждения типа «сэндвич»',
+    desc: 'Фирменная конструкция лазерной сварки в нижней части цилиндра. Автоматически перераспределяет поток фреона R404A в зависимости от уровня залитого молока, предотвращая замерзание при минимальной загрузке.',
+    specs: [
+      { k: 'Хладагент:', v: 'Фреон R404A (экологичный)' },
+      { k: 'Скорость охлаждения:', v: '+34°C → +4°C менее чем за 2.5 ч' },
+      { k: 'Материал рубашки:', v: 'Нержавеющая сталь AISI 304' }
+    ]
   },
-  '1000': {
-    name: 'УОМЗТ 1000 «Nerehta»',
-    desc: 'Закрытый танк с автоматической промывкой щелочью и кислотой. Термоизоляция ППУ.',
-    price: 'от 489 000 ₽'
+  2: {
+    badge: 'Узел 02 // Санитарная обработка',
+    title: 'Автоматическая CIP-мойка с вращающимися форсунками',
+    desc: 'Запуск одним нажатием кнопки. Промывка резервуара по заданному алгоритму: ополаскивание холодной и горячей водой, дезинфекция щелочью и кислотой, финишный смыв. Исключает бактериальное загрязнение.',
+    specs: [
+      { k: 'Насос подачи:', v: 'Высоконапорный нержавеющий' },
+      { k: 'Форсунки:', v: 'Вращающиеся 360° распылители' },
+      { k: 'Программы мойки:', v: 'Щелочная, кислотная, финиш' }
+    ]
   },
-  '2000': {
-    name: 'УОМЗТ 2000 «Nerehta»',
-    desc: 'Цилиндрический термос с цифровым контроллером и сэндвич-испарителем под фреон R404A.',
-    price: 'от 576 000 ₽'
+  3: {
+    badge: 'Узел 03 // Интеллектуальный интерфейс',
+    title: 'Сенсорный 7" ЖК-дисплей оператора Kinco',
+    desc: 'Позволяет в реальном времени контролировать текущую температуру молока, состояние компрессоров, таймеры перемешивания и мойки, а также просматривать журнал ошибок с самодиагностикой.',
+    specs: [
+      { k: 'Дисплей:', v: '7 дюймов, цветной, влагозащита IP65' },
+      { k: 'Язык интерфейса:', v: 'Русский (понятная графика)' },
+      { k: 'Журнал работы:', v: 'Сохранение температурных графиков' }
+    ]
   },
-  '3000': {
-    name: 'УОМЗТ 3000 «Nerehta»',
-    desc: 'Закрытый охладитель молока на 3 тонны с автоматической мойкой и перемешивателем.',
-    price: 'от 703 000 ₽'
-  },
-  '5000': {
-    name: 'УОМЗТ 5000 «Nerehta»',
-    desc: 'Установка на 5 000 л с мощным агрегатом Invotech. Охлаждение надоя за 2.5 часа.',
-    price: 'от 906 000 ₽'
-  },
-  '10000': {
-    name: 'УОМЗТ 10000 «Nerehta»',
-    desc: 'Промышленный закрытый танк на 10 тонн с двумя перемешивателями и автоматической мойкой CIP.',
-    price: 'от 1 500 000 ₽'
-  },
-  '20000': {
-    name: 'УОМЗТ 20000 «Nerehta»',
-    desc: 'Сверхмощная холодильная станция на 20 тонн для крупного животноводческого комплекса.',
-    price: 'от 2 969 000 ₽'
+  4: {
+    badge: 'Узел 04 // Холодильный контур',
+    title: 'Спиральный компрессорный агрегат Invotech / ScrollTech',
+    desc: 'Высокопроизводительный герметичный спиральный компрессор. Отличается пониженным уровнем шума, минимальным энергопотреблением и высокой отказоустойчивостью при перепадах напряжения в сельской сети.',
+    specs: [
+      { k: 'Тип компрессора:', v: 'Спиральный (Scroll)' },
+      { k: 'Питание:', v: '380 В / 50 Гц' },
+      { k: 'Защита:', v: 'Реле давления и подогрев картера' }
+    ]
   }
 };
 
-function calculateModel() {
-  const vol = document.getElementById('calcVolume').value;
-  const type = document.getElementById('calcType').value;
-  const form = document.getElementById('calcForm').value;
-  const panel = document.getElementById('calcPanel').value;
+function inspectSpot(id) {
+  document.querySelectorAll('.hotspot').forEach(s => s.classList.remove('active'));
+  const activeSpot = document.querySelector('.spot-' + id);
+  if (activeSpot) activeSpot.classList.add('active');
 
-  const data = modelData[vol] || modelData['1000'];
-  let modelName = data.name;
-  let modelDesc = data.desc;
-  let modelPrice = data.price;
+  const d = hotspotData[id];
+  if (!d) return;
 
-  if (type === 'open' && parseInt(vol) <= 5000) {
-    modelName = 'УОМ ' + vol + ' «Nerehta» (Открытый тип)';
-    modelDesc = 'Горизонтальный ванновый охладитель с откидными крышками на газовых упорах.';
-  }
+  document.getElementById('inspBadge').textContent = d.badge;
+  document.getElementById('inspTitle').textContent = d.title;
+  document.getElementById('inspDesc').textContent = d.desc;
 
-  if (panel === 'touch') {
-    modelDesc += ' В комплекте цветной 7" сенсорный ЖК-экран Kinco.';
-  }
-
-  document.getElementById('calcResultModel').textContent = modelName;
-  document.getElementById('calcResultDesc').textContent = modelDesc;
-  document.getElementById('calcResultPrice').textContent = modelPrice;
+  const specsContainer = document.getElementById('inspSpecs');
+  specsContainer.innerHTML = '';
+  d.specs.forEach(s => {
+    const row = document.createElement('div');
+    row.className = 'inspect-spec-row';
+    row.innerHTML = `<span>${s.k}</span><strong>${s.v}</strong>`;
+    specsContainer.appendChild(row);
+  });
 }
 
-function orderCalculatedModel() {
-  const model = document.getElementById('calcResultModel').textContent;
-  orderProduct(model);
+// --- DYNAMIC CAPACITY SLIDER DATA ---
+const volumeSteps = [
+  { vol: '200 л', model: 'УОМ 200-В «Nerehta»', cows: '5 – 10 коров', time: '~1.5 часа', price: 'от 222 000 ₽' },
+  { vol: '1 000 л', model: 'УОМЗТ 1000 «Nerehta»', cows: '25 – 35 коров', time: '~2.0 часа', price: 'от 489 000 ₽' },
+  { vol: '2 500 л', model: 'УОМЗТ 2500 «Nerehta»', cows: '70 – 100 коров', time: '~2.2 часа', price: 'от 600 000 ₽' },
+  { vol: '5 000 л', model: 'УОМЗТ 5000 «Nerehta»', cows: '150 – 200 коров', time: '~2.4 часа', price: 'от 906 000 ₽' },
+  { vol: '10 000 л', model: 'УОМЗТ 10000 «Nerehta»', cows: '300 – 400 коров', time: '~2.5 часа', price: 'от 1 500 000 ₽' },
+  { vol: '25 000 л', model: 'УОМЗТ 25000 «Nerehta»', cows: '800+ коров', time: '~2.8 часа', price: 'от 3 270 000 ₽' }
+];
+
+function updateVolume(stepIndex) {
+  const d = volumeSteps[stepIndex] || volumeSteps[2];
+  document.getElementById('outModel').textContent = d.model;
+  document.getElementById('outCows').textContent = d.cows;
+  document.getElementById('outTime').textContent = d.time;
+  document.getElementById('outPrice').textContent = d.price;
 }
 
-function orderProduct(modelName) {
-  const select = document.getElementById('clientProduct');
+function orderConfigured() {
+  const model = document.getElementById('outModel').textContent;
+  prefillProduct(model);
+}
+
+function prefillProduct(name) {
+  const select = document.getElementById('leadProduct');
   if (select) {
-    let found = false;
+    let matched = false;
     for (let opt of select.options) {
-      if (opt.text.toLowerCase().includes(modelName.toLowerCase()) || opt.value.toLowerCase().includes(modelName.toLowerCase())) {
+      if (opt.text.toLowerCase().includes(name.toLowerCase())) {
         opt.selected = true;
-        found = true;
+        matched = true;
         break;
       }
     }
-    if (!found) {
-      const opt = new Option(modelName, modelName, true, true);
-      select.add(opt);
+    if (!matched) {
+      select.add(new Option(name, name, true, true));
     }
   }
-  const comment = document.getElementById('clientComment');
+  const comment = document.getElementById('leadComment');
   if (comment) {
-    comment.value = 'Интересует модель: ' + modelName + '. Прошу выслать коммерческое предложение с точной стоимостью доставки.';
+    comment.value = 'Запрос коммерческого предложения на: ' + name;
   }
-  const formElem = document.getElementById('request-form');
-  if (formElem) {
-    formElem.scrollIntoView({ behavior: 'smooth' });
-  }
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
 }
 
-// --- LIGHTBOX ---
-function openLightbox(imgSrc) {
-  const modal = document.getElementById('lightboxModal');
-  const img = document.getElementById('lightboxImg');
-  img.src = imgSrc;
-  modal.classList.add('active');
+// --- CERT MODAL ---
+function openCertModal(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('certModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function closeLightbox() {
-  const modal = document.getElementById('lightboxModal');
-  modal.classList.remove('active');
+function closeCertModal() {
+  document.getElementById('certModal').classList.remove('active');
   document.body.style.overflow = '';
 }
 
 // --- FORM SUBMIT ---
-function handleFormSubmit(e) {
+function handleQuoteSubmit(e) {
   e.preventDefault();
-  const name = document.getElementById('clientName').value.trim();
-  const phone = document.getElementById('clientPhone').value.trim();
+  const name = document.getElementById('leadName').value.trim();
+  const phone = document.getElementById('leadPhone').value.trim();
   if (!name || !phone) return;
 
-  const toast = document.getElementById('toastMsg');
+  const toast = document.getElementById('successToast');
   toast.style.display = 'block';
-  document.getElementById('factoryForm').reset();
+  e.target.reset();
 
   setTimeout(() => {
     toast.style.display = 'none';
-  }, 5000);
-}
-
-function toggleMobileMenu() {
-  const nav = document.querySelector('.header-nav');
-  if (nav.style.display === 'flex') {
-    nav.style.display = 'none';
-  } else {
-    nav.style.display = 'flex';
-    nav.style.flexDirection = 'column';
-    nav.style.position = 'absolute';
-    nav.style.top = '100%';
-    nav.style.left = '0';
-    nav.style.right = '0';
-    nav.style.background = '#FFFFFF';
-    nav.style.padding = '20px';
-    nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-  }
+  }, 4500);
 }
 </script>
 </body>
