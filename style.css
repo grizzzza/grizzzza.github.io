@@ -606,7 +606,13 @@ body.theme-cyan ::-webkit-scrollbar-thumb {
   animation: realtyZoomLoop 7s ease-in-out infinite;
 }
 
-/* 5. FAQ аккордеон детали */
+/* 5. FAQ Styling & Montserrat Font */
+#faq {
+  font-family: 'Montserrat', sans-serif !important;
+}
+#faq h2, #faq summary, #faq p, #faq li, #faq span:not(.faq-icon) {
+  font-family: 'Montserrat', sans-serif !important;
+}
 details.faq-item summary::-webkit-details-marker {
   display: none;
 }
