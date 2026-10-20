@@ -1,778 +1,1560 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>НПП «Энергия» — Завод промышленного холодильного и молочного оборудования | Ковров</title>
-  <meta name="description" content="Производство танков-охладителей молока, чиллеров, льдоаккумуляторов и емкостного оборудования из стали AISI 304 в г. Ковров. Заводские цены, гарантия 24 месяца, доставка и пусконаладка по РФ.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>НПП «ЭНЕРГИЯ» — Инженерное производство емкостного оборудования</title>
+<meta name="description" content="ООО НПП «Энергия» (Ковров). Проектирование и изготовление охладителей молока Nerehta, пастеризаторов и нержавеющих резервуаров от 100 до 30 000 литров.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D0F12;
+  --bg-card: #14181D;
+  --bg-card-hover: #1A1F26;
+  --bg-subtle: #181D24;
+  --border: #232A34;
+  --border-light: #323C4A;
+  
+  --text: #F1F3F5;
+  --text-muted: #8A95A5;
+  --text-dim: #546070;
+  
+  --orange: #FF5500;
+  --orange-glow: rgba(255, 85, 0, 0.25);
+  --orange-soft: rgba(255, 85, 0, 0.1);
+  
+  --steel: #A8B4C2;
+  --white: #FFFFFF;
+  
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
 
-  <!-- Google Fonts: Montserrat + Space Grotesk -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              cyan: '#06b6d4',
-              ice: '#38bdf8',
-              steel: '#94a3b8',
-              dark: '#080d16',
-              card: '#0e1726',
-              border: 'rgba(255, 255, 255, 0.12)'
-            }
-          }
-        }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Technical grid overlay background */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Typography elements */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.tag-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tag-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: #FFF;
+  border-color: var(--orange);
+  box-shadow: 0 4px 20px var(--orange-glow);
+}
+.btn-primary:hover {
+  background: #FF6A1A;
+  box-shadow: 0 6px 26px rgba(255, 85, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-light);
+}
+.btn-outline:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: var(--orange-soft);
+}
+
+/* =========================================================
+   HEADER / TOP BAR
+========================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 15, 18, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74px;
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.brand-symbol {
+  width: 36px;
+  height: 36px;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #FFF;
+  font-size: 1rem;
+  border-radius: 3px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.brand-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link span {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+}
+
+.nav-link:hover {
+  color: var(--orange);
+}
+
+.header-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.phone-link {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hero-title {
+  font-size: clamp(2.3rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+.visual-body {
+  position: relative;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #FFFFFF;
+}
+
+.display-image-wrap {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.catalog-card-image {
+  height: 200px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+}
+
+/* =========================================================
+   DIFFERENTIATION / CLARIFICATION CALLOUT
+========================================================= */
+.identity-strip {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+
+.identity-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.identity-text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.identity-icon {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+
+.identity-p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+.identity-p strong {
+  color: var(--white);
+}
+
+/* =========================================================
+   INTERACTIVE TECHNICAL SPEC & CONFIGURATOR
+========================================================= */
+.section {
+  padding: 100px 0;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  line-height: 1.1;
+  color: var(--white);
+  margin-top: 10px;
+}
+
+/* Configurator Layout */
+.config-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.config-sidebar {
+  padding: 32px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(0,0,0,0.2);
+}
+
+.config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.config-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.spec-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spec-selector-btn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.spec-selector-btn:hover {
+  border-color: var(--border-light);
+  color: var(--white);
+}
+
+.spec-selector-btn.active {
+  border-color: var(--orange);
+  background: var(--orange-soft);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.spec-selector-btn.active::after {
+  content: '▶';
+  font-size: 0.7rem;
+  color: var(--orange);
+}
+
+.config-display {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 30px;
+}
+
+.display-model-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.display-price-tag {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.display-content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.display-image-wrap {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+}
+
+.display-image-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.display-specs-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.88rem;
+}
+
+.spec-row-label {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.spec-row-val {
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+/* =========================================================
+   FOUR PILLARS OF PRODUCTION (КАТАЛОГ СЕТКА)
+========================================================= */
+.catalog-four-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.catalog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.catalog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-light);
+}
+
+.catalog-card-image {
+  height: 200px;
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.catalog-card-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.catalog-card:hover .catalog-card-image img {
+  transform: scale(1.06);
+}
+
+.card-num-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.catalog-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-cat {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* =========================================================
+   HARD ENGINEERING FACTS (ПРЕИМУЩЕСТВА)
+========================================================= */
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.fact-cell {
+  background: var(--bg-card);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s;
+}
+
+.fact-cell:hover {
+  background: var(--bg-card-hover);
+}
+
+.fact-num {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.fact-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.fact-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   CERTIFICATES & QUALITY GALLERY
+========================================================= */
+.certs-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cert-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.cert-item:hover {
+  border-color: var(--orange);
+  transform: translateY(-3px);
+}
+
+.cert-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+  filter: grayscale(20%);
+  transition: all 0.2s;
+}
+.cert-item:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.cert-item-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* =========================================================
+   CONTACT & ORDER DIRECTLY FROM FACTORY
+========================================================= */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 56px;
+}
+
+.contact-left h3 {
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 18px;
+  line-height: 1.15;
+}
+
+.contact-left p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.contact-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.contact-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-spec-item span {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.contact-spec-item strong, .contact-spec-item a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+}
+.contact-spec-item a:hover {
+  color: var(--orange);
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.input:focus {
+  border-color: var(--orange);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.footer {
+  padding: 60px 0 40px;
+  background: #08090B;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Modal lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 1px solid var(--border);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--orange);
+  color: #FFF;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: none;
+  z-index: 2000;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .config-layout { grid-template-columns: 1fr; }
+  .config-sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  .catalog-four-grid { grid-template-columns: repeat(2, 1fr); }
+  .facts-grid { grid-template-columns: 1fr 1fr; }
+  .certs-row { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; padding: 36px; }
+  .nav-menu { display: none; }
+}
+
+@media (max-width: 640px) {
+  .catalog-four-grid { grid-template-columns: 1fr; }
+  .facts-grid { grid-template-columns: 1fr; }
+  .certs-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-metrics { grid-template-columns: 1fr; }
+  .display-content-grid { grid-template-columns: 1fr; }
+  .contact-grid { padding: 24px; }
+  .header-contacts { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="brand-block">
+      <div class="brand-symbol">Э</div>
+      <div class="brand-text">
+        <span class="brand-name">НПП «ЭНЕРГИЯ»</span>
+        <span class="brand-meta">Завод емкостного машиностроения · Ковров</span>
+      </div>
+    </a>
+
+    <nav class="nav-menu">
+      <a href="#about" class="nav-link"><span>01</span> Завод</a>
+      <a href="#configurator" class="nav-link"><span>02</span> Конфигуратор</a>
+      <a href="#catalog" class="nav-link"><span>03</span> Оборудование</a>
+      <a href="#engineering" class="nav-link"><span>04</span> Технологии</a>
+      <a href="#certs" class="nav-link"><span>05</span> Сертификаты</a>
+      <a href="#contact" class="nav-link"><span>06</span> Контакты</a>
+    </nav>
+
+    <div class="header-contacts">
+      <a href="tel:+79101800129" class="phone-link">+7 (910) 180-01-29</a>
+      <a href="#contact" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.78rem;">Запросить КП</a>
+    </div>
+  </div>
+</header>
+
+<!-- BRAND CLARIFICATION STRIP -->
+<div class="identity-strip">
+  <div class="container identity-flex">
+    <div class="identity-text">
+      <span class="identity-icon">ℹ</span>
+      <p class="identity-p">
+        Предприятие: <strong>ООО НПП «Энергия»</strong> (г. Ковров, опыт 30 лет). 
+        Торговая марка охладителей молока: <strong>«NEREHTA»</strong>. Станции выпойки: <strong>«MILKNANNY»</strong>.
+      </p>
+    </div>
+    <div class="mono" style="font-size: 0.75rem; color: var(--orange);">
+      ● ГОСТ Р · ИСО 9001 · ТР ТС 010/2011 · СУБСИДИИ 1432
+    </div>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero" id="about">
+  <div class="container">
+    <div class="hero-meta-strip">
+      <div>[PROD. CODE: ENERG-KOVROV-2026]</div>
+      <div>МАТЕРИАЛ: НЕРЖАВЕЮЩАЯ СТАЛЬ AISI 304 / 316</div>
+      <div>ДИАПАЗОН ОБЪЁМОВ: 100 — 30 000 Л</div>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <span class="tag-label">Производственный комплекс полного цикла</span>
+        <h1 class="hero-title">
+          Инженерные системы <em>охлаждения молока</em> и емкости до 30 тонн
+        </h1>
+        <p class="hero-lead">
+          Собственное конструкторское бюро и завод в г. Ковров. Выпускаем серийные охладители «NEREHTA», станции выпойки «MILKNANNY» и емкостные реакторы по индивидуальным чертежам.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#configurator" class="btn btn-primary">Конфигуратор моделей</a>
+          <a href="#catalog" class="btn btn-outline">Каталог оборудования</a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <div class="metric-val">30<span>лет</span></div>
+            <div class="metric-lbl">Опыт в холодильном машиностроении с 1990-х гг.</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">60<span>мес</span></div>
+            <div class="metric-lbl">Расширенная гарантия завода на резервуары</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">15<span>+</span></div>
+            <div class="metric-lbl">Регионов с авторизованными дилерами и сервисом</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Isolated Visual Showcase -->
+      <div class="hero-visual-card">
+        <div class="visual-header">
+          <span>СЕРИЯ // NEREHTA УОМЗТ</span>
+          <span>ЗАКРЫТЫЙ ТИП</span>
+        </div>
+        <div class="visual-body">
+          <img src="assets/real/uomzt.png" alt="УОМЗТ Nerehta">
+        </div>
+        <div class="visual-footer">
+          <div>
+            <div class="visual-model-name">УОМЗТ 2500 «NEREHTA»</div>
+            <div class="mono" style="font-size: 0.72rem; color: var(--text-dim);">Автомойка · R404A · Сэндвич-испаритель</div>
+          </div>
+          <div class="visual-model-price">от 600 000 ₽</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE TECHNICAL CONFIGURATOR -->
+<section class="section" id="configurator">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="tag-label">Интерактивный селектор оборудования</span>
+        <h2 class="section-title">Технические спецификации установок</h2>
+      </div>
+      <p class="mono" style="font-size: 0.82rem; color: var(--text-muted); max-width: 420px;">
+        Выберите типоразмер для мгновенного отображения конструктивных параметров, массы, габаритов и базовой заводской стоимости.
+      </p>
+    </div>
+
+    <div class="config-layout">
+      <!-- Selector buttons -->
+      <div class="config-sidebar">
+        <div class="config-group">
+          <span class="config-group-title">Типоразмер охладителя:</span>
+          <div class="spec-btn-group">
+            <button class="spec-selector-btn active" onclick="selectConfig('uomzt-2000')">
+              <span>УОМЗТ 2000 (2 тонны)</span>
+            </button>
+            <button class="spec-selector-btn" onclick="selectConfig('uomzt-5000')">
+              <span>УОМЗТ 5000 (5 тонн)</span>
+            </button>
+            <button class="spec-selector-btn" onclick="selectConfig('uomzt-10000')">
+              <span>УОМЗТ 10000 (10 тонн)</span>
+            </button>
+            <button class="spec-selector-btn" onclick="selectConfig('uom-1000-open')">
+              <span>УОМ 1000 (Открытый)</span>
+            </button>
+            <button class="spec-selector-btn" onclick="selectConfig('uom-200-v')">
+              <span>УОМ 200-В (Вертикальный)</span>
+            </button>
+            <button class="spec-selector-btn" onclick="selectConfig('milknanny-200')">
+              <span>MILKNANNY 200 (Такси)</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: auto; padding: 16px; background: rgba(255,85,0,0.06); border: 1px dashed var(--orange); border-radius: 4px;">
+          <div class="mono" style="font-size: 0.72rem; color: var(--orange); font-weight: 600; margin-bottom: 4px;">ГОСУДАРСТВЕННАЯ СУБСИДИЯ</div>
+          <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4;">
+            Скидка 25% (до 30% для ДФО/СФО) по программе 1432 для производителей с/х продукции.
+          </p>
+        </div>
+      </div>
+
+      <!-- Display details -->
+      <div class="config-display">
+        <div class="display-meta">
+          <div>
+            <div class="mono" style="font-size: 0.75rem; color: var(--text-dim);" id="cfgCode">МОДЕЛЬ: УОМЗТ-2000-NER</div>
+            <div class="display-model-title" id="cfgTitle">УОМЗТ 2000 «NEREHTA»</div>
+          </div>
+          <div class="display-price-tag" id="cfgPrice">от 576 000 ₽</div>
+        </div>
+
+        <div class="display-content-grid">
+          <div class="display-image-wrap">
+            <img src="assets/real/uomzt.png" alt="Схема модели" id="cfgImage">
+          </div>
+
+          <div class="display-specs-table">
+            <div class="spec-row">
+              <span class="spec-row-label">Номинальный объём:</span>
+              <span class="spec-row-val" id="cfgVol">2 000 л</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Время охлаждения:</span>
+              <span class="spec-row-val" id="cfgTime">2.5 ч (+34°C → +4°C)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Испаритель:</span>
+              <span class="spec-row-val" id="cfgEvap">Сэндвич (лазерная геометрия)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Компрессорный блок:</span>
+              <span class="spec-row-val" id="cfgComp">Invotech / ScrollTech (R404A)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Система промывки:</span>
+              <span class="spec-row-val" id="cfgWash">Автоматическая CIP (форсунки)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Электропитание:</span>
+              <span class="spec-row-val" id="cfgPower">380 В / 50 Гц</span>
+            </div>
+
+            <div style="margin-top: 20px;">
+              <button class="btn btn-primary" style="width: 100%;" onclick="orderCurrentConfig()">
+                Запросить КП на эту модель
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUR PILLARS OF PRODUCTION -->
+<section class="section" id="catalog">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="tag-label">Производственная матрица</span>
+        <h2 class="section-title">4 направления машиностроения завода</h2>
+      </div>
+      <p class="mono" style="font-size: 0.82rem; color: var(--text-muted); max-width: 400px;">
+        Серийные изделия и проектные резервуары по индивидуальным опросным листам.
+      </p>
+    </div>
+
+    <div class="catalog-four-grid">
+
+      <!-- 1 -->
+      <div class="catalog-card">
+        <div class="catalog-card-image">
+          <span class="card-num-badge">01 // ТАНКИ</span>
+          <img src="assets/real/uomzt.png" alt="Охладители Nerehta">
+        </div>
+        <div class="catalog-card-body">
+          <span class="card-cat">Бренд «Nerehta»</span>
+          <h3 class="card-title">Установки охлаждения молока</h3>
+          <p class="card-desc">
+            Открытые ванны от 200 до 5 000 л и закрытые термосы от 1 500 до 25 000 л. Автомойка с программным контроллером.
+          </p>
+          <div class="card-footer">
+            <span class="card-price">от 209 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.72rem;" onclick="setOrderTopic('Охладители Nerehta')">Выбрать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="catalog-card">
+        <div class="catalog-card-image">
+          <span class="card-num-badge">02 // ПАСТЕРИЗАЦИЯ</span>
+          <img src="assets/live/vanny-dlitelnoy-pasterizacii-ff87.jpg" alt="Пастеризаторы ВДП">
+        </div>
+        <div class="catalog-card-body">
+          <span class="card-cat">Серия ВДП</span>
+          <h3 class="card-title">Ванны длительной пастеризации</h3>
+          <p class="card-desc">
+            Электрический котел, пар или ТЭН. Теплоноситель на основе глицерина (&lt; 20 л) — нагрев до 75°C за 5 минут без накипи.
+          </p>
+          <div class="card-footer">
+            <span class="card-price">234 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.72rem;" onclick="setOrderTopic('Ванны ВДП')">Выбрать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="catalog-card">
+        <div class="catalog-card-image">
+          <span class="card-num-badge">03 // ТАКСИ</span>
+          <img src="assets/live/molochnoe-taksi-ef54.jpg" alt="Молочное такси Milknanny">
+        </div>
+        <div class="catalog-card-body">
+          <span class="card-cat">Бренд «MILKNANNY»</span>
+          <h3 class="card-title">Станции выпойки телят</h3>
+          <p class="card-desc">
+            Объемы 100, 150, 200 и 250 л. Электропривод колёс, 7-дюймовый сенсорный ЖК-дисплей, пистолет с точной дозировкой.
+          </p>
+          <div class="card-footer">
+            <span class="card-price">от 358 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.72rem;" onclick="setOrderTopic('Молочное такси MILKNANNY')">Выбрать</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="catalog-card">
+        <div class="catalog-card-image">
+          <span class="card-num-badge">04 // НЕСТАНДАРТ</span>
+          <img src="assets/live/emkostnoe-nestandartnoe-oborudovanie-16d3.jpg" alt="Нестандартное оборудование">
+        </div>
+        <div class="catalog-card-body">
+          <span class="card-cat">Индивидуальные ТЗ</span>
+          <h3 class="card-title">Емкостное оборудование 100–30 000 л</h3>
+          <p class="card-desc">
+            Резервуары и термосы для спирта, сиропов, дрожжей, патоки, фармацевтики и косметики. Рубашки, мешалки, датчики.
+          </p>
+          <div class="card-footer">
+            <span class="card-price">от 100 000 ₽</span>
+            <a href="#contact" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.72rem;" onclick="setOrderTopic('Нестандартные ёмкости')">Выбрать</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENGINEERING FACTS & RELIABILITY -->
+<section class="section" id="engineering">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="tag-label">Факты о производстве</span>
+        <h2 class="section-title">Инженерные стандарты завода</h2>
+      </div>
+      <p class="mono" style="font-size: 0.82rem; color: var(--text-muted); max-width: 420px;">
+        Реальные технические показатели без маркетинговой воды.
+      </p>
+    </div>
+
+    <div class="facts-grid">
+      <div class="fact-cell">
+        <div class="fact-num">60</div>
+        <div class="fact-title">Месяцев гарантии завода</div>
+        <p class="fact-desc">Пятилетний гарантийный срок на емкости благодаря аргонной сварке нержавеющей стали с формированием коррозионностойкого шва.</p>
+      </div>
+
+      <div class="fact-cell">
+        <div class="fact-num">30</div>
+        <div class="fact-title">Лет производственного опыта</div>
+        <p class="fact-desc">Завод заложен в 1990-х в городе оружейников и машиностроителей Коврове. Оборудование отработало десятилетия на фермах.</p>
+      </div>
+
+      <div class="fact-cell">
+        <div class="fact-num">R404</div>
+        <div class="fact-title">Энергоэффективные контуры</div>
+        <p class="fact-desc">Агрегаты Invotech и ScrollTech с заправкой озонобезопасным фреоном R404A обеспечивают быстрый теплосъем при пониженном потреблении тока.</p>
+      </div>
+
+      <div class="fact-cell">
+        <div class="fact-num">1432</div>
+        <div class="fact-title">Субсидирование Минсельхоза РФ</div>
+        <p class="fact-desc">Сельхозтоваропроизводители получают субсидию 25% (для Крыма, Сибири и Дальнего Востока — 30%) от стоимости оборудования.</p>
+      </div>
+
+      <div class="fact-cell">
+        <div class="fact-num">100%</div>
+        <div class="fact-title">Пищевая нержавеющая сталь</div>
+        <p class="fact-desc">Внутренние и внешние резервуары изготавливаются из марок AISI 304 / 316 с зеркальной и матовой полировкой, пригодной для кислой среды.</p>
+      </div>
+
+      <div class="fact-cell">
+        <div class="fact-num">СНГ</div>
+        <div class="fact-title">Экспортная география</div>
+        <p class="fact-desc">Охладители завода успешно работают от Нарьян-Мара до Сахалина, а также в хозяйствах Беларуси, Казахстана, Киргизии и Молдовы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES & QUALITY DOCUMENTS -->
+<section class="section" id="certs">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="tag-label">Юридическая чистота & Стандарты</span>
+        <h2 class="section-title">Сертификаты и декларации соответствия</h2>
+      </div>
+      <p class="mono" style="font-size: 0.82rem; color: var(--text-muted); max-width: 400px;">
+        Официальные документы качества государственного образца. Нажмите для увеличения.
+      </p>
+    </div>
+
+    <div class="certs-row">
+      <div class="cert-item" onclick="openCert('assets/live/sert1-e934.jpg')">
+        <img src="assets/live/sert1-e934.jpg" alt="Сертификат соответствия ГОСТ Р">
+        <div class="cert-item-title">Сертификат соответствия ГОСТ Р</div>
+      </div>
+
+      <div class="cert-item" onclick="openCert('assets/live/sert2-62ce.jpg')">
+        <img src="assets/live/sert2-62ce.jpg" alt="Сертификат ISO 9001">
+        <div class="cert-item-title">Менеджмент качества ISO 9001</div>
+      </div>
+
+      <div class="cert-item" onclick="openCert('assets/live/eas-1bde.jpg')">
+        <img src="assets/live/eas-1bde.jpg" alt="Сертификат ТР ТС ЕАС">
+        <div class="cert-item-title">Декларация ЕАС ТР ТС 010/2011</div>
+      </div>
+
+      <div class="cert-item" onclick="openCert('assets/live/sert4-f964.jpg')">
+        <img src="assets/live/sert4-f964.jpg" alt="Сертификат на охладители молока">
+        <div class="cert-item-title">Протоколы испытаний охладителей</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & DIRECT ORDER FORM -->
+<section class="section" id="contact" style="border-bottom: none;">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left info -->
+      <div class="contact-left">
+        <span class="tag-label">Прямой диалог с производителем</span>
+        <h3>Отдел продаж завода в г. Ковров</h3>
+        <p>
+          Свяжитесь напрямую с ведущими инженерами завода для согласования технического задания, расчета мощности холодильного агрегата или оформления договора со скидкой по программе 1432.
+        </p>
+
+        <div class="contact-specs-list">
+          <div class="contact-spec-item">
+            <span>Телефон коммерческого отдела:</span>
+            <a href="tel:+79101800129" style="font-size: 1.2rem; color: var(--orange);">+7 (910) 180-01-29</a>
+          </div>
+          <div class="contact-spec-item">
+            <span>Многоканальный телефон завода:</span>
+            <a href="tel:+74923232595">+7 (49232) 3-25-95</a>
+          </div>
+          <div class="contact-spec-item">
+            <span>Электронная почта отдела продаж:</span>
+            <a href="mailto:energy-kovrov@mail.ru">energy-kovrov@mail.ru</a>
+          </div>
+          <div class="contact-spec-item">
+            <span>Производство и отгрузка:</span>
+            <strong>601903, Владимирская обл., г. Ковров, ул. Волго-Донская, д. 1/1</strong>
+          </div>
+          <div class="contact-spec-item">
+            <span>Официальные реквизиты:</span>
+            <strong>ООО НПП «Энергия» · ИНН 3305005087 · ОГРН 1033302205640</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div>
+        <form class="form-box" onsubmit="submitLead(event)">
+          <div class="form-row">
+            <div class="field">
+              <label for="fName">Ваше имя *</label>
+              <input type="text" id="fName" class="input" placeholder="Иван Иванович" required>
+            </div>
+            <div class="field">
+              <label for="fPhone">Номер телефона *</label>
+              <input type="tel" id="fPhone" class="input" placeholder="+7 (___) ___-__-__" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="fEmail">Email для коммерческого предложения</label>
+              <input type="email" id="fEmail" class="input" placeholder="office@ferma.ru">
+            </div>
+            <div class="field">
+              <label for="fModel">Интересующая позиция</label>
+              <select id="fModel" class="input">
+                <option value="УОМЗТ Закрытый термос">Охладитель молока УОМЗТ Nerehta (закрытый)</option>
+                <option value="УОМ Открытая ванна">Охладитель молока УОМ Nerehta (открытый)</option>
+                <option value="Молочное такси MILKNANNY">Молочное такси MILKNANNY</option>
+                <option value="Пастеризатор ВДП">Пастеризатор ВДП</option>
+                <option value="Нестандартная ёмкость">Емкость по индивидуальному ТЗ (до 30т)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fNotes">Технические пожелания / Суточный надой / Регион доставки</label>
+            <textarea id="fNotes" class="input" placeholder="Укажите объём, наличие автомойки, необходимость доставки..."></textarea>
+          </div>
+
+          <div class="mono" style="font-size: 0.7rem; color: var(--text-dim); line-height: 1.4;">
+            Нажимая кнопку, вы соглашаетесь на обработку персональных данных для расчета КП в соответствии с политикой конфиденциальности завода.
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="padding: 16px; font-size: 0.95rem;">
+            Получить коммерческое предложение завода
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="brand-symbol" style="width: 28px; height: 28px; font-size: 0.8rem;">Э</div>
+        <span style="color: var(--white); font-weight: 700; font-size: 0.95rem;">ООО НПП «ЭНЕРГИЯ»</span>
+      </div>
+      <div>
+        <span>Ген. директор: Скитев В. Н.</span> · 
+        <span>Гл. бухгалтер: Курбатова С. А.</span>
+      </div>
+      <div>
+        <a href="tel:+79101800129" style="color: var(--orange); text-decoration: none; font-weight: 600;">+7 (910) 180-01-29</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 1995–2026 ООО НПП «Энергия». Разработка и производство промышленного емкостного оборудования.</div>
+      <div>г. Ковров, Владимирская область</div>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="modalLightbox" onclick="closeCert()">
+  <img src="" alt="Сертификат" class="lightbox-img" id="modalCertImg" onclick="event.stopPropagation()">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="leadToast">
+  ✓ Заявка принята. Главный инженер отдела продаж подготовит расчет КП.
+</div>
+
+<script>
+// Technical Configurator Data
+const configData = {
+  'uomzt-2000': {
+    code: 'МОДЕЛЬ: УОМЗТ-2000-NER',
+    title: 'УОМЗТ 2000 «NEREHTA»',
+    price: 'от 576 000 ₽',
+    img: 'assets/real/uomzt.png',
+    vol: '2 000 л',
+    time: '2.5 ч (+34°C → +4°C)',
+    evap: 'Сэндвич (лазерная геометрия)',
+    comp: 'Invotech / ScrollTech (R404A)',
+    wash: 'Автоматическая CIP (форсунки)',
+    power: '380 В / 50 Гц / 4.2 кВт'
+  },
+  'uomzt-5000': {
+    code: 'МОДЕЛЬ: УОМЗТ-5000-NER',
+    title: 'УОМЗТ 5000 «NEREHTA»',
+    price: 'от 906 000 ₽',
+    img: 'assets/real/uomzt.png',
+    vol: '5 000 л',
+    time: '2.5 ч (+34°C → +4°C)',
+    evap: 'Сэндвич с распределением потоков',
+    comp: 'Invotech мощный 2-компрессорный блок',
+    wash: 'Автоматическая щелочь + кислота',
+    power: '380 В / 50 Гц / 9.5 кВт'
+  },
+  'uomzt-10000': {
+    code: 'МОДЕЛЬ: УОМЗТ-10000-NER',
+    title: 'УОМЗТ 10000 «NEREHTA»',
+    price: 'от 1 500 000 ₽',
+    img: 'assets/real/uomzt.png',
+    vol: '10 000 л',
+    time: '3.0 ч на максимальный надой',
+    evap: 'Двойной сэндвич-испаритель днища',
+    comp: 'Спиральный чиллерный блок Copeland/Invotech',
+    wash: 'Автономный CIP-блок с насосом',
+    power: '380 В / 50 Гц / 18.5 кВт'
+  },
+  'uom-1000-open': {
+    code: 'МОДЕЛЬ: УОМ-1000-OPEN',
+    title: 'УОМ 1000 «NEREHTA» (Ванна)',
+    price: 'от 353 000 ₽',
+    img: 'assets/real/photo_3.jpg',
+    vol: '1 000 л',
+    time: '2.0 ч (+34°C → +4°C)',
+    evap: 'Интегрированный сэндвич днища',
+    comp: 'Моноблочный агрегат Invotech',
+    wash: 'Ручная / полуавтоматическая',
+    power: '380 В / 50 Гц / 2.8 кВт'
+  },
+  'uom-200-v': {
+    code: 'МОДЕЛЬ: УОМ-200-ВЕРТ',
+    title: 'УОМ 200-В «NEREHTA» (Вертикальный)',
+    price: 'от 222 000 ₽',
+    img: 'assets/real/uomv.png',
+    vol: '200 л',
+    time: '1.5 ч для малых хозяйств',
+    evap: 'Прямое охлаждение',
+    comp: 'Компактный на единой раме',
+    wash: 'Удобная верхняя горловина',
+    power: '220 В / 380 В'
+  },
+  'milknanny-200': {
+    code: 'МОДЕЛЬ: MILKNANNY-200',
+    title: 'Такси «MILKNANNY 200»',
+    price: 'от 358 000 ₽',
+    img: 'assets/live/molochnoe-taksi-ef54.jpg',
+    vol: '200 л',
+    time: 'Пастеризация + электроподогрев',
+    evap: 'Опциональный охладительный чиллер',
+    comp: 'Электропривод колёс с регулятором',
+    wash: 'Пистолет с электронным расходомером',
+    power: 'Аккумуляторная тяга + 380В зарядка'
+  }
+};
+
+function selectConfig(key) {
+  document.querySelectorAll('.spec-selector-btn').forEach(btn => btn.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const d = configData[key];
+  if (!d) return;
+
+  document.getElementById('cfgCode').textContent = d.code;
+  document.getElementById('cfgTitle').textContent = d.title;
+  document.getElementById('cfgPrice').textContent = d.price;
+  document.getElementById('cfgImage').src = d.img;
+  document.getElementById('cfgVol').textContent = d.vol;
+  document.getElementById('cfgTime').textContent = d.time;
+  document.getElementById('cfgEvap').textContent = d.evap;
+  document.getElementById('cfgComp').textContent = d.comp;
+  document.getElementById('cfgWash').textContent = d.wash;
+  document.getElementById('cfgPower').textContent = d.power;
+}
+
+function orderCurrentConfig() {
+  const title = document.getElementById('cfgTitle').textContent;
+  setOrderTopic(title);
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+
+function setOrderTopic(topic) {
+  const select = document.getElementById('fModel');
+  if (select) {
+    let found = false;
+    for (let opt of select.options) {
+      if (opt.text.toLowerCase().includes(topic.toLowerCase())) {
+        opt.selected = true;
+        found = true;
+        break;
       }
     }
-  </script>
-
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-[#070b12] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
-
-  <!-- ============================================== -->
-  <!-- 1. ВЕРХНИЙ ИНЖЕНЕРНЫЙ ТОПБАР                   -->
-  <!-- ============================================== -->
-  <div class="bg-black/80 border-b border-white/10 text-xs font-mono py-2 px-4 sm:px-8 text-slate-400">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 text-emerald-400 font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Завод работает
-        </span>
-        <span class="text-white/20">|</span>
-        <span>г. Ковров, ул. Волго-Донская, 1к1</span>
-        <span class="hidden md:inline text-white/20">|</span>
-        <span class="hidden md:inline">Пн-Пт: 08:00 – 17:00</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-300">
-        <a href="mailto:info@npp-energiya.ru" class="hover:text-cyan-400 transition-colors hidden sm:inline">info@npp-energiya.ru</a>
-        <a href="tel:+79101800129" class="font-bold text-white hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 fill-cyan-400" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          +7 (910) 180-01-29
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================== -->
-  <!-- 2. ГЛАВНАЯ ШАПКА / НАВИГАЦИЯ                   -->
-  <!-- ============================================== -->
-  <header class="sticky top-0 z-40 bg-[#070b12]/90 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
-      
-      <!-- Логотип -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-700 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-          Э
-        </div>
-        <div>
-          <div class="font-black text-lg sm:text-xl tracking-tight text-white flex items-center gap-2">
-            НПП «ЭНЕРГИЯ»
-            <span class="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-400/30 text-cyan-300">Ковров</span>
-          </div>
-          <div class="text-[11px] text-slate-400 font-normal">Холодильное и молочное машиностроение</div>
-        </div>
-      </a>
-
-      <!-- Меню (Desktop) -->
-      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-slate-300">
-        <a href="#catalog" class="hover:text-cyan-400 transition-colors">Каталог оборудования</a>
-        <a href="#calculator" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-          <span>Подбор танка</span>
-          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-        </a>
-        <a href="#tech" class="hover:text-cyan-400 transition-colors">Технологии завода</a>
-        <a href="#advantages" class="hover:text-cyan-400 transition-colors">Преимущества</a>
-        <a href="#contacts" class="hover:text-cyan-400 transition-colors">Контакты</a>
-      </nav>
-
-      <!-- CTA Кнопка -->
-      <div class="flex items-center gap-3">
-        <a href="#calculator" class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/25 transition-all hover:scale-105">
-          <span>Рассчитать смету</span>
-          <span>→</span>
-        </a>
-        <!-- Мобильный бургер -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white" aria-label="Открыть меню">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Мобильное выпадающее меню -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0a101d] px-6 py-5 space-y-3 font-semibold text-sm">
-      <a href="#catalog" class="block py-2 text-slate-300 hover:text-cyan-400 mobile-nav-item">Каталог оборудования</a>
-      <a href="#calculator" class="block py-2 text-slate-300 hover:text-cyan-400 mobile-nav-item">Конфигуратор и подбор</a>
-      <a href="#tech" class="block py-2 text-slate-300 hover:text-cyan-400 mobile-nav-item">Технологии завода</a>
-      <a href="#advantages" class="block py-2 text-slate-300 hover:text-cyan-400 mobile-nav-item">Преимущества AISI 304</a>
-      <a href="#contacts" class="block py-2 text-slate-300 hover:text-cyan-400 mobile-nav-item">Контакты и отгрузка</a>
-      <div class="pt-2">
-        <a href="#calculator" class="w-full text-center block py-3 rounded-xl bg-cyan-500 text-slate-950 font-bold">Рассчитать стоимость танка</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ============================================== -->
-  <!-- 3. ГЛАВНЫЙ ЭКРАН (HERO)                         -->
-  <!-- ============================================== -->
-  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden border-b border-white/10">
-    <!-- Фоновые эффекты -->
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Левая колонка: Текст и УТП -->
-        <div class="lg:col-span-7 space-y-6">
-          
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider">
-            <span>✦ Завод-изготовитель • г. Ковров</span>
-          </div>
-
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-            Танки-охладители молока и чиллеры <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-300">напрямую с завода</span>
-          </h1>
-
-          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
-            Производим закрытые и открытые охладители молока от <strong class="text-white">500 до 15 000 литров</strong>, генераторы ледяной воды и пастеризаторы из стали AISI 304. Сохраняем высший сорт молока за счет сверхбыстрого охлаждения за 3 часа.
-          </p>
-
-          <!-- Ключевые плашки преимуществ -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 font-mono text-xs">
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-              <div class="text-cyan-400 font-bold text-lg font-sans">0 ₽</div>
-              <div class="text-slate-400 mt-0.5">Дилерских наценок</div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-              <div class="text-cyan-400 font-bold text-lg font-sans">3.2 ч</div>
-              <div class="text-slate-400 mt-0.5">Охлаждение с 35°C</div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-              <div class="text-cyan-400 font-bold text-lg font-sans">24 мес</div>
-              <div class="text-slate-400 mt-0.5">Заводская гарантия</div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
-              <div class="text-cyan-400 font-bold text-lg font-sans">100% РФ</div>
-              <div class="text-slate-400 mt-0.5">Доставка и монтаж</div>
-            </div>
-          </div>
-
-          <!-- Кнопки действий -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3">
-            <a href="#calculator" class="px-7 py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm uppercase tracking-wider text-center shadow-lg shadow-cyan-500/25 transition-all hover:scale-105 flex items-center justify-center gap-2">
-              <span>Подобрать танк под стадо</span>
-              <span>↓</span>
-            </a>
-            <a href="#catalog" class="px-7 py-4 rounded-xl border border-white/20 bg-white/[0.03] hover:bg-white/10 hover:border-white/40 text-white font-semibold text-sm uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-              <span>Смотреть каталог</span>
-              <span>→</span>
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Правая колонка: 3D-образное интерактивное промо танка -->
-        <div class="lg:col-span-5">
-          <div class="relative rounded-2xl border border-white/15 bg-gradient-to-b from-[#111c30] to-[#0a101d] p-6 shadow-2xl overflow-hidden group">
-            
-            <div class="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-xs font-semibold">
-              Флагман ТОМ-5000З
-            </div>
-
-            <div class="relative h-72 sm:h-80 w-full rounded-xl overflow-hidden mb-6 border border-white/10">
-              <img src="assets/hero-tank.jpg" alt="Танк охладитель молока ТОМ-5000" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-              
-              <!-- Интерактивные инженерные метки на фото -->
-              <div class="absolute bottom-3 left-3 text-xs font-mono text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15">
-                ● Лазерная сварка испарителя типа «сэндвич»
-              </div>
-            </div>
-
-            <!-- Характеристики флагмана -->
-            <div class="space-y-2.5 text-xs font-mono">
-              <div class="flex items-center justify-between py-1.5 border-b border-white/10">
-                <span class="text-slate-400">Вместимость:</span>
-                <span class="font-bold text-white font-sans text-sm">5 000 литров</span>
-              </div>
-              <div class="flex items-center justify-between py-1.5 border-b border-white/10">
-                <span class="text-slate-400">Система промывки:</span>
-                <span class="text-cyan-300 font-bold">Автоматическая CIP 360°</span>
-              </div>
-              <div class="flex items-center justify-between py-1.5 border-b border-white/10">
-                <span class="text-slate-400">Холодильный агрегат:</span>
-                <span class="text-white">Bitzer / Danfoss (R404a)</span>
-              </div>
-              <div class="flex items-center justify-between py-1.5 border-b border-white/10">
-                <span class="text-slate-400">Материал корпуса:</span>
-                <span class="text-emerald-400 font-bold">Пищевая сталь AISI 304</span>
-              </div>
-            </div>
-
-            <button onclick="openSpecModal('ТОМ-5000З')" class="w-full mt-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
-              <span>Запросить чертежи и заводскую смету</span>
-              <span>→</span>
-            </button>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 4. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ПОДБОРА ОБОРУДОВАНИЯ -->
-  <!-- ============================================== -->
-  <section id="calculator" class="py-20 lg:py-28 bg-[#090f1c] border-b border-white/10 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-          <span>Инженерный конфигуратор</span>
-        </div>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Подберите охладитель под вашу ферму за 30 секунд
-        </h2>
-        <p class="text-slate-400 text-base sm:text-lg font-normal mt-3 leading-relaxed">
-          Укажите параметры стада — калькулятор мгновенно рассчитает точный литраж, порекомендует тип танка и покажет прибавку к выручке за высший сорт.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Панель управления параметрами (Левая часть) -->
-        <div class="lg:col-span-7 bg-[#0e1726] border border-white/15 rounded-2xl p-6 sm:p-8 space-y-7 shadow-xl">
-          
-          <!-- Ползунок 1: Поголовье коров -->
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-slate-300 font-semibold">1. Дойное стадо (голов):</span>
-              <span id="cows-val" class="font-bold text-cyan-400 font-mono text-lg bg-cyan-500/10 px-3 py-0.5 rounded border border-cyan-400/30">120 коров</span>
-            </div>
-            <input type="range" id="cows-range" min="10" max="600" step="5" value="120" class="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-700 rounded-lg">
-            <div class="flex justify-between text-[11px] text-slate-500 font-mono">
-              <span>10 (КФХ)</span>
-              <span>150 (Средняя ферма)</span>
-              <span>300+ (Агрокомплекс)</span>
-              <span>600+</span>
-            </div>
-          </div>
-
-          <!-- Ползунок 2: Среднесуточный надой -->
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-slate-300 font-semibold">2. Среднесуточный надой на 1 корову (литров):</span>
-              <span id="yield-val" class="font-bold text-cyan-400 font-mono text-lg bg-cyan-500/10 px-3 py-0.5 rounded border border-cyan-400/30">22 л / день</span>
-            </div>
-            <input type="range" id="yield-range" min="10" max="38" step="1" value="22" class="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-700 rounded-lg">
-            <div class="flex justify-between text-[11px] text-slate-500 font-mono">
-              <span>10 л</span>
-              <span>20 л (стандарт)</span>
-              <span>30 л (высокопродуктивное)</span>
-              <span>38 л</span>
-            </div>
-          </div>
-
-          <!-- Переключатель: График вывоза молока -->
-          <div class="space-y-2">
-            <label class="block text-sm text-slate-300 font-semibold">3. Периодичность вывоза молоковозом:</label>
-            <div class="grid grid-cols-2 gap-3 pt-1">
-              <button type="button" id="pickup-daily" class="pickup-btn active py-3 px-4 rounded-xl border border-cyan-400 bg-cyan-500/20 text-cyan-300 font-semibold text-xs text-center transition-all">
-                Каждый день (1 день)
-              </button>
-              <button type="button" id="pickup-2days" class="pickup-btn py-3 px-4 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white font-semibold text-xs text-center transition-all">
-                Через день (запас на 2 дня)
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Результат расчета (Правая часть) -->
-        <div class="lg:col-span-5 bg-gradient-to-b from-[#131f33] to-[#0b121e] border-2 border-cyan-400/40 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-          
-          <div class="text-xs font-mono uppercase text-cyan-300 tracking-wider font-semibold mb-2">
-            Результат инженерного расчета
-          </div>
-
-          <div class="text-2xl sm:text-3xl font-extrabold text-white mb-6">
-            Рекомендуемая модель: <span id="res-model" class="text-cyan-400">ТОМ-3000З</span>
-          </div>
-
-          <!-- Спецификация расчетного танка -->
-          <div class="space-y-3.5 text-xs font-mono border-y border-white/10 py-4 mb-6">
-            <div class="flex justify-between">
-              <span class="text-slate-400">Суточный надой стада:</span>
-              <span id="res-daily-milk" class="font-bold text-white font-sans text-sm">2 640 литров</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-400">Расчетный рабочий объем:</span>
-              <span id="res-capacity" class="font-bold text-cyan-300 font-sans text-sm">3 000 литров</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-400">Тип конструкции:</span>
-              <span id="res-type" class="font-bold text-white">Закрытый (CIP мойка 360°)</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-400">Время охлаждения:</span>
-              <span class="text-emerald-400 font-bold">2.8 часа до 4°C</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-slate-400">Сталь емкости:</span>
-              <span class="text-white">Пищевая нержавеющая AISI 304</span>
-            </div>
-          </div>
-
-          <!-- Дополнительная выгода фермы -->
-          <div class="p-4 rounded-xl bg-cyan-500/10 border border-cyan-400/30 mb-6">
-            <div class="text-xs font-bold text-cyan-300 uppercase font-mono mb-1">
-              Экономический эффект сохранения высшего сорта:
-            </div>
-            <div class="text-xs text-slate-300">
-              При быстром охлаждении до 4°C молоко сохраняет сортность. Дополнительная прибыль фермы: <strong id="res-profit" class="text-emerald-400 font-bold">+237 000 ₽ / месяц</strong> при сдаче на молзавод.
-            </div>
-          </div>
-
-          <!-- Кнопка заявки на расчет -->
-          <button onclick="openCalcOrderModal()" class="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2">
-            <span>Получить заводскую смету на эту модель</span>
-            <span>→</span>
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 5. КАТАЛОГ СЕРИЙНОГО ОБОРУДОВАНИЯ              -->
-  <!-- ============================================== -->
-  <section id="catalog" class="py-20 lg:py-28 bg-[#070b12] border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            <span>Каталог завода</span>
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Серийное молочное и холодильное оборудование
-          </h2>
-        </div>
-        
-        <!-- Фильтры категорий -->
-        <div class="flex flex-wrap gap-2 text-xs font-semibold">
-          <button class="cat-filter active px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold" data-cat="all">Все (6)</button>
-          <button class="cat-filter px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10" data-cat="closed">Танки закрытые (CIP)</button>
-          <button class="cat-filter px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10" data-cat="open">Ванны открытые</button>
-          <button class="cat-filter px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10" data-cat="chillers">Чиллеры и ГЛВ</button>
-          <button class="cat-filter px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10" data-cat="pasteur">Пастеризаторы ВДП</button>
-        </div>
-      </div>
-
-      <!-- Сетка карточек оборудования -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="catalog-grid">
-        
-        <!-- Модель 1: ТОМ-2000З -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="closed">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/cooler-closed.jpg" alt="ТОМ-2000З" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Закрытый тип</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-mono font-bold">Хит продаж</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ТОМ-2000З (Танк-охладитель 2 000 л)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Горизонтальный цилиндрический резервуар с автоматической мойкой CIP, лазерным испарителем и агрегатом Danfoss.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Номинальный объем:</span><strong class="text-white">2 000 л</strong></div>
-                <div class="flex justify-between"><span>Мойка:</span><strong class="text-cyan-300">Автоматическая CIP 360°</strong></div>
-                <div class="flex justify-between"><span>Время охлаждения:</span><strong class="text-white">2.9 часа</strong></div>
-                <div class="flex justify-between"><span>Холодопроизводительность:</span><strong class="text-white">9.8 кВт</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ТОМ-2000З')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Модель 2: ТОМ-5000З -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="closed">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/hero-tank.jpg" alt="ТОМ-5000З" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Закрытый тип</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold">Для ферм 200+</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ТОМ-5000З (Танк-охладитель 5 000 л)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Мощный закрытый охладитель молока с двухконтурным компрессорным агрегатом Bitzer и сенсорным контроллером EVCO.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Номинальный объем:</span><strong class="text-white">5 000 л</strong></div>
-                <div class="flex justify-between"><span>Мойка:</span><strong class="text-cyan-300">Автомат + дозаторы</strong></div>
-                <div class="flex justify-between"><span>Время охлаждения:</span><strong class="text-white">3.1 часа</strong></div>
-                <div class="flex justify-between"><span>Компрессор:</span><strong class="text-white">Bitzer (Германия)</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ТОМ-5000З')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Модель 3: ТОМ-10000З -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="closed">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/factory.jpg" alt="ТОМ-10000З" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Закрытый тип</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-mono font-bold">Агрокомплекс</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ТОМ-10000З (Танк-охладитель 10 000 л)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Промышленный комплекс охлаждения для крупных молзаводов. Две независимые холодильные линии с дублированием.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Номинальный объем:</span><strong class="text-white">10 000 л</strong></div>
-                <div class="flex justify-between"><span>Насос мойки:</span><strong class="text-cyan-300">Lowara (Италия)</strong></div>
-                <div class="flex justify-between"><span>Охлаждение:</span><strong class="text-white">3.0 часа</strong></div>
-                <div class="flex justify-between"><span>Датчики:</span><strong class="text-white">Электронный учет уровня</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ТОМ-10000З')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Модель 4: ТОМ-1000О (Открытый) -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="open">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/cooler-open.jpg" alt="ТОМ-1000О" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Открытый тип</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-white/10 border border-white/20 text-slate-300 text-xs font-mono font-bold">Для фермы</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ТОМ-1000О (Ванна-охладитель 1 000 л)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Компактная ванна вертикального типа с откидной крышкой на газлифтах. Простота мойки и надежный агрегат.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Номинальный объем:</span><strong class="text-white">1 000 л</strong></div>
-                <div class="flex justify-between"><span>Исполнение:</span><strong class="text-cyan-300">Вертикальное с крышкой</strong></div>
-                <div class="flex justify-between"><span>Мешалка:</span><strong class="text-white">Мотор-редуктор 23 об/мин</strong></div>
-                <div class="flex justify-between"><span>Габариты:</span><strong class="text-white">1650 × 1250 мм</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ТОМ-1000О')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Модель 5: ГЛВ-3000 (Генератор ледяной воды) -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="chillers">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/chiller.jpg" alt="Генератор ледяной воды ГЛВ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Холодоснабжение</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold">Вода +0.5°C</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ГЛВ-3000 (Льдоаккумулятор 3 000 л)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Установка мгновенного охлаждения молока в потоке через теплообменник. Накапливает холод по ночному дешевому тарифу.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Температура воды:</span><strong class="text-cyan-300">+0.5 ... +1.0 °C</strong></div>
-                <div class="flex justify-between"><span>Масса льда:</span><strong class="text-white">до 1 200 кг</strong></div>
-                <div class="flex justify-between"><span>Экономия электричества:</span><strong class="text-emerald-400">до 40% (ночной тариф)</strong></div>
-                <div class="flex justify-between"><span>Применение:</span><strong class="text-white">Охлаждение в потоке</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ГЛВ-3000')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Модель 6: ВДП-600 (Пастеризатор) -->
-        <div class="cat-card rounded-2xl bg-[#0e1726] border border-white/15 overflow-hidden flex flex-col justify-between group hover:border-cyan-400/50 transition-all shadow-xl" data-category="pasteur">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-slate-900 border-b border-white/10">
-              <img src="assets/pasteurizer.jpg" alt="Пастеризатор ВДП-600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md border border-white/20 text-cyan-300 text-xs font-mono font-bold">Переработка</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-white/10 border border-white/20 text-slate-300 text-xs font-mono font-bold">Сыроварня / КФХ</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">ВДП-600 (Ванна длительной пастеризации)</h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                Универсальная емкость для пастеризации, сквашивания, охлаждения и созревания сливок, кефира, сырного зерна.
-              </p>
-              <div class="space-y-1.5 text-xs font-mono py-3 border-y border-white/10 text-slate-300">
-                <div class="flex justify-between"><span>Рабочий объем:</span><strong class="text-white">600 л</strong></div>
-                <div class="flex justify-between"><span>Нагрев:</span><strong class="text-white">ТЭНы / Пар</strong></div>
-                <div class="flex justify-between"><span>Температура пастеризации:</span><strong class="text-white">до 95 °C</strong></div>
-                <div class="flex justify-between"><span>Мешалка:</span><strong class="text-cyan-300">Рамная с фторопластом</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <button onclick="openSpecModal('ВДП-600')" class="w-full py-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 border border-cyan-400/40 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-              <span>Запросить цену завода</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 6. ТЕХНОЛОГИИ ПРОИЗВОДСТВА ЗАВОДА В КОВРОВЕ     -->
-  <!-- ============================================== -->
-  <section id="tech" class="py-20 lg:py-28 bg-[#0a101d] border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-          <span>Собственные мощности</span>
-        </div>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Почему оборудование НПП «Энергия» служит более 15 лет
-        </h2>
-        <p class="text-slate-400 text-base sm:text-lg font-normal mt-3 leading-relaxed">
-          Каждый охладитель проектируется и собирается на нашем производственном комплексе в г. Ковров с 3-ступенчатым контролем ОТК.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-400/40 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold mb-4">
-            01
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Лазерная сварка испарителя</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Штампосварной испаритель выдерживает гидроиспытания под давлением 30 атм. Исключен риск микротрещин и утечки хладагента в молоко.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-400/40 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold mb-4">
-            02
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Теплоизоляция 50 мм ППУ</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Бесшовная заливка пенополиуретана высокой плотности. При полном отключении электроэнергии температура поднимается не более чем на 1°C за 24 часа.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-400/40 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold mb-4">
-            03
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Сталь AISI 304 / 316</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Внутренние колбы выполняются строго из сертифицированной пищевой стали с зеркальной полировкой швов Ra &lt; 0.8 мкм, предотвращающей размножение бактерий.
-          </p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-400/40 transition-colors">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold mb-4">
-            04
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Собственный склад запчастей</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Компрессоры, редукторы, форсунки, клапаны и платы управления всегда в наличии в Коврове. Экспресс-отправка в любой регион России в день заявки.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 7. КОНТАКТЫ И ЗАВОДСКОЙ ЗАКАЗ                   -->
-  <!-- ============================================== -->
-  <section id="contacts" class="py-20 lg:py-28 bg-[#070b12] relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      
-      <div class="rounded-3xl border border-white/15 bg-gradient-to-br from-[#0d1627] to-[#070c16] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          <div class="lg:col-span-7 space-y-5">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-semibold uppercase tracking-wider">
-              <span>Прямой контакт с производством</span>
-            </div>
-            
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Запросите расчет стоимости оборудования под ключ
-            </h2>
-
-            <p class="text-slate-300 text-base font-normal leading-relaxed">
-              Главный инженер завода свяжется с вами в течение 15 минут, подготовит технико-коммерческое предложение с чертежами и согласует удобные условия поставки и лизинга.
-            </p>
-
-            <div class="pt-2 space-y-3 font-mono text-sm text-slate-300">
-              <div class="flex items-center gap-3">
-                <span class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">📍</span>
-                <span>Владимирская обл., г. Ковров, ул. Волго-Донская, 1к1</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">📞</span>
-                <a href="tel:+79101800129" class="text-white font-bold hover:text-cyan-400 transition-colors">+7 (910) 180-01-29</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">✉️</span>
-                <a href="mailto:info@npp-energiya.ru" class="text-white hover:text-cyan-400 transition-colors">info@npp-energiya.ru</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Форма быстрой заявки -->
-          <div class="lg:col-span-5 bg-black/50 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/10 shadow-xl">
-            <form id="lead-form" class="space-y-4">
-              <div>
-                <label class="block text-xs font-mono text-slate-400 mb-1">Ваше имя или название хозяйства:</label>
-                <input type="text" id="lead-name" required placeholder="Например: КФХ «Рассвет» или Иван" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400">
-              </div>
-
-              <div>
-                <label class="block text-xs font-mono text-slate-400 mb-1">Номер телефона (для звонка инженера):</label>
-                <input type="tel" id="lead-phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400">
-              </div>
-
-              <div>
-                <label class="block text-xs font-mono text-slate-400 mb-1">Интересующее оборудование:</label>
-                <select id="lead-equip" class="w-full px-4 py-3 rounded-xl bg-[#111927] border border-white/15 text-white text-sm focus:outline-none focus:border-cyan-400">
-                  <option value="ТОМ-2000З">Танк-охладитель закрытый 2 000 л</option>
-                  <option value="ТОМ-5000З" selected>Танк-охладитель закрытый 5 000 л</option>
-                  <option value="ТОМ-10000З">Танк-охладитель закрытый 10 000 л</option>
-                  <option value="ТОМ-1000О">Ванна-охладитель открытая 1 000 л</option>
-                  <option value="ГЛВ-3000">Генератор ледяной воды / чиллер</option>
-                  <option value="ВДП-600">Пастеризатор ВДП</option>
-                  <option value="custom">Индивидуальный расчет под проект</option>
-                </select>
-              </div>
-
-              <button type="submit" class="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25">
-                Запросить заводское КП и чертежи
-              </button>
-
-              <div class="text-[11px] text-slate-400 text-center font-mono">
-                ✓ Без спама. Данные защищены и передаются главному инженеру.
-              </div>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================== -->
-  <!-- 8. ФУТЕР                                       -->
-  <!-- ============================================== -->
-  <footer class="bg-black border-t border-white/10 py-10 px-4 sm:px-8 text-xs font-mono text-slate-400">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 font-bold">
-          Э
-        </div>
-        <div>
-          <div class="font-bold text-white font-sans text-sm">ООО «НПП Энергия»</div>
-          <div>Производство холодильного оборудования • Ковров</div>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap gap-6 text-slate-400">
-        <a href="#catalog" class="hover:text-cyan-400 transition-colors">Каталог</a>
-        <a href="#calculator" class="hover:text-cyan-400 transition-colors">Калькулятор подбора</a>
-        <a href="#tech" class="hover:text-cyan-400 transition-colors">Технологии</a>
-        <a href="#contacts" class="hover:text-cyan-400 transition-colors">Отгрузка</a>
-      </div>
-
-      <div class="text-right text-slate-500">
-        © 2026 ООО «НПП Энергия». Все права защищены.
-      </div>
-    </div>
-  </footer>
-
-  <!-- ============================================== -->
-  <!-- 9. МОДАЛЬНОЕ ОКНО ТЕХПАСПОРТА                   -->
-  <!-- ============================================== -->
-  <div id="spec-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="bg-[#0e1726] border border-cyan-400/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl space-y-4">
-      <button onclick="closeSpecModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-white flex items-center justify-center">✕</button>
-      
-      <div class="text-xs font-mono text-cyan-400 uppercase font-bold tracking-wider">Запрос заводского КП</div>
-      <h3 id="modal-title" class="text-2xl font-bold text-white">Запрос на ТОМ-5000З</h3>
-      <p class="text-xs text-slate-400">
-        Оставьте телефон — пришлем технический паспорт с чертежами и расчет стоимости с доставкой в ваш регион.
-      </p>
-
-      <form id="modal-form" class="space-y-3 pt-2">
-        <input type="text" id="m-name" required placeholder="Ваше имя / Хозяйство" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-cyan-400">
-        <input type="tel" id="m-phone" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-cyan-400">
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25">
-          Получить КП и чертежи
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Toast уведомление -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emerald-500 text-slate-950 px-5 py-3.5 rounded-xl font-bold text-xs shadow-2xl flex items-center gap-2">
-    <span>✓</span>
-    <span id="toast-msg">Заявка отправлена главному инженеру!</span>
-  </div>
-
-  <script src="app.js"></script>
+    if (!found) {
+      const opt = new Option(topic, topic, true, true);
+      select.add(opt);
+    }
+  }
+  const notes = document.getElementById('fNotes');
+  if (notes) {
+    notes.value = 'Запрос КП на оборудование: ' + topic;
+  }
+}
+
+function openCert(src) {
+  document.getElementById('modalCertImg').src = src;
+  document.getElementById('modalLightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCert() {
+  document.getElementById('modalLightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function submitLead(e) {
+  e.preventDefault();
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  if (!name || !phone) return;
+
+  const toast = document.getElementById('leadToast');
+  toast.style.display = 'block';
+  e.target.reset();
+
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 4500);
+}
+</script>
 </body>
 </html>
