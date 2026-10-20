@@ -1,3 +1,26 @@
+
+/* ============================================================ */
+/* 0. GLOBAL UNIFIED TYPOGRAPHY (MONTSERRAT)                    */
+/* ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Стили, цифровая тема и 3D-выворачивание */
 
 *, *::before, *::after {
@@ -606,12 +629,15 @@ body.theme-cyan ::-webkit-scrollbar-thumb {
   animation: realtyZoomLoop 7s ease-in-out infinite;
 }
 
-/* 5. FAQ Styling & Montserrat Font */
-#faq {
-  font-family: 'Montserrat', sans-serif !important;
+/* 5. FAQ Accordion Styling */
+details.faq-item summary::-webkit-details-marker {
+  display: none;
 }
-#faq h2, #faq summary, #faq p, #faq li, #faq span:not(.faq-icon) {
-  font-family: 'Montserrat', sans-serif !important;
+details.faq-item[open] summary .faq-icon {
+  transform: rotate(45deg);
+  background: rgba(6, 182, 212, 0.2);
+  color: #22d3ee;
+  border-color: rgba(6, 182, 212, 0.5);
 }
 details.faq-item summary::-webkit-details-marker {
   display: none;
