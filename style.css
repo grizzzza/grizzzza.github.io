@@ -12,6 +12,16 @@ html, body {
   overflow-x: hidden;
 }
 
+body.menu-open {
+  overflow: hidden !important;
+}
+
+#ambient-canvas {
+  pointer-events: none !important;
+  touch-action: none;
+  user-select: none;
+}
+
 /* Кастомное выделение текста */
 body.theme-amber ::selection {
   background: rgba(245, 158, 11, 0.4);

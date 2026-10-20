@@ -26,6 +26,8 @@ html, body {
   font-family: 'Montserrat', sans-serif;
   cursor: default;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
 }
 
 a, button, input, select {
@@ -77,6 +79,8 @@ a, button, input, select {
   top: 38px; left: 0; right: 0;
   bottom: 0;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: pan-y;
 }
 
 #slides-track {
@@ -520,6 +524,7 @@ a, button, input, select {
   right: var(--guide-left);
   z-index: 600;
   width: 48px; height: 48px;
+  min-width: 44px; min-height: 44px;
   background: rgba(7, 11, 16, 0.85);
   border: 1px solid rgba(197,168,128,0.4);
   backdrop-filter: blur(12px);
@@ -529,6 +534,7 @@ a, button, input, select {
   justify-content: center;
   gap: 6px;
   transition: border-color 0.3s ease, background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 #menu-btn:hover { border-color: #c5a880; background: rgba(197,168,128,0.1); }
 
@@ -556,6 +562,9 @@ a, button, input, select {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.45s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 70px 20px 30px;
 }
 #sidebar-menu.open {
   opacity: 1;
@@ -565,22 +574,26 @@ a, button, input, select {
 .menu-links {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   text-align: center;
 }
 
 .menu-link {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  font-size: clamp(2rem, 5.2vw, 4.2rem);
   font-weight: 400;
   font-style: italic;
-  color: rgba(243,236,225,0.45);
+  color: rgba(243,236,225,0.55);
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
   transform: translateY(20px);
   opacity: 0;
-  display: block;
-  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 6px 16px;
+  -webkit-tap-highlight-color: rgba(197, 168, 128, 0.2);
 }
 #sidebar-menu.open .menu-link {
   opacity: 1;
@@ -645,21 +658,24 @@ a, button, input, select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px clamp(24px, 5vw, 60px);
+  padding: 16px clamp(16px, 4vw, 60px);
   background: rgba(7, 11, 16, 0.98);
   border-bottom: 1px solid rgba(197,168,128,0.25);
   box-shadow: 0 6px 24px rgba(0,0,0,0.7);
+  gap: 12px;
 }
 
 #lightbox-title-wrap {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
+  min-width: 0;
 }
 
 #lightbox-villa-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.3rem, 2.4vw, 2.2rem);
   font-weight: 400;
   font-style: italic;
   color: #ffffff;
@@ -681,19 +697,23 @@ a, button, input, select {
 #lightbox-close {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #080c11;
   background: #c5a880;
   border: 1px solid #c5a880;
-  padding: 11px 26px;
+  min-height: 40px;
+  padding: 10px 22px;
   border-radius: 3px;
   box-shadow: 0 4px 18px rgba(197, 168, 128, 0.35);
   transition: all 0.25s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 #lightbox-close:hover {
   background: #ffffff;
@@ -709,16 +729,19 @@ a, button, input, select {
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 20px 80px;
+  padding: 16px clamp(16px, 5vw, 80px);
+  overflow: hidden;
 }
 
 #lightbox-img {
-  max-width: 100%;
-  max-height: 68vh;
+  max-width: 92vw;
+  max-height: 65vh;
   object-fit: contain;
   border-radius: 2px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.8);
   transition: opacity 0.25s ease, transform 0.25s ease;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Lightbox Nav Arrows */
@@ -726,7 +749,8 @@ a, button, input, select {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 52px; height: 52px;
+  width: 50px; height: 50px;
+  min-width: 44px; min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -737,25 +761,32 @@ a, button, input, select {
   font-size: 18px;
   transition: all 0.3s ease;
   z-index: 10;
+  -webkit-tap-highlight-color: transparent;
 }
 .lb-arrow:hover {
   background: #c5a880;
   color: #080c11;
   border-color: #c5a880;
 }
-#lb-prev { left: 24px; }
-#lb-next { right: 24px; }
+#lb-prev { left: 20px; }
+#lb-next { right: 20px; }
 
 #lightbox-thumbs {
   display: flex;
   gap: 12px;
-  padding: 16px 36px 32px;
+  padding: 14px clamp(16px, 4vw, 36px) 26px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   justify-content: center;
+  scrollbar-width: none;
+}
+#lightbox-thumbs::-webkit-scrollbar {
+  display: none;
 }
 
 .lb-thumb {
   width: 90px; height: 60px;
+  flex-shrink: 0;
   border: 2px solid transparent;
   object-fit: cover;
   border-radius: 2px;
@@ -781,21 +812,27 @@ a, button, input, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 16px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 #booking-modal.open { opacity: 1; pointer-events: auto; }
 
 .modal-box {
   width: 100%;
   max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: #0b1017;
   border: 1px solid rgba(197,168,128,0.35);
   box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-  padding: 44px;
+  padding: clamp(28px, 6vw, 44px);
   position: relative;
+  border-radius: 3px;
 }
 
 .modal-label {
@@ -824,7 +861,7 @@ a, button, input, select {
   border: 1px solid rgba(197,168,128,0.25);
   padding: 14px 16px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  font-size: 16px; /* >= 16px prevents iOS Safari auto-zoom */
   font-weight: 400;
   color: #f3ece1;
   margin-bottom: 16px;
@@ -894,16 +931,290 @@ a, button, input, select {
 #toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 /* ================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN & MOBILE UX SYSTEM
 ================================================================ */
 @media (max-width: 900px) {
-  #right-progress-bar { right: 14px; padding: 12px 6px; }
+  #right-progress-bar { right: 12px; padding: 12px 6px; }
   .vpb-step { width: 24px; height: 24px; font-size: 9px; }
   .vpb-step .step-tooltip { display: none; }
-  .slide-content { padding-left: 24px; padding-right: 24px; padding-bottom: 200px; }
-  #metrics-strip { bottom: 22px; padding: 0 24px; }
+  .slide-content { padding-left: 36px; padding-right: 36px; }
+  #metrics-strip { bottom: 22px; padding: 0 36px; }
   .metric-card { padding: 10px 16px; }
   .metric-number { font-size: 1.6rem; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --guide-left: 20px;
+  }
+
+  /* 1. SLIDER LAYOUT & TEXT VISIBILITY ON MOBILE */
+  .slide-content {
+    padding-top: clamp(60px, 9vh, 80px);
+    padding-bottom: 140px;
+    padding-left: clamp(20px, 5vw, 36px);
+    padding-right: clamp(20px, 5vw, 36px);
+    max-width: 100%;
+  }
+
+  .slide-status {
+    font-size: 9px;
+    padding: 5px 12px;
+    margin-bottom: 10px;
+    letter-spacing: 0.16em;
+    border-radius: 2px;
+  }
+
+  .slide-title {
+    font-size: clamp(1.8rem, 6.5vw, 3.2rem);
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .slide-location {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .slide-price {
+    font-size: clamp(0.95rem, 3.2vw, 1.25rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    line-height: 1.35;
+  }
+
+  .slide-cta-row {
+    gap: 10px;
+  }
+
+  /* Hide vertical rail on mobile to eliminate clutter and visual distraction */
+  #right-progress-bar {
+    display: none !important;
+  }
+
+  /* 2. TOUCH BUTTONS & MENU */
+  #menu-btn {
+    top: 46px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* 3. PHOTO LIGHTBOX & MODALS ON MOBILE */
+  #lightbox-topbar {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  #lightbox-villa-name {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    line-height: 1.15;
+  }
+
+  #lightbox-close {
+    min-height: 40px;
+    height: 40px;
+    padding: 0 18px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    box-shadow: 0 3px 14px rgba(197, 168, 128, 0.4);
+  }
+
+  #lightbox-main {
+    padding: 10px 48px;
+  }
+
+  #lightbox-img {
+    max-height: 55vh;
+    max-width: 92vw;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .lb-arrow {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 16px;
+    background: rgba(7, 11, 16, 0.85);
+    border: 1px solid rgba(197, 168, 128, 0.5);
+    z-index: 20;
+  }
+  #lb-prev { left: 8px; }
+  #lb-next { right: 8px; }
+
+  #lightbox-thumbs {
+    padding: 10px 14px 22px;
+    gap: 8px;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lb-thumb {
+    width: 72px;
+    height: 48px;
+  }
+
+  /* Booking modal on mobile */
+  #booking-modal {
+    padding: 16px;
+    align-items: center;
+  }
+
+  .modal-box {
+    padding: 28px 20px 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .modal-input {
+    font-size: 16px; /* >= 16px prevents iOS auto-zoom */
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .modal-submit {
+    min-height: 46px;
+    padding: 14px;
+    font-size: 11px;
+  }
+
+  /* 4. METRICS STRIP ON MOBILE */
+  #metrics-strip {
+    bottom: 14px;
+    padding: 0 clamp(16px, 4vw, 24px);
+    width: 100%;
+  }
+
+  .metrics-cards-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .metric-card {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 12px;
+    text-align: center;
+  }
+
+  .metric-number {
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  .metric-label {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    margin-top: 4px;
+  }
+}
+
+/* Phone screens (360px - 430px width) */
+@media (max-width: 480px) {
+  #cashu-bar {
+    padding: 0 12px;
+    font-size: 10px;
+  }
+  .cashu-subtext {
+    display: none;
+  }
+
+  #floating-logo {
+    top: 46px;
+    left: 14px;
+    padding: 4px 10px 4px 6px;
+    gap: 8px;
+  }
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+  }
+  .logo-text {
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+  }
+  .logo-sub {
+    font-size: 7px;
+  }
+
+  #menu-btn {
+    top: 46px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .slide-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 330px;
+    gap: 8px;
+  }
+
+  .btn-primary, .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .menu-link {
+    font-size: 1.9rem;
+    min-height: 46px;
+    padding: 8px 12px;
+  }
+
+  /* Metric cards fitting 360px viewport */
+  .metrics-cards-row {
+    gap: 6px;
+  }
+
+  .metric-card {
+    padding: 8px 8px;
+  }
+
+  .metric-number {
+    font-size: 1.15rem;
+  }
+
+  .metric-label {
+    font-size: 7.5px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 360px) {
+  .metric-card {
+    padding: 7px 5px;
+  }
+  .metric-number {
+    font-size: 1.05rem;
+  }
+  .metric-label {
+    font-size: 7px;
+    letter-spacing: 0.04em;
+  }
 }
 </style>
 </head>
@@ -916,8 +1227,8 @@ a, button, input, select {
 <div id="cashu-bar">
   <div style="display:flex;align-items:center;gap:10px;">
     <span style="color:#c5a880;font-weight:700;">APEX REALTY</span>
-    <span>&middot;</span>
-    <span>Демо-сайт &middot; Студия <strong style="color:#fff">cash'u</strong></span>
+    <span class="cashu-subtext">&middot;</span>
+    <span class="cashu-subtext">Демо-сайт &middot; Студия <strong style="color:#fff">cash'u</strong></span>
   </div>
   <div style="display:flex;align-items:center;gap:16px;">
     <a href="../../#cases">&larr; В портфолио</a>
@@ -940,7 +1251,7 @@ a, button, input, select {
 </div>
 
 <!-- Burger Menu Button -->
-<button id="menu-btn" onclick="toggleMenu()" title="Меню каталога">
+<button id="menu-btn" onclick="toggleMenu()" title="Меню каталога" aria-label="Открыть меню каталога">
   <div class="burger-line"></div>
   <div class="burger-line"></div>
   <div class="burger-line"></div>
@@ -948,14 +1259,14 @@ a, button, input, select {
 
 <!-- Full-screen Overlay Menu -->
 <div id="sidebar-menu">
-  <div>
+  <div style="width:100%;max-width:440px;">
     <div class="menu-links">
-      <a href="#" class="menu-link" onclick="goToSlide(0);toggleMenu()">Pinewood Manor</a>
-      <a href="#" class="menu-link" onclick="goToSlide(1);toggleMenu()">Horizon Glass</a>
-      <a href="#" class="menu-link" onclick="goToSlide(2);toggleMenu()">Nordic Cliff</a>
-      <a href="#" class="menu-link" onclick="goToSlide(3);toggleMenu()">Forest Peak</a>
-      <a href="#" class="menu-link" onclick="goToSlide(4);toggleMenu()">Stone & Wood</a>
-      <a href="#" class="menu-link" onclick="goToSlide(5);toggleMenu()">Aqua Vista</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(0);closeMenu();">Pinewood Manor</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(1);closeMenu();">Horizon Glass</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(2);closeMenu();">Nordic Cliff</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(3);closeMenu();">Forest Peak</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(4);closeMenu();">Stone & Wood</a>
+      <a href="javascript:void(0)" class="menu-link" onclick="goToSlide(5);closeMenu();">Aqua Vista</a>
     </div>
     <div class="menu-contact">+7 (495) 890-40-20 &nbsp;&middot;&nbsp; VIP Консьерж 24/7</div>
   </div>
@@ -1140,12 +1451,12 @@ a, button, input, select {
       <h3 id="lightbox-villa-name">Резиденция</h3>
       <span id="lightbox-photo-counter">Фото 1 из 5</span>
     </div>
-    <button id="lightbox-close" onclick="closeLightbox()">✕ Закрыть галерею</button>
+    <button id="lightbox-close" onclick="closeLightbox()" aria-label="Закрыть фотогалерею">✕ Закрыть</button>
   </div>
   <div id="lightbox-main">
-    <button class="lb-arrow" id="lb-prev" onclick="prevLbPhoto()">❮</button>
+    <button class="lb-arrow" id="lb-prev" onclick="prevLbPhoto()" aria-label="Предыдущее фото">❮</button>
     <img id="lightbox-img" src="" alt="Фотография виллы">
-    <button class="lb-arrow" id="lb-next" onclick="nextLbPhoto()">❯</button>
+    <button class="lb-arrow" id="lb-next" onclick="nextLbPhoto()" aria-label="Следующее фото">❯</button>
   </div>
   <div id="lightbox-thumbs"></div>
 </div>
@@ -1153,12 +1464,12 @@ a, button, input, select {
 <!-- BOOKING MODAL -->
 <div id="booking-modal">
   <div class="modal-box">
-    <button class="modal-close-btn" onclick="closeBooking()">ESC / Закрыть</button>
+    <button class="modal-close-btn" onclick="closeBooking()" aria-label="Закрыть">✕ Закрыть</button>
     <span class="modal-label">Приватный просмотр</span>
     <h3 class="modal-title" id="modal-villa-title">Запись на показ</h3>
     <form id="booking-form" onsubmit="submitBooking(event)">
-      <input id="modal-name" class="modal-input" type="text" placeholder="Ваше имя" required>
-      <input id="modal-phone" class="modal-input" type="tel" placeholder="+7 (999) 000-00-00" required>
+      <input id="modal-name" class="modal-input" type="text" placeholder="Ваше имя" required autocomplete="name">
+      <input id="modal-phone" class="modal-input" type="tel" placeholder="+7 (999) 000-00-00" required autocomplete="tel">
       <input id="modal-date" class="modal-input" type="date">
       <button type="submit" class="modal-submit">Подтвердить запись на просмотр</button>
     </form>
@@ -1360,16 +1671,53 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') { closeBooking(); closeMenu(); }
 });
 
+// ================================================================
+// TOUCH CONTROLS (HORIZONTAL & VERTICAL SWIPE NAVIGATION)
+// ================================================================
+let touchStartX = 0;
 let touchStartY = 0;
-document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
-document.addEventListener('touchend', e => {
+
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length !== 1) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
   if (document.getElementById('lightbox').classList.contains('open')) return;
-  const diff = touchStartY - e.changedTouches[0].clientY;
-  if (Math.abs(diff) > 40) {
-    if (diff > 0) goToSlide(current + 1);
-    else goToSlide(current - 1);
+  if (document.getElementById('booking-modal').classList.contains('open')) return;
+  if (document.getElementById('sidebar-menu').classList.contains('open')) return;
+
+  const diffX = touchStartX - e.changedTouches[0].clientX;
+  const diffY = touchStartY - e.changedTouches[0].clientY;
+  const absX = Math.abs(diffX);
+  const absY = Math.abs(diffY);
+
+  // Support both horizontal swipe AND vertical swipe (Math.abs(diffX) > 40 or Math.abs(diffY) > 40)
+  if (absX > 40 || absY > 40) {
+    if (absX >= absY) {
+      // Horizontal swipe dominates
+      if (diffX > 0) goToSlide(current + 1);
+      else goToSlide(current - 1);
+    } else {
+      // Vertical swipe dominates
+      if (diffY > 0) goToSlide(current + 1);
+      else goToSlide(current - 1);
+    }
   }
 }, { passive: true });
+
+// Prevent pull-to-refresh or unwanted page bounce when swiping slides
+document.addEventListener('touchmove', (e) => {
+  if (document.getElementById('lightbox').classList.contains('open') ||
+      document.getElementById('booking-modal').classList.contains('open') ||
+      document.getElementById('sidebar-menu').classList.contains('open')) {
+    return;
+  }
+  if (e.cancelable) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 // ================================================================
 // OVERLAY MENU
@@ -1416,7 +1764,11 @@ function setLbPhoto(idx) {
   currentLbPhoto = idx;
   const villa = VILLA_COLLECTION[currentLbVilla];
   document.querySelectorAll('.lb-thumb').forEach((t, i) => {
-    t.classList.toggle('active', i === idx);
+    const isActive = (i === idx);
+    t.classList.toggle('active', isActive);
+    if (isActive) {
+      t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   });
   renderLbPhoto(idx);
 }
@@ -1453,6 +1805,27 @@ function prevLbPhoto() {
 
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
+}
+
+// Lightbox touch swipe gesture support for mobile flicking
+let lbTouchStartX = 0;
+let lbTouchStartY = 0;
+const lbMain = document.getElementById('lightbox-main');
+if (lbMain) {
+  lbMain.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    lbTouchStartX = e.touches[0].clientX;
+    lbTouchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lbMain.addEventListener('touchend', (e) => {
+    const diffX = lbTouchStartX - e.changedTouches[0].clientX;
+    const diffY = lbTouchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > 0) nextLbPhoto();
+      else prevLbPhoto();
+    }
+  }, { passive: true });
 }
 
 // ================================================================

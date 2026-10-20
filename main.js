@@ -79,36 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Восстановление позиции скролла из кэша
+  // Отслеживание взаимодействия пользователя, чтобы не перебивать скролл на мобильных устройствах
+  let userInteracted = false;
+  const markUserInteracted = () => { userInteracted = true; };
+  window.addEventListener('touchstart', markUserInteracted, { passive: true, once: true });
+  window.addEventListener('wheel', markUserInteracted, { passive: true, once: true });
+  window.addEventListener('pointerdown', markUserInteracted, { passive: true, once: true });
+
+  // Восстановление позиции скролла из кэша (без блокирующих циклов setTimeout)
   function restoreScrollPosition() {
     try {
+      if (userInteracted) {
+        document.documentElement.classList.add('scroll-smooth');
+        return;
+      }
       const savedPos = localStorage.getItem('cashu_scroll_pos');
       if (savedPos !== null) {
         const targetY = parseInt(savedPos, 10);
         if (!isNaN(targetY) && targetY > 0) {
           window.scrollTo(0, targetY);
           updateScroll();
-
-          // Повторная доводка для компенсации подгрузки шрифтов и картинок
-          requestAnimationFrame(() => {
-            window.scrollTo(0, targetY);
-            updateScroll();
-          });
-          setTimeout(() => {
-            window.scrollTo(0, targetY);
-            updateScroll();
-          }, 60);
-          setTimeout(() => {
-            window.scrollTo(0, targetY);
-            updateScroll();
-          }, 200);
-          setTimeout(() => {
-            window.scrollTo(0, targetY);
-            updateScroll();
-            // Включаем плавный скролл для пользовательских кликов
-            document.documentElement.classList.add('scroll-smooth');
-          }, 450);
-          return;
         }
       }
     } catch (e) {}
@@ -144,6 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openMobileMenu() {
     if (!mobileMenu) return;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('menu-open');
     mobileMenu.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
     mobileMenu.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
     if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
@@ -156,6 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeMobileMenu() {
     if (!mobileMenu) return;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
     mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
     mobileMenu.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
     if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -178,10 +174,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Закрытие при клике по пунктам меню
+  // Закрытие при клике по пунктам меню и мгновенный плавный скролл к секции
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
       closeMobileMenu();
+      if (href && href.startsWith('#') && href !== '#') {
+        e.preventDefault();
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          setTimeout(() => {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            try {
+              history.pushState(null, '', href);
+            } catch (err) {}
+          }, 40);
+        }
+      }
     });
   });
 
@@ -203,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Плавный скролл при клике на якорные ссылки
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      // Игнорируем ссылки мобильного меню, так как они обрабатываются отдельно
+      if (this.classList.contains('mobile-nav-link')) return;
       const href = this.getAttribute('href');
       if (!href || href === '#') return;
       const targetEl = document.querySelector(href);
@@ -218,9 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', updateScroll, { passive: true });
   window.addEventListener('load', () => {
-    restoreScrollPosition();
+    if (!userInteracted) {
+      restoreScrollPosition();
+    }
   });
-  restoreScrollPosition();
+  if (!userInteracted) {
+    restoreScrollPosition();
+  }
   updateScroll();
 
   // -------------------------------------------------------------
@@ -466,11 +481,13 @@ document.addEventListener('DOMContentLoaded', () => {
     resp.className = 'dynamic-term-row text-white/90 text-xs sm:text-sm pl-3.5 border-l-2 border-white/20 my-2 font-mono leading-relaxed';
 
     if (cleanCmd === 'help' || cleanCmd === 'помощь' || cleanCmd === 'хелп' || cleanCmd === '?' || cleanCmd === 'команды') {
-      resp.innerHTML = `Доступные команды:<br>• <span class="text-cyan-300">обо мне</span> (about) — кто я и чем занимаюсь<br>• <span class="text-cyan-300">тг</span> (tg) — ссылка на Telegram разработчика (@grizzzza)<br>• <span class="text-cyan-300">прайс</span> / <span class="text-cyan-300">смета</span> (price) — примерная стоимость разработки<br>• <span class="text-cyan-300">стек</span> (stack) — ключевые технологии<br>• <span class="text-cyan-300">очистить</span> (clear) — очистить терминал`;
+      resp.innerHTML = `Доступные команды:<br>• <span class="text-cyan-300">обо мне</span> (about) — кто я и чем занимаюсь<br>• <span class="text-cyan-300">тг</span> (tg) — ссылка на Telegram разработчика (@grizzzza)<br>• <span class="text-amber-300">макс</span> (max) — связь в мессенджере MAX<br>• <span class="text-cyan-300">прайс</span> / <span class="text-cyan-300">смета</span> (price) — примерная стоимость разработки<br>• <span class="text-cyan-300">стек</span> (stack) — ключевые технологии<br>• <span class="text-cyan-300">очистить</span> (clear) — очистить терминал`;
     } else if (cleanCmd === 'about' || cleanCmd === 'bio' || cleanCmd === 'me' || cleanCmd === 'who' || cleanCmd === 'обо мне' || cleanCmd === 'о себе' || cleanCmd === 'автор' || cleanCmd === 'разработчик') {
       resp.innerHTML = `Программист в разных областях. В разработке пару лет.<br>★ <a href="https://t.me/grizzzza" target="_blank" class="text-cyan-300 hover:text-cyan-200 underline font-bold">Ссылка на отзывы здесь →</a>`;
     } else if (cleanCmd === 'tg' || cleanCmd === 'contact' || cleanCmd === 'тг' || cleanCmd === 'телеграм' || cleanCmd === 'telegram' || cleanCmd === 'связь' || cleanCmd === 'контакты') {
-      resp.innerHTML = `Ссылка на Telegram: <a href="https://t.me/grizzzza" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:text-cyan-200 underline font-bold">@grizzzza (t.me/grizzzza)</a> → нажмите для перехода`;
+      resp.innerHTML = `Ссылка на Telegram: <a href="https://t.me/grizzzza" target="_blank" rel="noopener noreferrer" class="text-cyan-300 hover:text-cyan-200 underline font-bold">@grizzzza (t.me/grizzzza)</a><br>Ссылка на MAX: <a href="https://max.me/grizzzza" target="_blank" rel="noopener noreferrer" class="text-amber-300 hover:text-amber-200 underline font-bold">MAX (@grizzzza / max.me/grizzzza)</a> → нажмите для перехода`;
+    } else if (cleanCmd === 'max' || cleanCmd === 'макс' || cleanCmd === 'max.me' || cleanCmd === 'max.ru') {
+      resp.innerHTML = `Ссылка на MAX: <a href="https://max.me/grizzzza" target="_blank" rel="noopener noreferrer" class="text-amber-300 hover:text-amber-200 underline font-bold">MAX (@grizzzza / max.me/grizzzza)</a> → нажмите для быстрого чата`;
     } else if (cleanCmd === 'price' || cleanCmd === 'cost' || cleanCmd === 'прайс' || cleanCmd === 'смета' || cleanCmd === 'цена' || cleanCmd === 'цены' || cleanCmd === 'стоимость') {
       resp.innerHTML = `Промо-лендинг под ключ: от 19 900 ₽<br>Сайт-каталог / сервис: от 34 900 ₽<br>Фиксированный договор, без доплат за согласованное ТЗ.`;
     } else if (cleanCmd === 'stack' || cleanCmd === 'стек' || cleanCmd === 'навыки' || cleanCmd === 'технологии' || cleanCmd === 'skills' || cleanCmd === 'tech') {

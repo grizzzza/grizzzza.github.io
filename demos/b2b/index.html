@@ -2,10 +2,10 @@
 <html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>NOVA TRADE — Оптовые поставки промышленного оборудования и компонентов</title>
   
-  <meta name="description" content="Прямые оптовые поставки промышленной электроники, кабельной продукции и компонентов для производств РФ. Официальный договор, НДС 20%, склад в Москве.">
+  <meta name="description" content="Прямые оптовые поставки промышленной электроники, кабельной продукции и компонентов для производств РФ. Официальный договор, НДС 20%, склад в Москве, B2B API интеграция.">
   
   <!-- Шрифт Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,64 +38,153 @@
   </script>
 
   <style>
-    /* Аккуратный стандартный ползунок */
+    /* Плавная прокрутка и отступ для фиксированной шапки */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 76px;
+      -webkit-text-size-adjust: 100%;
+    }
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+    }
+
+    /* Мобильный ползунок калькулятора с крупной зоной касания (28px) */
     input[type=range] {
       -webkit-appearance: none;
+      appearance: none;
       width: 100%;
       background: transparent;
+      touch-action: pan-y;
+      cursor: pointer;
     }
     input[type=range]:focus {
       outline: none;
     }
     input[type=range]::-webkit-slider-runnable-track {
       width: 100%;
-      height: 6px;
+      height: 8px;
       cursor: pointer;
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+      background: #2563eb;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -10px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4), 0 1px 3px rgba(0,0,0,0.15);
+      transition: transform 0.12s ease, background-color 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      background: #1d4ed8;
+      transform: scale(1.08);
+    }
+    input[type=range]::-webkit-slider-thumb:active {
+      background: #1e40af;
+      transform: scale(1.15);
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 28px;
+      width: 28px;
+      border-radius: 50%;
+      background: #2563eb;
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Предотвращение автозума iOS Safari (шрифт не менее 16px на мобильных) */
+    @media screen and (max-width: 768px) {
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"],
+      input[type="number"],
+      input[type="search"],
+      textarea,
+      select {
+        font-size: 16px !important;
+      }
+    }
+
+    /* Утилиты плавного горизонтального скролла для мобильных экранов */
+    .touch-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+    .touch-scroll-x::-webkit-scrollbar {
+      height: 5px;
+    }
+    .touch-scroll-x::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .touch-scroll-x::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 4px;
     }
-    input[type=range]::-webkit-slider-thumb {
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      background: #1d4ed8;
-      cursor: pointer;
-      -webkit-appearance: none;
-      margin-top: -7px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      transition: background-color 0.15s ease;
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-    input[type=range]::-webkit-slider-thumb:hover {
-      background: #1e40af;
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Анимация тоста уведомлений */
+    @keyframes toastSlideIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -20px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+      }
+    }
+    .animate-toast {
+      animation: toastSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
   </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
   <!-- ======================================================= -->
-  <!-- ВЕРХНЯЯ ЗАКРЕПЛЕННАЯ ПЛАШКА ПОРТФОЛИО CASH'U            -->
+  <!-- ВЕРХНЯЯ ПЛАШКА ПОРТФОЛИО CASH'U (КОМПАКТНАЯ НА МОБИЛЬНЫХ) -->
   <!-- ======================================================= -->
-  <div class="bg-slate-900 text-white py-2.5 px-4 text-xs font-mono sticky top-0 z-50 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <div class="flex items-center gap-2 text-slate-300">
-        <span>Демо-сайт оптовой B2B компании • Пример разработки от студии <strong>cash'u</strong></span>
+  <div class="bg-slate-900 text-white py-2 px-3 sm:px-4 text-[11px] sm:text-xs font-mono relative border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center gap-1.5 text-slate-300 truncate">
+        <span class="truncate">Демо B2B FinTech • <strong>cash'u</strong></span>
       </div>
-      <div class="flex items-center gap-3">
-        <a href="../../#cases" class="text-slate-300 hover:text-white underline transition-colors">
-          ← Вернуться в портфолио
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <a href="../../#cases" class="text-slate-300 hover:text-white underline transition-colors whitespace-nowrap text-[11px] sm:text-xs">
+          ← Портфолио
         </a>
-        <a href="https://t.me/grizzzza" target="_blank" class="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors">
-          Заказать разработку сайта →
+        <a href="https://t.me/grizzzza" target="_blank" class="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors whitespace-nowrap text-[11px] sm:text-xs">
+          Заказать сайт →
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ШАПКА B2B КОМПАНИИ: АККУРАТНЫЙ СОВРЕМЕННЫЙ СТИЛЬ С ЗАКРУГЛЕНИЯМИ -->
-  <header class="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-[41px] z-40">
-    <!-- Верхняя информационная линия -->
-    <div class="border-b border-slate-100 bg-slate-50/80 py-2 px-4 text-xs text-slate-500">
+  <!-- ШАПКА B2B КОМПАНИИ: СОВРЕМЕННЫЙ СТИЛЬ, STICKY TOP-0 -->
+  <header class="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 transition-shadow duration-200">
+    <!-- Верхняя информационная линия (скрыта на мобильных для экономии экрана) -->
+    <div class="hidden md:block border-b border-slate-100 bg-slate-50/80 py-2 px-4 text-xs text-slate-500">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
         <div class="flex items-center gap-3">
           <span>Склад в Москве: Подольск, ИП «Коледино»</span>
@@ -110,154 +199,185 @@
       </div>
     </div>
 
-    <!-- Основная навигация: выровненная в одну строчку с приятными закруглениями -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+    <!-- Основная навигация -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
       
-      <!-- Логотип с закругленной плашкой -->
-      <a href="#" class="flex items-center gap-3 flex-shrink-0 group">
-        <div class="w-11 h-11 rounded-2xl bg-blue-600 group-hover:bg-blue-700 flex items-center justify-center text-white font-bold text-lg font-mono shadow-sm transition-colors">
+      <!-- Логотип -->
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-blue-600 group-hover:bg-blue-700 flex items-center justify-center text-white font-bold text-base sm:text-lg font-mono shadow-sm transition-colors">
           NT
         </div>
         <div>
-          <span class="font-extrabold text-xl tracking-tight text-slate-900 block leading-none">NOVA<span class="text-blue-600">TRADE</span></span>
-          <span class="text-[11px] text-slate-500 font-medium tracking-wide block mt-1">Оптовые поставки компонентов</span>
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 block leading-none">NOVA<span class="text-blue-600">TRADE</span></span>
+          <span class="text-[10px] sm:text-[11px] text-slate-500 font-medium tracking-wide block mt-1">Оптовые поставки компонентов</span>
         </div>
       </a>
 
-      <!-- Меню в одну строчку без переносов строк (с аккуратными закругленными кнопками-пилюлями) -->
+      <!-- Меню для десктопа -->
       <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-        <a href="#calculator" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+        <a href="#solutions" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+          Решения
+        </a>
+        <a href="#pricing" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
           Калькулятор
         </a>
-        <a href="#catalog" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
-          Каталог
+        <a href="#api" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+          B2B API
         </a>
-        <a href="#process" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+        <a href="#comparison" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+          Сравнение
+        </a>
+        <a href="#process" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
           Логистика
         </a>
-        <a href="#warranties" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+        <a href="#warranties" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
           Гарантии
         </a>
-        <a href="#faq" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
-          Вопросы
+        <a href="#faq" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+          FAQ
         </a>
-        <a href="#contacts" class="px-3.5 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+        <a href="#contact" class="px-3 py-2 rounded-full text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-all whitespace-nowrap">
           Контакты
         </a>
       </nav>
 
-      <!-- Телефоны, кнопка запроса КП и мобильный гамбургер -->
-      <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+      <!-- Телефоны, кнопка КП и мобильный гамбургер 44x44px -->
+      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
         <div class="hidden sm:flex flex-col text-right">
           <a href="tel:+74951284480" class="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors font-mono whitespace-nowrap">
             +7 (495) 128-44-80
           </a>
           <span class="text-[11px] text-slate-500">Отдел оптовых продаж</span>
         </div>
-        <button onclick="openLeadModal('Запрос КП из шапки')" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition-all shadow-sm hover:shadow whitespace-nowrap">
+        <button onclick="openLeadModal('Запрос КП из шапки')" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition-all shadow-sm hover:shadow whitespace-nowrap min-h-[44px] items-center">
           Запросить прайс-лист
         </button>
-        <!-- Кнопка мобильного меню -->
-        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors focus:outline-none" aria-label="Меню">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        
+        <!-- Кнопка мобильного меню: точно 44x44px touch target -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-700 hover:text-blue-600 hover:bg-slate-100 active:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600/30" aria-label="Открыть мобильное меню" aria-expanded="false">
+          <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
 
     </div>
 
-    <!-- Мобильное выпадающее меню -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 py-4 space-y-1 shadow-xl">
-      <a href="#calculator" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Калькулятор стоимости
+    <!-- Мобильное выпадающее меню с плавным переходом и 44px+ зонами касания -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 py-4 space-y-1 shadow-2xl max-h-[calc(100vh-70px)] overflow-y-auto overscroll-contain">
+      <a href="#solutions" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Решения и каталог продукции</span>
+        <span class="text-xs text-blue-600 font-mono">#solutions</span>
       </a>
-      <a href="#catalog" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Каталог серийных поставок
+      <a href="#pricing" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Калькулятор стоимости и скидок</span>
+        <span class="text-xs text-blue-600 font-mono">#pricing</span>
       </a>
-      <a href="#process" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Условия и логистика
+      <a href="#api" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>B2B API & ERP интеграция (1С)</span>
+        <span class="text-xs text-blue-600 font-mono">#api</span>
       </a>
-      <a href="#warranties" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Гарантии и сертификаты
+      <a href="#comparison" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Сравнение условий поставок</span>
+        <span class="text-xs text-slate-400 font-mono">vs дистрибьюторы</span>
       </a>
-      <a href="#faq" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Частые вопросы (FAQ)
+      <a href="#process" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Условия и логистика</span>
+        <span class="text-xs text-slate-400 font-mono">4 шага</span>
       </a>
-      <a href="#contacts" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600">
-        Контакты и склад
+      <a href="#warranties" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Гарантии и сертификаты</span>
+        <span class="text-xs text-slate-400 font-mono">ЕАС / ОТК</span>
       </a>
-      <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
-        <a href="tel:+74951284480" class="block font-mono font-bold text-slate-900 text-sm py-1">
-          +7 (495) 128-44-80 (Отдел продаж)
+      <a href="#faq" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Частые вопросы (FAQ)</span>
+        <span class="text-xs text-slate-400 font-mono">снабжение</span>
+      </a>
+      <a href="#contact" onclick="closeMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-800 hover:bg-slate-100 hover:text-blue-600 active:bg-blue-50 transition-colors min-h-[44px]">
+        <span>Контакты и склад</span>
+        <span class="text-xs text-blue-600 font-mono">#contact</span>
+      </a>
+      
+      <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2.5">
+        <a href="tel:+74951284480" class="flex items-center gap-2 font-mono font-bold text-slate-900 text-sm py-2.5 px-4 rounded-xl bg-slate-50 min-h-[44px]">
+          <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>+7 (495) 128-44-80 (Отдел продаж)</span>
         </a>
-        <button onclick="toggleMobileMenu(); openLeadModal('Запрос КП из мобильного меню')" class="w-full py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs text-center uppercase tracking-wider">
-          Запросить прайс-лист
+        <button onclick="closeMobileMenu(); openLeadModal('Запрос КП из мобильного меню')" class="w-full py-3.5 px-4 rounded-xl bg-blue-600 active:bg-blue-700 text-white font-semibold text-xs text-center uppercase tracking-wider shadow-sm min-h-[48px] flex items-center justify-center">
+          Запросить прайс-лист и КП
         </button>
       </div>
     </div>
   </header>
 
   <!-- ============================================== -->
-  <!-- 1. HERO SECTION: БЕЗ НЕЙРОСЛОБА И С РЕАЛЬНЫМ ФОТО -->
+  <!-- 1. HERO SECTION                                -->
   <!-- ============================================== -->
-  <section class="py-12 sm:py-16 bg-slate-50 border-b border-slate-200">
+  <section class="py-10 sm:py-16 bg-slate-50 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
-        <!-- Левая часть: Предложение (без плашки-нейрослоба) -->
+        <!-- Левая часть: Предложение -->
         <div class="lg:col-span-7">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-4">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+            Прямые контракты с фабриками • Склад в Москве
+          </div>
+
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4 sm:mb-5">
             Оптовые поставки промышленной электроники и комплектующих
           </h1>
 
-          <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+          <p class="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed mb-6">
             Обеспечиваем бесперебойные поставки компонентов для приборостроения, автоматики и светотехники. Официальный договор поставки в рублях, фиксированная цена, НДС 20%, таможенное оформление и сертификаты ЕАС.
           </p>
 
           <!-- Ключевые преимущества в строчку -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm text-slate-700">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-xs sm:text-sm text-slate-700">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
               <span>Экономия до 30% за счет прямых контрактов</span>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
               <span>Отгрузка со склада в Москве за 24 часа</span>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
               <span>Входной контроль качества партии перед отправкой</span>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
               <span>Отсрочка платежа для постоянных клиентов до 45 дней</span>
             </div>
           </div>
 
-          <!-- Кнопки действий с плавными закруглениями -->
+          <!-- Кнопки действий -->
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <a href="#calculator" class="px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-center text-sm transition-all shadow-sm hover:shadow">
+            <a href="#pricing" class="px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-center text-sm transition-all shadow-sm hover:shadow min-h-[48px] flex items-center justify-center">
               Рассчитать стоимость партии
             </a>
-            <button onclick="openLeadModal('Скачивание прайс-листа Excel')" class="px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-center text-sm transition-colors flex items-center justify-center gap-2 shadow-xs">
-              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <button onclick="openLeadModal('Скачивание прайс-листа Excel')" class="px-7 py-3.5 rounded-full bg-white hover:bg-slate-100 active:bg-slate-200 border border-slate-300 text-slate-700 font-semibold text-center text-sm transition-colors flex items-center justify-center gap-2 shadow-xs min-h-[48px]">
+              <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
               <span>Скачать прайс-лист (XLSX, 2.4 МБ)</span>
             </button>
           </div>
         </div>
 
-        <!-- Правая часть: Настоящая фотография склада -->
+        <!-- Правая часть: Фотография склада -->
         <div class="lg:col-span-5">
           <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
-            <img src="assets/warehouse.jpg" alt="Складской комплекс NOVA TRADE" class="w-full h-72 sm:h-80 object-cover object-center" loading="lazy">
-            <div class="p-4 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <img src="assets/warehouse.jpg" alt="Складской комплекс NOVA TRADE" class="w-full h-64 sm:h-80 object-cover object-center" loading="lazy">
+            <div class="p-4 bg-white border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-500">
               <div>
                 <strong class="text-slate-800 font-semibold block">Складской терминал «Подольск»</strong>
                 <span>Площадь 4 500 м² • Стеллажное хранение класса «А»</span>
               </div>
-              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-mono text-[11px] font-semibold">
+              <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-mono text-[11px] font-semibold shrink-0">
                 В наличии 2 400+ SKU
               </span>
             </div>
@@ -272,20 +392,26 @@
   <!-- ============================================== -->
   <!-- 2. ИНТЕРАКТИВНЫЙ B2B КАЛЬКУЛЯТОР СТОИМОСТИ     -->
   <!-- ============================================== -->
-  <section id="calculator" class="py-16 bg-white border-b border-slate-200">
+  <section id="pricing" class="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-20">
+    <!-- Алиас для #calculator -->
+    <div id="calculator" class="relative -top-20"></div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="mb-10">
+      <div class="mb-8 sm:mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+          B2B Pricing & ROI Calculator
+        </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Калькулятор оптовой стоимости и скидки</h2>
-        <p class="text-sm text-slate-500 mt-1">
-          Выберите категорию продукции, плановый объем закупки и способ доставки для расчета скидки.
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+          Выберите категорию продукции, плановый объем партии и способ доставки. Алгоритм рассчитает оптовую скидку от объема и экономию НДС.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Параметры закупки -->
-        <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-7 rounded-lg border border-slate-200">
+        <div class="lg:col-span-7 bg-slate-50 p-5 sm:p-7 rounded-2xl border border-slate-200">
           
           <!-- Категория продукции -->
           <div class="mb-6">
@@ -293,43 +419,56 @@
               1. Направление продукции:
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="category-picker">
-              <button type="button" data-cat="electronics" class="cat-btn active p-3 rounded border border-blue-600 bg-white text-blue-700 text-xs font-medium text-left transition-colors shadow-sm">
+              <button type="button" data-cat="electronics" class="cat-btn active p-3 rounded-xl border border-blue-600 bg-white text-blue-700 text-xs font-medium text-left transition-colors shadow-sm min-h-[50px] flex items-center">
                 Микроконтроллеры и платы
               </button>
-              <button type="button" data-cat="lighting" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+              <button type="button" data-cat="lighting" class="cat-btn p-3 rounded-xl border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors min-h-[50px] flex items-center">
                 Промышленная светотехника
               </button>
-              <button type="button" data-cat="cables" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+              <button type="button" data-cat="cables" class="cat-btn p-3 rounded-xl border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors min-h-[50px] flex items-center">
                 Кабельная продукция
               </button>
-              <button type="button" data-cat="power" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+              <button type="button" data-cat="power" class="cat-btn p-3 rounded-xl border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors min-h-[50px] flex items-center">
                 Блоки питания и драйверы
               </button>
-              <button type="button" data-cat="sensors" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+              <button type="button" data-cat="sensors" class="cat-btn p-3 rounded-xl border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors min-h-[50px] flex items-center">
                 Датчики и автоматика
               </button>
-              <button type="button" data-cat="oem" class="cat-btn p-3 rounded border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors">
+              <button type="button" data-cat="oem" class="cat-btn p-3 rounded-xl border border-slate-300 bg-white hover:border-slate-400 text-slate-700 text-xs font-medium text-left transition-colors min-h-[50px] flex items-center">
                 Контрактное производство (OEM)
               </button>
             </div>
           </div>
 
-          <!-- Ползунок бюджета -->
+          <!-- Ползунок бюджета с быстрыми кнопками выбора -->
           <div class="mb-6">
             <div class="flex justify-between items-center mb-2">
               <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 2. Плановый объем партии:
               </label>
-              <span id="slider-val-display" class="font-mono text-lg font-bold text-slate-900">
+              <span id="slider-val-display" class="font-mono text-lg sm:text-xl font-bold text-blue-600">
                 500 000 ₽
               </span>
             </div>
-            <input id="budget-slider" type="range" min="100000" max="5000000" step="50000" value="500000">
+
+            <!-- Быстрый выбор сумм для удобства пальцев на мобильном -->
+            <div class="flex items-center gap-1.5 overflow-x-auto touch-scroll-x no-scrollbar py-1 mb-2.5">
+              <button type="button" onclick="setBudget(300000)" class="preset-btn px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 text-xs font-mono font-medium transition-colors shrink-0 min-h-[36px]">300 тыс. ₽</button>
+              <button type="button" onclick="setBudget(500000)" class="preset-btn active px-2.5 py-1.5 rounded-lg bg-blue-50 border border-blue-600 text-blue-700 text-xs font-mono font-medium transition-colors shrink-0 min-h-[36px]">500 тыс. ₽</button>
+              <button type="button" onclick="setBudget(1500000)" class="preset-btn px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 text-xs font-mono font-medium transition-colors shrink-0 min-h-[36px]">1.5 млн ₽</button>
+              <button type="button" onclick="setBudget(3000000)" class="preset-btn px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 text-xs font-mono font-medium transition-colors shrink-0 min-h-[36px]">3 млн ₽</button>
+              <button type="button" onclick="setBudget(5000000)" class="preset-btn px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-600 text-xs font-mono font-medium transition-colors shrink-0 min-h-[36px]">5 млн ₽</button>
+            </div>
+
+            <div class="py-2">
+              <input id="budget-slider" type="range" min="100000" max="5000000" step="50000" value="500000" aria-label="Объем партии">
+            </div>
+
             <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-1">
-              <span>от 100 000 ₽</span>
-              <span>1 500 000 ₽</span>
-              <span>3 000 000 ₽</span>
-              <span>до 5 000 000 ₽</span>
+              <span>100 тыс. ₽</span>
+              <span>1.5 млн ₽</span>
+              <span>3 млн ₽</span>
+              <span>5 млн ₽</span>
             </div>
           </div>
 
@@ -339,15 +478,15 @@
               3. Логистический канал:
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <label class="flex items-center gap-3 p-3 rounded border border-slate-300 bg-white cursor-pointer hover:border-blue-500 transition-colors">
-                <input type="radio" name="delivery" value="rail" checked class="text-blue-600 focus:ring-blue-500">
+              <label class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-300 bg-white cursor-pointer hover:border-blue-500 active:bg-blue-50/50 transition-colors min-h-[52px]">
+                <input type="radio" name="delivery" value="rail" checked class="w-4 h-4 text-blue-600 focus:ring-blue-500">
                 <div>
                   <div class="text-xs font-semibold text-slate-800">Ж/Д Сборный контейнер</div>
                   <div class="text-[11px] text-slate-500">18–22 дня • Оптимальная стоимость</div>
                 </div>
               </label>
-              <label class="flex items-center gap-3 p-3 rounded border border-slate-300 bg-white cursor-pointer hover:border-blue-500 transition-colors">
-                <input type="radio" name="delivery" value="air" class="text-blue-600 focus:ring-blue-500">
+              <label class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-300 bg-white cursor-pointer hover:border-blue-500 active:bg-blue-50/50 transition-colors min-h-[52px]">
+                <input type="radio" name="delivery" value="air" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
                 <div>
                   <div class="text-xs font-semibold text-slate-800">Экспресс Авиа</div>
                   <div class="text-[11px] text-slate-500">4–7 дней • Срочные поставки</div>
@@ -359,11 +498,11 @@
         </div>
 
         <!-- Правая часть: Коммерческий расчет -->
-        <div class="lg:col-span-5 bg-slate-900 text-white p-6 sm:p-7 rounded-lg border border-slate-800 shadow-sm flex flex-col justify-between">
+        <div class="lg:col-span-5 bg-slate-900 text-white p-5 sm:p-7 rounded-2xl border border-slate-800 shadow-lg flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-4 border-b border-slate-800">
               <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Оптовая скидка:</span>
-              <span id="discount-badge" class="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold">
+              <span id="discount-badge" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold">
                 -22% от розницы
               </span>
             </div>
@@ -376,11 +515,11 @@
 
               <div>
                 <div class="text-xs text-blue-300 font-semibold">Итого по прямому оптовому контракту:</div>
-                <div id="nova-price" class="text-3xl font-mono font-bold text-white">500 000 ₽</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Включая НДС 20% (<span id="vat-price">83 333 ₽</span> к вычету)</div>
+                <div id="nova-price" class="text-2xl sm:text-3xl font-mono font-bold text-white">500 000 ₽</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Включая НДС 20% (<span id="vat-price" class="text-slate-300 font-mono">83 333 ₽</span> к вычету)</div>
               </div>
 
-              <div class="p-3.5 rounded bg-slate-800/80 border border-slate-700">
+              <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700">
                 <div class="flex items-center justify-between">
                   <div class="text-xs text-emerald-400 font-semibold">Экономия бюджета предприятия:</div>
                   <div id="volume-tier-info" class="text-[10px] font-mono text-emerald-400/80">Средний опт (+4%)</div>
@@ -388,21 +527,21 @@
                 <div id="savings-price" class="text-xl font-mono font-bold text-emerald-300 mt-0.5">+141 000 ₽</div>
               </div>
 
-              <div class="text-xs text-slate-300 font-mono flex items-center justify-between bg-slate-950/40 p-2.5 rounded border border-slate-800">
+              <div class="text-xs text-slate-300 font-mono flex items-center justify-between bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
                 <span class="text-slate-400 text-[11px]">Логистика и срок:</span>
                 <span id="calc-delivery-label" class="text-blue-300 font-semibold text-[11px]">18–22 дня (Ж/Д контейнер)</span>
               </div>
             </div>
 
             <div class="space-y-1.5 text-xs text-slate-300 pb-5 border-b border-slate-800">
-              <div class="flex items-center gap-2"><span>-</span> Фиксация цены в рублях на весь срок поставки</div>
-              <div class="flex items-center gap-2"><span>-</span> Таможенное декларирование и УПД включены</div>
-              <div class="flex items-center gap-2"><span>-</span> Бесплатная доставка до терминала ТК в Москве</div>
+              <div class="flex items-center gap-2"><span>✓</span> Фиксация цены в рублях на весь срок поставки</div>
+              <div class="flex items-center gap-2"><span>✓</span> Таможенное декларирование и УПД включены</div>
+              <div class="flex items-center gap-2"><span>✓</span> Бесплатная доставка до терминала ТК в Москве</div>
             </div>
           </div>
 
           <div class="pt-5">
-            <button onclick="submitCalculator()" class="w-full py-3.5 px-4 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-colors">
+            <button onclick="submitCalculator()" class="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold text-sm transition-colors min-h-[48px] flex items-center justify-center">
               Сформировать коммерческое предложение
             </button>
           </div>
@@ -417,22 +556,28 @@
   <!-- ============================================== -->
   <!-- 3. КАТАЛОГ ПРОДУКЦИИ (РЕАЛЬНЫЕ ФОТО)          -->
   <!-- ============================================== -->
-  <section id="catalog" class="py-16 bg-slate-50 border-b border-slate-200">
+  <section id="solutions" class="py-14 sm:py-16 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <!-- Алиас для #catalog -->
+    <div id="catalog" class="relative -top-20"></div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+            Решения и номенклатура
+          </div>
           <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Каталог серийных поставок</h2>
         </div>
-        <p class="text-sm text-slate-500 max-w-md">
-          Поставляем продукцию напрямую с сертифицированных заводов. Предоставляем паспорта изделий и сертификаты соответствия.
+        <p class="text-xs sm:text-sm text-slate-500 max-w-md">
+          Поставляем продукцию напрямую с сертифицированных заводов. Предоставляем паспорта изделий и сертификаты соответствия ЕАС.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- Товар 1: Микроэлектроника -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-chips.jpg" alt="Микроконтроллеры и платы" class="w-full h-full object-cover" loading="lazy">
@@ -452,14 +597,14 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 480 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос цены: Микроконтроллеры')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
+            <button onclick="openLeadModal('Запрос цены: Микроконтроллеры')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить счет →</button>
           </div>
         </div>
 
         <!-- Товар 2: Блоки питания и автоматика -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-power.jpg" alt="Блоки питания и трансформаторы" class="w-full h-full object-cover" loading="lazy">
@@ -479,14 +624,14 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 1 650 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос цены: Блоки питания')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
+            <button onclick="openLeadModal('Запрос цены: Блоки питания')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить счет →</button>
           </div>
         </div>
 
         <!-- Товар 3: Кабель и коммутация -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-cables.jpg" alt="Кабельная продукция и патч-корды" class="w-full h-full object-cover" loading="lazy">
@@ -506,14 +651,14 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 180 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос цены: Кабель')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
+            <button onclick="openLeadModal('Запрос цены: Кабель')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить счет →</button>
           </div>
         </div>
 
         <!-- Товар 4: Промышленная светотехника -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-lighting.jpg" alt="Промышленная светотехника High-Bay" class="w-full h-full object-contain p-2 bg-slate-50" loading="lazy">
@@ -533,14 +678,14 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 3 450 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос цены: Светотехника')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
+            <button onclick="openLeadModal('Запрос цены: Светотехника')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить счет →</button>
           </div>
         </div>
 
         <!-- Товар 5: Датчики и автоматика -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-sensors.jpg" alt="Индуктивные датчики и автоматика" class="w-full h-full object-contain p-2 bg-white" loading="lazy">
@@ -560,14 +705,14 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 820 ₽/шт</span>
-            <button onclick="openLeadModal('Запрос цены: Датчики')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить счет →</button>
+            <button onclick="openLeadModal('Запрос цены: Датчики')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить счет →</button>
           </div>
         </div>
 
         <!-- Товар 6: Контрактное производство OEM -->
-        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
           <div>
             <div class="h-48 overflow-hidden bg-slate-100 relative">
               <img src="assets/product-oem.jpg" alt="Контрактное производство и SMT-монтаж" class="w-full h-full object-cover" loading="lazy">
@@ -587,9 +732,298 @@
               </div>
             </div>
           </div>
-          <div class="p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
+          <div class="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between">
             <span class="font-mono text-slate-900 font-bold text-sm">от 1.20 ₽/компонент</span>
-            <button onclick="openLeadModal('Запрос КП: Контрактное производство')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Запросить расчет →</button>
+            <button onclick="openLeadModal('Запрос КП: Контрактное производство')" class="px-3 py-2 rounded-lg text-xs font-semibold text-blue-600 hover:text-blue-800 hover:bg-blue-50 active:bg-blue-100 transition-colors min-h-[44px] flex items-center">Запросить расчет →</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 4. СЕКЦИЯ: B2B API И ИНТЕГРАЦИЯ С ERP (1С / SAP)      -->
+  <!-- ======================================================= -->
+  <section id="api" class="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-8 sm:mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+          FinTech & ERP Integration
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">B2B API и автоматизация снабжения</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+          Синхронизируйте складские остатки, получайте спецификации и оформляйте резервирование партий напрямую из вашей 1С:Предприятие, SAP или корпоративной ERP-системы.
+        </p>
+      </div>
+
+      <!-- 3 карточки преимуществ API -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-mono font-bold text-sm mb-3">
+            SLA
+          </div>
+          <h3 class="text-sm font-bold text-slate-900 mb-1">Складские остатки в реальном времени</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Остатки 2 400+ SKU обновляются каждые 60 секунд. 99.9% Uptime SLA с географически распределенным шлюзом в РФ.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-mono font-bold text-sm mb-3">
+            TLS
+          </div>
+          <h3 class="text-sm font-bold text-slate-900 mb-1">Безопасность и разграничение прав</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Шифрование TLS 1.3, авторизация по токенам Bearer и гранулярный доступ для региональных филиалов и заводов.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+          <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-mono font-bold text-sm mb-3">
+            ЭДО
+          </div>
+          <h3 class="text-sm font-bold text-slate-900 mb-1">Webhooks и автоматический УПД</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Мгновенные вебхуки об изменении статусов отгрузок, трекинг ТК и автоматическая загрузка УПД со статусом 1 в Диадок/СБИС.
+          </p>
+        </div>
+      </div>
+
+      <!-- Интерактивный терминал с вкладками кода -->
+      <div class="rounded-2xl border border-slate-800 bg-slate-950 text-slate-100 shadow-xl overflow-hidden">
+        
+        <!-- Верхняя плашка терминала и переключатели вкладок -->
+        <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            </div>
+            <span class="text-xs font-mono text-slate-400 pl-2 border-l border-slate-700 hidden sm:inline">
+              api.nova-trade.ru/v2
+            </span>
+          </div>
+
+          <!-- Вкладки языков программирования с горизонтальным скроллом для мобильных -->
+          <div class="flex items-center gap-1.5 overflow-x-auto touch-scroll-x no-scrollbar py-0.5" id="api-tabs">
+            <button type="button" onclick="switchApiTab('curl')" data-tab="curl" class="api-tab-btn active px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-blue-600 text-white shrink-0 min-h-[36px] transition-colors">
+              cURL / REST
+            </button>
+            <button type="button" onclick="switchApiTab('nodejs')" data-tab="nodejs" class="api-tab-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white shrink-0 min-h-[36px] transition-colors">
+              Node.js SDK
+            </button>
+            <button type="button" onclick="switchApiTab('python')" data-tab="python" class="api-tab-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white shrink-0 min-h-[36px] transition-colors">
+              Python
+            </button>
+            <button type="button" onclick="switchApiTab('onec')" data-tab="onec" class="api-tab-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white shrink-0 min-h-[36px] transition-colors">
+              1С:JSON
+            </button>
+          </div>
+
+          <!-- Кнопка копирования кода -->
+          <button id="copy-code-btn" onclick="copyCodeSnippet()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-mono font-medium flex items-center justify-center gap-1.5 transition-colors shrink-0 min-h-[36px]">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="copy-btn-text">Копировать код</span>
+          </button>
+        </div>
+
+        <!-- Окно отображения кода с чистым горизонтальным скроллом на мобильных -->
+        <div class="relative bg-slate-950 p-4 sm:p-5">
+          <pre class="touch-scroll-x text-xs sm:text-[13px] font-mono leading-relaxed text-slate-200 overflow-x-auto"><code id="code-display" class="block"></code></pre>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 5. СЕКЦИЯ: СРАВНЕНИЕ УСЛОВИЙ ПОСТАВОК (ТАБЛИЦА)        -->
+  <!-- ======================================================= -->
+  <section id="comparison" class="py-14 sm:py-16 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+            Сравнение условий поставок
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">NOVA TRADE vs Альтернативные каналы</h2>
+        </div>
+        
+        <!-- Переключатель режима отображения для мобильных экранов -->
+        <div class="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl shadow-2xs self-start sm:self-auto">
+          <button type="button" onclick="switchComparisonView('table')" id="view-toggle-table" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition-colors min-h-[36px] flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18"/></svg>
+            <span>Таблица ↔</span>
+          </button>
+          <button type="button" onclick="switchComparisonView('cards')" id="view-toggle-cards" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors min-h-[36px] flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+            <span>Карточки ☰</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Вариант 1: Горизонтально скроллящаяся таблица со scroll-snap и touch-scroll-x -->
+      <div id="comparison-table-view" class="block">
+        <div class="text-[11px] text-blue-600 font-medium sm:hidden mb-2.5 flex items-center gap-1.5">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          <span>Листайте пальцем по горизонтали для сравнения колонок ↔</span>
+        </div>
+
+        <div class="overflow-x-auto touch-scroll-x rounded-2xl border border-slate-200 bg-white shadow-xs">
+          <table class="min-w-[680px] w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100/80 font-mono uppercase text-[11px] text-slate-600">
+                <th scope="col" class="py-4 px-4 sm:px-6 w-1/4">Параметр поставки</th>
+                <th scope="col" class="py-4 px-4 sm:px-6 w-1/4 bg-blue-50/80 text-blue-900 border-x border-blue-200 font-bold">
+                  NOVA TRADE (Прямой опт)
+                </th>
+                <th scope="col" class="py-4 px-4 sm:px-6 w-1/4">Традиционные дистрибьюторы</th>
+                <th scope="col" class="py-4 px-4 sm:px-6 w-1/4 text-rose-900">Серый импорт (перекупщики)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">НДС 20% и ЭДО</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ 100% УПД день в день</span><br>
+                  <span class="text-[11px] text-slate-600">Диадок, СБИС, ОСНО с полным вычетом</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  Задержка УПД до 30 дней, наценка за НДС
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ Без НДС, серые юрлица, риски проверок ФНС
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">Срок отгрузки</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ 24 часа со склада в Москве</span><br>
+                  <span class="text-[11px] text-slate-600">2 400+ SKU в наличии на терминале Подольск</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  4–8 недель под заказ с европейских складов
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ 2–3 месяца без гарантии сроков
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">Фиксация цены в договоре</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ Фиксация в рублях на весь срок</span><br>
+                  <span class="text-[11px] text-slate-600">0% валютных рисков для вашего бюджета</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  Привязка к курсу ЦБ на дату поступления
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ Пересмотр цены задним числом при колебаниях
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">Гарантия и рекламации</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ Замена брака за 48 часов</span><br>
+                  <span class="text-[11px] text-slate-600">Резервный складской фонд, заводской ЕАС</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  Экспертиза рекламаций до 45 рабочих дней
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ Претензии не принимаются
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">B2B API и интеграция 1С</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ REST API + шлюз для 1С/SAP</span><br>
+                  <span class="text-[11px] text-slate-600">Автоматическая синхронизация остатков и заказов</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  Ручной обмен прайсами по электронной почте
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ Отсутствует (только чаты в Telegram)
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 sm:px-6 font-semibold text-slate-900">Условия оплаты</td>
+                <td class="py-3.5 px-4 sm:px-6 bg-blue-50/40 border-x border-blue-200 text-blue-950 font-medium">
+                  <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold">✓ Отсрочка до 45 дней</span><br>
+                  <span class="text-[11px] text-slate-600">Программа факторинга для постоянных клиентов</span>
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-slate-600">
+                  100% предоплата до отгрузки
+                </td>
+                <td class="py-3.5 px-4 sm:px-6 text-rose-700 text-xs">
+                  ✕ 100% предоплата без гарантий возврата
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Вариант 2: Вертикальные карточки для компактного просмотра на смартфонах -->
+      <div id="comparison-cards-view" class="hidden space-y-4">
+        
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+          <div class="text-xs font-mono text-slate-400 uppercase mb-1">01. Бухгалтерия и налоги</div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">НДС 20% и ЭДО (Диадок / СБИС)</h3>
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 mb-2">
+            <span class="text-xs font-bold text-blue-900 block mb-0.5">NOVA TRADE:</span>
+            <span class="text-xs text-slate-700">✓ 100% официальный УПД со статусом 1 в день отгрузки. Полный вычет НДС 20% без риска отказа налоговой.</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500">
+            <div><strong>Дистрибьюторы:</strong> Задержки УПД до 30 дней.</div>
+            <div class="text-rose-600"><strong>Серый импорт:</strong> Без НДС, риск проверок ФНС.</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+          <div class="text-xs font-mono text-slate-400 uppercase mb-1">02. Скорость поставки</div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">Срок отгрузки со склада</h3>
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 mb-2">
+            <span class="text-xs font-bold text-blue-900 block mb-0.5">NOVA TRADE:</span>
+            <span class="text-xs text-slate-700">✓ Отгрузка за 24 часа. 2 400+ SKU всегда в наличии на распределительном центре «Подольск».</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500">
+            <div><strong>Дистрибьюторы:</strong> 4–8 недель под заказ.</div>
+            <div class="text-rose-600"><strong>Серый импорт:</strong> 2–3 месяца без гарантий.</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+          <div class="text-xs font-mono text-slate-400 uppercase mb-1">03. Валютные риски</div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">Фиксация стоимости в рублях</h3>
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 mb-2">
+            <span class="text-xs font-bold text-blue-900 block mb-0.5">NOVA TRADE:</span>
+            <span class="text-xs text-slate-700">✓ Цена фиксируется в договоре на весь срок поставки. Курсовые и логистические колебания берем на себя.</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500">
+            <div><strong>Дистрибьюторы:</strong> Привязка к курсу ЦБ.</div>
+            <div class="text-rose-600"><strong>Серый импорт:</strong> Плавающая цена задним числом.</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+          <div class="text-xs font-mono text-slate-400 uppercase mb-1">04. Контроль качества</div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">Гарантия и рекламации</h3>
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 mb-2">
+            <span class="text-xs font-bold text-blue-900 block mb-0.5">NOVA TRADE:</span>
+            <span class="text-xs text-slate-700">✓ Замена брака за 48 часов из резервного фонда в Москве. Паспорта качества и сертификаты ЕАС.</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500">
+            <div><strong>Дистрибьюторы:</strong> Экспертиза до 45 дней.</div>
+            <div class="text-rose-600"><strong>Серый импорт:</strong> Претензии не принимаются.</div>
           </div>
         </div>
 
@@ -599,20 +1033,23 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 4. УСЛОВИЯ, ЛОГИСТИКА И ДОКУМЕНТЫ              -->
+  <!-- 6. УСЛОВИЯ, ЛОГИСТИКА И ДОКУМЕНТЫ              -->
   <!-- ============================================== -->
-  <section id="process" class="py-16 bg-white border-b border-slate-200">
+  <section id="process" class="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="mb-10">
+      <div class="mb-8 sm:mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+          Регламент работы
+        </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Порядок работы с юридическими лицами</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         
         <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
           <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 01</div>
-          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Согласование спецификации</h4>
+          <h3 class="font-bold text-slate-900 text-sm mb-1.5">Согласование спецификации</h3>
           <p class="text-xs text-slate-600 leading-relaxed">
             Сверяем артикулы, технические характеристики, требуемые допуски и сроки поставки.
           </p>
@@ -620,7 +1057,7 @@
 
         <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
           <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 02</div>
-          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Договор поставки</h4>
+          <h3 class="font-bold text-slate-900 text-sm mb-1.5">Договор поставки</h3>
           <p class="text-xs text-slate-600 leading-relaxed">
             Заключаем типовой договор в рублях с фиксацией цены. Предоставляем карточку предприятия и образцы.
           </p>
@@ -628,7 +1065,7 @@
 
         <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
           <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 03</div>
-          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Контроль качества</h4>
+          <h3 class="font-bold text-slate-900 text-sm mb-1.5">Контроль качества</h3>
           <p class="text-xs text-slate-600 leading-relaxed">
             Проверка партии перед отгрузкой. Фото- и видеоотчет упаковки, маркировка по ГОСТ.
           </p>
@@ -636,7 +1073,7 @@
 
         <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
           <div class="font-mono text-blue-600 font-bold text-sm mb-2">Шаг 04</div>
-          <h4 class="font-bold text-slate-900 text-sm mb-1.5">Отгрузка и закрывающие документы</h4>
+          <h3 class="font-bold text-slate-900 text-sm mb-1.5">Отгрузка и документы</h3>
           <p class="text-xs text-slate-600 leading-relaxed">
             Доставка до вашего склада или самовывоз с терминала в Москве. Полный комплект УПД через ЭДО.
           </p>
@@ -648,22 +1085,25 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 5. ГАРАНТИИ КАЧЕСТВА, РЕКЛАМАЦИИ И ДОКУМЕНТЫ   -->
+  <!-- 7. ГАРАНТИИ КАЧЕСТВА, РЕКЛАМАЦИИ И ДОКУМЕНТЫ   -->
   <!-- ============================================== -->
-  <section id="warranties" class="py-16 bg-slate-50 border-b border-slate-200">
+  <section id="warranties" class="py-14 sm:py-16 bg-slate-50 border-b border-slate-200 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="mb-10">
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Гарантии качества, регламент рекламаций и документы</h2>
-        <p class="text-sm text-slate-500 mt-1 max-w-2xl">
+      <div class="mb-8 sm:mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+          Гарантийные обязательства
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Гарантии качества, рекламации и документы</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
           Официальный регламент поставок для производственных и инжиниринговых предприятий РФ. Фиксируем ответственность поставщика в договоре.
         </p>
       </div>
 
-      <!-- 3 ключевых гарантийных блока -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <!-- 3 гарантийных блока -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
         
-        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
             <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 01 / Сертификация</div>
             <h3 class="text-base font-bold text-slate-900 mb-2">100% Заводская гарантия и EAC</h3>
@@ -676,7 +1116,7 @@
           </div>
         </div>
 
-        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
             <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 02 / Рекламации</div>
             <h3 class="text-base font-bold text-slate-900 mb-2">Замена брака за 48 часов</h3>
@@ -689,7 +1129,7 @@
           </div>
         </div>
 
-        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
           <div>
             <div class="font-mono text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">Стандарт 03 / Контроль ОТК</div>
             <h3 class="text-base font-bold text-slate-900 mb-2">Входной инструментальный контроль</h3>
@@ -705,18 +1145,18 @@
       </div>
 
       <!-- Скачивание типового договора и шаблонов документов -->
-      <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h4 class="text-sm font-bold text-slate-900">Юридический пакет документов для согласования</h4>
+          <h3 class="text-sm font-bold text-slate-900">Юридический пакет документов для согласования</h3>
           <p class="text-xs text-slate-500 mt-0.5">Ознакомьтесь с типовым договором поставки и образцом спецификации для вашей юридической службы.</p>
         </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <button onclick="openLeadModal('Скачивание типового договора поставки')" class="px-4 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
-            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <button onclick="openLeadModal('Скачивание типового договора поставки')" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 text-xs font-semibold transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+            <svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Договор поставки (DOCX)</span>
           </button>
-          <button onclick="openLeadModal('Скачивание образца спецификации')" class="px-4 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors flex items-center gap-2">
-            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <button onclick="openLeadModal('Скачивание образца спецификации')" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 text-xs font-semibold transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+            <svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Спецификация (XLSX)</span>
           </button>
         </div>
@@ -726,64 +1166,67 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 6. ЧАСТЫЕ ВОПРОСЫ (FAQ ДЛЯ СНАБЖЕНЦЕВ)         -->
+  <!-- 8. ЧАСТЫЕ ВОПРОСЫ (FAQ ДЛЯ СНАБЖЕНЦЕВ)         -->
   <!-- ============================================== -->
-  <section id="faq" class="py-16 bg-white border-b border-slate-200">
+  <section id="faq" class="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="mb-10 text-center">
+      <div class="mb-8 sm:mb-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+          Вопросы и ответы
+        </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Частые вопросы отделов снабжения</h2>
-        <p class="text-sm text-slate-500 mt-1">
-          Ответы на ключевые финансовые, юридические и логистические вопросы при первой закупке.
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Ответы на ключевые финансовые, юридические и логистические вопросы при первой оптовой закупке.
         </p>
       </div>
 
       <div class="space-y-3">
         
-        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
-          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
+        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-4 sm:p-5">
+          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none min-h-[44px]">
             <span>Работаете ли вы с НДС 20% и через какие системы ЭДО?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Да, мы работаем исключительно на общей системе налогообложения (ОСНО) с выделением НДС 20%. Первичные учетные документы (УПД со статусом 1, счета, счета-фактуры) отправляем день в день через операторов «Диадок» (СКБ Контур) и «СБИС» (Тензор). Также доступен классический бумажный документооборот с курьерской доставкой.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
-          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
+        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-4 sm:p-5">
+          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none min-h-[44px]">
             <span>Можно ли получить образцы продукции перед крупной серией?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Да, для тестирования на производственных линиях и входного контроля мы предоставляем образцы компонентов и кабельной продукции. Образцы передаются по акту приема-передачи с отправкой экспресс-курьером в течение 24 часов со склада в Москве.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
-          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
+        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-4 sm:p-5">
+          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none min-h-[44px]">
             <span>Как фиксируется стоимость при колебаниях валютных курсов?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             В момент согласования и подписания спецификации цена в рублях окончательно фиксируется в договоре на весь срок поставки. Любые валютные и таможенные колебания NOVA TRADE берет на себя. Пересмотр цены задним числом исключен.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
-          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
+        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-4 sm:p-5">
+          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none min-h-[44px]">
             <span>Предоставляется ли отсрочка платежа (коммерческий кредит)?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Для постоянных клиентов действует программа факторинга и отсрочки платежа до 45 календарных дней после отгрузки с лимитом до 15 000 000 ₽. При первом контракте возможна схема 50% предоплата и 50% по факту готовности к отгрузке на терминале в Москве.
           </div>
         </details>
 
-        <details class="group border border-slate-200 rounded-xl bg-slate-50/50 open:bg-white transition-colors p-5">
-          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none">
+        <details class="group border border-slate-200 rounded-2xl bg-slate-50/50 open:bg-white transition-colors p-4 sm:p-5">
+          <summary class="flex justify-between items-center font-semibold text-slate-900 text-sm cursor-pointer list-none min-h-[44px]">
             <span>В какие регионы доставляете и какими транспортными компаниями?</span>
-            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Доставляем во все субъекты РФ, а также в Беларусь и Казахстан. До московских терминалов «Деловые Линии», «ПЭК», «СДЭК» и «Байкал-Сервис» доставка бесплатна ежедневно. Также возможен прямой самовывоз с нашего распределительного центра в индустриальном парке «Коледино» (Подольск).
@@ -796,18 +1239,24 @@
   </section>
 
   <!-- ============================================== -->
-  <!-- 7. КОНТАКТЫ И РЕКВИЗИТЫ: РЕАЛЬНЫЙ B2B БЛОК      -->
+  <!-- 9. КОНТАКТЫ И РЕКВИЗИТЫ: РЕАЛЬНЫЙ B2B БЛОК      -->
   <!-- ============================================== -->
-  <section id="contacts" class="py-16 bg-slate-50">
+  <section id="contact" class="py-14 sm:py-16 bg-slate-50 scroll-mt-20">
+    <!-- Алиас для #contacts -->
+    <div id="contacts" class="relative -top-20"></div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         
         <!-- Контактные данные и реквизиты компании -->
         <div class="lg:col-span-6 space-y-6">
           <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-semibold mb-2">
+              Центральный офис и склад
+            </div>
             <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">ООО «Нова Трейд»</h2>
-            <p class="text-sm text-slate-500 mt-1">
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
               Оптовый поставщик электронных компонентов и промышленного оборудования.
             </p>
           </div>
@@ -826,19 +1275,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div>
                 <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Отдел продаж:</div>
-                <a href="tel:+74951284480" class="font-mono font-bold text-slate-900 hover:text-blue-600 block">+7 (495) 128-44-80</a>
+                <a href="tel:+74951284480" class="font-mono font-bold text-slate-900 hover:text-blue-600 block text-base sm:text-sm min-h-[32px] flex items-center">+7 (495) 128-44-80</a>
                 <a href="tel:88003337291" class="font-mono text-xs text-slate-500 hover:text-blue-600 block mt-0.5">8 (800) 333-72-91 (РФ)</a>
               </div>
               <div>
                 <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Электронная почта:</div>
-                <a href="mailto:zakaz@nova-trade.ru" class="font-mono text-blue-600 hover:underline block">zakaz@nova-trade.ru</a>
+                <a href="mailto:zakaz@nova-trade.ru" class="font-mono text-blue-600 hover:underline block text-base sm:text-sm min-h-[32px] flex items-center">zakaz@nova-trade.ru</a>
                 <a href="mailto:docs@nova-trade.ru" class="font-mono text-xs text-slate-500 hover:underline block mt-0.5">docs@nova-trade.ru (бухгалтерия)</a>
               </div>
             </div>
           </div>
 
           <!-- Реквизиты юридического лица -->
-          <div class="p-4 rounded border border-slate-200 bg-white text-xs text-slate-600 font-mono space-y-1">
+          <div class="p-4 rounded-2xl border border-slate-200 bg-white text-xs text-slate-600 font-mono space-y-1 shadow-2xs">
             <div class="font-bold text-slate-800 pb-1 mb-1 border-b border-slate-100">Реквизиты организации:</div>
             <div>ОГРН: 1197746529180</div>
             <div>ИНН: 7724918230 / КПП: 772401001</div>
@@ -849,9 +1298,9 @@
         </div>
 
         <!-- Форма запроса спецификации и счета -->
-        <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="lg:col-span-6 bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
           <div id="lead-form-container">
-            <h3 class="text-lg font-bold text-slate-900 mb-1">Запросить расчет партии или счет</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Запросить расчет партии или счет</h3>
             <p class="text-xs text-slate-500 mb-5">
               Прикрепите спецификацию или укажите требуемые артикулы. Ответственный менеджер подготовит КП в течение 30 минут.
             </p>
@@ -860,42 +1309,42 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="text-xs font-semibold text-slate-700 block mb-1">Ваше имя и должность:</label>
-                  <input type="text" required placeholder="Константин, инженер снабжения" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+                  <input type="text" required placeholder="Константин, снабжение" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all">
                 </div>
                 <div>
                   <label class="text-xs font-semibold text-slate-700 block mb-1">Рабочий телефон:</label>
-                  <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+                  <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all">
                 </div>
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-700 block mb-1">Рабочий Email для спецификации:</label>
-                <input type="email" required placeholder="supply@your-company.ru" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+                <input type="email" required placeholder="supply@your-company.ru" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all">
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-700 block mb-1">Название компании или ИНН:</label>
-                <input type="text" placeholder="ООО «ПромПрибор» / ИНН 77..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+                <input type="text" placeholder="ООО «ПромПрибор» / ИНН 77..." class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all">
               </div>
 
               <div>
                 <label class="text-xs font-semibold text-slate-700 block mb-1">Список позиций или комментарий к заявке:</label>
-                <textarea rows="3" placeholder="Укажите артикулы, требуемое количество или ссылку на спецификацию..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none"></textarea>
+                <textarea rows="3" placeholder="Укажите артикулы, требуемое количество или ссылку на спецификацию..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-base sm:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all"></textarea>
               </div>
 
               <!-- Поле прикрепления файла спецификации -->
               <div>
                 <label class="text-xs font-semibold text-slate-700 block mb-1">Спецификация или реквизиты (необязательно):</label>
-                <div class="relative border border-dashed border-slate-300 rounded-xl p-3 bg-slate-50/70 hover:bg-slate-50 transition-colors text-center cursor-pointer group">
+                <div class="relative border border-dashed border-slate-300 rounded-xl p-3 bg-slate-50/70 hover:bg-slate-50 active:bg-blue-50/50 transition-colors text-center cursor-pointer group min-h-[48px] flex items-center justify-center">
                   <input type="file" id="lead-spec-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.zip" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleFileSelect(this, 'lead-file-status')">
                   <div id="lead-file-status" class="flex items-center justify-center gap-2 text-xs text-slate-600 font-medium">
-                    <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                    <span>Прикрепить спецификацию (XLS, XLSX, PDF, DOC до 25 МБ)</span>
+                    <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                    <span class="truncate max-w-[220px] sm:max-w-[320px]">Прикрепить спецификацию (XLSX, PDF, DOC до 25 МБ)</span>
                   </div>
                 </div>
               </div>
 
-              <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors shadow-sm">
+              <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm transition-colors shadow-sm min-h-[48px] flex items-center justify-center">
                 Отправить заявку на оптовый расчет
               </button>
 
@@ -906,15 +1355,15 @@
           </div>
 
           <!-- Блок успешной отправки прямо внутри формы -->
-          <div id="lead-form-success" class="hidden text-center py-12">
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+          <div id="lead-form-success" class="hidden text-center py-10">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 shadow-2xs">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             </div>
             <h4 class="text-lg font-bold text-slate-900 mb-1.5">Заявка успешно принята</h4>
             <p class="text-xs text-slate-600 max-w-md mx-auto leading-relaxed mb-5">
               Менеджер оптового отдела получил вашу спецификацию и подготовит коммерческое предложение с фабричными ценами и сроками поставки в течение 30 минут.
             </p>
-            <button onclick="resetLeadForm()" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors">
+            <button onclick="resetLeadForm()" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 text-xs font-semibold transition-colors min-h-[44px]">
               Отправить еще одну заявку
             </button>
           </div>
@@ -927,9 +1376,9 @@
 
   <!-- ФУТЕР B2B КОМПАНИИ -->
   <footer class="border-t border-slate-200 bg-white py-6 text-xs text-slate-500 font-sans">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
-        © 2026 ООО «Нова Трейд». Оптовые поставки промышленного оборудования. Все права защищены.
+        © 2026 ООО «Нова Трейд». Прямые оптовые поставки оборудования. Все права защищены.
       </div>
       <div class="text-slate-400">
         Дизайн и разработка сайта — студия <a href="../../#cases" class="text-blue-600 hover:underline">cash'u</a>
@@ -937,35 +1386,39 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО ЗАПРОСА КП -->
-  <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl border border-slate-200 max-w-md w-full p-6 relative shadow-xl">
-      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">✕</button>
+  <!-- МОДАЛЬНОЕ ОКНО ЗАПРОСА КП С ЗАКРЫТИЕМ 44x44px И 16px INPUTS -->
+  <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl border border-slate-200 max-w-md w-full p-5 sm:p-6 relative shadow-2xl my-auto">
+      
+      <!-- Кнопка закрытия модалки: 44x44px touch target -->
+      <button onclick="closeLeadModal()" class="absolute top-3 right-3 w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-400 hover:text-slate-800 hover:bg-slate-100 active:bg-slate-200 transition-colors focus:outline-none" aria-label="Закрыть модальное окно">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
       
       <div id="modal-content">
-        <h3 id="modal-title" class="text-lg font-bold text-slate-900 mb-1">Запрос коммерческого предложения</h3>
-        <p class="text-xs text-slate-500 mb-5">Укажите контактный телефон или Email. Менеджер вышлет официальный расчет в течение 30 минут.</p>
+        <h3 id="modal-title" class="text-base sm:text-lg font-bold text-slate-900 mb-1 pr-10">Запрос коммерческого предложения</h3>
+        <p class="text-xs text-slate-500 mb-4 sm:mb-5">Укажите контактный телефон или Email. Менеджер вышлет официальный расчет в течение 30 минут.</p>
 
         <form onsubmit="handleModalSubmit(event)" class="space-y-3.5">
           <input type="hidden" id="modal-source" value="Кнопка">
           <div>
             <label class="text-xs font-semibold text-slate-700 block mb-1">Контактное лицо:</label>
-            <input type="text" required placeholder="Андрей" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+            <input type="text" required placeholder="Андрей, отдел закупок" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none">
           </div>
           <div>
             <label class="text-xs font-semibold text-slate-700 block mb-1">Телефон или Email:</label>
-            <input type="text" required placeholder="+7 (___) ___-__-__ или email" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:outline-none">
+            <input type="text" required placeholder="+7 (___) ___-__-__ или email" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-base sm:text-sm min-h-[44px] focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none">
           </div>
           <div>
-            <div class="relative border border-dashed border-slate-300 rounded-xl p-2.5 bg-slate-50 text-center cursor-pointer">
+            <div class="relative border border-dashed border-slate-300 rounded-xl p-2.5 bg-slate-50 active:bg-blue-50/50 text-center cursor-pointer min-h-[44px] flex items-center justify-center">
               <input type="file" id="modal-spec-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.zip" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleFileSelect(this, 'modal-file-status')">
               <div id="modal-file-status" class="flex items-center justify-center gap-1.5 text-xs text-slate-500">
-                <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                <span>Прикрепить спецификацию (необязательно)</span>
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                <span class="truncate max-w-[240px]">Прикрепить спецификацию</span>
               </div>
             </div>
           </div>
-          <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs uppercase tracking-wider transition-colors">
+          <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs uppercase tracking-wider transition-colors min-h-[48px] flex items-center justify-center">
             Получить спецификацию с ценами
           </button>
         </form>
@@ -973,14 +1426,14 @@
 
       <!-- Успешная отправка -->
       <div id="modal-success" class="hidden text-center py-4">
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+        <div class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 shadow-2xs">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
         </div>
         <h4 class="text-base font-bold text-slate-900 mb-1">Заявка принята</h4>
         <p class="text-xs text-slate-600 leading-relaxed">
           Менеджер оптового отдела свяжется с вами и предоставит спецификацию с фабричными ценами.
         </p>
-        <button onclick="closeLeadModal()" class="mt-4 px-5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-medium">
+        <button onclick="closeLeadModal()" class="mt-4 px-6 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 text-xs font-semibold min-h-[44px]">
           Закрыть
         </button>
       </div>
@@ -988,7 +1441,23 @@
     </div>
   </div>
 
-  <!-- Скрипт калькулятора, модалки, файлов и мобильного меню -->
+  <!-- ============================================== -->
+  <!-- ВСПЛЫВАЮЩИЙ ТОСТ УВЕДОМЛЕНИЙ ДЛЯ МОБИЛЬНЫХ    -->
+  <!-- ============================================== -->
+  <div id="toast-notification" class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] hidden items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900/95 text-white shadow-2xl border border-slate-700/80 max-w-[92vw] w-auto transition-all duration-200">
+    <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <div class="text-left pr-1">
+      <div id="toast-title" class="text-xs font-bold text-white">Успешно!</div>
+      <div id="toast-message" class="text-[11px] text-slate-300 leading-tight">Ваша заявка принята в обработку.</div>
+    </div>
+    <button onclick="hideToast()" class="w-7 h-7 min-w-[28px] flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 focus:outline-none" aria-label="Закрыть">
+      ✕
+    </button>
+  </div>
+
+  <!-- Скрипт калькулятора, модалки, файлов, табов и мобильного меню -->
   <script>
     // Базовые скидки по категориям
     const catDiscounts = {
@@ -1016,6 +1485,7 @@
     }
 
     function recalculate() {
+      if (!slider) return;
       const budget = parseInt(slider.value, 10);
       valDisplay.textContent = formatCurrency(budget);
 
@@ -1051,7 +1521,7 @@
 
       discountBadge.textContent = `-${percent}% от розницы`;
 
-      // Расчет финальной стоимости с учетом авиафрахта
+      // Расчет финальной стоимости с учетом логистики
       const deliveryMultiplier = isAir ? 1.05 : 1.0;
       const finalPrice = Math.round(budget * deliveryMultiplier);
       const marketPrice = Math.round(finalPrice / (1 - totalDiscount));
@@ -1066,7 +1536,27 @@
       }
     }
 
-    slider.addEventListener('input', recalculate);
+    if (slider) {
+      slider.addEventListener('input', recalculate);
+    }
+
+    // Быстрый выбор бюджета с подсветкой активной кнопки
+    function setBudget(val) {
+      if (!slider) return;
+      slider.value = val;
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-50', 'border-blue-600', 'text-blue-700');
+        btn.classList.add('bg-white', 'border-slate-200', 'text-slate-700');
+      });
+      // Подсветить подходящую кнопку
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(val.toString())) {
+          btn.classList.remove('bg-white', 'border-slate-200', 'text-slate-700');
+          btn.classList.add('bg-blue-50', 'border-blue-600', 'text-blue-700');
+        }
+      });
+      recalculate();
+    }
 
     // Слушатели переключателя доставки
     document.querySelectorAll('input[name="delivery"]').forEach(radio => {
@@ -1088,30 +1578,294 @@
       });
     });
 
+    // Первичный расчет
     recalculate();
 
-    // Мобильное меню
+    // ==============================================
+    // МОБИЛЬНОЕ МЕНЮ И ЗАКРЫТИЕ ПО ТАПУ НА ССЫЛКИ
+    // ==============================================
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
-      if (menu) {
-        menu.classList.toggle('hidden');
+      const btn = document.getElementById('mobile-menu-btn');
+      const hamburger = document.getElementById('hamburger-icon');
+      const close = document.getElementById('close-icon');
+
+      if (!menu) return;
+
+      const isClosed = menu.classList.contains('hidden');
+      if (isClosed) {
+        menu.classList.remove('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (hamburger) hamburger.classList.add('hidden');
+        if (close) close.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (hamburger) hamburger.classList.remove('hidden');
+        if (close) close.classList.add('hidden');
       }
     }
 
-    // Обработка загрузки файла
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('mobile-menu-btn');
+      const hamburger = document.getElementById('hamburger-icon');
+      const close = document.getElementById('close-icon');
+
+      if (menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (hamburger) hamburger.classList.remove('hidden');
+        if (close) close.classList.add('hidden');
+      }
+    }
+
+    // Слушатель для плавного скролла и закрытия меню для всех внутренних ссылок
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href && href.length > 1) {
+          const target = document.querySelector(href);
+          if (target) {
+            closeMobileMenu();
+          }
+        }
+      });
+    });
+
+    // ==============================================
+    // B2B API ИНТЕРАКТИВНЫЕ ВКЛАДКИ КОДА
+    // ==============================================
+    const codeSnippets = {
+      curl: `# 1. Запрос актуальных оптовых остатков и цен по SKU со склада в Москве
+curl -X GET "https://api.nova-trade.ru/v2/catalog/inventory?sku=MC-STM32-PRO&warehouse=podolsk" \\
+  -H "Authorization: Bearer nt_live_99f2b8417c88" \\
+  -H "Accept: application/json"
+
+# Ответ шлюза (200 OK):
+{
+  "status": "success",
+  "sku": "MC-STM32-PRO",
+  "name": "STM32F407VGT6 Cortex-M4 168MHz",
+  "stock_podolsk": 14200,
+  "unit_price_rub": 480.00,
+  "vat_included": true,
+  "vat_rate": 0.20,
+  "eac_cert": "ЕАЭС RU C-CN.АД07.B.03819/23"
+}`,
+
+      nodejs: `import { NovaTradeClient } from '@nova-trade/b2b-sdk';
+
+const nova = new NovaTradeClient({
+  apiKey: process.env.NOVA_API_KEY,
+  inn: '7724918230', // ИНН предприятия для отправки УПД в Диадок
+  timeout: 5000
+});
+
+// Резервирование партии продукции под производственный план
+const order = await nova.orders.create({
+  contractType: 'DIRECT_RUB',
+  deliveryMethod: 'RAIL_CONTAINER', // Сборный контейнер Ж/Д
+  warehouseId: 'MSK_PODOLSK_A',
+  items: [
+    { sku: 'MC-STM32-PRO', quantity: 250 },
+    { sku: 'IND-PWR-DIN48', quantity: 40 }
+  ],
+  edoProvider: 'DIADOK',
+  autoReserveHours: 72
+});
+
+console.log(\`Заказ #\${order.id} подтвержден. Скидка: \${order.discountPercent}%\`);`,
+
+      python: `import os
+import requests
+
+NOVA_API_URL = "https://api.nova-trade.ru/v2"
+API_KEY = os.getenv("NOVA_API_KEY", "nt_live_99f2b8417c88")
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+# Синхронизация каталога и статусов счетов в базу предприятия
+response = requests.get(
+    f"{NOVA_API_URL}/catalog/sync",
+    headers=headers,
+    params={"category": "electronics", "limit": 100}
+)
+
+if response.status_code == 200:
+    data = response.json()
+    print(f"Синхронизировано {len(data['items'])} SKU со склада Подольск.")
+    print(f"Статус складского терминала: {data['warehouse_status']}")`,
+
+      onec: `{
+  "Событие": "ИнтеграцияНоменклатуры_1С",
+  "Поставщик": "ООО «Нова Трейд»",
+  "ИНН_Поставщика": "7724918230",
+  "КПП_Поставщика": "772401001",
+  "Договор": "ДП-2026/04 от 12.01.2026",
+  "КаналЭДО": "Диадок (СКБ Контур)",
+  "СкладОтгрузки": "Подольск, Индустриальный парк «Коледино»",
+  "Спецификация": [
+    {
+      "Артикул": "MC-STM32-PRO",
+      "Наименование": "Микроконтроллер STM32F407",
+      "Количество": 500,
+      "ЦенаБезНДС": 400.00,
+      "СтавкаНДС": 20,
+      "СуммаНДС": 40000.00,
+      "СуммаСНДС": 240000.00
+    }
+  ]
+}`
+    };
+
+    let activeApiTab = 'curl';
+
+    function switchApiTab(tab) {
+      activeApiTab = tab;
+      document.querySelectorAll('.api-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tab) {
+          btn.classList.remove('bg-slate-800', 'text-slate-300');
+          btn.classList.add('bg-blue-600', 'text-white');
+        } else {
+          btn.classList.remove('bg-blue-600', 'text-white');
+          btn.classList.add('bg-slate-800', 'text-slate-300');
+        }
+      });
+
+      const display = document.getElementById('code-display');
+      if (display && codeSnippets[tab]) {
+        display.textContent = codeSnippets[tab];
+      }
+    }
+
+    // Инициализация первой вкладки
+    switchApiTab('curl');
+
+    function copyCodeSnippet() {
+      const code = codeSnippets[activeApiTab] || '';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+          showCopySuccess();
+        }).catch(() => {
+          fallbackCopyText(code);
+        });
+      } else {
+        fallbackCopyText(code);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showCopySuccess();
+      } catch (err) {}
+      document.body.removeChild(textArea);
+    }
+
+    function showCopySuccess() {
+      const btnText = document.getElementById('copy-btn-text');
+      if (btnText) {
+        btnText.textContent = 'Скопировано! ✓';
+        setTimeout(() => {
+          btnText.textContent = 'Копировать код';
+        }, 2500);
+      }
+      showToast('Код скопирован!', 'Фрагмент API-запроса успешно сохранен в буфер обмена.');
+    }
+
+    // ==============================================
+    // ПЕРЕКЛЮЧЕНИЕ РЕЖИМА СРАВНЕНИЯ (ТАБЛИЦА / КАРТОЧКИ)
+    // ==============================================
+    function switchComparisonView(mode) {
+      const tableView = document.getElementById('comparison-table-view');
+      const cardsView = document.getElementById('comparison-cards-view');
+      const btnTable = document.getElementById('view-toggle-table');
+      const btnCards = document.getElementById('view-toggle-cards');
+
+      if (mode === 'cards') {
+        if (tableView) tableView.classList.add('hidden');
+        if (cardsView) cardsView.classList.remove('hidden');
+        if (btnCards) {
+          btnCards.classList.remove('text-slate-600', 'hover:bg-slate-100');
+          btnCards.classList.add('bg-blue-600', 'text-white');
+        }
+        if (btnTable) {
+          btnTable.classList.remove('bg-blue-600', 'text-white');
+          btnTable.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      } else {
+        if (tableView) tableView.classList.remove('hidden');
+        if (cardsView) cardsView.classList.add('hidden');
+        if (btnTable) {
+          btnTable.classList.remove('text-slate-600', 'hover:bg-slate-100');
+          btnTable.classList.add('bg-blue-600', 'text-white');
+        }
+        if (btnCards) {
+          btnCards.classList.remove('bg-blue-600', 'text-white');
+          btnCards.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+    }
+
+    // ==============================================
+    // СИСТЕМА УВЕДОМЛЕНИЙ (TOAST NOTIFICATIONS)
+    // ==============================================
+    let toastTimeout = null;
+
+    function showToast(title, message, duration = 4000) {
+      const toast = document.getElementById('toast-notification');
+      const titleEl = document.getElementById('toast-title');
+      const msgEl = document.getElementById('toast-message');
+
+      if (!toast) return;
+
+      if (titleEl) titleEl.textContent = title;
+      if (msgEl) msgEl.textContent = message;
+
+      toast.classList.remove('hidden');
+      toast.classList.add('flex', 'animate-toast');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        hideToast();
+      }, duration);
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('toast-notification');
+      if (toast) {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex', 'animate-toast');
+      }
+      if (toastTimeout) clearTimeout(toastTimeout);
+    }
+
+    // ==============================================
+    // ОБРАБОТКА ЗАГРУЗКИ ФАЙЛА
+    // ==============================================
     function handleFileSelect(input, targetId) {
       const label = document.getElementById(targetId);
-      if (input.files && input.files[0]) {
+      if (input.files && input.files[0] && label) {
         const file = input.files[0];
         const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
         label.innerHTML = `
-          <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <span class="text-emerald-700 font-semibold truncate max-w-[280px]">Прикреплен: ${file.name} (${sizeMB} МБ)</span>
+          <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-emerald-700 font-semibold truncate max-w-[240px]">Прикреплен: ${file.name} (${sizeMB} МБ)</span>
         `;
       }
     }
 
-    // Модальное окно
+    // ==============================================
+    // МОДАЛЬНОЕ ОКНО
+    // ==============================================
     const modal = document.getElementById('modal-backdrop');
     const modalContent = document.getElementById('modal-content');
     const modalSuccess = document.getElementById('modal-success');
@@ -1119,55 +1873,71 @@
     const modalSource = document.getElementById('modal-source');
 
     function openLeadModal(title = 'Запрос коммерческого предложения') {
-      modalTitle.textContent = title;
-      modalSource.value = title;
-      modalContent.classList.remove('hidden');
-      modalSuccess.classList.add('hidden');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalSource) modalSource.value = title;
+      if (modalContent) modalContent.classList.remove('hidden');
+      if (modalSuccess) modalSuccess.classList.add('hidden');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     function closeLeadModal() {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
     }
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeLeadModal();
-    });
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLeadModal();
+      });
+    }
 
     function submitCalculator() {
+      if (!slider) return;
       const budget = parseInt(slider.value, 10);
       const deliveryInput = document.querySelector('input[name="delivery"]:checked');
       const delName = (deliveryInput && deliveryInput.value === 'air') ? 'Авиа' : 'Ж/Д';
       openLeadModal(`КП: партия на ${formatCurrency(budget)} (${delName})`);
     }
 
-    // Отправка основной контактной формы (на месте)
+    // Отправка основной контактной формы
     function handleFormSubmit(e) {
       e.preventDefault();
-      document.getElementById('lead-form-container').classList.add('hidden');
-      document.getElementById('lead-form-success').classList.remove('hidden');
+      const formContainer = document.getElementById('lead-form-container');
+      const successBlock = document.getElementById('lead-form-success');
+      if (formContainer) formContainer.classList.add('hidden');
+      if (successBlock) successBlock.classList.remove('hidden');
+      showToast('Заявка принята!', 'Менеджер оптового отдела свяжется с вами в течение 30 минут.');
     }
 
     function resetLeadForm() {
-      document.getElementById('lead-form').reset();
+      const form = document.getElementById('lead-form');
+      if (form) form.reset();
       const status = document.getElementById('lead-file-status');
       if (status) {
         status.innerHTML = `
-          <svg class="w-4 h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-          <span>Прикрепить спецификацию (XLS, XLSX, PDF, DOC до 25 МБ)</span>
+          <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+          <span class="truncate max-w-[220px] sm:max-w-[320px]">Прикрепить спецификацию (XLSX, PDF, DOC до 25 МБ)</span>
         `;
       }
-      document.getElementById('lead-form-success').classList.add('hidden');
-      document.getElementById('lead-form-container').classList.remove('hidden');
+      const successBlock = document.getElementById('lead-form-success');
+      const formContainer = document.getElementById('lead-form-container');
+      if (successBlock) successBlock.classList.add('hidden');
+      if (formContainer) formContainer.classList.remove('hidden');
     }
 
     // Отправка модальной формы
     function handleModalSubmit(e) {
       e.preventDefault();
-      modalContent.classList.add('hidden');
-      modalSuccess.classList.remove('hidden');
+      if (modalContent) modalContent.classList.add('hidden');
+      if (modalSuccess) modalSuccess.classList.remove('hidden');
+      showToast('Заявка принята!', 'Спецификация с оптовыми ценами отправлена на расчет.');
     }
   </script>
 

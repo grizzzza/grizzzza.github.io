@@ -1,135 +1,1292 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>APEX DETAILING — Премиальный уход за автомобилем</title>
 <link rel="stylesheet" href="detailing.css">
 <style>
-:root{--bk:#0b0c10;--dk:#12141a;--cd:#171a22;--br:#202430;--bl:#2563eb;--bll:#3b82f6;--tx:#e2e8f0;--mu:#94a3b8}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bk);color:var(--tx);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
-button{cursor:pointer;border:none;background:none;font-family:inherit}
+:root {
+  --bk: #0b0c10;
+  --dk: #12141a;
+  --cd: #171a22;
+  --br: #202430;
+  --bl: #2563eb;
+  --bll: #3b82f6;
+  --tx: #e2e8f0;
+  --mu: #94a3b8;
+  --sub: #cbd5e1;
+}
 
-.site-header{position:sticky;top:41px;z-index:90;background:#0b0c10;border-bottom:1px solid #202430;height:68px;display:flex;align-items:center;padding:0 2rem}
-.header-inner{max-width:1280px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.logo-name{font-size:1.25rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;line-height:1}
-.logo-sub{font-size:9px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:#94a3b8;margin-top:2px}
-.nav{display:flex;align-items:center;gap:2rem}
-.nav a{font-size:13px;font-weight:500;color:#94a3b8;letter-spacing:.02em;transition:color .15s}
-.nav a:hover{color:#fff}
-.btn-primary{background:#2563eb;color:#fff;padding:.6rem 1.4rem;font-size:13px;font-weight:600;letter-spacing:.04em;border-radius:6px;transition:background .15s;cursor:pointer;border:none;font-family:inherit}
-.btn-primary:hover{background:#3b82f6}
-</style>
-<style>
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hero-slides{position:absolute;inset:0;z-index:0}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,#0b0c10 0%,rgba(11,12,16,.4) 45%,rgba(11,12,16,.7) 100%),linear-gradient(90deg,rgba(11,12,16,.88) 0%,rgba(11,12,16,.1) 60%,rgba(11,12,16,.88) 100%);pointer-events:none}
-.hero-content{position:relative;z-index:2;max-width:1280px;width:100%;margin:0 auto;padding:0 2rem}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#3b82f6;margin-bottom:1.5rem}
-.hero-title{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1;margin-bottom:1.5rem}
-.hero-title span{color:#3b82f6}
-.hero-desc{font-size:1.1rem;color:#94a3b8;max-width:500px;line-height:1.7;margin-bottom:2.5rem}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
-.btn-lg{padding:.9rem 2.2rem;font-size:15px;font-weight:600;border-radius:8px;cursor:pointer;font-family:inherit;border:none}
-.btn-outline-lg{border:1px solid #202430;color:#94a3b8;padding:.9rem 2.2rem;font-size:15px;font-weight:500;border-radius:8px;transition:all .15s;background:transparent;cursor:pointer;font-family:inherit}
-.btn-outline-lg:hover{border-color:#64748b;color:#fff}
-.hero-stats{display:flex;gap:3rem}
-.stat-num{font-size:2rem;font-weight:800;color:#fff;letter-spacing:-.02em}
-.stat-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#94a3b8;margin-top:2px}
-.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:.5rem}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:all .3s;padding:0}
-.hero-dot.active{width:24px;border-radius:3px;background:#3b82f6}
-section{padding:5rem 2rem}
-.section-inner{max-width:1280px;margin:0 auto}
-.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3b82f6;margin-bottom:.75rem}
-.section-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:1rem}
-.section-desc{color:#94a3b8;font-size:1rem;line-height:1.7;max-width:580px}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
-.svc-card{background:#171a22;border:1px solid #202430;border-radius:12px;overflow:hidden;transition:transform .25s,border-color .25s}
-.svc-card:hover{transform:translateY(-4px);border-color:#334155}
-.svc-img{height:210px;overflow:hidden}
-.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.svc-card:hover .svc-img img{transform:scale(1.06)}
-.svc-body{padding:1.5rem}
-.svc-num{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#3b82f6;margin-bottom:.5rem}
-.svc-name{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.5rem}
-.svc-text{font-size:.875rem;color:#94a3b8;line-height:1.6;margin-bottom:1.2rem}
-.svc-price{font-size:.8rem;font-weight:600;color:#fff;background:#2563eb;display:inline-block;padding:.3rem .75rem;border-radius:4px}
-</style>
-<style>
-.ba-section{background:#12141a}
-.ba-wrap{position:relative;max-width:900px;margin:3rem auto 0;border-radius:12px;overflow:hidden;border:1px solid #202430;user-select:none}
-.ba-aspect{padding-bottom:56.25%}
-.ba-before,.ba-after{position:absolute;inset:0}
-.ba-before img,.ba-after img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.ba-before{clip-path:inset(0 50% 0 0)}
-.ba-line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:10;transform:translateX(-50%);pointer-events:none}
-.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:11;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;cursor:ew-resize;box-shadow:0 2px 16px rgba(0,0,0,.6)}
-.ba-label{position:absolute;top:1rem;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .75rem;border-radius:4px;z-index:5}
-.ba-label.before-lbl{left:1rem;background:rgba(0,0,0,.65);color:#94a3b8}
-.ba-label.after-lbl{right:1rem;background:rgba(37,99,235,.85);color:#fff}
-.calc-card{background:#171a22;border:1px solid #202430;border-radius:12px;padding:2.5rem;max-width:680px;margin:3rem auto 0}
-.calc-title{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1.5rem}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.calc-field label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:.4rem}
-.calc-field select,.calc-field input{width:100%;background:#12141a;border:1px solid #202430;color:#fff;border-radius:6px;padding:.65rem .9rem;font-size:.9rem;outline:none;font-family:inherit}
-.calc-field select:focus,.calc-field input:focus{border-color:#2563eb}
-.calc-result{border-top:1px solid #202430;padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;margin-top:.5rem}
-.result-label{font-size:.875rem;color:#94a3b8}
-.result-price{font-size:1.75rem;font-weight:800;color:#fff}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:3rem}
-.gallery-item{border-radius:10px;overflow:hidden;border:1px solid #202430;aspect-ratio:4/3}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.gallery-item:hover img{transform:scale(1.06)}
-.about-section{background:#12141a}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
-.about-img{border-radius:12px;overflow:hidden;border:1px solid #202430;height:400px}
-.about-img img{width:100%;height:100%;object-fit:cover}
-.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
-.fact-item{padding:1.25rem;background:#171a22;border:1px solid #202430;border-radius:8px}
-.fact-num{font-size:1.75rem;font-weight:800;color:#fff;letter-spacing:-.02em}
-.fact-text{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#64748b;margin-top:.25rem}
-.faq-list{margin-top:2.5rem;max-width:760px}
-.faq-item{border-bottom:1px solid #202430}
-.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:.975rem;font-weight:600;color:#fff;padding:1.1rem 0;user-select:none}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-icon{width:20px;height:20px;flex-shrink:0;border-radius:50%;border:1px solid #202430;display:flex;align-items:center;justify-content:center;transition:transform .2s,border-color .2s}
-details[open] .faq-icon{transform:rotate(45deg);border-color:#3b82f6}
-.faq-answer{font-size:.9rem;color:#94a3b8;line-height:1.7;padding-bottom:1rem}
-.contact-section{background:#12141a}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
-.form-card{background:#171a22;border:1px solid #202430;border-radius:12px;padding:2rem}
-.form-group{margin-bottom:1rem}
-.form-group label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:.4rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:#12141a;border:1px solid #202430;color:#fff;border-radius:6px;padding:.7rem 1rem;font-size:.9rem;outline:none;font-family:inherit}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#2563eb}
-.form-group textarea{resize:vertical;min-height:90px}
-.contact-info-block{padding-top:.5rem}
-.contact-info-block h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.5rem}
-.cinfo-item{margin-bottom:1.25rem}
-.cinfo-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3b82f6;margin-bottom:.2rem}
-.cinfo-val{font-size:.925rem;color:#e2e8f0}
-footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
-.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.footer-logo{font-size:.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#374151}
-.footer-copy{font-size:.8rem;color:#374151}
-@media(max-width:900px){.about-grid,.contact-grid{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}}
-@media(max-width:640px){
-  .hero-stats{gap:1.5rem; flex-wrap:wrap; justify-content:center}
-  .site-header { height: auto; padding: 1rem; }
-  .header-inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
-  .nav { width: 100%; overflow-x: auto; padding-bottom: 0.5rem; white-space: nowrap; gap: 1.5rem; justify-content: flex-start; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bk);
+  color: var(--tx);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---- STICKY HEADER & NAV ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 95;
+  background: rgba(11, 12, 16, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid #202430;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  transition: top 0.2s ease;
+}
+.header-inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  text-decoration: none;
+}
+.logo-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+}
+.logo-sub {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+.nav-desktop a {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: .02em;
+  transition: color .15s;
+}
+.nav-desktop a:hover { color: #fff; }
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  padding: .65rem 1.4rem;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  border-radius: 7px;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.btn-primary:hover { background: #3b82f6; box-shadow: 0 4px 14px rgba(37,99,235,0.4); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* Hamburger Button for Mobile */
+.hamburger-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 110;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hamburger-btn:hover {
+  background: #1f232e;
+  border-color: #3b82f6;
+}
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.hamburger-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Navigation Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 12, 16, 0.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 94;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.25rem 2.5rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-nav-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  padding: 0.9rem 1.1rem;
+  border-radius: 10px;
+  background: #171a22;
+  border: 1px solid #202430;
+  transition: all 0.15s ease;
+  min-height: 48px;
+}
+.mobile-nav-link:active,
+.mobile-nav-link:hover {
+  background: #1e2433;
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+.mobile-nav-link svg {
+  color: #64748b;
+  transition: transform 0.15s;
+}
+.mobile-nav-link:hover svg {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+.mobile-nav-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #202430;
+}
+.mobile-phone-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  background: #12141a;
+  border-radius: 8px;
+  border: 1px solid #202430;
+}
+.mobile-phone-link svg { color: #3b82f6; }
+
+/* ---- HERO SECTION ---- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: calc(100vh - 42px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.hero-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, #0b0c10 0%, rgba(11,12,16,.45) 50%, rgba(11,12,16,.75) 100%),
+    linear-gradient(90deg, rgba(11,12,16,.92) 0%, rgba(11,12,16,.3) 60%, rgba(11,12,16,.92) 100%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem 5rem;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: 1.25rem;
+}
+.hero-title {
+  font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.hero-title span { color: #3b82f6; }
+.hero-desc {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #cbd5e1;
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+}
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+.btn-lg {
+  padding: .85rem 2rem;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+}
+.btn-outline-lg {
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: .85rem 2rem;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all .15s;
+  background: rgba(18, 20, 26, 0.6);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-outline-lg:hover {
+  border-color: #64748b;
+  color: #fff;
+  background: rgba(30, 36, 48, 0.7);
+}
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.stat-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* Hero Dots with Comfortable Mobile Tap Area */
+.hero-dots {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255,255,255,.3);
+  border: none;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+/* Touch hit target expansion (44x44px min) */
+.hero-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+}
+.hero-dot.active {
+  width: 28px;
+  background: #3b82f6;
+  box-shadow: 0 0 10px rgba(59,130,246,0.6);
+}
+
+/* ---- COMMON SECTION STYLES ---- */
+section {
+  padding: 5rem 2rem;
+}
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: .75rem;
+}
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* ---- SERVICES GRID ---- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.svc-card {
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+.svc-img {
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+}
+.svc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s;
+}
+.svc-card:hover .svc-img img { transform: scale(1.05); }
+.svc-body { padding: 1.5rem; }
+.svc-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: .5rem;
+}
+.svc-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+.svc-text {
+  font-size: .875rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.svc-price {
+  font-size: .85rem;
+  font-weight: 700;
+  color: #fff;
+  background: #2563eb;
+  display: inline-block;
+  padding: .35rem .85rem;
+  border-radius: 6px;
+}
+
+/* ---- BEFORE / AFTER COMPARISON SLIDER ---- */
+.ba-section {
+  background: #12141a;
+  border-top: 1px solid #202430;
+  border-bottom: 1px solid #202430;
+}
+.ba-wrap {
+  position: relative;
+  max-width: 960px;
+  margin: 3rem auto 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #202430;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none; /* CRITICAL: prevents touch scroll interference on mobile */
+  background: #0b0c10;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+}
+.ba-aspect {
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+.ba-before, .ba-after {
+  position: absolute;
+  inset: 0;
+}
+.ba-after img, .ba-before img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.ba-before {
+  clip-path: inset(0 50% 0 0);
+  z-index: 2;
+  will-change: clip-path;
+}
+/* Micro-scratch & oxidation overlay on the "BEFORE" image */
+.ba-scratch-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 12px),
+    repeating-linear-gradient(-35deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 18px),
+    radial-gradient(circle at 65% 45%, rgba(255,255,255,0.12) 0%, transparent 55%);
+}
+.ba-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #ffffff;
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8), 0 0 4px rgba(255,255,255,0.8);
+  will-change: left;
+}
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.7), 0 0 0 2px rgba(37,99,235,0.4);
+  touch-action: none; /* CRITICAL */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  will-change: left, transform;
+}
+/* Expand tap hit target for mobile thumbs */
+.ba-handle::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+}
+.ba-handle.is-dragging,
+.ba-handle:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 26px rgba(59,130,246,0.65), 0 0 0 3px #3b82f6;
+}
+.ba-handle svg {
+  color: #0b0c10;
+  pointer-events: none;
+}
+.ba-label {
+  position: absolute;
+  top: 1rem;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .4rem .85rem;
+  border-radius: 6px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+.ba-label.before-lbl {
+  left: 1rem;
+  background: rgba(11, 12, 16, 0.8);
+  color: #cbd5e1;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.ba-label.after-lbl {
+  right: 1rem;
+  background: rgba(37, 99, 235, 0.9);
+  color: #fff;
+  border: 1px solid rgba(59,130,246,0.5);
+  box-shadow: 0 2px 10px rgba(37,99,235,0.3);
+}
+.ba-touch-hint {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  background: rgba(11, 12, 16, 0.75);
+  backdrop-filter: blur(6px);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: 11px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ---- COST CALCULATOR ---- */
+.calc-card-wrap {
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 900px;
+  margin: 3rem auto 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.calc-step-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.calc-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* Car class selector */
+.calc-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.class-btn {
+  background: #12141a;
+  border: 1px solid #202430;
+  border-radius: 12px;
+  padding: 1.15rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.class-btn:hover {
+  border-color: #334155;
+  background: #161922;
+}
+.class-btn.active {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset, 0 4px 14px rgba(37,99,235,0.25);
+}
+.class-btn-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+.class-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.class-sub {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.25;
+}
+.class-check-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.class-btn.active .class-check-icon {
+  display: flex;
+}
+
+/* Service chips */
+.calc-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+.svc-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #12141a;
+  border: 1px solid #202430;
+  border-radius: 12px;
+  padding: 1.1rem 1rem;
+  cursor: pointer;
+  min-height: 60px;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.svc-chip:hover {
+  border-color: #334155;
+  background: #161922;
+}
+.svc-chip.active {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6 inset, 0 4px 14px rgba(37,99,235,0.2);
+}
+.svc-chip input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.svc-chip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+.svc-chip-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+.svc-chip-price {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  font-weight: 700;
+}
+.svc-chip-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid #334155;
+  background: #0b0c10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+  transition: all 0.2s ease;
+}
+.svc-chip.active .svc-chip-indicator {
+  background: #2563eb;
+  border-color: #3b82f6;
+}
+.svc-chip.active .svc-chip-indicator::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* Calculator Bottom Result & Action */
+.calc-bottom {
+  border-top: 1px solid #202430;
+  padding-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.calc-summary-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.calc-summary-title {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.calc-summary-details {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+.calc-summary-price {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.calc-summary-price span {
+  font-size: 1.25rem;
+  color: #64748b;
+  font-weight: 500;
+}
+.calc-book-btn {
+  padding: 0.95rem 1.85rem;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* ---- ABOUT & FAQ ---- */
+.about-section { background: #12141a; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+.about-img {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #202430;
+  height: 420px;
+}
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.fact-item {
+  padding: 1.25rem;
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 10px;
+}
+.fact-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+}
+.fact-text {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  margin-top: .35rem;
+}
+
+.faq-list {
+  margin-top: 2.5rem;
+  max-width: 800px;
+}
+.faq-item {
+  border-bottom: 1px solid #202430;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 1.25rem 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s, border-color .25s, background .25s;
+  margin-left: 1rem;
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+  border-color: #3b82f6;
+  background: rgba(37, 99, 235, 0.2);
+}
+.faq-answer {
+  font-size: .95rem;
+  color: #cbd5e1;
+  line-height: 1.75;
+  padding-bottom: 1.25rem;
+}
+
+/* ---- CONTACT SECTION ---- */
+.contact-section { background: #12141a; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.form-card {
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 14px;
+  padding: 2.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+  display: block;
+  margin-bottom: .5rem;
+}
+/* Font-size 16px to prevent iOS auto-zoom */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: #12141a;
+  border: 1px solid #202430;
+  color: #fff;
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  font-size: 16px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color .15s, box-shadow .15s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.contact-info-block { padding-top: .5rem; }
+.contact-info-block h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.cinfo-item { margin-bottom: 1.5rem; }
+.cinfo-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: .3rem;
+}
+.cinfo-val {
+  font-size: 1rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  background: #0b0c10;
+  border-top: 1px solid #202430;
+  padding: 2.75rem 2rem;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-logo {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.footer-copy {
+  font-size: .85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ---- BOOKING MODAL ---- */
+.booking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(11, 12, 16, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto; /* CRITICAL: scrollable on mobile */
+  -webkit-overflow-scrolling: touch;
+}
+.booking-modal-overlay.open {
+  display: flex;
+}
+.booking-modal-card {
+  background: #171a22;
+  border: 1px solid #202430;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto; /* CRITICAL */
+  -webkit-overflow-scrolling: touch;
+  padding: 2rem 1.75rem;
+  position: relative;
+  margin: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+  animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #12141a;
+  border: 1px solid #202430;
+  color: #cbd5e1;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.modal-close-btn:hover {
+  background: #1e2433;
+  color: #fff;
+  border-color: #3b82f6;
+}
+.modal-header { margin-bottom: 1.5rem; padding-right: 2.5rem; }
+.modal-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: .35rem;
+}
+.modal-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #fff;
+}
+.modal-desc {
+  font-size: .875rem;
+  color: #cbd5e1;
+  margin-top: .4rem;
+  line-height: 1.5;
+}
+.modal-summary-box {
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+/* Form inputs inside modal with font-size 16px to prevent iOS auto-zoom */
+.booking-modal-card input,
+.booking-modal-card select,
+.booking-modal-card textarea {
+  font-size: 16px !important;
+  width: 100%;
+  background: #12141a;
+  border: 1px solid #202430;
+  color: #fff;
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color .15s, box-shadow .15s;
+}
+.booking-modal-card input:focus,
+.booking-modal-card select:focus,
+.booking-modal-card textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
+}
+.modal-submit-btn {
+  width: 100%;
+  padding: .95rem;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-top: .75rem;
+  cursor: pointer;
+  border: none;
+}
+
+/* ---- TOAST NOTIFICATION ---- */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(140%);
+  background: #171a22;
+  border: 1px solid #3b82f6;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: #fff;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(37, 99, 235, 0.3);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  opacity: 0;
+  pointer-events: none;
+  max-width: 90vw;
+  width: 380px;
+}
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.toast-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #22c55e;
+}
+.toast-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.15rem;
+}
+.toast-desc {
+  font-size: 0.825rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+/* ---- RESPONSIVE MEDIA QUERIES (Mobile 360px - 430px focus) ---- */
+@media (max-width: 960px) {
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .calc-classes-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-chips-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .nav-desktop { display: none; }
+  .hamburger-btn { display: flex; }
+  .site-header { padding: 0 1.25rem; height: 64px; }
+  .mobile-nav-drawer { top: 64px; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 3.5rem 1.25rem; }
+  .hero-content { padding: 3.5rem 1.25rem 4.5rem; }
+  .hero-stats { gap: 1.5rem; justify-content: flex-start; }
+  .hero-btns { flex-direction: column; gap: .75rem; }
+  .btn-lg, .btn-outline-lg { width: 100%; text-align: center; }
+  .calc-card-wrap { padding: 1.5rem 1.25rem; margin-top: 2rem; border-radius: 14px; }
+  .calc-bottom { flex-direction: column; align-items: stretch; gap: 1.25rem; }
+  .calc-book-btn { width: 100%; }
+  .form-card { padding: 1.5rem 1.25rem; }
+  .about-img { height: 280px; }
+  .about-facts { grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+/* Viewport 360px - 430px adjustments */
+@media (max-width: 430px) {
+  .calc-classes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+  .class-btn {
+    padding: 0.85rem 0.75rem;
+    min-height: 58px;
+  }
+  .class-name { font-size: 0.925rem; }
+  .class-sub { font-size: 0.75rem; }
+  
+  .calc-chips-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+  .svc-chip {
+    padding: 0.85rem 0.75rem;
+    min-height: 56px;
+  }
+  .svc-chip-name { font-size: 0.85rem; }
+  .svc-chip-price { font-size: 0.8rem; }
+  .svc-chip-indicator {
+    width: 18px;
+    height: 18px;
+    margin-left: 0.4rem;
+  }
+  .calc-summary-price { font-size: 1.9rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .booking-modal-card { padding: 1.5rem 1.15rem; }
+}
+
+@media (max-width: 365px) {
+  .calc-classes-grid { grid-template-columns: 1fr 1fr; }
+  .calc-chips-grid { grid-template-columns: 1fr; } /* single column for narrowest 360px if needed */
 }
 </style>
 </head>
 <body>
 
 <!-- CASHU BAR -->
-<div style="background:#0f172a; color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: center;">
+<div id="cashuBar" style="background:#0f172a; color:#cbd5e1; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; padding: 10px 16px; position: relative; z-index: 96; border-bottom: 1px solid #1e293b; display: flex; align-items: center; justify-content: center;">
   <div style="max-width: 1280px; width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 24px; row-gap: 8px; text-align: center;">
     <div>Демо-сайт детейлинг-студии &middot; Пример разработки от студии <strong style="color:#fff; font-weight:700">cash'u</strong></div>
     <div style="display: flex; align-items: center; gap: 16px;">
@@ -139,24 +1296,76 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
   </div>
 </div>
 
-<!-- HEADER -->
-<header class="site-header">
+<!-- SITE HEADER -->
+<header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#" style="display:flex;flex-direction:column;line-height:1;text-decoration:none">
+    <a href="#" class="logo-wrap">
       <span class="logo-name">APEX</span>
       <span class="logo-sub">detailing studio</span>
     </a>
-    <nav class="nav">
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
       <a href="#services">Услуги</a>
+      <a href="#portfolio">До / После</a>
+      <a href="#calculator">Калькулятор</a>
       <a href="#about">О нас</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact" class="btn-primary">Записаться</a>
+      <a href="#contacts">Контакты</a>
+      <button class="btn-primary" onclick="openBookingModal()">Записаться</button>
     </nav>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Открыть меню навигации" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+  <nav class="mobile-nav-links">
+    <a href="#services" class="mobile-nav-link">
+      <span>Услуги студии</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="#portfolio" class="mobile-nav-link">
+      <span>Сравнение До / После</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="#calculator" class="mobile-nav-link">
+      <span>Калькулятор стоимости</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="#about" class="mobile-nav-link">
+      <span>О студии APEX</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="#faq" class="mobile-nav-link">
+      <span>Частые вопросы (FAQ)</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a href="#contacts" class="mobile-nav-link">
+      <span>Контакты и адрес</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </nav>
+
+  <div class="mobile-nav-footer">
+    <a href="tel:+74951234567" class="mobile-phone-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>+7 (495) 123-45-67</span>
+    </a>
+    <button class="btn-primary" style="width:100%;padding:0.95rem;font-size:15px;font-weight:700;" onclick="closeMobileNav(); openBookingModal();">
+      Записаться онлайн
+    </button>
+  </div>
+</div>
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="hero">
   <div class="hero-slides">
     <div class="hero-slide active"><img src="assets/hero-1.jpg" alt="Audi RS7"></div>
     <div class="hero-slide"><img src="assets/hero-2.jpg" alt="BMW M5"></div>
@@ -164,12 +1373,12 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Профессиональный детейлинг</p>
+    <p class="hero-eyebrow">Профессиональный детейлинг в Москве</p>
     <h1 class="hero-title">APEX<br><span>DETAILING</span></h1>
-    <p class="hero-desc">Премиальная защита и восстановление автомобилей. PPF, керамика, полировка — ваш автомобиль в идеальном состоянии.</p>
+    <p class="hero-desc">Премиальная защита и восстановление автомобилей. PPF, нанокерамика, корректирующая полировка — ваш автомобиль в безупречном заводском виде.</p>
     <div class="hero-btns">
-      <button class="btn-primary btn-lg" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Записаться на детейлинг</button>
-      <button class="btn-outline-lg" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Посмотреть услуги</button>
+      <button class="btn-primary btn-lg" onclick="openBookingModal()">Записаться на детейлинг</button>
+      <button class="btn-outline-lg" onclick="scrollToId('services')">Посмотреть услуги</button>
     </div>
     <div class="hero-stats">
       <div><div class="stat-num">8+</div><div class="stat-label">лет опыта</div></div>
@@ -178,9 +1387,9 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
     </div>
   </div>
   <div class="hero-dots">
-    <button class="hero-dot active" onclick="goSlide(0)"></button>
-    <button class="hero-dot" onclick="goSlide(1)"></button>
-    <button class="hero-dot" onclick="goSlide(2)"></button>
+    <button class="hero-dot active" onclick="goSlide(0)" aria-label="Слайд 1"></button>
+    <button class="hero-dot" onclick="goSlide(1)" aria-label="Слайд 2"></button>
+    <button class="hero-dot" onclick="goSlide(2)" aria-label="Слайд 3"></button>
   </div>
 </section>
 
@@ -189,7 +1398,7 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
   <div class="section-inner">
     <p class="section-eyebrow">Что мы делаем</p>
     <h2 class="section-title">Услуги студии</h2>
-    <p class="section-desc">Полный спектр профессиональной защиты и восстановления кузова и салона автомобиля.</p>
+    <p class="section-desc">Полный спектр профессиональной защиты и глубокого восстановления кузова и интерьера автомобиля.</p>
     <div class="services-grid">
       <div class="svc-card">
         <div class="svc-img"><img loading="lazy" decoding="async" src="assets/service-ppf.jpg" alt="PPF"></div>
@@ -249,149 +1458,229 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
   </div>
 </section>
 
+<!-- INTERACTIVE COMPARISON (BEFORE / AFTER) SLIDER -->
+<section class="ba-section" id="portfolio">
+  <div class="section-inner">
+    <p class="section-eyebrow">Портфолио & Результаты</p>
+    <h2 class="section-title">До и После полировки</h2>
+    <p class="section-desc">Потяните ползунок вправо или влево, чтобы оценить разницу между поврежденным ЛКП с голограммами и восстановленным зеркальным блеском.</p>
+    
+    <div class="ba-wrap" id="baWrap">
+      <div class="ba-aspect"></div>
+      
+      <!-- AFTER LAYER (Crisp Restored Gloss) -->
+      <div class="ba-after">
+        <img src="assets/service-polish.jpg" alt="После полировки — идеальный блеск" loading="lazy">
+      </div>
+      
+      <!-- BEFORE LAYER (Clipped Overlay with Swirls & Oxidation) -->
+      <div class="ba-before" id="baBefore">
+        <img src="assets/service-polish.jpg" alt="До полировки — микроцарапины и голограммы" style="filter: brightness(0.68) contrast(0.85) saturate(0.6) blur(0.4px);" loading="lazy">
+        <div class="ba-scratch-overlay"></div>
+      </div>
+      
+      <!-- DIVIDER LINE -->
+      <div class="ba-line" id="baLine"></div>
+      
+      <!-- DRAGGABLE DIVIDER HANDLE -->
+      <div class="ba-handle" id="baHandle" role="slider" aria-label="Ползунок сравнения До и После" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="8 7 3 12 8 17"></polyline>
+          <polyline points="16 7 21 12 16 17"></polyline>
+        </svg>
+      </div>
+      
+      <!-- BADGES -->
+      <span class="ba-label before-lbl">ДО</span>
+      <span class="ba-label after-lbl">ПОСЛЕ</span>
+
+      <!-- MOBILE HINT -->
+      <div class="ba-touch-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+        <span>Потяните ползунок для сравнения</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESS -->
-<section style="background:#12141a;padding:5rem 2rem" id="process">
+<section style="background:#0b0c10;padding:5rem 2rem" id="process">
   <div class="section-inner">
-    <p class="section-eyebrow">Подход</p>
+    <p class="section-eyebrow">Технологический подход</p>
     <h2 class="section-title">Как мы работаем</h2>
-    <p class="section-desc">Каждый автомобиль проходит строгий 4-этапный процесс детейлинга, чтобы гарантировать безупречный результат.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:2rem;margin-top:3rem;">
+    <p class="section-desc">Каждый автомобиль проходит строгий 4-этапный регламент детейлинга, обеспечивающий безупречный результат.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1.5rem;margin-top:3rem;">
       <div style="background:#171a22;border:1px solid #202430;border-radius:12px;padding:2rem;">
-        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.5">01</div>
-        <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:0.75rem">Осмотр и мойка</h3>
-        <p style="color:#94a3b8;font-size:0.9rem;line-height:1.6">Детальный осмотр кузова под спецсветом, двухфазная мойка, удаление битума, колодочной пыли и металлических вкраплений.</p>
+        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.6">01</div>
+        <h3 style="color:#fff;font-size:1.15rem;font-weight:700;margin-bottom:0.75rem">Осмотр и мойка</h3>
+        <p style="color:#cbd5e1;font-size:0.9rem;line-height:1.6">Детальный осмотр кузова под спецсветом, трехфазная деликатная мойка, удаление битума, колодочной пыли и металлических вкраплений.</p>
       </div>
       <div style="background:#171a22;border:1px solid #202430;border-radius:12px;padding:2rem;">
-        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.5">02</div>
-        <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:0.75rem">Подготовка поверхности</h3>
-        <p style="color:#94a3b8;font-size:0.9rem;line-height:1.6">Обезжиривание, маскировка пластика и резинок. Полировка кузова для удаления царапин и создания идеального зеркального блеска.</p>
+        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.6">02</div>
+        <h3 style="color:#fff;font-size:1.15rem;font-weight:700;margin-bottom:0.75rem">Подготовка поверхности</h3>
+        <p style="color:#cbd5e1;font-size:0.9rem;line-height:1.6">Обезжиривание, маскировка пластика и резинок. Полировка кузова для устранения царапин и создания идеального зеркального блеска.</p>
       </div>
       <div style="background:#171a22;border:1px solid #202430;border-radius:12px;padding:2rem;">
-        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.5">03</div>
-        <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:0.75rem">Нанесение составов</h3>
-        <p style="color:#94a3b8;font-size:0.9rem;line-height:1.6">Инсталляция антигравийной плёнки или нанесение керамики (в 2-3 слоя). Просушка инфракрасными лампами для закрепления.</p>
+        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.6">03</div>
+        <h3 style="color:#fff;font-size:1.15rem;font-weight:700;margin-bottom:0.75rem">Нанесение составов</h3>
+        <p style="color:#cbd5e1;font-size:0.9rem;line-height:1.6">Инсталляция антигравийной плёнки или нанесение керамики (в 2–3 слоя). Просушка инфракрасными лампами для закрепления гидрофоба.</p>
       </div>
       <div style="background:#171a22;border:1px solid #202430;border-radius:12px;padding:2rem;">
-        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.5">04</div>
-        <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:0.75rem">Контроль качества</h3>
-        <p style="color:#94a3b8;font-size:0.9rem;line-height:1.6">Финальная проверка под LED-прожекторами, очистка салона, нанесение консервантов и передача автомобиля владельцу.</p>
+        <div style="font-size:2rem;font-weight:800;color:#2563eb;margin-bottom:1rem;opacity:0.6">04</div>
+        <h3 style="color:#fff;font-size:1.15rem;font-weight:700;margin-bottom:0.75rem">Контроль качества</h3>
+        <p style="color:#cbd5e1;font-size:0.9rem;line-height:1.6">Финальная проверка под LED-прожекторами, очистка салона, нанесение защитных консервантов и передача автомобиля владельцу.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- CALCULATOR -->
-<section style="background:#0b0c10;padding:5rem 2rem" id="calc">
+<!-- COST CALCULATOR -->
+<section style="background:#12141a;padding:5rem 2rem" id="calculator">
+  <!-- Anchor alias for #calc -->
+  <span id="calc"></span>
   <div class="section-inner">
-    <p class="section-eyebrow">Стоимость</p>
+    <p class="section-eyebrow">Онлайн-калькулятор</p>
     <h2 class="section-title">Рассчитайте цену</h2>
-    <p class="section-desc">Ориентировочная стоимость в зависимости от класса автомобиля и вида услуги.</p>
+    <p class="section-desc">Выберите класс вашего автомобиля и требуемые услуги, чтобы узнать ориентировочную стоимость и оформить быструю бронь.</p>
     
-    <div style="background:#171a22;border:1px solid #202430;border-radius:16px;padding:2.5rem;max-width:900px;margin:3rem auto 0;">
-      <div style="margin-bottom:2.5rem">
-        <div style="font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.2rem">1. Выберите класс автомобиля</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:1rem;" id="class-buttons">
-          
-          <button class="class-btn active" data-val="1" onclick="selClass(this)" style="background:rgba(59,130,246,0.1);border:1px solid #3b82f6;border-radius:10px;padding:1.25rem;text-align:left;cursor:pointer;transition:all 0.2s;">
-            <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem">Малый</div>
-            <div style="font-size:0.8rem;color:#94a3b8">Хэтчбек, седан B</div>
-          </button>
-          
-          <button class="class-btn" data-val="1.3" onclick="selClass(this)" style="background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;text-align:left;cursor:pointer;transition:all 0.2s;">
-            <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem">Средний</div>
-            <div style="font-size:0.8rem;color:#94a3b8">Седан C/D, кроссовер</div>
-          </button>
-          
-          <button class="class-btn" data-val="1.6" onclick="selClass(this)" style="background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;text-align:left;cursor:pointer;transition:all 0.2s;">
-            <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem">Большой</div>
-            <div style="font-size:0.8rem;color:#94a3b8">SUV, минивэн</div>
-          </button>
-          
-          <button class="class-btn" data-val="2" onclick="selClass(this)" style="background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;text-align:left;cursor:pointer;transition:all 0.2s;">
-            <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem">Премиум</div>
-            <div style="font-size:0.8rem;color:#94a3b8">GT, спорткар</div>
-          </button>
-
-        </div>
+    <div class="calc-card-wrap">
+      <!-- 1. Car class selector -->
+      <div class="calc-step-title">
+        <span class="calc-step-num">1</span>
+        <span>Выберите класс автомобиля</span>
+      </div>
+      <div class="calc-classes-grid" id="class-buttons">
+        
+        <button type="button" class="class-btn active" data-val="1.0" onclick="selClass(this)">
+          <div class="class-btn-head">
+            <span class="class-name">Седан</span>
+            <span class="class-check-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+          </div>
+          <div class="class-sub">B / C класс</div>
+        </button>
+        
+        <button type="button" class="class-btn" data-val="1.3" onclick="selClass(this)">
+          <div class="class-btn-head">
+            <span class="class-name">Кроссовер</span>
+            <span class="class-check-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+          </div>
+          <div class="class-sub">Компактный SUV</div>
+        </button>
+        
+        <button type="button" class="class-btn" data-val="1.6" onclick="selClass(this)">
+          <div class="class-btn-head">
+            <span class="class-name">Внедорожник</span>
+            <span class="class-check-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+          </div>
+          <div class="class-sub">Полноразмерный SUV</div>
+        </button>
+        
+        <button type="button" class="class-btn" data-val="2.0" onclick="selClass(this)">
+          <div class="class-btn-head">
+            <span class="class-name">Премиум</span>
+            <span class="class-check-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+          </div>
+          <div class="class-sub">GT, спорткар</div>
+        </button>
       </div>
 
-      <div style="margin-bottom:2.5rem">
-        <div style="font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.2rem">2. Выберите услуги</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem;">
-          
-          <label style="display:flex;align-items:center;justify-content:space-between;background:rgba(59,130,246,0.1);border:1px solid #3b82f6;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">PPF — плёнка</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">35 000 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="35000" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6" checked>
-          </label>
-          
-          <label style="display:flex;align-items:center;justify-content:space-between;background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">Керамика</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">25 000 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="25000" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6">
-          </label>
+      <!-- 2. Service option chips -->
+      <div class="calc-step-title">
+        <span class="calc-step-num">2</span>
+        <span>Выберите услуги студии</span>
+      </div>
+      <div class="calc-chips-grid" id="calcChips">
+        
+        <label class="svc-chip active">
+          <input type="checkbox" class="calc-chk" value="25000" data-name="Керамика" onchange="calcPrice(); toggleSvcChip(this)" checked>
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Керамика</span>
+            <span class="svc-chip-price">25 000 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
 
-          <label style="display:flex;align-items:center;justify-content:space-between;background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">Полировка</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">12 000 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="12000" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6">
-          </label>
+        <label class="svc-chip active">
+          <input type="checkbox" class="calc-chk" value="12000" data-name="Полировка" onchange="calcPrice(); toggleSvcChip(this)" checked>
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Полировка</span>
+            <span class="svc-chip-price">12 000 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
 
-          <label style="display:flex;align-items:center;justify-content:space-between;background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">Химчистка</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">8 000 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="8000" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6">
-          </label>
+        <label class="svc-chip">
+          <input type="checkbox" class="calc-chk" value="35000" data-name="Антигравийная пленка" onchange="calcPrice(); toggleSvcChip(this)">
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Антигравийная пленка</span>
+            <span class="svc-chip-price">35 000 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
 
-          <label style="display:flex;align-items:center;justify-content:space-between;background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">Антидождь</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">4 500 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="4500" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6">
-          </label>
+        <label class="svc-chip">
+          <input type="checkbox" class="calc-chk" value="8000" data-name="Детейлинг салона" onchange="calcPrice(); toggleSvcChip(this)">
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Детейлинг салона</span>
+            <span class="svc-chip-price">8 000 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
 
-          <label style="display:flex;align-items:center;justify-content:space-between;background:#12141a;border:1px solid #202430;border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;" class="svc-lbl">
-            <div style="display:flex;flex-direction:column;gap:0.25rem">
-              <span style="font-size:0.95rem;font-weight:600;color:#fff">Шумоизоляция</span>
-              <span style="font-size:0.85rem;color:#3b82f6;font-weight:700">18 000 ₽</span>
-            </div>
-            <input type="checkbox" class="calc-chk" value="18000" onchange="calcPrice(); toggleSvc(this)" style="width:1.25rem;height:1.25rem;accent-color:#3b82f6">
-          </label>
-        </div>
+        <label class="svc-chip">
+          <input type="checkbox" class="calc-chk" value="4500" data-name="Антидождь" onchange="calcPrice(); toggleSvcChip(this)">
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Антидождь</span>
+            <span class="svc-chip-price">4 500 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
+
+        <label class="svc-chip">
+          <input type="checkbox" class="calc-chk" value="18000" data-name="Шумоизоляция" onchange="calcPrice(); toggleSvcChip(this)">
+          <div class="svc-chip-content">
+            <span class="svc-chip-name">Шумоизоляция</span>
+            <span class="svc-chip-price">18 000 ₽</span>
+          </div>
+          <span class="svc-chip-indicator"></span>
+        </label>
       </div>
 
-      <div style="border-top:1px solid #202430;padding-top:1.5rem;display:flex;align-items:flex-end;justify-content:space-between;">
-        <div style="font-size:1rem;color:#94a3b8;font-weight:600">Итоговая стоимость</div>
-        <div style="font-size:2.5rem;font-weight:800;color:#fff;line-height:1" id="resultPrice">35 000 <span style="font-size:1.2rem;color:#64748b;font-weight:500">₽</span></div>
+      <!-- 3. Result & CTA -->
+      <div class="calc-bottom">
+        <div class="calc-summary-left">
+          <span class="calc-summary-title">Итоговая расчетная стоимость</span>
+          <div class="calc-summary-price" id="resultPrice">37 000 <span>₽</span></div>
+          <span class="calc-summary-details" id="resultDetails">Седан &bull; выбрано 2 услуги</span>
+        </div>
+        <button class="btn-primary calc-book-btn" onclick="openBookingFromCalc()">
+          Записаться по этому расчету &rarr;
+        </button>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ABOUT -->
-<section class="about-section" id="about" style="padding:5rem 2rem">
+<section class="about-section" id="about">
   <div class="section-inner">
-    <p class="section-eyebrow">Кто мы</p>
-    <h2 class="section-title">О студии APEX</h2>
+    <p class="section-eyebrow">О студии</p>
+    <h2 class="section-title">APEX Detailing</h2>
     <div class="about-grid">
-      <div class="about-img"><img loading="lazy" decoding="async" src="assets/studio-bay.jpg" alt="Бокс студии APEX"></div>
+      <div class="about-img"><img loading="lazy" decoding="async" src="assets/studio-bay.jpg" alt="Специализированный бокс APEX"></div>
       <div>
-        <p style="color:#94a3b8;line-height:1.8;font-size:1rem;margin-bottom:1.5rem">APEX Detailing — студия профессионального ухода за автомобилями. Мы работаем с 2016 года и за это время обработали более 3 500 автомобилей — от городских хэтчбеков до суперкаров.</p>
-        <p style="color:#94a3b8;line-height:1.8;font-size:1rem;margin-bottom:2rem">Применяем только сертифицированные материалы: XPEL, Gyeon, Nanolex, 3M. Каждый проект — тщательная подготовка поверхности, профессиональное нанесение и финальный контроль качества в нашем специализированном боксе.</p>
+        <p style="color:#cbd5e1;line-height:1.8;font-size:1.05rem;margin-bottom:1.5rem">APEX Detailing — центр сертифицированного ухода за автомобилями. С 2016 года мы вернули безупречный лоск более чем 3 500 автомобилям — от практичных городских хэтчбеков до эксклюзивных спорткаров.</p>
+        <p style="color:#cbd5e1;line-height:1.8;font-size:1rem;margin-bottom:2rem">Используем исключительно проверенные материалы мировых брендов: XPEL, Gyeon, Nanolex, Koch Chemie и 3M. Каждый автомобиль находится в изолированном обеспыленном боксе с LED-освещением 6500K.</p>
         <div class="about-facts">
-          <div class="fact-item"><div class="fact-num">8+</div><div class="fact-text">Лет на рынке</div></div>
+          <div class="fact-item"><div class="fact-num">8+</div><div class="fact-text">Лет опыта</div></div>
           <div class="fact-item"><div class="fact-num">3 500+</div><div class="fact-text">Автомобилей</div></div>
           <div class="fact-item"><div class="fact-num">12</div><div class="fact-text">Мастеров</div></div>
           <div class="fact-item"><div class="fact-num">100%</div><div class="fact-text">Гарантия качества</div></div>
@@ -404,102 +1693,107 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
 <!-- FAQ -->
 <section style="background:#0b0c10;padding:5rem 2rem" id="faq">
   <div class="section-inner">
-    <p class="section-eyebrow">Вопросы</p>
+    <p class="section-eyebrow">Вопросы & Ответы</p>
     <h2 class="section-title">Часто спрашивают</h2>
     <div class="faq-list">
       <details class="faq-item">
-        <summary>Сколько времени занимает полное PPF покрытие?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="faq-answer">В зависимости от класса автомобиля и зоны покрытия — от 1 до 5 рабочих дней. Полное окутывание кузова занимает 3–5 дней. Частичная защита (капот, бамперы, зеркала) — 1–2 дня.</div>
+        <summary>Сколько времени занимает полное PPF покрытие?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+        <div class="faq-answer">В зависимости от класса автомобиля и зоны покрытия — от 1 до 5 рабочих дней. Полное окутывание кузова занимает 3–5 дней. Частичная защита зон риска (капот, бамперы, фары, зеркала) — 1–2 дня.</div>
       </details>
       <details class="faq-item">
-        <summary>Как долго держится керамическое покрытие?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="faq-answer">Профессиональные составы Gyeon и Nanolex сохраняют свойства 3–5 лет при правильном уходе. Рекомендуем ежегодную проверку и бустер-нанесение через 2 года.</div>
+        <summary>Как долго держится керамическое покрытие?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+        <div class="faq-answer">Профессиональные составы Gyeon и Nanolex сохраняют свойства от 3 до 5 лет при соблюдении правил деликатной трехфазной мойки. Мы рекомендуем ежегодный контрольный осмотр.</div>
       </details>
       <details class="faq-item">
-        <summary>Нужна ли подготовка перед приездом?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="faq-answer">Нет. Мы самостоятельно проводим подготовительную мойку, обезжиривание и при необходимости полировку перед нанесением любого покрытия. Просто приезжайте в назначенное время.</div>
+        <summary>Нужна ли подготовка машины перед приездом?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+        <div class="faq-answer">Нет, мы полностью берем подготовку на себя: деликатная очистка, удаление битума, металлических вкраплений и обезжиривание входят в регламент каждой услуги. Просто приезжайте в назначенное время.</div>
       </details>
       <details class="faq-item">
-        <summary>Есть ли гарантия на работы?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="faq-answer">Да. На PPF и керамику — гарантия 2 года на работу. Плюс заводская гарантия производителя материала. При обнаружении дефектов устраняем бесплатно.</div>
+        <summary>Есть ли гарантия на выполненные работы?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+        <div class="faq-answer">Да. На защитную пленку PPF и керамику мы предоставляем студийную гарантию 2 года на монтаж и материалы, плюс заводскую гарантию производителей плёнок до 10 лет.</div>
       </details>
       <details class="faq-item">
-        <summary>Можно ли записаться на несколько услуг сразу?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
-        <div class="faq-answer">Конечно. Комплексный подход — полировка + PPF + керамика + химчистка — даёт лучший результат и экономит ваше время. При комплексном заказе действует скидка до 15%.</div>
+        <summary>Можно ли записаться на комплекс услуг со скидкой?<span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1V9M1 5H9" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span></summary>
+        <div class="faq-answer">Да, при заказе комплексной программы (полировка + плёнка + керамика + химчистка) предоставляется клубная скидка до 15% и бесплатная гидрофобная обработка всех стёкол.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact-section" id="contact" style="padding:5rem 2rem">
+<!-- CONTACTS -->
+<section class="contact-section" id="contacts">
+  <!-- Anchor alias for #contact -->
+  <span id="contact"></span>
   <div class="section-inner">
-    <p class="section-eyebrow">Запись</p>
-    <h2 class="section-title">Записаться на услугу</h2>
+    <p class="section-eyebrow">Запись на визит</p>
+    <h2 class="section-title">Оставить заявку</h2>
     <div class="contact-grid">
-      <div class="form-card">
+      <form class="form-card" onsubmit="submitContactForm(event)">
         <div class="form-group">
-          <label>Имя</label>
-          <input type="text" placeholder="Ваше имя">
+          <label for="cName">Имя *</label>
+          <input type="text" id="cName" placeholder="Константин" required>
         </div>
         <div class="form-group">
-          <label>Телефон</label>
-          <input type="tel" placeholder="+7 (___) ___-__-__">
+          <label for="cPhone">Телефон *</label>
+          <input type="tel" id="cPhone" placeholder="+7 (___) ___-__-__" required>
         </div>
         <div class="form-group">
-          <label>Услуга</label>
-          <select>
+          <label for="cSvc">Услуга</label>
+          <select id="cSvc">
             <option>PPF — защитная плёнка</option>
-            <option>Керамическое покрытие</option>
-            <option>Полировка кузова</option>
-            <option>Химчистка салона</option>
-            <option>Обработка стёкол</option>
-            <option>Шумоизоляция</option>
-            <option>Комплекс услуг</option>
+            <option>Керамическое покрытие 9H</option>
+            <option>Восстановительная полировка</option>
+            <option>Химчистка и уход за кожей</option>
+            <option>Обработка стёкол (Антидождь)</option>
+            <option>Комплексная шумоизоляция</option>
+            <option>Комплекс услуг под ключ</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Автомобиль</label>
-          <input type="text" placeholder="Марка, модель, год">
+          <label for="cCar">Автомобиль</label>
+          <input type="text" id="cCar" placeholder="Марка, модель, год">
         </div>
         <div class="form-group">
-          <label>Комментарий</label>
-          <textarea placeholder="Дополнительные пожелания..."></textarea>
+          <label for="cComment">Пожелания</label>
+          <textarea id="cComment" placeholder="Укажите удобное время или особые пожелания..."></textarea>
         </div>
-        <button class="btn-primary" style="width:100%;padding:.85rem;font-size:15px;border-radius:8px">Отправить заявку</button>
-      </div>
+        <button type="submit" class="btn-primary" style="width:100%;padding:1rem;font-size:16px;font-weight:700;border-radius:8px">
+          Отправить заявку в студию
+        </button>
+      </form>
+      
       <div class="contact-info-block">
-        <h3>Контакты</h3>
+        <h3>Контакты & Локация</h3>
         <div class="cinfo-item">
-          <div class="cinfo-label">Адрес</div>
-          <div class="cinfo-val">Москва, ул. Промышленная, 14с3<br>м. Дмитровская, 10 мин пешком</div>
+          <div class="cinfo-label">Адрес студии</div>
+          <div class="cinfo-val">Москва, ул. Промышленная, 14с3<br>м. Дмитровская &bull; охраняемый въезд</div>
         </div>
         <div class="cinfo-item">
-          <div class="cinfo-label">Телефон</div>
-          <div class="cinfo-val">+7 (495) 123-45-67</div>
+          <div class="cinfo-label">Телефон для связи</div>
+          <div class="cinfo-val"><a href="tel:+74951234567" style="color:#fff;text-decoration:underline;">+7 (495) 123-45-67</a></div>
         </div>
         <div class="cinfo-item">
-          <div class="cinfo-label">E-mail</div>
+          <div class="cinfo-label">Электронная почта</div>
           <div class="cinfo-val">info@apex-detailing.ru</div>
         </div>
         <div class="cinfo-item">
-          <div class="cinfo-label">Режим работы</div>
-          <div class="cinfo-val">Пн–Сб: 9:00 — 20:00<br>Вс: по записи</div>
+          <div class="cinfo-label">Часы работы</div>
+          <div class="cinfo-val">Пн–Сб: 9:00 — 21:00<br>Вс: по предварительной записи</div>
         </div>
-        <div style="margin-top:2rem;padding:1.5rem;background:#171a22;border:1px solid #202430;border-radius:10px">
-          <div style="font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6;margin-bottom:.75rem">Гарантии APEX</div>
-          <div style="display:flex;flex-direction:column;gap:.6rem">
-            <div style="display:flex;align-items:center;gap:.6rem">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span style="font-size:.875rem;color:#e2e8f0">Гарантия на работу 2 года</span>
+        <div style="margin-top:2rem;padding:1.5rem;background:#171a22;border:1px solid #202430;border-radius:12px">
+          <div style="font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3b82f6;margin-bottom:.85rem">Гарантии студии APEX</div>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:.9rem;color:#e2e8f0">Гарантия на работу 2 года</span>
             </div>
-            <div style="display:flex;align-items:center;gap:.6rem">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span style="font-size:.875rem;color:#e2e8f0">Сертифицированные материалы</span>
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:.9rem;color:#e2e8f0">Оригинальные премиальные составы</span>
             </div>
-            <div style="display:flex;align-items:center;gap:.6rem">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span style="font-size:.875rem;color:#e2e8f0">Бесплатное устранение дефектов</span>
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:.9rem;color:#e2e8f0">Контроль качества под LED-освещением 6500K</span>
             </div>
           </div>
         </div>
@@ -511,69 +1805,461 @@ footer{background:#0b0c10;border-top:1px solid #202430;padding:2.5rem 2rem}
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-logo">APEX DETAILING</span>
-    <span class="footer-copy">&#169; 2024 APEX Detailing Studio — демо-проект портфолио</span>
+    <div style="display:flex;flex-direction:column;gap:0.25rem;">
+      <span class="footer-logo">APEX DETAILING STUDIO</span>
+      <span class="footer-copy">Премиальный уход и защита автомобилей в Москве</span>
+    </div>
+    <div class="footer-copy">
+      &#169; 2024 APEX Detailing &middot; Демо-проект портфолио cash'u
+    </div>
   </div>
 </footer>
 
+<!-- BOOKING MODAL -->
+<div class="booking-modal-overlay" id="bookingModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="booking-modal-card">
+    <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Закрыть окно">&times;</button>
+    <div class="modal-header">
+      <div class="modal-eyebrow">Бронирование визита</div>
+      <h3 class="modal-title">Запись в APEX Detailing</h3>
+      <p class="modal-desc">Заполните контактные данные — наш старший мастер свяжется с вами для согласования даты и времени приема авто.</p>
+    </div>
+
+    <!-- Dynamic Calculator Summary Box -->
+    <div class="modal-summary-box" id="modalCalcSummary"></div>
+
+    <form onsubmit="submitBookingModal(event)">
+      <div class="form-group">
+        <label for="mName">Ваше имя *</label>
+        <input type="text" id="mName" placeholder="Константин" required>
+      </div>
+      <div class="form-group">
+        <label for="mPhone">Номер телефона *</label>
+        <input type="tel" id="mPhone" placeholder="+7 (999) 000-00-00" required>
+      </div>
+      <div class="form-group">
+        <label for="mCar">Марка и модель автомобиля</label>
+        <input type="text" id="mCar" placeholder="Porsche Macan, 2023">
+      </div>
+      <div class="form-group">
+        <label for="mDate">Желаемая дата визита</label>
+        <input type="date" id="mDate">
+      </div>
+      <div class="form-group">
+        <label for="mComment">Комментарий или пожелания</label>
+        <textarea id="mComment" placeholder="Дополнительные детали..."></textarea>
+      </div>
+      <button type="submit" id="modalSubmitBtn" class="btn-primary modal-submit-btn">
+        Подтвердить запись
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST CONFIRMATION NOTIFICATION -->
+<div class="toast-notice" id="toastNotice" role="alert" aria-live="assertive">
+  <div class="toast-icon">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+  </div>
+  <div>
+    <div class="toast-title" id="toastTitle">Заявка успешно отправлена!</div>
+    <div class="toast-desc" id="toastDesc">Мастер свяжется с вами в течение 10 минут.</div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
 <script>
-// ---- HERO SLIDESHOW ----
+// ============================================================
+// 1. HERO SLIDESHOW & TOUCH SWIPE GESTURES
+// ============================================================
 var slides = document.querySelectorAll('.hero-slide');
 var dots = document.querySelectorAll('.hero-dot');
 var cur = 0;
-var timer;
+var timer = null;
 
 function goSlide(n) {
+  if (!slides.length) return;
   slides[cur].classList.remove('active');
   dots[cur].classList.remove('active');
   cur = (n + slides.length) % slides.length;
   slides[cur].classList.add('active');
   dots[cur].classList.add('active');
-  clearInterval(timer);
+  if (timer) clearInterval(timer);
   timer = setInterval(nextSlide, 5000);
 }
+
 function nextSlide() { goSlide(cur + 1); }
+function prevSlide() { goSlide(cur - 1); }
+
 timer = setInterval(nextSlide, 5000);
 
+// Hero touch swipe gesture handling
+(function initHeroSwipe() {
+  var heroEl = document.getElementById('hero');
+  if (!heroEl) return;
+  var touchStartX = 0;
+  var touchStartY = 0;
 
+  heroEl.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
 
+  heroEl.addEventListener('touchend', function(e) {
+    if (!e.changedTouches.length) return;
+    var deltaX = e.changedTouches[0].clientX - touchStartX;
+    var deltaY = e.changedTouches[0].clientY - touchStartY;
 
-// ---- CALCULATOR ----
-var currentClassVal = 1;
+    // Check if horizontal swipe exceeds vertical move and threshold
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+      if (deltaX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  }, { passive: true });
+})();
+
+// ============================================================
+// 2. MOBILE HAMBURGER MENU & SMOOTH SCROLL NAVIGATION
+// ============================================================
+var hamburgerBtn = document.getElementById('hamburgerBtn');
+var mobileNavDrawer = document.getElementById('mobileNavDrawer');
+
+function toggleMobileNav() {
+  var isOpen = hamburgerBtn.classList.toggle('open');
+  mobileNavDrawer.classList.toggle('open', isOpen);
+  hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  mobileNavDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+function closeMobileNav() {
+  hamburgerBtn.classList.remove('open');
+  mobileNavDrawer.classList.remove('open');
+  hamburgerBtn.setAttribute('aria-expanded', 'false');
+  mobileNavDrawer.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener('click', toggleMobileNav);
+}
+
+function scrollToId(id) {
+  closeMobileNav();
+  var el = document.getElementById(id);
+  if (!el) return;
+  var header = document.getElementById('siteHeader');
+  var headerOffset = header ? header.offsetHeight : 68;
+  var rectTop = el.getBoundingClientRect().top;
+  var targetY = rectTop + window.pageYOffset - headerOffset;
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth'
+  });
+}
+
+// Attach smooth scroll to all anchor links
+(function initSmoothScrollLinks() {
+  var links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#' || !href) return;
+      var targetId = href.replace('#', '');
+      var targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        scrollToId(targetId);
+      }
+    });
+  });
+})();
+
+// Close mobile drawer on resize to desktop
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 860 && mobileNavDrawer.classList.contains('open')) {
+    closeMobileNav();
+  }
+});
+
+// ============================================================
+// 3. INTERACTIVE BEFORE / AFTER COMPARISON SLIDER
+// ============================================================
+(function initBeforeAfter() {
+  var wrap = document.getElementById('baWrap');
+  var before = document.getElementById('baBefore');
+  var line = document.getElementById('baLine');
+  var handle = document.getElementById('baHandle');
+  if (!wrap || !before || !line || !handle) return;
+
+  var isDragging = false;
+
+  function updateSliderPosition(clientX) {
+    var rect = wrap.getBoundingClientRect();
+    var offsetX = clientX - rect.left;
+    var pct = (offsetX / rect.width) * 100;
+    if (pct < 0) pct = 0;
+    if (pct > 100) pct = 100;
+
+    before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    line.style.left = pct + '%';
+    handle.style.left = pct + '%';
+    handle.setAttribute('aria-valuenow', Math.round(pct));
+  }
+
+  // Touch Events (mobile screen interaction)
+  function startTouchDrag(e) {
+    if (e.touches && e.touches.length > 0) {
+      isDragging = true;
+      handle.classList.add('is-dragging');
+      updateSliderPosition(e.touches[0].clientX);
+    }
+  }
+
+  wrap.addEventListener('touchstart', startTouchDrag, { passive: true });
+  handle.addEventListener('touchstart', startTouchDrag, { passive: true });
+
+  window.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    // CRITICAL: Prevent page scroll while dragging comparison divider on mobile
+    if (e.cancelable) e.preventDefault();
+    if (e.touches.length > 0) {
+      updateSliderPosition(e.touches[0].clientX);
+    }
+  }, { passive: false });
+
+  function endTouchDrag() {
+    if (isDragging) {
+      isDragging = false;
+      handle.classList.remove('is-dragging');
+    }
+  }
+  window.addEventListener('touchend', endTouchDrag, { passive: true });
+  window.addEventListener('touchcancel', endTouchDrag, { passive: true });
+
+  // Pointer / Mouse Events (desktop & tablet)
+  wrap.addEventListener('pointerdown', function(e) {
+    isDragging = true;
+    handle.classList.add('is-dragging');
+    updateSliderPosition(e.clientX);
+    try {
+      if (wrap.setPointerCapture) wrap.setPointerCapture(e.pointerId);
+    } catch(err) {}
+  });
+
+  wrap.addEventListener('pointermove', function(e) {
+    if (!isDragging) return;
+    updateSliderPosition(e.clientX);
+  });
+
+  function endPointerDrag(e) {
+    if (isDragging) {
+      isDragging = false;
+      handle.classList.remove('is-dragging');
+      try {
+        if (wrap.releasePointerCapture && e && e.pointerId) wrap.releasePointerCapture(e.pointerId);
+      } catch(err) {}
+    }
+  }
+  wrap.addEventListener('pointerup', endPointerDrag);
+  wrap.addEventListener('pointercancel', endPointerDrag);
+  window.addEventListener('pointerup', endPointerDrag);
+})();
+
+// ============================================================
+// 4. COST CALCULATOR & DYNAMIC PRICING
+// ============================================================
+var currentClassVal = 1.0;
+var currentClassName = 'Седан';
 
 function selClass(btn) {
   var btns = document.querySelectorAll('.class-btn');
   btns.forEach(function(b) {
-    b.style.background = '#12141a';
-    b.style.borderColor = '#202430';
+    b.classList.remove('active');
   });
-  btn.style.background = 'rgba(59,130,246,0.1)';
-  btn.style.borderColor = '#3b82f6';
-  currentClassVal = parseFloat(btn.getAttribute('data-val'));
+  btn.classList.add('active');
+  currentClassVal = parseFloat(btn.getAttribute('data-val')) || 1.0;
+  var nameEl = btn.querySelector('.class-name');
+  if (nameEl) currentClassName = nameEl.innerText.trim();
   calcPrice();
 }
 
-function toggleSvc(chk) {
-  var lbl = chk.parentElement;
-  if(chk.checked) {
-    lbl.style.background = 'rgba(59,130,246,0.1)';
-    lbl.style.borderColor = '#3b82f6';
+function toggleSvcChip(chk) {
+  var parent = chk.closest('.svc-chip');
+  if (!parent) return;
+  if (chk.checked) {
+    parent.classList.add('active');
   } else {
-    lbl.style.background = '#12141a';
-    lbl.style.borderColor = '#202430';
+    parent.classList.remove('active');
   }
 }
 
 function calcPrice() {
   var checkboxes = document.querySelectorAll('.calc-chk');
   var svcTotal = 0;
+  var selectedCount = 0;
+  var selectedNames = [];
+
   checkboxes.forEach(function(chk) {
-    if(chk.checked) svcTotal += parseInt(chk.value);
+    if (chk.checked) {
+      svcTotal += parseInt(chk.value, 10) || 0;
+      selectedCount++;
+      selectedNames.push(chk.getAttribute('data-name') || 'Услуга');
+    }
   });
-  var total = Math.round(svcTotal * currentClassVal / 1000) * 1000;
-  document.getElementById('resultPrice').innerHTML = total.toLocaleString('ru-RU') + ' <span style="font-size:1.2rem;color:#64748b;font-weight:500">₽</span>';
+
+  var total = Math.round((svcTotal * currentClassVal) / 1000) * 1000;
+  var priceEl = document.getElementById('resultPrice');
+  var detailsEl = document.getElementById('resultDetails');
+
+  if (priceEl) {
+    priceEl.innerHTML = total.toLocaleString('ru-RU') + ' <span>₽</span>';
+  }
+  if (detailsEl) {
+    var countStr = selectedCount === 1 ? '1 услуга' : (selectedCount >= 2 && selectedCount <= 4 ? selectedCount + ' услуги' : selectedCount + ' услуг');
+    detailsEl.innerText = currentClassName + ' • ' + (selectedCount > 0 ? countStr : 'услуги не выбраны');
+  }
 }
 
+// Initial calculation run
+calcPrice();
+
+// ============================================================
+// 5. BOOKING MODAL & TOAST NOTIFICATION
+// ============================================================
+var bookingModal = document.getElementById('bookingModal');
+var toastNotice = document.getElementById('toastNotice');
+var toastTimer = null;
+
+function openBookingModal() {
+  if (!bookingModal) return;
+  bookingModal.classList.add('open');
+  bookingModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBookingModal() {
+  if (!bookingModal) return;
+  bookingModal.classList.remove('open');
+  bookingModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Close modal when tapping overlay background
+if (bookingModal) {
+  bookingModal.addEventListener('click', function(e) {
+    if (e.target === bookingModal) {
+      closeBookingModal();
+    }
+  });
+}
+
+// Close on Escape key
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeBookingModal();
+    closeMobileNav();
+  }
+});
+
+function openBookingFromCalc() {
+  var summaryBox = document.getElementById('modalCalcSummary');
+  var priceEl = document.getElementById('resultPrice');
+  var priceText = priceEl ? priceEl.innerText.trim() : '';
+
+  var checkedBoxes = document.querySelectorAll('.calc-chk:checked');
+  var svcList = [];
+  checkedBoxes.forEach(function(chk) {
+    svcList.push(chk.getAttribute('data-name') || 'Услуга');
+  });
+
+  if (summaryBox) {
+    summaryBox.style.display = 'block';
+    summaryBox.innerHTML = 
+      '<div style="font-size:0.75rem;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem">Выбранный расчет калькулятора</div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:.75rem">' +
+        '<div>' +
+          '<div style="font-size:.95rem;font-weight:700;color:#fff">' + currentClassName + ' &bull; ' + svcList.length + ' усл.</div>' +
+          '<div style="font-size:.8rem;color:#94a3b8;margin-top:2px;line-height:1.3">' + (svcList.length ? svcList.join(', ') : 'Без услуг') + '</div>' +
+        '</div>' +
+        '<div style="font-size:1.25rem;font-weight:800;color:#3b82f6;white-space:nowrap">' + priceText + '</div>' +
+      '</div>';
+  }
+
+  var commentField = document.getElementById('mComment');
+  if (commentField) {
+    commentField.value = 'Класс: ' + currentClassName + '. Выбранные услуги: ' + (svcList.join(', ') || 'нет') + '. Предварительный расчет: ' + priceText;
+  }
+
+  openBookingModal();
+}
+
+function showToast(title, desc) {
+  if (!toastNotice) return;
+  var titleEl = document.getElementById('toastTitle');
+  var descEl = document.getElementById('toastDesc');
+  if (titleEl && title) titleEl.innerText = title;
+  if (descEl && desc) descEl.innerText = desc;
+
+  toastNotice.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() {
+    toastNotice.classList.remove('show');
+  }, 4500);
+}
+
+function submitBookingModal(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('modalSubmitBtn');
+  var origText = btn ? btn.innerHTML : 'Подтвердить запись';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = 'Отправка заявки...';
+  }
+
+  setTimeout(function() {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+    }
+    if (form && typeof form.reset === 'function') {
+      form.reset();
+    }
+    closeBookingModal();
+    showToast('Заявка успешно принята!', 'Мастер студии перезвонит вам в течение 10 минут.');
+  }, 500);
+}
+
+function submitContactForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('button[type="submit"]');
+  var origText = btn ? btn.innerHTML : 'Отправить заявку в студию';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = 'Отправка заявки...';
+  }
+
+  setTimeout(function() {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+    }
+    if (form && typeof form.reset === 'function') {
+      form.reset();
+    }
+    showToast('Заявка успешно принята!', 'Мастер студии перезвонит вам в течение 10 минут.');
+  }, 500);
+}
 </script>
 </body>
 </html>

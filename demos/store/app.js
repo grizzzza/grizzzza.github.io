@@ -358,9 +358,12 @@ function changeCity() {
 
 // --- CALLBACK MODAL ---
 function openCallbackModal() {
+  closeAllDrawers();
   const modal = document.getElementById('callbackModal');
   if (!modal) return;
   modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
   setTimeout(() => {
     modal.classList.remove('opacity-0');
     const box = modal.querySelector('div');
@@ -374,7 +377,13 @@ function closeCallbackModal() {
   modal.classList.add('opacity-0');
   const box = modal.querySelector('div');
   if (box) box.classList.add('scale-95');
-  setTimeout(() => modal.classList.add('hidden'), 300);
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.removeProperty('overflow');
+    document.documentElement.style.removeProperty('overflow');
+  }, 300);
 }
 
 function handleCallbackSubmit(e) {
@@ -399,20 +408,45 @@ function initSlider() {
   if (heroSlider) {
     
 
-    // Touch swipe support
+    // Mobile touch swipe support with vertical scroll preservation
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let touchEndY = 0;
+
     heroSlider.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      if (!e.changedTouches || e.changedTouches.length === 0) return;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+      touchEndX = touchStartX;
+      touchEndY = touchStartY;
+      clearInterval(sliderTimer);
+    }, { passive: true });
+
+    heroSlider.addEventListener('touchmove', (e) => {
+      if (!e.changedTouches || e.changedTouches.length === 0) return;
+      touchEndX = e.changedTouches[0].clientX;
+      touchEndY = e.changedTouches[0].clientY;
     }, { passive: true });
 
     heroSlider.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const threshold = 40;
-      if (touchEndX < touchStartX - threshold) {
-        nextSlide();
-      } else if (touchEndX > touchStartX + threshold) {
-        prevSlide();
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
+      }
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+      const threshold = 35;
+
+      // Only switch slides if swipe is predominantly horizontal
+      if (Math.abs(deltaX) > threshold && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        if (deltaX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      } else {
+        startSliderTimer();
       }
     }, { passive: true });
   }
@@ -711,59 +745,194 @@ if (document.readyState === 'loading') {
   init();
 }
 
-// RESTORED FUNCTIONS
-function toggleDrawer(id) {
+// ==========================================
+// UNIFIED DRAWER & MODAL MANAGEMENT (MOBILE-FIRST)
+// ==========================================
+function openDrawer(id) {
   const drawer = document.getElementById(id);
   const overlay = document.getElementById('drawerOverlay');
   if (!drawer || !overlay) return;
 
-  const isOpen = !drawer.classList.contains('translate-x-full');
-  if (isOpen) {
-    drawer.classList.add('translate-x-full');
-    overlay.classList.add('hidden');
-    document.body.style.overflow = '';
-  } else {
-    if (id === "cartSidebar") renderCart();
+  // Render specific content before opening
+  if (id === 'cartSidebar') renderCart();
+  if (id === 'wishSidebar') renderWishlist();
+  if (id === 'accountSidebar') renderAccount();
+  if (id === 'citySidebar') renderCityList();
 
-    ['cartSidebar', 'citySidebar', 'accountSidebar', 'wishSidebar', 'mobileMenuDrawer'].forEach(d => {
+  // Close any other open drawers
+  ['cartSidebar', 'citySidebar', 'accountSidebar', 'wishSidebar', 'mobileMenuDrawer'].forEach(d => {
+    if (d !== id) {
       const el = document.getElementById(d);
-      if (el && d !== id) el.classList.add('translate-x-full');
-    });
-    drawer.classList.remove('translate-x-full');
-    overlay.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function updateCityUI() {
-  const currentCityBtn = document.getElementById('currentCityBtn');
-  if (currentCityBtn) {
-    currentCityBtn.innerHTML = `
-      <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-      ${currentCity}
-    `;
-  }
-}
-
-function selectCity(city) {
-  currentCity = city;
-  localStorage.setItem('nordic_city', city);
-  updateCityUI();
-  toggleDrawer('citySidebar');
-}
-
-function filterCityList() {
-  const q = document.getElementById('citySearchInput');
-  if (!q) return;
-  const val = q.value.toLowerCase();
-  const lists = document.querySelectorAll('.city-list');
-  lists.forEach(ul => {
-    const items = ul.querySelectorAll('li');
-    items.forEach(li => {
-      const text = li.textContent.toLowerCase();
-      li.style.display = text.includes(val) ? '' : 'none';
-    });
+      if (el) {
+        if (d === 'citySidebar') {
+          el.style.transform = 'translateX(-100%)';
+          el.classList.add('hidden');
+        } else {
+          el.classList.add('translate-x-full');
+        }
+      }
+    }
   });
+
+  if (id === 'citySidebar') {
+    drawer.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      drawer.style.transform = 'translateX(0)';
+      const input = document.getElementById('citySearchInput');
+      if (input) input.focus();
+    });
+  } else {
+    drawer.classList.remove('translate-x-full');
+  }
+
+  overlay.classList.remove('hidden', 'pointer-events-none');
+  overlay.classList.add('active', 'pointer-events-auto');
+  requestAnimationFrame(() => {
+    overlay.classList.remove('opacity-0');
+  });
+
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeAllDrawers() {
+  ['cartSidebar', 'accountSidebar', 'wishSidebar', 'mobileMenuDrawer'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('translate-x-full');
+  });
+
+  const citySidebar = document.getElementById('citySidebar');
+  if (citySidebar) {
+    citySidebar.style.transform = 'translateX(-100%)';
+    setTimeout(() => citySidebar.classList.add('hidden'), 300);
+  }
+
+  const overlay = document.getElementById('drawerOverlay');
+  if (overlay) {
+    overlay.classList.remove('active', 'pointer-events-auto');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+    }, 300);
+  }
+
+  // Restore scroll completely
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+  document.body.style.removeProperty('overflow');
+  document.documentElement.style.removeProperty('overflow');
+}
+
+function toggleDrawer(id) {
+  const drawer = document.getElementById(id);
+  if (!drawer) return;
+
+  const isOpen = (id === 'citySidebar')
+    ? (!drawer.classList.contains('hidden') && (drawer.style.transform === 'translateX(0px)' || drawer.style.transform === 'translateX(0)'))
+    : !drawer.classList.contains('translate-x-full');
+
+  if (isOpen) {
+    closeAllDrawers();
+  } else {
+    openDrawer(id);
+  }
+}
+
+// Global escape listener
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeAllDrawers();
+    closeCheckout();
+    closeCallbackModal();
+  }
+});
+
+// ==========================================
+// WISHLIST DRAWER LOGIC
+// ==========================================
+function renderWishlist() {
+  const container = document.getElementById('wishItems');
+  if (!container) return;
+
+  if (!wishlist || wishlist.length === 0) {
+    container.innerHTML = `
+      <div class="flex flex-col items-center justify-center py-16 text-center text-brand-500">
+        <div class="w-16 h-16 rounded-full bg-brand-100 flex items-center justify-center text-brand-400 mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        </div>
+        <p class="font-bold text-base text-brand-900 mb-1">Список избранного пуст</p>
+        <p class="text-xs text-brand-500 mb-6 max-w-xs">Добавляйте понравившиеся товары из каталога, нажимая на сердечко</p>
+        <button onclick="closeAllDrawers()" class="px-5 py-2.5 bg-brand-900 text-white text-xs font-bold rounded-lg hover:bg-brand-800 transition-colors">Перейти в каталог</button>
+      </div>
+    `;
+    updateBadges();
+    return;
+  }
+
+  let html = `
+    <div class="flex items-center justify-between pb-3 border-b border-brand-100 text-xs text-brand-600 mb-2">
+      <span>Товаров: <strong>${wishlist.length}</strong></span>
+      <button onclick="addAllWishlistToCart()" class="text-brand-900 font-semibold hover:underline flex items-center gap-1">
+        Все в корзину →
+      </button>
+    </div>
+  `;
+
+  wishlist.forEach(id => {
+    const p = products.find(prod => prod.id === id);
+    if (!p) return;
+    const inCart = cart.some(item => item.id === p.id);
+
+    html += `
+      <div class="flex items-center gap-3.5 p-3 bg-brand-50 rounded-xl border border-brand-100 relative group">
+        <img src="${p.img}" alt="${p.title}" class="w-16 h-16 object-cover rounded-lg bg-white border border-brand-200 shrink-0">
+        <div class="flex-1 min-w-0">
+          <h4 class="font-bold text-xs text-brand-900 truncate mb-0.5">${p.title}</h4>
+          <div class="text-[11px] text-brand-500 mb-1.5">${p.category}</div>
+          <div class="flex items-baseline gap-1.5">
+            <span class="text-xs font-bold text-brand-900">${formatPrice(p.price)}</span>
+            ${p.oldPrice ? `<span class="text-[10px] text-brand-400 line-through">${formatPrice(p.oldPrice)}</span>` : ''}
+          </div>
+        </div>
+        <div class="flex flex-col items-end gap-2 shrink-0">
+          <button onclick="removeFromWishlist(${p.id})" class="p-1.5 text-brand-400 hover:text-red-500 rounded-lg hover:bg-white transition-colors" title="Удалить из избранного">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+          <button onclick="toggleCartItem(${p.id}); renderWishlist();" class="px-3 py-1.5 ${inCart ? 'bg-brand-200 text-brand-800' : 'bg-brand-900 text-white'} text-[11px] font-semibold rounded-lg shadow-sm active:scale-95 transition-all">
+            ${inCart ? 'В корзине' : 'В корзину'}
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+  updateBadges();
+}
+
+function removeFromWishlist(id) {
+  wishlist = wishlist.filter(x => x !== id);
+  localStorage.setItem('nordic_wishlist', JSON.stringify(wishlist));
+  updateBadges();
+  renderWishlist();
+  renderProducts();
+  showToast('Товар удален из избранного');
+}
+
+function addAllWishlistToCart() {
+  let added = 0;
+  wishlist.forEach(id => {
+    if (!cart.some(item => item.id === id)) {
+      cart.push({ id, qty: 1 });
+      added++;
+    }
+  });
+  localStorage.setItem('nordic_cart', JSON.stringify(cart));
+  updateBadges();
+  renderCart();
+  renderWishlist();
+  renderProducts();
+  showToast(added > 0 ? `Добавлено в корзину: ${added} шт.` : 'Все товары уже в корзине');
 }
 
 function renderFilters() {
@@ -893,58 +1062,58 @@ function renderProductsGrid(append = false) {
 
   let html = '';
   try {
-  pageItems.forEach(p => {
-    const inCart = cart.some(item => item.id === p.id);
-    const inWishlist = wishlist.some(item => item.id === p.id);
-    
-    const cartBtnClass = inCart 
-      ? 'bg-brand-900 text-white shadow-md shadow-brand-900/20' 
-      : 'bg-white text-brand-900 shadow-sm hover:shadow-md';
-    const wishIconClass = inWishlist ? 'text-red-500 fill-current' : 'text-brand-400';
-    
-    html += `
-      <div class="group relative flex flex-col cursor-pointer" onclick="window.location.href='product.html?id=${p.id}'">
-        <div class="relative w-full aspect-[4/5] bg-white rounded-2xl overflow-hidden border border-brand-100 group-hover:border-brand-300 transition-colors mb-4">
-          ${p.badge ? `<span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-brand-900 text-white rounded z-10">${p.badge}</span>` : ''}
+    pageItems.forEach(p => {
+      const inCart = cart.some(item => item.id === p.id);
+      const inWishlist = wishlist.some(item => item.id === p.id);
+      
+      const cartBtnClass = inCart 
+        ? 'bg-brand-900 text-white shadow-md shadow-brand-900/30' 
+        : 'bg-white text-brand-900 shadow-sm hover:shadow-md border border-brand-200 hover:border-brand-900';
+      const wishIconClass = inWishlist ? 'text-red-500 fill-current' : 'text-brand-400';
+      
+      html += `
+        <div class="product-card group relative flex flex-col bg-white rounded-2xl border border-brand-100 hover:border-brand-300 p-2 sm:p-2.5 transition-all shadow-sm hover:shadow-md cursor-pointer active:scale-[0.99]" onclick="window.location.href='product.html?id=${p.id}'">
+          <div class="relative w-full aspect-[4/5] bg-brand-50 rounded-xl overflow-hidden mb-2 sm:mb-3">
+            ${p.badge ? `<span class="absolute top-2 left-2 px-2 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-brand-900 text-white rounded-md z-10 shadow-sm pointer-events-none whitespace-nowrap">${p.badge}</span>` : ''}
+            
+            <button type="button" onclick="event.stopPropagation(); toggleWishlistItem(${p.id}); renderProducts();" class="wishlist-btn absolute top-2 right-2 w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center bg-white/90 backdrop-blur-md rounded-full shadow-sm hover:bg-white active:scale-90 transition-all z-10" aria-label="В избранное" title="В избранное">
+              <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 ${wishIconClass} transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+            
+            <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" class="product-img w-full h-full object-cover">
+            
+            <button type="button" onclick="event.stopPropagation(); toggleCartItem(${p.id}); renderProducts();" class="absolute bottom-2 right-2 w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl transition-all z-10 active:scale-90 shadow-md ${cartBtnClass}" aria-label="${inCart ? 'В корзине' : 'В корзину'}" title="${inCart ? 'В корзине' : 'В корзину'}">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            </button>
+          </div>
           
-          <button onclick="event.stopPropagation(); toggleWishlistItem(${p.id}); renderProducts()" class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur rounded-full hover:bg-white text-brand-400 transition-colors z-10">
-            <svg class="w-4 h-4 ${wishIconClass} transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-          </button>
-          
-          <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-          
-          <button onclick="event.stopPropagation(); toggleCartItem(${p.id}); renderProducts()" class="absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center rounded-xl transition-all z-10 ${cartBtnClass}" title="${inCart ? 'В корзине' : 'В корзину'}">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-          </button>
-        </div>
-        
-        <div class="flex flex-col flex-1">
-          <div class="flex items-center gap-1.5 text-[10px] font-medium text-brand-500 mb-1.5 uppercase tracking-wider">
-            <span>${p.category}</span>
-            <span class="w-1 h-1 rounded-full bg-brand-200"></span>
-            <div class="flex items-center gap-0.5 text-amber-500">
-              <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              ${p.rating}
+          <div class="flex flex-col flex-1 px-1 pb-1">
+            <div class="flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-brand-500 mb-1">
+              <span class="uppercase tracking-wider truncate">${p.category}</span>
+              <div class="flex items-center gap-0.5 text-amber-500 shrink-0 font-semibold">
+                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <span>${p.rating}</span>
+              </div>
+            </div>
+            
+            <h3 class="font-bold text-xs sm:text-sm text-brand-900 leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem] mb-2 group-hover:text-brand-600 transition-colors">${p.title}</h3>
+            
+            <div class="mt-auto pt-1 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+              <span class="text-sm sm:text-base font-extrabold text-brand-900 whitespace-nowrap">${formatPrice(p.price)}</span>
+              ${p.oldPrice ? `<span class="text-[11px] sm:text-xs text-brand-400 line-through whitespace-nowrap">${formatPrice(p.oldPrice)}</span>` : ''}
             </div>
           </div>
-          <h3 class="font-bold text-brand-900 leading-snug mb-2 group-hover:text-brand-600 transition-colors">${p.title}</h3>
-          
-          <div class="mt-auto pt-2 flex items-end gap-2">
-            <span class="text-sm font-bold text-brand-900">${formatPrice(p.price)}</span>
-            ${p.oldPrice ? `<span class="text-xs text-brand-400 line-through mb-0.5">${formatPrice(p.oldPrice)}</span>` : ''}
-          </div>
         </div>
-      </div>
-    `;
-  });
+      `;
+    });
 
-  if (append) {
-    productsGrid.insertAdjacentHTML('beforeend', html);
-  } else {
-    productsGrid.innerHTML = html;
-  }
+    if (append) {
+      productsGrid.insertAdjacentHTML('beforeend', html);
+    } else {
+      productsGrid.innerHTML = html;
+    }
   } catch(err) {
-    productsGrid.innerHTML = '<div style="color:red">' + err.toString() + '\n' + err.stack + '</div>';
+    productsGrid.innerHTML = '<div style="color:red">' + err.toString() + '</div>';
   }
 
   // Handle pagination button visibility
@@ -957,7 +1126,6 @@ function renderProductsGrid(append = false) {
     }
   }
 }
-
 
 // ==========================================
 // TABS LOGIC
@@ -1177,9 +1345,12 @@ function openCheckout() {
     showToast('Корзина пуста. Добавьте товары перед оформлением');
     return;
   }
+  closeAllDrawers();
   const modal = document.getElementById('checkoutModal');
   if (modal) {
     modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 }
 
@@ -1188,22 +1359,47 @@ function closeCheckout() {
   if (modal) {
     modal.classList.add('hidden');
   }
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+  document.body.style.removeProperty('overflow');
+  document.documentElement.style.removeProperty('overflow');
 }
 
-function closeAllDrawers() {
-  ['cartSidebar', 'citySidebar', 'accountSidebar', 'wishSidebar', 'mobileMenuDrawer'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      if (id === 'citySidebar') {
-        closeCityModal();
-      } else {
-        el.classList.add('translate-x-full');
-      }
+// ==========================================
+// CATALOG GRID TOGGLE (4 В РЯД / 2 В РЯД)
+// ==========================================
+function setCatalogCols(cols) {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const btn4 = document.getElementById('gridToggle4');
+  const btn2 = document.getElementById('gridToggle2');
+  
+  if (cols === 4) {
+    grid.className = 'grid catalog-cols-4 gap-2 sm:gap-6 gap-y-4 sm:gap-y-10';
+    if (btn4) {
+      btn4.className = 'px-2.5 py-1 rounded transition-all bg-white text-brand-900 shadow-sm font-bold';
     }
-  });
-  const overlay = document.getElementById('drawerOverlay');
-  if (overlay) {
-    overlay.classList.add('opacity-0', 'hidden');
+    if (btn2) {
+      btn2.className = 'px-2.5 py-1 rounded transition-all text-brand-600 hover:text-brand-900 font-normal';
+    }
+    try { localStorage.setItem('nordic_catalog_cols', '4'); } catch(e) {}
+  } else {
+    grid.className = 'grid catalog-cols-2 gap-2.5 sm:gap-6 gap-y-5 sm:gap-y-10';
+    if (btn2) {
+      btn2.className = 'px-2.5 py-1 rounded transition-all bg-white text-brand-900 shadow-sm font-bold';
+    }
+    if (btn4) {
+      btn4.className = 'px-2.5 py-1 rounded transition-all text-brand-600 hover:text-brand-900 font-normal';
+    }
+    try { localStorage.setItem('nordic_catalog_cols', '2'); } catch(e) {}
   }
-  document.body.style.overflow = '';
 }
+window.setCatalogCols = setCatalogCols;
+
+// Восстановление сохраненного режима сетки
+try {
+  const savedCols = localStorage.getItem('nordic_catalog_cols');
+  if (savedCols === '4') {
+    setTimeout(() => setCatalogCols(4), 0);
+  }
+} catch(e) {}

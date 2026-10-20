@@ -1,5 +1,5 @@
 // ==========================================
-// СК «АВАНГАРД» // ATHLETIC & SPORTS COMPLEX — APP.JS
+// СК «АРСЕНАЛ» // ATHLETIC & SPORTS COMPLEX — APP.JS
 // (Unique Left Sidebar Header, Solid Framed Layout & Hero Slider)
 // ==========================================
 
@@ -8,6 +8,7 @@ let slideInterval = null;
 let currentExercise = 'squat';
 let currentDay = 'Пн';
 let currentCategory = 'all';
+let currentZoneTitle = 'Олимпийский бассейн 25 метров';
 
 const EXERCISES_DATA = {
   squat: {
@@ -42,51 +43,59 @@ const EXERCISES_DATA = {
 
 const ZONES_DATA = {
   pool: {
-    title: 'Бассейн 25 метров',
-    badge: 'АКВА-ЗОНА',
+    title: 'Олимпийский бассейн 25 метров',
+    badge: 'АКВА-ЗОНА &middot; ФЛАГМАН',
     img: 'assets/pool-zone.jpg',
+    specs: ['25 метров', '4 дорожки', 't° = +27°C', 'Озонирование', 'UV-стерилизация'],
     desc: '4 плавательные дорожки длиной 25 метров с озоновой системой очистки воды без резкого запаха хлора. Температура воды поддерживается на уровне +27°C. Включает зоны для аквафитнеса, гидромассажные чаши, финскую сауну и турецкий хаммам.'
   },
   gym: {
-    title: 'Тренажерный и кардио зал',
+    title: 'Тренажерный зал & Линейка Technogym',
     badge: 'ТРЕНАЖЕРНЫЙ ЗАЛ',
     img: 'assets/cardio-zone.jpg',
+    specs: ['1 500 м²', 'Technogym Artis', 'Гребные Concept2', 'Климат-контроль'],
     desc: 'Просторный зал площадью 1500 м² с премиальными тренажерами Technogym и гребными эргометрами Concept2. Выделенные зоны для кардио-выносливости, блочных тренажеров и функционального тренинга.'
   },
   barbell: {
-    title: 'Силовые помосты & Штанги',
+    title: 'Силовые помосты Eleiko',
     badge: 'СИЛОВЫЕ ПОМОСТЫ',
     img: 'assets/barbell-zone.jpg',
-    desc: '14 профессиональных силовых рам, олимпийские грифы Eleiko, калиброванные блины и резиновое покрытие помостов для безопасного выполнения тяжелоатлетических упражнений.'
+    specs: ['14 силовых рам', 'Грифы Eleiko 20/15 кг', 'Калиброванные блины', 'Амортизирующие помосты'],
+    desc: '14 профессиональных силовых рам Eleiko Prestera, олимпийские грифы 20кг/15кг, калиброванные диски и амортизирующее покрытие помостов для безопасного выполнения тяжелоатлетических упражнений.'
   },
   kettlebell: {
     title: 'Гиревой ареал & Кроссфит',
-    badge: 'ГИРИ & КРОССФИТ',
+    badge: 'ГИРИ & CROSS',
     img: 'assets/kettlebell-zone.jpg',
+    specs: ['120+ чугунных гирь (8–48 кг)', 'Кроссфит-рама', 'Плио-тумбы', 'Канаты и медболы'],
     desc: 'Более 120 соревновательных чугунных гирь от 8 до 48 кг со строгой весовой калибровкой, функциональная кроссфит-рама, плио-тумбы, канаты и медболы.'
   },
   combat: {
-    title: 'Зал единоборств & Бокс',
-    badge: 'ЕДИНОБОРСТВА',
+    title: 'Бойцовский ринг Fairtex & Единоборства',
+    badge: 'БОКС & РИНГ',
     img: 'assets/combat-zone.jpg',
-    desc: 'Оборудованный боксерский ринг, тяжелые снарядные мешки, профессиональное татами, секции бокса, кикбоксинга и классической борьбы.'
+    specs: ['Ринг Fairtex 6x6м', 'Снарядные мешки', 'Борцовское татами', 'Тренеры МС'],
+    desc: 'Оборудованный боксерский ринг, тяжелые снарядные мешки Fairtex, профессиональное татами, секции бокса, кикбоксинга и классической борьбы.'
   },
   games: {
     title: 'Многофункциональный игровой зал',
-    badge: 'ИГРОВОЙ ЗАЛ',
+    badge: 'ИГРОВОЙ ПАРКЕТ',
     img: 'assets/sports-hall.jpg',
+    specs: ['Дубовый паркет 600 м²', 'Мини-футбол', 'Баскетбол', 'Волейбол'],
     desc: 'Игровая площадка европейского уровня со специальным амортизирующим паркетом для мини-футбола, баскетбола, волейбола и настольного тенниса.'
   },
   spa: {
-    title: 'Банный комплекс & СПА',
-    badge: 'СПА & САУНЫ',
+    title: 'SPA-комплекс и термальные сауны',
+    badge: 'SPA & ХАММАМ',
     img: 'assets/spa-zone.jpg',
-    desc: 'Финская сауна из натуральной липы, турецкий хаммам, контрастная ледяная купель, джакузи и отдельный кабинет спортивного массажа.'
+    specs: ['Финская сауна (t° = +90°C)', 'Мраморный хаммам (t° = +45°C)', 'Ледяная купель', 'Зона релакса'],
+    desc: 'Финская сухая сауна соляного типа (90°C), турецкий мраморный хаммам (45°C), контрастная ледяная купель, джакузи и отдельный кабинет спортивного массажа.'
   },
   kids: {
     title: 'Детский фитнес & Плавание',
     badge: 'ДЕТСКИЙ СПОРТ',
     img: 'assets/kids-zone.jpg',
+    specs: ['Секции от 4 лет', 'Малый бассейн', 'ОФП и гимнастика', 'Сертифицированные тренеры'],
     desc: 'Групповые и индивидуальные программы обучения плаванию детей с 4 лет, детская гимнастика, общая физическая подготовка и спортивные секции.'
   }
 };
@@ -128,7 +137,7 @@ const SCHEDULE = {
 };
 
 // ==========================================
-// HERO SLIDER LOGIC
+// HERO SLIDER LOGIC WITH TOUCH SWIPE SUPPORT
 // ==========================================
 function startSlideTimer() {
   if (slideInterval) clearInterval(slideInterval);
@@ -165,6 +174,43 @@ function updateDots() {
   });
 }
 
+// Touch swipe gestures for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+function initTouchSlider() {
+  const heroSlider = document.getElementById('heroTrack');
+  if (!heroSlider) return;
+  const heroContainer = heroSlider.parentElement;
+  if (!heroContainer) return;
+
+  heroContainer.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  heroContainer.addEventListener('touchend', (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      touchEndX = e.changedTouches[0].clientX;
+      handleHeroSwipe();
+    }
+  }, { passive: true });
+}
+
+function handleHeroSwipe() {
+  const threshold = 40;
+  const diff = touchEndX - touchStartX;
+  if (Math.abs(diff) > threshold) {
+    if (diff < 0) {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+    startSlideTimer(); // reset auto rotation
+  }
+}
+
 // ==========================================
 // EXERCISE SIMULATOR
 // ==========================================
@@ -185,17 +231,25 @@ function updateSimulator() {
   if (!slider) return;
   const weight = parseInt(slider.value, 10);
   const data = EXERCISES_DATA[currentExercise];
+  if (!data) return;
 
-  document.getElementById('weightValue').innerText = `${weight} кг`;
-  document.getElementById('simBadge').innerText = data.badge;
-  document.getElementById('simTitle').innerText = data.title;
-  document.getElementById('simDesc').innerText = data.desc;
+  const weightVal = document.getElementById('weightValue');
+  const simBadge = document.getElementById('simBadge');
+  const simTitle = document.getElementById('simTitle');
+  const simDesc = document.getElementById('simDesc');
+  const simCal = document.getElementById('simCalories');
+  const simTon = document.getElementById('simTonnage');
+
+  if (weightVal) weightVal.innerText = `${weight} кг`;
+  if (simBadge) simBadge.innerText = data.badge;
+  if (simTitle) simTitle.innerText = data.title;
+  if (simDesc) simDesc.innerText = data.desc;
 
   const calories = Math.round(weight * data.calFactor * 10);
   const tonnage = weight * 5 * 10;
 
-  document.getElementById('simCalories').innerText = `${calories} ккал`;
-  document.getElementById('simTonnage').innerText = `${tonnage} кг`;
+  if (simCal) simCal.innerText = `${calories} ккал`;
+  if (simTon) simTon.innerText = `${tonnage} кг`;
 
   const tagsContainer = document.getElementById('simTags');
   if (tagsContainer) {
@@ -206,13 +260,15 @@ function updateSimulator() {
 // ==========================================
 // SCHEDULE & FREEZE CALCULATOR
 // ==========================================
-function setDay(dayKey) {
+function setDay(dayKey, e) {
   currentDay = dayKey;
   document.querySelectorAll('.day-btn').forEach((btn) => {
-    btn.className = 'day-btn px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors';
+    btn.className = 'day-btn shrink-0 px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors';
   });
-  if (event && event.target) {
-    event.target.className = 'day-btn active px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors';
+  
+  const target = (e && e.currentTarget) || (window.event && window.event.currentTarget) || (window.event && window.event.target);
+  if (target && target.classList) {
+    target.className = 'day-btn active shrink-0 px-3.5 py-2 rounded-xl font-display text-xs font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors';
   }
   renderSchedule();
 }
@@ -225,13 +281,13 @@ function renderSchedule() {
   container.innerHTML = items.map(item => `
     <div class="p-4 rounded-2xl bg-inno-grayBg border-2 border-slate-200 hover:border-inno-purple transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div class="flex items-center gap-4">
-        <span class="px-3 py-1.5 rounded-lg bg-inno-purple text-white font-display font-bold text-xs border border-inno-purple">${item.time}</span>
+        <span class="px-3 py-1.5 rounded-lg bg-inno-purple text-white font-display font-bold text-xs border border-inno-purple shrink-0">${item.time}</span>
         <div>
           <h4 class="font-display font-bold text-inno-purple text-sm">${item.title}</h4>
           <p class="text-xs text-slate-500">Тренер: <strong class="text-slate-700">${item.coach}</strong> &middot; Зона: <span class="text-inno-green font-bold">${item.zone}</span></p>
         </div>
       </div>
-      <button onclick="openBookingModal('Запись на секцию: ${item.title}')" class="px-4 py-2 bg-white hover:bg-inno-purple hover:text-white border-2 border-slate-200 text-slate-700 text-xs font-display font-bold rounded-xl transition-colors shrink-0">
+      <button onclick="openBookingModal('Запись на секцию: ${item.title}')" class="px-4 py-2 bg-white hover:bg-inno-purple hover:text-white border-2 border-slate-200 text-slate-700 text-xs font-display font-bold rounded-xl transition-colors shrink-0 text-center">
         Записаться →
       </button>
     </div>
@@ -239,9 +295,13 @@ function renderSchedule() {
 }
 
 function calcFreezeDays() {
-  const startVal = document.getElementById('freezeStartDate').value;
-  const endVal = document.getElementById('freezeEndDate').value;
+  const startEl = document.getElementById('freezeStartDate');
+  const endEl = document.getElementById('freezeEndDate');
   const output = document.getElementById('freezeDaysOutput');
+  if (!startEl || !endEl || !output) return;
+
+  const startVal = startEl.value;
+  const endVal = endEl.value;
 
   if (startVal && endVal) {
     const d1 = new Date(startVal);
@@ -258,38 +318,58 @@ function calcFreezeDays() {
 
 function handleFreezeSubmit(e) {
   e.preventDefault();
-  showToast('Заявка на заморозку успешно отправлена!');
+  showToast('Заявка на заморозку карты успешно отправлена!');
   e.target.reset();
-  document.getElementById('freezeDaysOutput').innerText = '0 дней';
+  const output = document.getElementById('freezeDaysOutput');
+  if (output) output.innerText = '0 дней';
 }
 
 // ==========================================
-// SIDEBAR & MODALS
+// MOBILE SIDEBAR & NAVIGATION
 // ==========================================
 function toggleLeftSidebar() {
   const sidebar = document.getElementById('leftSidebar');
-  if (sidebar) sidebar.classList.toggle('-translate-x-full');
-}
+  const backdrop = document.getElementById('sidebarBackdrop');
+  if (!sidebar) return;
 
-function closeSidebarMobile() {
-  if (window.innerWidth < 1024) {
-    const sidebar = document.getElementById('leftSidebar');
-    if (sidebar) sidebar.classList.add('-translate-x-full');
+  const isClosed = sidebar.classList.contains('-translate-x-full');
+  if (isClosed) {
+    sidebar.classList.remove('-translate-x-full');
+    if (backdrop) backdrop.classList.remove('hidden');
+    document.body.classList.add('overflow-y-hidden', 'lg:overflow-y-auto');
+  } else {
+    sidebar.classList.add('-translate-x-full');
+    if (backdrop) backdrop.classList.add('hidden');
+    document.body.classList.remove('overflow-y-hidden', 'lg:overflow-y-auto');
   }
 }
 
+function closeSidebarMobile() {
+  const sidebar = document.getElementById('leftSidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  if (sidebar) sidebar.classList.add('-translate-x-full');
+  if (backdrop) backdrop.classList.add('hidden');
+  document.body.classList.remove('overflow-y-hidden', 'lg:overflow-y-auto');
+}
+
+// ==========================================
+// FITNESS ZONES FILTERING & MODAL
+// ==========================================
 function filterZones(category) {
+  currentCategory = category;
   document.querySelectorAll('.zone-filter-btn').forEach(btn => {
-    btn.className = 'zone-filter-btn px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors';
+    btn.className = 'zone-filter-btn shrink-0 whitespace-nowrap px-4 py-2.5 rounded-xl text-xs font-display uppercase font-bold bg-white border-2 border-slate-200 text-slate-600 hover:text-inno-purple hover:border-inno-purple transition-colors';
   });
-  if (event && event.target) {
-    event.target.className = 'zone-filter-btn active px-4 py-2 rounded-xl text-xs font-display uppercase font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors';
+
+  const evt = window.event;
+  if (evt && evt.currentTarget) {
+    evt.currentTarget.className = 'zone-filter-btn active shrink-0 whitespace-nowrap px-4 py-2.5 rounded-xl text-xs font-display uppercase font-bold bg-inno-purple text-white border-2 border-inno-purple transition-colors';
   }
 
   const cards = document.querySelectorAll('.zone-card');
   cards.forEach(card => {
     if (category === 'all' || card.dataset.category === category) {
-      card.style.display = 'block';
+      card.style.display = 'flex';
     } else {
       card.style.display = 'none';
     }
@@ -299,34 +379,96 @@ function filterZones(category) {
 function openZoneModal(key) {
   const data = ZONES_DATA[key];
   if (!data) return;
+  currentZoneTitle = data.title;
 
-  document.getElementById('zoneBadge').innerText = data.badge;
-  document.getElementById('zoneModalTitle').innerText = data.title;
-  document.getElementById('zoneModalImg').src = data.img;
-  document.getElementById('zoneModalDesc').innerText = data.desc;
-  document.getElementById('zoneModal').classList.remove('hidden');
+  const badgeEl = document.getElementById('zoneBadge');
+  const titleEl = document.getElementById('zoneModalTitle');
+  const imgEl = document.getElementById('zoneModalImg');
+  const descEl = document.getElementById('zoneModalDesc');
+  const specsEl = document.getElementById('zoneModalSpecs');
+
+  if (badgeEl) badgeEl.innerHTML = data.badge;
+  if (titleEl) titleEl.innerText = data.title;
+  if (imgEl) imgEl.src = data.img;
+  if (descEl) descEl.innerText = data.desc;
+  if (specsEl && data.specs) {
+    specsEl.innerHTML = data.specs.map(s => `
+      <span class="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-bold">
+        ${s}
+      </span>
+    `).join('');
+  }
+
+  const modal = document.getElementById('zoneModal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.classList.add('overflow-y-hidden');
+  }
 }
 
 function closeZoneModal() {
-  document.getElementById('zoneModal').classList.add('hidden');
+  const modal = document.getElementById('zoneModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('overflow-y-hidden');
+  }
 }
 
+// ==========================================
+// UNIFIED BOOKING MODAL
+// ==========================================
 function openBookingModal(title = 'Оформить клубную карту') {
-  document.getElementById('bookingModalTitle').innerText = title;
-  document.getElementById('bookingModal').classList.remove('hidden');
+  const modal = document.getElementById('bookingModal');
+  const titleEl = document.getElementById('bookingModalTitle');
+  if (titleEl) titleEl.innerText = title;
+
+  const serviceSelect = document.getElementById('bookingService');
+  if (serviceSelect && title) {
+    let matched = false;
+    for (let i = 0; i < serviceSelect.options.length; i++) {
+      const opt = serviceSelect.options[i];
+      if (title.toLowerCase().includes(opt.value.toLowerCase()) || 
+          opt.value.toLowerCase().includes(title.toLowerCase()) ||
+          opt.text.toLowerCase().includes(title.toLowerCase())) {
+        serviceSelect.selectedIndex = i;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched && title !== 'Оформить клубную карту') {
+      const customOpt = new Option(title, title, true, true);
+      serviceSelect.add(customOpt);
+    }
+  }
+
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.classList.add('overflow-y-hidden');
+  }
 }
 
 function closeBookingModal() {
-  document.getElementById('bookingModal').classList.add('hidden');
+  const modal = document.getElementById('bookingModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('overflow-y-hidden');
+  }
 }
 
 function handleBookingSubmit(e) {
   e.preventDefault();
   closeBookingModal();
-  showToast('Спасибо! Наш менеджер свяжется с вами в течение 5 минут.');
+  showToast('Спасибо! Заявка принята, администратор свяжется с вами в течение 5 минут.');
   e.target.reset();
 }
 
+// ==========================================
+// RULES MODAL & POPULATION
+// ==========================================
 function openRulesModal() {
   const container = document.getElementById('rulesContent');
   if (container) {
@@ -338,37 +480,47 @@ function openRulesModal() {
 
       <p class="font-bold text-inno-purple text-sm mb-1">1. Общие положения и режим работы:</p>
       <ul class="list-disc list-inside space-y-1 text-slate-600 mb-3">
-        <li>Вход на территорию тренировочных зон осуществляется строго по Клубной карте или QR-коду приложения.</li>
-        <li>Верхняя одежда и уличная обувь сдаются в гардероб на 1 этаже. Обязательна сменная спортивная обувь.</li>
-        <li>На территории запрещено находится в состоянии алкогольного опьянения и проносить стеклянную тару.</li>
+        <li>Вход на территорию комплекса осуществляется строго по клубной карте или QR-коду гостевого визита.</li>
+        <li>Верхняя одежда и уличная обувь сдаются в гардероб. Обязательна сменная чистая спортивная обувь.</li>
+        <li>На территории запрещено находиться в состоянии опьянения и проносить стеклянную посуду.</li>
       </ul>
 
       <p class="font-bold text-inno-purple text-sm mb-1">2. Посещение озонового бассейна 25м:</p>
       <ul class="list-disc list-inside space-y-1 text-slate-600 mb-3">
-        <li>Перед входом в чашу бассейна обязателен прием душа с мылом без купального костюма.</li>
+        <li>Перед спуском в чашу бассейна обязателен тщательный прием душа без купального костюма.</li>
         <li>Наличие плавательного костюма (плавки/купальник) и плавательной шапочки строго обязательно.</li>
-        <li>Дети до 14 лет допускаются в бассейн только в сопровождении взрослых или тренера.</li>
+        <li>Дети до 14 лет допускаются на воду только в сопровождении инструктора или законных представителей.</li>
       </ul>
 
-      <p class="font-bold text-inno-purple text-sm mb-1">3. Тренажерный зал и силовые помосты:</p>
+      <p class="font-bold text-inno-purple text-sm mb-1">3. Тренажерный зал и силовые помосты Eleiko:</p>
       <ul class="list-disc list-inside space-y-1 text-slate-600 mb-3">
         <li>Занятия разрешены только в закрытой спортивной обуви (кроссовки/штангетки).</li>
-        <li>После выполнения упражнения Посетитель обязан вернуть снаряды (блины, гири, гантели) на штатные места.</li>
-        <li>При работе с предельными весами обязательна страховка замками и помощь партнера или инструктора.</li>
+        <li>После выполнения упражнения спортсмен обязан вернуть снаряды (блины, гири, гантели) на стойки.</li>
+        <li>При работе с предельными весами обязательна страховка замками и помощь инструктора или партнера.</li>
       </ul>
 
-      <p class="font-bold text-inno-purple text-sm mb-1">4. Банный комплекс и СПА:</p>
+      <p class="font-bold text-inno-purple text-sm mb-1">4. SPA-комплекс и термальные сауны:</p>
       <ul class="list-disc list-inside space-y-1 text-slate-600">
-        <li>Посещение сауны и хаммама разрешено при наличии индивидуального полотенца.</li>
-        <li>Запрещено лить воду с маслами на электрические нагревательные элементы сауны.</li>
+        <li>Посещение сауны и хаммама разрешено при наличии индивидуального банного полотенца.</li>
+        <li>Запрещено выливать воду с аромамаслами на открытые нагревательные элементы сауны.</li>
       </ul>
     `;
   }
-  document.getElementById('rulesModal').classList.remove('hidden');
+  const modal = document.getElementById('rulesModal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.classList.add('overflow-y-hidden');
+  }
 }
 
 function closeRulesModal() {
-  document.getElementById('rulesModal').classList.add('hidden');
+  const modal = document.getElementById('rulesModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('overflow-y-hidden');
+  }
 }
 
 // ==========================================
@@ -380,64 +532,44 @@ function showToast(msg) {
 
   const toast = document.createElement('div');
   toast.id = 'appToast';
-  toast.className = 'fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl bg-inno-purple text-white text-xs font-display font-bold border-2 border-inno-purple shadow-lg transition-all';
+  toast.className = 'fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl bg-inno-purple text-white text-xs font-display font-bold border-2 border-inno-purple shadow-xl transition-all';
   toast.innerText = msg;
 
   document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
+  setTimeout(() => {
+    if (toast.parentElement) toast.remove();
+  }, 4000);
 }
+
+// ==========================================
+// BACKDROP CLICKS TO CLOSE MODALS
+// ==========================================
+window.addEventListener('click', (e) => {
+  const bookingModal = document.getElementById('bookingModal');
+  const zoneModal = document.getElementById('zoneModal');
+  const rulesModal = document.getElementById('rulesModal');
+
+  if (e.target === bookingModal) closeBookingModal();
+  if (e.target === zoneModal) closeZoneModal();
+  if (e.target === rulesModal) closeRulesModal();
+});
+
+// Escape key to close any open modal or mobile sidebar
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeBookingModal();
+    closeZoneModal();
+    closeRulesModal();
+    closeSidebarMobile();
+  }
+});
 
 // ==========================================
 // INITIALIZATION ON DOM CONTENT LOADED
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   startSlideTimer();
+  initTouchSlider();
   renderSchedule();
   updateSimulator();
 });
-
-
-// Enhanced Time Slot Selector for Trial Booking Modal
-function selectTimeSlot(btnElement, slotTime) {
-    const parent = btnElement.parentElement;
-    const buttons = parent.querySelectorAll('button');
-    buttons.forEach(b => {
-        b.classList.remove('bg-inno-purple', 'text-white', 'border-inno-purple');
-        b.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-300');
-    });
-    btnElement.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-300');
-    btnElement.classList.add('bg-inno-purple', 'text-white', 'border-inno-purple');
-    
-    const hiddenTimeInput = document.getElementById('selectedTimeSlot');
-    if (hiddenTimeInput) {
-        hiddenTimeInput.value = slotTime;
-    }
-}
-
-// Updated openBookingModal to support optional course/pass prefilling
-const originalOpenBookingModal = window.openBookingModal;
-window.openBookingModal = function(courseOrPassName) {
-    const modal = document.getElementById('bookingModal');
-    if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-    if (courseOrPassName) {
-        const passSelect = document.getElementById('bookingPassType') || document.getElementById('modalPassSelect');
-        if (passSelect) {
-            // If option exists, select it or add custom label
-            let found = false;
-            for (let i = 0; i < passSelect.options.length; i++) {
-                if (passSelect.options[i].text.includes(courseOrPassName) || passSelect.options[i].value.includes(courseOrPassName)) {
-                    passSelect.selectedIndex = i;
-                    found = true;
-                    break;
-                }
-            }
-            if (!found && passSelect.options.length > 0) {
-                const opt = new Option(courseOrPassName, courseOrPassName, true, true);
-                passSelect.add(opt);
-            }
-        }
-    }
-};
