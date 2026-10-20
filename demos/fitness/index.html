@@ -1259,11 +1259,11 @@
         </div>
         <div>
           <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Ваше имя:</label>
-          <input type="text" required placeholder="Александр" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-base focus:border-inno-purple focus:outline-none transition-colors" style="font-size: 16px;">
+          <input id="bookingName" type="text" required placeholder="Александр" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-base focus:border-inno-purple focus:outline-none transition-colors" style="font-size: 16px;">
         </div>
         <div>
           <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Номер телефона:</label>
-          <input type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-base focus:border-inno-purple focus:outline-none transition-colors" style="font-size: 16px;">
+          <input id="bookingPhone" type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl bg-inno-grayBg border-2 border-slate-200 text-slate-800 text-base focus:border-inno-purple focus:outline-none transition-colors" style="font-size: 16px;">
         </div>
         <button type="submit" class="w-full py-4 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl border-2 border-inno-green transition-colors shadow-sm">
           Подтвердить запись →
@@ -1294,7 +1294,7 @@
       <p id="zoneModalDesc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-normal">Описание зоны...</p>
 
       <div class="flex flex-col sm:flex-row sm:justify-end gap-3">
-        <button onclick="closeZoneModal(); openBookingModal('Запись в зону: ' + currentZoneTitle);" class="w-full sm:w-auto px-6 py-3 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors text-center shadow-sm">
+        <button id="zoneModalBookBtn" onclick="closeZoneModal(); openBookingModal('Запись в зону: ' + currentZoneTitle);" class="w-full sm:w-auto px-6 py-3 bg-inno-green hover:bg-inno-greenHover text-white font-display font-bold text-xs uppercase rounded-xl border-2 border-inno-green transition-colors text-center shadow-sm">
           Записаться в эту зону →
         </button>
       </div>
